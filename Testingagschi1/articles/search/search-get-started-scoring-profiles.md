@@ -34,7 +34,7 @@ La aplicación de ejemplo está escrita en C# con Visual Studio 2013. Si no tien
 
 Necesitará una suscripción de Azure y un servicio de Azure Search para completar el tutorial. Consulte [Creación de un servicio de búsqueda en el portal](search-create-service-portal.md) para obtener ayuda con la configuración del servicio.
 
- [Para completar este tutorial necesita una cuenta de Azure:](../../includes/free-trial-note.md)]
+ [Para completar este tutorial necesita una cuenta de Azure:](../../includes/free-trial-note.md)
 
 <a id="sub-2"></a>
 
@@ -125,6 +125,6 @@ Obtenga más información sobre la sintaxis de búsqueda y los parámetros de co
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO2--->
 
 
