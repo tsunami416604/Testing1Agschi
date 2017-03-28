@@ -1339,4 +1339,3 @@ Microsoft Cluster Server (MSCS) не поддерживается.
 
 Ознакомьтесь также с разделом [Общие сведения об SQL Server для SAP в Azure][dbms-guide-5.8].
 
-
