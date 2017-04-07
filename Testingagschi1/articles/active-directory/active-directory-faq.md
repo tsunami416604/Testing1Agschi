@@ -27,7 +27,7 @@ Daha fazla bilgi için bkz. [Azure Active Directory nedir?](active-directory-wha
 
 
 ## <a name="access-azure-and-azure-active-directory"></a>Azure ve Azure Active Directory erişimi
-**S: Klasik Azure portalında (\https://manage.windowsazure.com) Azure AD'ye erişmeye çalıştığımda neden "Abonelik bulunamadı" yanıtını alıyorum?**
+**S: Klasik Azure portalında \(https://manage.windowsazure.com\) Azure AD'ye erişmeye çalıştığımda neden "Abonelik bulunamadı" yanıtını alıyorum?**
 
 **Y:** Klasik Azure portalına erişmek için her kullanıcının bir Azure aboneliğiyle birlikte izinleri olmalıdır. Ücretli bir Office 365 veya Azure AD aboneliğiniz varsa tek seferlik etkinleştirme adımı için [http://aka.ms/accessAAD](http://aka.ms/accessAAD) sayfasına gidin. Aksi takdirde, ücretsiz bir [Azure hesabı](https://azure.microsoft.com/pricing/free-trial/) veya ücretli aboneliği etkinleştirmeniz gerekir.
 
