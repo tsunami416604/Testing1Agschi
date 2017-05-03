@@ -1,10 +1,10 @@
-[フィードバック](http://go.microsoft.com/fwlink/?linkid=698785&clcid=0x409) フォーラムでは、Azure Media Services の改善方法について、フィードバックの提供や提案を行うことができます。 また、次のカテゴリのいずれかをクリックすると、そのカテゴリのフォーラムに直接アクセスすることもできます。
+利用 [使用者心聲](http://go.microsoft.com/fwlink/?linkid=698785&clcid=0x409) 論壇來提供意見並提出如何改善 Azure 媒體服務的建議。 您也可直接前往下列類別之一：
 
 * [Azure Media Player](https://feedback.azure.com/forums/169396-media-services/category/109320-azure-media-player/)
-* [クライアント SDK ライブラリ](https://feedback.azure.com/forums/169396-media-services/category/144435-client-sdks/)
-* [エンコードと処理](https://feedback.azure.com/forums/169396-media-services/category/144411-encoding-and-processing/)
-* [ライブ ストリーミング](https://feedback.azure.com/forums/169396-media-services/category/144414-live-streaming/)
-* [メディア分析](https://feedback.azure.com/forums/169396-media-services/category/146181-media-analytics)
-* [Azure ポータル](https://feedback.azure.com/forums/169396-media-services/category/144432-portal/)
-* [REST API とプラットフォーム](https://feedback.azure.com/forums/169396-media-services/category/144423-rest-api-and-platform/)
-* [VOD ストリーミング](https://feedback.azure.com/forums/169396-media-services/category/144429-vod-streaming/)
+* [用戶端 SDK 程式庫](https://feedback.azure.com/forums/169396-media-services/category/144435-client-sdks/)
+* [編碼與處理](https://feedback.azure.com/forums/169396-media-services/category/144411-encoding-and-processing/)
+* [即時資料流](https://feedback.azure.com/forums/169396-media-services/category/144414-live-streaming/)
+* [媒體分析](https://feedback.azure.com/forums/169396-media-services/category/146181-media-analytics)
+* [Azure 入口網站](https://feedback.azure.com/forums/169396-media-services/category/144432-portal/)
+* [REST API 和平台](https://feedback.azure.com/forums/169396-media-services/category/144423-rest-api-and-platform/)
+* [VOD 串流](https://feedback.azure.com/forums/169396-media-services/category/144429-vod-streaming/)

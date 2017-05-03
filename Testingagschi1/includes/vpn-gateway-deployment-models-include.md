@@ -1,6 +1,1 @@
-It's important to understand that Azure currently works with two deployment models: Resource Manager and classic. Before you begin your configuration, verify that you are using the instructions for the deployment model that you want to work in. The two models are not completely compatible with each other.
-
-For example, if you are working with a virtual network that was created using the classic deployment model and wanted to add a connection to the VNet, you would use the deployment methods that correspond to the classic deployment model, not Resource Manager. If you are working with a virtual network that was created using the Resource Manager deployment model, you would use the deployment methods that correspond with Resource Manager, not classic.
-
-For information about the deployment models, see [Understanding Resource Manager deployment and classic deployment](../articles/resource-manager-deployment-model.md).
-
+Azure 目前使用兩種部署模型：Resource Manager 和傳統。 開始您的組態之前，請確認使用您要使用之部署模型的指示。 如需詳細資訊，請參閱[了解部署模型](../articles/resource-manager-deployment-model.md)。

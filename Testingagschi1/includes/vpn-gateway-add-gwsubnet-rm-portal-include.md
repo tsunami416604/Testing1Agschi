@@ -1,10 +1,10 @@
-1. In the portal, navigate to the virtual network to which you want to connect a gateway.
-2. In the **Settings** section of your VNet blade, click **Subnets** to expand the Subnets blade.
-3. On the **Subnets** blade, click **+Gateway subnet** at the top. This will open the **Add subnet** blade. 
+1. 在[入口網站](http://portal.azure.com)中，瀏覽至要建立虛擬網路閘道的 Resource Manager 虛擬網路。
+2. 在 VNet 刀鋒視窗的 [設定] 中，按一下 [子網路] 以展開 [子網路] 刀鋒視窗。
+3. 在 [子網路] 刀鋒視窗中，按一下 [+閘道子網路] 以開啟 [新增子網路] 刀鋒視窗。 
    
-    ![Add the gateway subnet](./media/vpn-gateway-add-gwsubnet-rm-portal-include/newgwsubnet450.png "Add the gateway subnet")
-4. The **Name** for your subnet will automatically be filled in with the value 'GatewaySubnet'. This value is required in order for Azure to recognize the subnet as the gateway subnet. Adjust the auto-filled **Address range** values to match your configuration requirements.
-   
-    ![Adding the subnet](./media/vpn-gateway-add-gwsubnet-rm-portal-include/addgwsubnet300.png "Adding the subnet")
-5. Click **OK** at the bottom of the blade to create the subnet.
+    ![新增閘道子網路](./media/vpn-gateway-add-gwsubnet-rm-portal-include/addgwsubnet.png "新增閘道子網路")
+4. 子網路的 [名稱] 會自動填入 'GatewaySubnet' 這個值。 為了讓 Azure 將此子網路視為閘道子網路，需要有這個值。 調整自動填入的 [位址範圍] 值，以符合您的組態需求。
+
+    ![新增子網路](./media/vpn-gateway-add-gwsubnet-rm-portal-include/addsubnetgw.png "新增子網路")
+5. 若要建立子網路，請按一下刀鋒視窗底部的 [確定]。
 

@@ -1,5 +1,5 @@
-| **Deployment Model/Method** | **Azure Portal** | **Classic Portal** | **PowerShell** |
+| **部署模型/方法** | **Azure 入口網站** | **傳統入口網站** | **PowerShell** |
 | --- | --- | --- | --- |
-| **Classic** |Not Supported |Not Supported |[Article](../articles/vpn-gateway/vpn-gateway-about-forced-tunneling.md) |
-| **Resource Manager** |Not Supported |Not Supported |[Article](../articles/vpn-gateway/vpn-gateway-forced-tunneling-rm.md) |
+| **傳統** |不支援 |不支援 |[文章](../articles/vpn-gateway/vpn-gateway-about-forced-tunneling.md) |
+| **資源管理員** |不支援 |不支援 |[文章](../articles/vpn-gateway/vpn-gateway-forced-tunneling-rm.md) |
 

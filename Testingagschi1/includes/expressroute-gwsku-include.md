@@ -1,13 +1,8 @@
-When you create a virtual network gateway, you need to specify the gateway SKU that you want to use. When you select a higher gateway SKU, more CPUs and network bandwidth are allocated to the gateway, and as a result, the gateway can support higher network throughput to the virtual network. 
+建立虛擬網路閘道時，您必須指定想要使用的閘道 SKU。 當您選取較高的閘道 SKU 時，會配置更多的 CPU 和網路頻寬給閘道，如此一來，閘道即可支援對虛擬網路的更高網路輸送量。 
 
-ExpressRoute virtual network gateways can use the following SKUs: 
+ExpressRoute 虛擬網路閘道可以使用下列 SKU： 
 
-* Standard
+* 標準
 * HighPerformance
 * UltraPerformance
-
-> [!IMPORTANT]
-> ExpressRoute UltraPerformance gateway is currently available in the US West Central and US Central regions and can be linked to ExpressRoute circuits located in Chicago and Dallas. More Azure regions and ExpressRoute locations will become available in the coming weeks. 
-> 
-> 
 

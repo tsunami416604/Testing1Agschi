@@ -1,11 +1,13 @@
-| **Deployment Model/Method** | **Azure Portal** | **Classic Portal** | **PowerShell** |
+| **部署模型/方法** | **Azure 入口網站** | **傳統入口網站** | **PowerShell** |
 | --- | --- | --- | --- |
-| **Resource Manager** |[Article](../articles/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) |Not Supported |[Article](../articles/vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md) |
-| **Classic** |Supported** |[Article*](../articles/vpn-gateway/vpn-gateway-site-to-site-create.md) |[Article+](../articles/vpn-gateway/vpn-gateway-multi-site.md) |
+| **資源管理員** |[文章](../articles/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) |不支援 |[文章](../articles/vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md) |
+| **傳統** |[文章**](../articles/vpn-gateway/vpn-gateway-howto-site-to-site-classic-portal.md) |[文章*](../articles/vpn-gateway/vpn-gateway-site-to-site-create.md) |[文章+](../articles/vpn-gateway/vpn-gateway-multi-site.md) |
 
-(*) denotes that the classic portal can only support creating one S2S VPN connection.
+(*) 表示傳統入口網站只能支援建立一個 S2S VPN 連線。
 
-(**) denotes that an end-to-end scenario is not yet available for the Azure portal.
+(**) 表示此方法包含需要 PowerShell 的步驟。
 
-(+) denotes that this article is written for multi-site connections.
+(+) 表示本文是針對多站台連線來進行撰寫。
+
+
 
