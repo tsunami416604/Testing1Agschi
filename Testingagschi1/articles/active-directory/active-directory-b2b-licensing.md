@@ -1,14 +1,13 @@
 ---
-title: Azure Active Directory B2B collaboration licensing guidance | Microsoft Docs
-description: Azure Active Directory B2B collaboration requires paid Azure AD licenses depending on the features you want for your B2B collaboration users
+title: "Azure Active Directory B2B 共同作業授權指引 | Microsoft Docs"
+description: "Azure Active Directory B2B 共同作業會依據您想要為 B2B 共同作業使用者提供的功能而定，要求付費的 Azure AD 授權"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: sasubram
 manager: femila
-editor: ''
-tags: ''
-
-ms.assetid:
+editor: 
+tags: 
+ms.assetid: 
 ms.service: active-directory
 ms.devlang: NA
 ms.topic: article
@@ -16,59 +15,65 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 04/12/2017
 ms.author: sasubram
+translationtype: Human Translation
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: 4e620f3d76caa25ac0e5afb134f37ffe263935f0
+ms.lasthandoff: 04/13/2017
+
 
 ---
 
-# Azure Active Directory B2B collaboration licensing guidance
+# <a name="azure-active-directory-b2b-collaboration-licensing-guidance"></a>Azure Active Directory B2B 共同作業授權指引
 
-Azure Active Directory (Azure AD) B2B collaboration extends a select set of existing Azure AD features to guest users invited into the Azure AD tenant. Hence, Azure AD B2B collaboration guest users will be licensed through Azure AD licenses, and align with the existing Free, Basic, and Premium P1/P2 license tiers as seen here: https://azure.microsoft.com/pricing/details/active-directory/.
+Azure Active Directory (Azure AD) B2B 共同作業會將一組精選的現有 Azure AD 功能延伸給獲邀加入 Azure AD 租用戶的來賓使用者使用。 因此，Azure AD B2B 共同作業來賓使用者將會透過 Azure AD 授權來獲得授權，而與現有的「免費」、「基本」及「進階 P1」/「進階 P2」授權層一致，如這裡所示：https://azure.microsoft.com/pricing/details/active-directory/。
 
-There is no charge for inviting B2B users and assigning them to an application in Azure AD. Also, up to 10 apps per guest user and 3 basic reports are also free for B2B users, since they are part of Azure AD 'Free' tier.
-Any paid Azure AD features, extended to B2B users via B2B collaboration functionality, will need to be licensed with Azure AD paid licenses (Basic, Premium P1, or Premium P2, depending on the features that will be used). The inviting tenant will get 5 B2B user rights with each Azure AD paid license. That is, each Azure AD paid license providing the rights to Azure AD paid features to one employee user in a tenant, will now also provide the rights to those same Azure AD paid features to an additional 5 B2B users invited to the tenant.
+邀請 B2B 使用者並將他們指派給 Azure AD 中的應用程式並無須付費。 此外，就 B2B 使用者而言，每一來賓使用者最多還可享有 10 個免費的應用程式和 3 個基本報告，因為他們屬於 Azure AD「免費」層。
+凡是透過 B2B 共同作業功能延伸至 B2B 使用者的付費 Azure AD 功能，都必須以 Azure AD 付費授權 (基本、進階 P1 或進階 P2，視將使用的功能而定) 進行授權。 邀請方租用戶透過每個 Azure AD 付費授權將可獲得 5 份 B2B 使用者權限。 也就是說，每個 Azure AD 付費授權除了將 Azure AD 付費功能的權限提供給租用戶中的一位員工使用者之外，現在也會將相同 Azure AD 付費功能的權限提供給額外 5 個受邀加入該租用戶的 B2B 使用者。
 
-## Licensing examples
-- A customer wants to invite 100 B2B users to its Azure AD tenant, and will use Group based access management and provisioning for all users, but 50 of those users will also be requiring MFA and conditional access. The customer here must purchase 10 Azure AD Basic licenses, and 10 Azure AD Premium P1 licenses to cover all of their B2B users correctly. Similarly, if an inviting tenant plans to use Identity Protection features with B2B users, then it must have enough Azure AD Premium P2 licenses to cover all these B2B users in the 5:1 ratio.
-- A customer has 10 employees who are all currently licensed with Azure AD Premium P1. They now want to invite 60 B2B users, who will all require multi-factor authentication (MFA). Per the 5:1 licensing rule, the customer must have at least 12 Azure AD Premium P1 licenses to cover all 60 B2B collaboration users. Since they already have 10 Premium P1 licenses for their 10 employees, they already have rights to invite 50 B2B users with Premium P1 features like MFA. So in this example, they need to purchase 2 additional Premium P1 licenses to cover the remaining 10 B2B collaboration users.
+## <a name="licensing-examples"></a>授權範例
+- 客戶想要邀請 100 位 B2B 使用者加入其 Azure AD 租用戶，並且將針對所有使用者使用「群組」型存取管理和佈建，但其中 50 位使用者還將需要進行 MFA 和條件式存取。 在此情況下，此客戶必須購買 10 個 Azure AD「基本」授權及 10 個 Azure AD「進階 P1」授權，才能正確地涵蓋其所有 B2B 使用者。 同樣地，如果邀請方租用戶打算搭配 B2B 使用者使用「身分識別保護」功能，它就必須要有足夠的 Azure AD「進階 P2」授權來以 5:1 的比例涵蓋所有這些 B2B 使用者。
+- 客戶有 10 位目前以 Azure AD「進階 P1」授權的員工。 它們現在想要邀請 60 位 B2B 使用者，這些使用者都將需要進行多重要素驗證 (MFA)。 依據 5:1 授權規則，此客戶必須至少擁有 12 個 Azure AD「進階 P1」授權，才能涵蓋全部 60 個 B2B 共同作業使用者。 由於它們已經有 10 個「進階 P1」授權供其 10 位員工使用，因此它們已經有權邀請 50 位 B2B 使用者來賦予「進階 P1」功能 (例如 MFA)。 所以在此範例中，它們還需要再購買 2 個「進階 P1」授權來涵蓋剩餘的 10 位 B2B 共同作業使用者。
 
 > [!NOTE]
-> There is no facility or need to assign licenses to the B2B users to enable these B2B collaboration user rights.
+> 沒有任何機能可將授權指派給 B2B 使用者，也不需要這麼做，即可啟用這些 B2B 共同作業使用者權限。
 
-The customer who owns the inviting tenant must be the one to determine how many B2B collaboration users need paid Azure AD capabilities and depending on whether they are Basic, Premium P1, or Premium P2 level features, customers must have the sufficient number of the appropriate Azure AD paid licenses to cover their B2B collaboration users in the 5:1 ratio. If a company needs additional B2B collaboration user rights, they must purchase the required Azure AD paid licenses.
+擁有邀請方租用戶的客戶必須負責決定有多少 B2B 共同作業使用者需要使用付費的 Azure AD 功能，而且視這些功能是「基本」、「進階 P1」還是「進階 P2」層級功能而定，客戶必須要有足夠的適當 Azure AD 付費授權數來以 5:1 的比例涵蓋其 B2B 共同作業使用者。 如果公司需要額外的 B2B 共同作業使用者權限，就必須購買所需的 Azure AD 付費授權。
 
-## Additional licensing details
-- B2B collaboration can provide different capabilities to different B2B collaboration users based on the existing model of Azure AD editions.
-- Every Azure AD paid license will include rights to 5 B2B collaboration users (5:1 model).
-- There is no need to actually assign licenses to B2B user accounts. There will be automatic calculation and reporting.
-- Every invited user gets the rights that the Azure AD Free edition offers if no paid Azure AD license exists in the tenant.
-- If a B2B collaboration user has a paid Azure AD license as an employee from his organization, he will not consume one of the B2B collaboration licenses of the inviting tenant.
+## <a name="additional-licensing-details"></a>其他授權詳細資料
+- B2B 共同作業可以根據現有的 Azure AD 版本模型，為不同的 B2B 共同作業使用者提供不同的功能。
+- 每個 Azure AD 付費授權將包含給 5 位 B2B 共同作業使用者 (5:1 模型) 的權限。
+- 並不需要將授權實際指派給 B2B 使用者帳戶。 系統將會自動計算和報告。
+- 如果租用戶中沒有付費的 Azure AD 授權，則每位受邀使用者會獲得 Azure AD「免費」版本所提供的權限。
+- 如果 B2B 共同作業使用者已從其組織員工身分獲得付費的 Azure AD 授權，他就不會取用邀請方租用戶的其中一個 B2B 共同作業授權。
 
-## Advanced discussion: What are the licensing considerations when we add users from a conglomerate organization as “members” using your APIs?
-A B2B guest user is one that is invited from a partner organization to work with the host organization. Typically, any other case other than this does not qualify as B2B even it uses B2B features. Let’s look at two cases in particular:
+## <a name="advanced-discussion-what-are-the-licensing-considerations-when-we-add-users-from-a-conglomerate-organization-as-members-using-your-apis"></a>進階討論：當我們使用您的 API 從某個集團組織新增使用者作為「成員」時，有什麼授權考量？
+B2B 來賓使用者是從合作夥伴組織受邀來與主辦組織共同作業的使用者。 一般而言，此情況以外的任何其他情況都不符合 B2B 資格，即使是使用 B2B 功能。 讓我們來特別看看兩個案例：
 
-1. If a host invites an employee using a consumer address
-  1. This is not compliant with our licensing policies and currently not recommended.
+1. 如果主辦組織使用取用者位址來邀請員工
+  1. 這不符合我們的授權原則，因此目前不建議使用。
 
-2.	If a host organization adds a user from another conglomerate organization
-  1. This is the case where the user is invited using B2B APIs, but this is not traditionally B2B. Ideally, we should have these organizations invite the other orgs users as members (our API allows that). In this case, licenses have to be assigned to these members for them to access resources in the inviting organization.
+2. 如果主辦組織從另一個集團組織新增使用者
+  1. 這是使用 B2B API 來邀請使用者的情況，但這並不是傳統上的 B2B。 在理想情況下，我們應該讓這些組織邀請其他組織使用者作為成員 (我們的 API 允許這麼做)。 在此情況下，必須將授權指派給這些成員，讓他們存取邀請組織中的資源。
 
-  2. Some organizations may want to add the other org’s users to be added as “Guest” as a policy. There are two cases here:
-      * The conglomerate organization is already using Azure AD and the invited users are licensed in the other organization: in this case, we don’t expect the invited users to need to follow the 1:5 formula laid out earlier in this document. 
+  2. 有些組織可能會想要將另一個組織的使用者新增為「來賓」來作為一項原則。 這裡有兩個案例：
+      * 集團組織已經使用 Azure AD 且受邀的使用者已在另一個組織中獲得授權：在此情況下，我們不會預期受邀使用者需依循本文件稍早所配置的 1:5 公式。 
 
-      * The conglomerate organization is not using Azure AD or doesn’t have adequate licenses: In this case, follow the 1:5 formula laid out earlier in this document.
+      * 集團組織未使用 Azure AD 或沒有適當的授權：在此情況下，請依循本文件稍早所配置的 1:5 公式。
 
 
-## Next steps
+## <a name="next-steps"></a>後續步驟
 
-Browse our other articles on Azure AD B2B collaboration:
+請瀏覽有關 Azure AD B2B 共同作業的其他文章：
 
-* [What is Azure AD B2B collaboration?](active-directory-b2b-what-is-azure-ad-b2b.md)
-* [How do Azure Active Directory admins add B2B collaboration users?](active-directory-b2b-admin-add-users.md)
-* [How do information workers add B2B collaboration users?](active-directory-b2b-iw-add-users.md)
-* [The elements of the B2B collaboration invitation email](active-directory-b2b-invitation-email.md)
-* [B2B collaboration invitation redemption](active-directory-b2b-redemption-experience.md)
-* [Troubleshooting Azure Active Directory B2B collaboration](active-directory-b2b-troubleshooting.md)
-* [Azure Active Directory B2B collaboration frequently-asked questions (FAQ)](active-directory-b2b-faq.md)
-* [Azure Active Directory B2B collaboration API and customization](active-directory-b2b-api.md)
-* [Multi-factor authentication for B2B collaboration users](active-directory-b2b-mfa-instructions.md)
-* [Add B2B collaboration users without an invitation](active-directory-b2b-add-user-without-invite.md)
-* [Article Index for Application Management in Azure Active Directory](active-directory-apps-index.md)
+* [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
+* [Azure Active Directory 系統管理員如何新增 B2B 共同作業使用者？](active-directory-b2b-admin-add-users.md)
+* [資訊工作者如何新增 B2B 共同作業使用者？](active-directory-b2b-iw-add-users.md)
+* [B2B 共同作業邀請電子郵件的元素](active-directory-b2b-invitation-email.md)
+* [B2B 共同作業邀請兌換](active-directory-b2b-redemption-experience.md)
+* [針對 Azure Active Directory B2B 共同作業問題進行疑難排解](active-directory-b2b-troubleshooting.md)
+* [Azure Active Directory B2B 共同作業常見問題集 (FAQ)](active-directory-b2b-faq.md)
+* [Azure Active Directory B2B 共同作業 API 和自訂](active-directory-b2b-api.md)
+* [適用於 B2B 共同作業使用者的多重要素驗證](active-directory-b2b-mfa-instructions.md)
+* [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)
+* [Azure Active Directory 中應用程式管理的文章索引](active-directory-apps-index.md)
+
