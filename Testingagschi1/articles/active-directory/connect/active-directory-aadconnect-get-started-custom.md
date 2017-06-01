@@ -220,10 +220,10 @@ Auf einem Computer mit den Gruppenrichtlinien-Verwaltungstools:
 3.    Navigieren Sie zu **Benutzerkonfiguration\Administrative Vorlagen\Windows-Komponenten\Internet Explorer\Internetsystemsteuerung\Sicherheitsseite**, und wählen Sie wie in der folgenden Abbildung dargestellt die Option **Liste der Site zu Zonenzuweisungen**.
 4.    Aktivieren Sie die Richtlinie, und geben Sie die folgenden beiden Elemente in das Dialogfeld ein.
 
-        Wert: `https://autologon.microsoftazuread-sso.com`  
-        Data 1  
-        Wert: `https://aadg.windows.net.nsatc.net`  
-        Data 1
+		Wert: `https://autologon.microsoftazuread-sso.com`  
+		Data 1  
+		Wert: `https://aadg.windows.net.nsatc.net`  
+		Data 1
 
 5.    Es sollte in etwa wie folgt aussehen:  
 ![Intranetzonen](./media/active-directory-aadconnect-get-started-custom/sitezone.png)
