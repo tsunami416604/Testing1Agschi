@@ -106,7 +106,6 @@ Un profil CDN est une collection de points de terminaison CDN.  Chaque profil co
 > 
 > 
 
-[!INCLUDE [cdn-create-profile](../../includes/cdn-create-profile.md)]
 
 ## <a name="create-a-new-cdn-endpoint"></a>Créer un point de terminaison CDN
 **Pour créer un point de terminaison CDN pour votre compte de stockage**
