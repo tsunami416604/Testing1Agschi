@@ -33,7 +33,6 @@ This article explains how to use PowerShell to back up and recover DPM data from
 >
 
 ## <a name="setting-up-the-powershell-environment"></a>Setting up the PowerShell environment
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
 Before you can use PowerShell to manage backups from Data Protection Manager to Azure, you will need to have the right environment in PowerShell. At the start of the PowerShell session, ensure that you run the following command to import the right modules and allow you to correctly reference the DPM cmdlets:
 

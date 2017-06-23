@@ -103,7 +103,6 @@ A CDN profile is a collection of CDN endpoints.  Each profile contains one or mo
 > 
 > 
 
-[!INCLUDE [cdn-create-profile](../../includes/cdn-create-profile.md)]
 
 ## <a name="create-a-new-cdn-endpoint"></a>Create a new CDN endpoint
 **To create a new CDN endpoint for your storage account**
