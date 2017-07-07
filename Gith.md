@@ -15,10 +15,12 @@
     cloudEnvironments="public"
 />
 
+# <a name="we-ran-diagnostics-on-your-resource-and-found-an-issue"></a>Kaynağınız üzerinde tanılama işlemi gerçekleştirdik ve bir sorun bulduk
 
-
-<!--$vmname-->Virtual machine<!--/$vmname--> adlı sanal makinenizin **<!--$StartTime-->StartTime<!--/$StartTime-->(UTC)** ile **<!--$EndTime-->EndTime <!--/$EndTime-->(UTC)** saatleri arasında kullanılamaz duruma geldiğini belirledik.
+<!--issueDescription-->
+A **<!--$StartTime--> StartTime <!--/$StartTime--> (UTC)** ile **<!--$EndTime--> EndTime <!--/$EndTime--> (UTC)** saatleri arasında kullanılamaz duruma geldiğini belirledik.
 Bu beklenmeyen durum, sanal makinenizin çalışmakta olduğu fiziksel konak düğümü ile Sanal Sabit Disklerinizin (VHD) bulunduğu Azure Depolama hizmetleri arasında **geçici GÇ işlemi zaman aşımları** algılanması sonucu tetiklenen **Azure tarafından başlatılan VM kapatma işleminden** kaynaklanmıştır.
+<!--/issueDescription-->
 
 Azure Standart Depolama disklerinin her VHD için 500 IOPS sınırı vardır.  [Azure Sanal Makineler hizmetini En İyi Depolama Performansı için yapılandırma](http://blogs.msdn.com/b/mast/archive/2014/10/14/configuring-azure-virtual-machines-for-optimal-storage-performance.aspx) amacına dönük olarak en iyilerinden birkaçını belirledik<br> İş yüküne bağlı olarak bölüştürülmüş bir disk kullanmak veya Konuk VM içindeki Depolama Alanlarını yaplandırmak, sorunun azalmasına yardımcı olabilir.  Sorun devam ederse Premium Depolama’ya geçmeyi de göz önünde bulundurabilirsiniz.<br>
  
