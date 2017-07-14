@@ -10,7 +10,7 @@ Al termine dell'esplorazione, ricordare di sospendere l'istanza. In produzione Ã
 
 [Monitoraggio delle query][]
 
-Post di blog [Top 10 Best Practices for Building a Large Scale Relational Data Warehouse][] (Prime 10 procedure consigliate per la creazione di un data warehouse relazionale di dimensioni elevate)
+[Post di blog Prime 10 procedure consigliate per la creazione di un data warehouse relazionale di dimensioni elevate][]
 
 [Post di blog Migrazione di dati in Azure SQL Data Warehouse][]
 
