@@ -46,9 +46,6 @@ La maggior parte degli strumenti del client SQL può connettersi a SQL Data Ware
 
 Se si esegue un sistema operativo Windows, è consigliabile usare [Visual Studio] o [SQL Server Management Studio].
 
-[!INCLUDE [Create a new logical server](../../includes/sql-data-warehouse-create-logical-server.md)] 
-
-[!INCLUDE [SQL Database create server](../../includes/sql-database-create-new-server-firewall-portal.md)]
 
 ## <a name="create-a-sql-data-warehouse"></a>Creare un SQL Data Warehouse
 
@@ -661,7 +658,6 @@ Post di blog [Top 10 Best Practices for Building a Large Scale Relational Data W
 [Post di blog Migrazione di dati in Azure SQL Data Warehouse]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/
 
 
-[!INCLUDE [Additional Resources](../../includes/sql-data-warehouse-article-footer.md)]
 
 <!-- Internal Links -->
 [Prerequisiti]: sql-data-warehouse-get-started-tutorial.md#prerequisites
