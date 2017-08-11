@@ -22,7 +22,7 @@ ms.lasthandoff: 07/29/2017
 
 ---
 # <a name="restore-stretch-enabled-databases-stretch-database"></a><span data-ttu-id="20280-102">Stretch 対応データベースの復元 (Stretch Database)</span><span class="sxs-lookup"><span data-stu-id="20280-102">Restore Stretch-enabled databases (Stretch Database)</span></span>
-[!INCLUDE[tsql-appliesto-ss2016-xxxx-xxxx-xxx_md](../../includes/tsql-appliesto-ss2016-xxxx-xxxx-xxx-md.md)]
+
 
   <span data-ttu-id="20280-103">さまざまな種類の失敗、エラー、障害から修復する必要が生じたときに、バックアップされたデータベースを復元します。</span><span class="sxs-lookup"><span data-stu-id="20280-103">Restore a backed up database when necessary to recover from many types of failures, errors, and disasters.</span></span>
   
