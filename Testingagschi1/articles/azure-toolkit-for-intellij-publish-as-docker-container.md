@@ -101,7 +101,7 @@ Docker containers are a widely used method for deploying web applications. By us
 
       * **New log in credentials**: Create a new set of login credentials. If you select this option, do the following:
 
-        a. On the **VM Credentials** tab, provide the following information for the virtual-machine login credentials of your Docker host:
+        a. On the **VM Credentials** tab, provide the following information for the virtual-machine login credentials of your Docker host:  
              * **Username**: Enter the username for your virtual-machine login credentials.
              * **Password** and **Confirm**: Enter the password for your virtual-machine login credentials.
              * **SSH**: Enter the Secure Shell (SSH) settings for your Docker host. You can select one of the following options:
