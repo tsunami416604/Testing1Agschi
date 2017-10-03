@@ -36,6 +36,8 @@ O Gateway de Aplicativo do Azure tem dois tipos de regra: roteamento básico e r
 
 No exemplo a seguir, o Gateway de Aplicativo fornece o tráfego para contoso.com com dois pools de servidor back-end: o pool de servidores de vídeo e o pool de servidores de imagem.
 
+모든 UDF(사용자 정의 함수) 및 기본 제공 함수는 쿼리 범위 내의 모든 문서를 검색합니다. 예를 들어 *SELECT * FROM c* 는 *SELECT * FROM c.foo = 'bar'* 보다 넓은 쿼리 범위를 갖습니다.
+
 As solicitações para http://contoso.com/image* são roteadas para o pool de servidores de imagem (**pool1**), e as solicitações para http://contoso.com/video* são roteadas para o pool de servidores de vídeo (**pool2**). Um pool de servidores padrão (**pool1**) será selecionado se nenhum dos padrões de caminho corresponder.
 
 ![Roteamento de URL](./media/application-gateway-create-url-route-arm-ps/figure1.png)
