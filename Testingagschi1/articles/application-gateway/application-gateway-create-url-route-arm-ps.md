@@ -32,6 +32,9 @@ O roteamento com base em caminho associa rotas com base no caminho de URL de uma
 
 O Gateway de Aplicativo do Azure tem dois tipos de regra: roteamento básico e roteamento com base no caminho. O básico fornece serviço de round robin para os pools de back-end. O roteamento com base no caminho, além da distribuição round robin, usa o padrão de caminho da URL de solicitação para escolher o pool de back-ends.
 
+
+- 엔터프라이즈 모바일 및 보안 블로그(영문)] (https://blogs.technet.microsoft.com/enterprisemobility/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview/ )-
+
 ## <a name="scenario"></a>Cenário
 
 No exemplo a seguir, o Gateway de Aplicativo fornece o tráfego para contoso.com com dois pools de servidor back-end: o pool de servidores de vídeo e o pool de servidores de imagem.
