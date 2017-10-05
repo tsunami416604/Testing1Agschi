@@ -121,7 +121,7 @@ O Azure Resource Manager exige que os grupos de recurso especifiquem um local pa
 No exemplo anterior, criamos um grupo de recursos denominado "appgw-RG" e usamos o local "Oeste dos EUA".
 
 > [!NOTE]
-> Se você precisar configurar uma investigação personalizada para o gateway de aplicativo, acesse [Criar um gateway de aplicativo com investigações personalizadas usando o PowerShell](application-gateway-create-probe-ps.md). Para saber mais, confira [Visão geral do monitoramento de integridade do Gateway de Aplicativo](application-gateway-probe-overview.md).
+> Se você precisar configurar uma investigação personalizada para o gateway de aplicativo, acesse [Criar um gateway de aplicativo com investigações personalizadas usando o PowerShell](application-gateway-create-probe-ps.md). Para saber mais, confira[Visão geral do monitoramento de integridade do Gateway de Aplicativo](application-gateway-probe-overview.md)Para.
 > 
 > 
 
