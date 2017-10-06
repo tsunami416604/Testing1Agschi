@@ -438,7 +438,6 @@ HDInsight 提供了脚本用于在 HDInsight 群集上安装以下组件：
 
 以下脚本演示如何在使用 PowerShell 创建群集时应用脚本操作：
 
-[!code-powershell[main](../../powershell_scripts/hdinsight/use-script-action/use-script-action.ps1?range=5-90)]
 
 创建群集可能需要几分钟时间。
 
@@ -489,7 +488,6 @@ HDInsight .NET SDK 提供客户端库，可简化从 .NET 应用程序中使用 
 
 以下示例演示如何将脚本操作应用于正在运行的群集：
 
-[!code-powershell[main](../../powershell_scripts/hdinsight/use-script-action/use-script-action.ps1?range=105-117)]
 
 操作完成后，会收到类似于下方文本的信息：
 
@@ -504,7 +502,6 @@ HDInsight .NET SDK 提供客户端库，可简化从 .NET 应用程序中使用 
 
 在继续前，确保已安装并配置 Azure CLI。 有关详细信息，请参阅[安装 Azure CLI](../cli-install-nodejs.md)。
 
-[!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 1. 要切换到 Azure 资源管理器模式，请在命令行中使用以下命令：
 
@@ -581,7 +578,6 @@ HDInsight .NET SDK 提供客户端库，可简化从 .NET 应用程序中使用 
 
 以下示例脚本演示如何使用 cmdlet 来升级再降级脚本。
 
-[!code-powershell[main](../../powershell_scripts/hdinsight/use-script-action/use-script-action.ps1?range=123-140)]
 
 ### <a name="using-the-azure-cli"></a>使用 Azure CLI
 
