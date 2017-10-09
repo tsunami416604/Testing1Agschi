@@ -41,6 +41,12 @@ HDInsight 提供一个称为**脚本操作**的配置选项，该选项可调用
 * **AMBARI.RUN\_CUSTOM\_COMMAND**：默认情况下，Ambari 管理员角色具有此权限。
 * **CLUSTER.RUN\_CUSTOM\_COMMAND**：默认情况下，HDInsight 群集管理员和 Ambari 管理员都具有此权限。
 
+
+<!--issueDescription-->
+<!--$vmname-->Virtual machine<!--/$vmname--> adlı sanal makinenizin **<!--$StartTime--> StartTime <!--/$StartTime-->(UTC)** ile **<!--$EndTime--> EndTime <!--/$EndTime-->(UTC)** saatleri arasında kullanılamaz duruma geldiğini belirledik.
+Bu beklenmeyen durum, sanal makinenizin çalışmakta olduğu fiziksel konak düğümü ile Sanal Sabit Disklerinizin (VHD) bulunduğu Azure Depolama hizmetleri arasında **geçici GÇ işlemi zaman aşımları** algılanması sonucu tetiklenen **Azure tarafından başlatılan geçici VM kapatma işleminden** kaynaklanmıştır.
+<!--/issueDescription-->
+
 有关处理已加入域的 HDInsight 权限的详细信息，请参阅[管理已加入域的 HDInsight 群集](hdinsight-domain-joined-manage.md)。
 
 ## <a name="access-control"></a>访问控制
