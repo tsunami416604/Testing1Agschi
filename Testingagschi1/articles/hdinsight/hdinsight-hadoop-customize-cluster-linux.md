@@ -47,6 +47,19 @@ HDInsight 提供一个称为**脚本操作**的配置选项，该选项可调用
 Bu beklenmeyen durum, sanal makinenizin çalışmakta olduğu fiziksel konak düğümü ile Sanal Sabit Disklerinizin (VHD) bulunduğu Azure Depolama hizmetleri arasında **geçici GÇ işlemi zaman aşımları** algılanması sonucu tetiklenen **Azure tarafından başlatılan geçici VM kapatma işleminden** kaynaklanmıştır.
 <!--/issueDescription-->
 
+
+
+
+<!--issueDescription-->
+Virtual machine <!--$vmname--> <!--/$vmname--> adlı sanal makinenizin **<!--$StartTime--> StartTime <!--/$StartTime--> (UTC)** ile **<!--$EndTime--> EndTime <!--/$EndTime--> (UTC)** saatleri arasında kullanılamaz duruma geldiğini belirledik.
+Bu beklenmeyen durum, Sanal Makine’deki bir **Windows Hata Denetimi / Durdurma Hatası** GuestBugCheckCode **<!--$GuestBugCheckCode--> nedeniyle gerçekleşen <!--/$GuestBugCheckCode-->Konuk İşletim Sistemi kilitlenmesinden** kaynaklandı.
+<!--/issueDescription-->
+
+Windows, ciddi bir hata koşulu algıladığında bellek ve/veya disk verilerinin bozulma olasılığını ortadan kaldırmak için yürütmeyi durdurur. Windows’un durmasına yol açabilecek birçok neden vardır: Erişim ihlaline yol açan bir bellek adresi başvurusu, beklenmeyen bir özel durum ya da tuzak, hatalı bir çekirdek modu sürücüsü vb.
+Durdurma hatasının nedeniyle ilgili ayrıntılar Sistem Olay Günlüğü’ne yazılır ve sistem tarafından bir bellek dökümü de oluşturulabilir.
+Windows durdurma hataları ve bunların nasıl analiz edilebileceğiyle ilgili daha fazla bilgi edinmek için bkz.<br>
+
+
 有关处理已加入域的 HDInsight 权限的详细信息，请参阅[管理已加入域的 HDInsight 群集](hdinsight-domain-joined-manage.md)。
 
 ## <a name="access-control"></a>访问控制
