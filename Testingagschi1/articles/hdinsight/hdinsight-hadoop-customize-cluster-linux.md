@@ -59,6 +59,7 @@ Windows, ciddi bir hata koşulu algıladığında bellek ve/veya disk verilerini
 Durdurma hatasının nedeniyle ilgili ayrıntılar Sistem Olay Günlüğü’ne yazılır ve sistem tarafından bir bellek dökümü de oluşturulabilir.
 Windows durdurma hataları ve bunların nasıl analiz edilebileceğiyle ilgili daha fazla bilgi edinmek için bkz.<br>
 
+Zulässige Beispiele: /xyz, /xyz*, und /xyz/*.
 
 有关处理已加入域的 HDInsight 权限的详细信息，请参阅[管理已加入域的 HDInsight 群集](hdinsight-domain-joined-manage.md)。
 
