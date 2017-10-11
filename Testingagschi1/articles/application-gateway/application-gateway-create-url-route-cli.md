@@ -100,7 +100,7 @@ az network application-gateway http-listener create --name imageListener --front
 > [!IMPORTANT]
 > 각 경로는 "/"로 시작해야 하며 별표는 경로 끝에만 추가할 수 있습니다. 사용 가능한 예는 /xyz, /xyz*; 또는 /xyz/* 입니다. 경로 검사기에 제공하는 문자열은 "?" 또는 "#"으로 시작하는 텍스트는 포함하지 않습니다. 이러한 문자는 허용되지 않습니다. 
 
-다음 예제에서는 백 엔드 **imagesBackendPool** 로 트래픽을 라우팅하는 "/images/ \*\ " 경로용 규칙 하나를 만듭니다. 이 규칙을 통해 각 URL 집합에 대한 트래픽이 백 엔드로 라우팅됩니다. 예를 들어 http://adatum.com/images/figure1.jpg는 **imagesBackendPool** 로 이동합니다. 또한 경로가 미리 정의된 경로 규칙과 일치하지 않으면 규칙 경로 맵 구성은 기본 백 엔드 주소 풀을 구성합니다. 예를 들어 http://adatum.com/shoppingcart/test.html은 일치하지 않는 트래픽에 대한 기본 풀로 정의된 **pool1** 로 이동합니다.
+다음 예제에서는 백 엔드 **imagesBackendPool** 로 트래픽을 라우팅하는 /images/\* 경로용 규칙 하나를 만듭니다. 이 규칙을 통해 각 URL 집합에 대한 트래픽이 백 엔드로 라우팅됩니다. 예를 들어 http://adatum.com/images/figure1.jpg는 **imagesBackendPool** 로 이동합니다. 또한 경로가 미리 정의된 경로 규칙과 일치하지 않으면 규칙 경로 맵 구성은 기본 백 엔드 주소 풀을 구성합니다. 예를 들어 http://adatum.com/shoppingcart/test.html은 일치하지 않는 트래픽에 대한 기본 풀로 정의된 **pool1** 로 이동합니다.
 
 ```azurecli-interactive
 az network application-gateway url-path-map create \
