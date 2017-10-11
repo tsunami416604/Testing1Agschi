@@ -98,7 +98,7 @@ az network application-gateway http-listener create --name imageListener --front
 Questo passaggio configura il percorso URL relativo usato dal gateway applicazione per definire il mapping tra il percorso e il pool back-end selezionato per gestire il traffico di rete in ingresso.
 
 > [!IMPORTANT]
-> Ogni percorso deve iniziare con una barra rovesciata ("/") e l'unica posizione in cui è consentito l'asterisco è alla fine. Alcuni esempi validi sono /xyz, /xyz* o /xyz/*. La stringa inviata al selettore di percorsi non include alcun testo dopo il primo carattere "?" o "#" e questi caratteri non sono consentiti. 
+> Ogni percorso deve iniziare con una barra rovesciata ("/") e l'unica posizione in cui è consentito l'asterisco è alla fine. Alcuni esempi validi sono /xyz, /xyz*, o /xyz/*. La stringa inviata al selettore di percorsi non include alcun testo dopo il primo carattere "?" o "#" e questi caratteri non sono consentiti. 
 
 L'esempio seguente crea una regola per il percorso "/images/*" che instrada il traffico al back-end **imagesBackendPool**. Questa regola assicura che il traffico per ogni set di URL venga indirizzato al back-end. Ad esempio, http://adatum.com/images/figure1.jpg passa a **imagesBackendPool**. In caso di mancata corrispondenza con le regole di percorso predefinite, la configurazione del mapping dei percorsi della regola configura anche un pool di indirizzi back-end predefinito. Ad esempio, http://adatum.com/shoppingcart/test.html passa al **pool1** definito come pool predefinito per il traffico senza corrispondenza.
 
