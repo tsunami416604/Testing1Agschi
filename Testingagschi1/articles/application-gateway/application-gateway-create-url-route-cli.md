@@ -7,14 +7,13 @@
 	productPesIds="15078"
 	cloudEnvironments="public"
 	schemaVersion="1"
-
 />
 
 
 # Spark Issue
 
 
-{
+	{
 	"resourceRequired": true,
 	"title": "HDInsight Spark Issue",
 	"fileAttachmentHint": "",
