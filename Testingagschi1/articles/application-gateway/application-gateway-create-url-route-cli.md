@@ -104,5 +104,5 @@
 			"content": "<a href='https://hdinsight.github.io/spark/spark-landing'>Learn more</a> about commonly faced issues with using Spark on HDInsight"
 		}
 	]
-}
----
+	}
+
