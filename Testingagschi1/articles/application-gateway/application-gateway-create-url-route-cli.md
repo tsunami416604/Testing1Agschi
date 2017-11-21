@@ -13,6 +13,12 @@
 # Spark Issue
 
 
+
+*String* : requis.
+
+
+
+
 	{
 	"resourceRequired": true,
 	"title": "HDInsight Spark Issue",
