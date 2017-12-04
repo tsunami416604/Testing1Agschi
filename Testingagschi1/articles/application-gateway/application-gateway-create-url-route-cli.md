@@ -16,99 +16,34 @@
 
 **String** : requis.a
 
+### Resolution
+The cmdlets work fine when the value of InputObject parameter are passed into it through pipeline. A few examples that work for the above cmdlets are:
+
+- Disable-NetworkSwitchEthernetPort
+```powershell
+$port = Get-CimInstance -Namespace root/interop -ClassName CIM_EthernetPort -CimSession $cimSession | Select-Object -First 1
+$port | Disable-NetworkSwitchEthernetPort -CimSession $cimSession
+```
+
+- Enable-NetworkSwitchEthernetPort
+```powershell
+$port = Get-CimInstance -Namespace root/interop -ClassName CIM_EthernetPort -CimSession $cimSession | Select-Object -First 1
+$port | Enable-NetworkSwitchEthernetPort -CimSession $cimSession
+```
+
+- Remove-NetworkSwitchEthernetPortIPAddress
+```powershell
+$port = Get-CimInstance -Namespace root/interop -ClassName CIM_EthernetPort -CimSession $cimSession | Select-Object -First 1
+$port | Remove-NetworkSwitchEthernetPortIPAddress -CimSession $cimSession
+```
+
+- Set-NetworkSwitchEthernetPortIPAddress
+```powershell
+$port = Get-CimInstance -Namespace root/interop -ClassName CIM_EthernetPort -CimSession $cimSession | Select-Object -First 1
+$ipAddress = "192.168.10.1"
+$subnetAddress = "255.255.255.0"
+$port | Set-NetworkSwitchEthernetPortIPAddress -IpAddress $ipAddress -SubnetAddress $subnetAddress -CimSession $cimSession
+```
 
 
-
-	{
-	"resourceRequired": true,
-	"title": "HDInsight Spark Issue",
-	"fileAttachmentHint": "",
-	"formElements": [{
-			"id": "spark_submission_method",
-			"order": 1,
-			"controlType": "dropdown",
-			"displayLabel": "How was the Spark Job submitted?",
-			"watermarkText": "Choose an option",
-			"dropdownOptions": [{
-					"value": "Jupyter",
-					"text": "Jupyter"
-				}, {
-					"value": "Livy",
-					"text": "Livy"
-				}, {
-					"value": "Zeppelin",
-					"text": "Zeppelin"
-				},{
-					"value": "Command Line",
-					"text": "Command Line"
-				},{
-					"value": "ODBC/JDBC",
-					"text": "ODBC/JDBC"
-				},{
-					"value": "Other (describe below)",
-					"text": "Other"
-				}
-			],
-			"required": false
-		}, {
-			"id": "problem_start_date",
-			"order": 2,
-			"controlType": "datetimepicker",
-			"displayLabel": "When did the problem begin?",
-			"required": false
-		}, {
-			"id": "spark_programminglanguage",
-			"order": 3,
-			"controlType": "dropdown",
-			"displayLabel": "What is the programming language used?",
-			"watermarkText": "Choose an option",
-			"dropdownOptions": [{
-					"value": "Python",
-					"text": "Python"
-				},{
-					"value": "Scala",
-					"text": "Scala"
-				},{
-					"value": "R",
-					"text": "R"
-				},{
-					"value": "Java",
-					"text": "Java"
-				},{
-					"value": "Other (describe below)",
-					"text": "Other (mention below in the description)"
-				}
-			],
-			"required": false
-		},{
-			"id": "yarn_app_id",
-			"order": 4,
-			"controlType": "textbox",
-			"displayLabel": "YARN Application Id in case of job failure",
-			"required": false,
-			"useAsAdditionalDetails": true,
-			"hints": [{
-					"text": "YARN Application Id in case of job failure"
-				}]
-		},{
-			"id": "sparkconfig_details",
-			"order": 5,
-			"controlType": "multilinetextbox",
-			"displayLabel": "Please provide these details.",
-			"required": false,
-			"useAsAdditionalDetails": true,
-			"hints": [{
-					"text": "Issue description."
-				}, {
-					"text": "Spark executor and driver configuration including number of cores, memory etc."
-				}
-			]
-		}, {
-			"id": "learn_more_text",
-			"order": 6,
-			"controlType": "infoblock",
-			"content": "<a href='https://hdinsight.github.io/spark/spark-landing'>Learn more</a> about commonly faced issues with using Spark on HDInsight"
-		}
-	]
-	}
 
