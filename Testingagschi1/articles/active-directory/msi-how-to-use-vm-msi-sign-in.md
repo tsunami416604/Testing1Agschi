@@ -21,7 +21,8 @@ ms.lasthandoff: 12/11/2017
 ---
 # <a name="how-to-use-an-azure-vm-managed-service-identity-msi-for-sign-in"></a>Utilisation d’une identité du service administré de machine virtuelle (MSI) Azure pour se connecter 
 
-[!INCLUDE[preview-notice](../../includes/active-directory-msi-preview-notice.md)]Cet article fournit des exemples de script PowerShell et CLI pour la connexion à l’aide d’un principal du service MSI et des conseils sur des sujets importants tels que la gestion des erreurs.
+[!INCLUDE[preview-notice](../../includes/active-directory-msi-preview-notice.md)]
+Cet article fournit des exemples de script PowerShell et CLI pour la connexion à l’aide d’un principal du service MSI et des conseils sur des sujets importants tels que la gestion des erreurs.
 
 ## <a name="prerequisites"></a>Composants requis
 
