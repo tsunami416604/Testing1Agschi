@@ -1,114 +1,88 @@
 ---
-title: "Utilisation d’une identité du service administré de machine virtuelle Azure pour se connecter"
-description: "Procédure détaillée et exemples concernant l’utilisation d’un principal du service MSI d’une machine virtuelle Azure pour la connexion client par script et l’accès aux ressources."
+title: "Os elementos do email de convite para colaboração B2B do Azure Active Directory | Microsoft Docs"
+description: "Modelo de email de convite para colaboração B2B do Azure Active Directory"
 services: active-directory
 documentationcenter: 
-author: bryanla
+author: sasubram
 manager: mtillman
 editor: 
+tags: 
+ms.assetid: 
 ms.service: active-directory
-ms.devlang: na
+ms.devlang: NA
 ms.topic: article
-ms.tgt_pltfrm: na
+ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 12/01/2017
-ms.author: bryanla
-ms.openlocfilehash: 5e771026950652c7d9c8e817773915a5a4c4ab63
+ms.date: 05/23/2017
+ms.author: sasubram
+ms.openlocfilehash: ae8f96caaaeb9f3dad9f9f122b56fe264a5d7aec
 ms.sourcegitcommit: e266df9f97d04acfc4a843770fadfd8edf4fa2b7
 ms.translationtype: HT
-ms.contentlocale: fr-FR
+ms.contentlocale: pt-BR
 ms.lasthandoff: 12/11/2017
 ---
-# <a name="how-to-use-an-azure-vm-managed-service-identity-msi-for-sign-in"></a>Utilisation d’une identité du service administré de machine virtuelle (MSI) Azure pour se connecter 
+# <a name="the-elements-of-the-b2b-collaboration-invitation-email"></a>Os elementos do email de convite para colaboração B2B
 
-[!INCLUDE[preview-notice](../../includes/active-directory-msi-preview-notice.md)]  
-Cet article fournit des exemples de script PowerShell et CLI pour la connexion à l’aide d’un principal du service MSI et des conseils sur des sujets importants tels que la gestion des erreurs.
+Emails de convite são um componente essencial para ingressar parceiros como usuários de colaboração B2B no Azure AD. Você pode usá-los para aumentar a confiança do destinatário. Você pode adicionar a legitimidade e a comprovação social ao email, para certificar-se de que o destinatário sinta-se confortável com a seleção do botão **Introdução** para aceitar o convite. Essa confiança é uma maneira importante de reduzir o atrito de compartilhamento. E o email fica ótimo dessa maneira!
 
-## <a name="prerequisites"></a>Composants requis
+![Email de convite de B2b do AD do Azure](media/active-directory-b2b-invitation-email/invitation-email.png)
 
+## <a name="explaining-the-email"></a>Explicação do email
+Vamos examinar alguns elementos do email para que você conheça a melhor maneira de usar esses recursos.
 
-Si vous envisagez d’utiliser les exemples de Azure PowerShell ou Azure CLI dans cet article, veillez à installer la dernière version de [Azure PowerShell](https://www.powershellgallery.com/packages/AzureRM) ou bien [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli). 
+### <a name="subject"></a>Subject
+O assunto do email segue o seguinte padrão: você foi convidado para a organização &lt;nomedolocatário&gt;
 
-> [!IMPORTANT]
-> - Tous les scripts d’exemple de cet article supposent que le client de ligne de commande exécute une machine virtuelle avec le paramètre MSI activé. Utilisez la fonctionnalité « Se connecter » de machine virtuelle dans le portail Azure, pour vous connecter à distance à votre machine virtuelle. Pour plus d’informations sur l’activation de MSI sur une machine virtuelle, consultez [Configurer une identité du service administré (MSI) d’une machine virtuelle à l’aide du portail Azure](msi-qs-configure-portal-windows-vm.md), ou l’un des autres articles (à l’aide de PowerShell, CLI, d’un modèle ou d’un kit de développement logiciel Azure). 
-> - Pour éviter les erreurs lors de l’accès aux ressources, la MSI de la machine virtuelle doit comporter au moins l’accès « Lecture » à l’étendue appropriée (la machine virtuelle ou plus) pour autoriser les opérations de Azure Resource Manager sur la machine virtuelle. Voir [Attribuer à une identité du service administré (MSI) un accès à une ressource à l’aide du portail Azure](msi-howto-assign-access-portal.md) pour plus de détails.
+### <a name="from-address"></a>Do endereço
+Usamos um padrão parecido com o do LinkedIn para o endereço De.  Você deve deixar claro quem é o emissor do convite e de qual empresa, e também esclarecer que o email é proveniente de um endereço de email da Microsoft. O formato é: &lt;Nome de exibição do emissor do convite&gt; de &lt;nome do locatário&gt; (via Microsoft) <invites@microsoft.com&gt;
 
-## <a name="overview"></a>Vue d'ensemble
+### <a name="reply-to"></a>Responder Para
+O email para resposta é definido como o email do emissor do convite, quando houver um disponível, para que a resposta envie um email ao emissor do convite.
 
-Une MSI fournit un [principal du service](develop/active-directory-dev-glossary.md#service-principal-object), qui est [créé lors de l’activation de la MSI](msi-overview.md#how-does-it-work) sur la machine virtuelle. Le principal du service peut accorder l’accès aux ressources Azure et être utilisé comme identité par des clients de script/ligne de commande pour la connexion et l’accès aux ressources. En règle générale, pour accéder à des ressources sécurisées sous sa propre identité, un client de script doit :  
+### <a name="branding"></a>Identidade visual
+Os emails de convite de seu locatário usam a identidade visual da empresa configurada para o locatário. Se você quiser aproveitar esse recurso, [estes](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal) são os detalhes da configuração. O logotipo da faixa é exibido no email. Siga as instruções de tamanho e qualidade da imagem [aqui](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal) para obter os melhores resultados. Além disso, o nome da empresa também aparece no plano de ação.
 
-   - être inscrit et consenti avec Azure AD comme une application cliente web/confidentielle
-   - connectez-vous sous son principal du service, à l’aide des informations d’identification de l’application (normalement incorporées dans le script)
+### <a name="call-to-action"></a>Plano de ação
+O plano de ação é composto por duas partes: explicação do motivo de o destinatário ter recebido o email, e o que o destinatário deve fazer a respeito.
+- A seção "motivo" pode ter o seguinte padrão: Você foi convidado(a) para acessar aplicativos na organização &lt;nomedolocatário&gt;
 
-Avec la MSI, votre client de script n’a plus besoin de l’effectuer, étant donné qu’il peut se connecter sous le principal du service MSI. 
+- E a seção "o que você deve fazer" é indicada pela presença do botão **Introdução**. Quando o destinatário tiver sido adicionado sem a necessidade de convites, esse botão não aparecerá.
 
-## <a name="azure-cli"></a>Interface de ligne de commande Azure
+### <a name="inviters-information"></a>Informações sobre o emissor do convite
+O nome de exibição do emissor do convite está incluído no email. E, além disso, se você tiver configurado uma foto de perfil para sua conta do Azure AD, o email do convite também incluirá a imagem. Ambos servem para aumentar a confiança do destinatário do email.
 
-Le script suivant montre comment :
+Se você ainda não tiver configurado uma imagem de perfil, um ícone com as iniciais do emissor do convite no lugar da imagem, conforme mostra a imagem:
 
-1. Se connecter à Azure AD sous le principal du service MSI de la machine virtuelle  
-2. Appelez Azure Resource Manager et obtenez l’ID principal du service de la machine virtuelle. CLI prend en charge automatiquement la gestion de l’acquisition/utilisation des jetons pour vous. Veillez à indiquer le nom de votre machine virtuelle pour `<VM-NAME>`.  
+  ![exibição das iniciais do emissor do convite](media/active-directory-b2b-invitation-email/inviters-initials.png)
 
-   ```azurecli
-   az login --msi
-   
-   spID=$(az resource list -n <VM-NAME> --query [*].identity.principalId --out tsv)
-   echo The MSI service principal ID is $spID
-   ```
+### <a name="body"></a>Corpo
+O corpo conterá a mensagem que o emissor compõe ou a passada na API do convite. Como é uma área de texto, ela não processa marcas HTML por motivos de segurança.
 
-## <a name="azure-powershell"></a>Azure PowerShell
+### <a name="footer-section"></a>Seção de rodapé
+O rodapé contém a marca da empresa Microsoft e informará ao destinatário se o email foi enviado de um alias não monitorado. Casos especiais:
 
-Le script suivant montre comment :
+- O emissor do convite não tem um endereço de email no locatário que está convidando
 
-1. Acquérir un jeton d’accès MSI pour la machine virtuelle.  
-2. Utiliser le jeton d’accès pour se connecter à Azure AD sous le principal du service MSI correspondant.   
-3. Appelez une applet de commande de Azure Resource Manager pour obtenir des informations sur la machine virtuelle. PowerShell prend en charge la gestion de l’utilisation de jeton automatiquement pour vous.  
-
-   ```azurepowershell
-   # Get an access token for the MSI
-   $response = Invoke-WebRequest -Uri http://localhost:50342/oauth2/token `
-                                 -Method GET -Body @{resource="https://management.azure.com/"} -Headers @{Metadata="true"}
-   $content =$response.Content | ConvertFrom-Json
-   $access_token = $content.access_token
-   echo "The MSI access token is $access_token"
-
-   # Use the access token to sign in under the MSI service principal. -AccountID can be any string to identify the session.
-   Login-AzureRmAccount -AccessToken $access_token -AccountId "MSI@50342"
-
-   # Call Azure Resource Manager to get the service principal ID for the VM's MSI. 
-   $vmInfoPs = Get-AzureRMVM -ResourceGroupName <RESOURCE-GROUP> -Name <VM-NAME>
-   $spID = $vmInfoPs.Identity.PrincipalId
-   echo "The MSI service principal ID is $spID"
-   ```
-
-## <a name="resource-ids-for-azure-services"></a>ID de ressource pour les services Azure
-
-Consultez [Services Azure prenant en charge l’authentification de Azure AD](msi-overview.md#azure-services-that-support-azure-ad-authentication) pour obtenir une liste des ressources qui prennent en charge Azure AD et qui ont été testées avec l’identité du service administré et leur ID de ressources respectif.
-
-## <a name="error-handling-guidance"></a>Conseil de gestion des erreurs 
-
-Des réponses telles que les suivantes peuvent indiquer que les MSI de la machine virtuelle n’ont pas été configurées correctement :
-
-- PowerShell : *Invoke-WebRequest : Impossible de se connecter au serveur distant*
-- CLI : *MSI : Impossible de récupérer un jeton à partir de « http://localhost:50342/oauth2/jeton » avec l’erreur « HTTPConnectionPool (host = 'localhost', port = 50342)* 
-
-Si vous recevez l’une de ces erreurs, revenez à la machine virtuelle Azure dans le [portail Azure](https://portal.azure.com) et :
-
-- Accédez à la page **Configuration** et vérifiez que le paramètre « Identité de service administré » est défini sur « Oui ».
-- Accédez à la page **Extensions** et assurez-vous que l’extension de l’identité du service administré est déployée avec succès.
-
-En cas d’inexactitude, vous devez redéployer l’identité du service administré sur votre ressource, ou résoudre le problème de déploiement. Consultez [Configurer une identité du service administré (MSI) d’une machine virtuelle à l’aide du portail Azure](msi-qs-configure-portal-windows-vm.md) si vous avez besoin d’aide pour la configuration d’une machine virtuelle.
-
-## <a name="related-content"></a>Contenu connexe
-
-- Pour activer l’identité du service administré sur une machine virtuelle Azure, consultez [Configurer l’identité du service administré (MSI) à l’aide de PowerShell](msi-qs-configure-powershell-windows-vm.md), ou [Configurer une identité du service administré (MSI) d’une machine virtuelle à l’aide de Azure CLI](msi-qs-configure-cli-windows-vm.md)
-
-Utilisez la section Commentaires suivante pour donner votre avis et nous aider à affiner et à mettre en forme notre contenu.
+  ![imagem do emissor do convite não tem um endereço de email no locatário que está convidando](media/active-directory-b2b-invitation-email/inviter-no-email.png)
 
 
+- O destinatário não precisa resgatar o convite
+
+  ![quando o destinatário não precisa resgatar o convite](media/active-directory-b2b-invitation-email/when-recipient-doesnt-redeem.png)
 
 
+## <a name="next-steps"></a>Próximas etapas
 
+Procure nossos outros artigos sobre a colaboração B2B do AD do Azure:
 
-
-
+* [O que é a colaboração B2B do Azure AD](active-directory-b2b-what-is-azure-ad-b2b.md)
+* [Como os administradores do Azure Active Directory adicionam usuários de colaboração B2B?](active-directory-b2b-admin-add-users.md)
+* [Como os operadores de informação adicionam usuários de colaboração B2B?](active-directory-b2b-iw-add-users.md)
+* [Resgate de convite de colaboração B2B](active-directory-b2b-redemption-experience.md)
+* [Licenciamento da colaboração B2B do Azure AD](active-directory-b2b-licensing.md)
+* [Solução de problemas de colaboração B2B do Azure Active Directory](active-directory-b2b-troubleshooting.md)
+* [Perguntas frequentes sobre a colaboração B2B do Azure Active Directory](active-directory-b2b-faq.md)
+* [API e personalização da colaboração B2B do Azure Active Directory](active-directory-b2b-api.md)
+* [Autenticação multifator para usuários de colaboração B2B](active-directory-b2b-mfa-instructions.md)
+* [Adicionar usuários de colaboração B2B sem um convite](active-directory-b2b-add-user-without-invite.md)
+* [Índice de artigos para Gerenciamento de Aplicativos no Active Directory do Azure](active-directory-apps-index.md)
