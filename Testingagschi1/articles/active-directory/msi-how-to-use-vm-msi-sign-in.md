@@ -585,5 +585,5 @@ Use the comments section that follows, to provide feedback and help us refine an
 
 
 <!--Image references-->
-[AAD-Sign-In]: ./media/active-directory-devhowto-multi-tenant-overview/sign-in-with-microsoft-light.png
+[AAD-Sign-In]:https://review.docs.microsoft.com/en-us/Testingagschi1/articles/media/active-directory-devhowto-multi-tenant-overview/sign-in-with-microsoft-light.png
 
