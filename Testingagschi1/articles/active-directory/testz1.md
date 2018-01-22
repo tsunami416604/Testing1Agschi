@@ -86,7 +86,7 @@ ms.suite: ems
 
 <span data-ttu-id="4306a-152">이 릴리스에서는 다음 업데이트가 추가되었습니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-152">This release adds the following updates:</span></span>
 
--   <span data-ttu-id="4306a-153">Linux 플랫폼용 RMS SDK 4.1</span><span class="sxs-lookup"><span data-stu-id="4306a-153">RMS SDK 4.1 for Linux platforms</span></span>
+-   <span data-ttu-id="4306a-153">Linux 플랫폼용 RMS SDK 4.1 [ Portal Azure]</span><span class="sxs-lookup"><span data-stu-id="4306a-153">RMS SDK 4.1 for Linux platforms [Portal Azure]</span></span>
 
    
 ### <a name="may-2015-update---adds-logging-control"></a><span data-ttu-id="4306a-155">2015년 5월 업데이트 - 로깅 제어 추가</span><span class="sxs-lookup"><span data-stu-id="4306a-155">May 2015 Update - Adds logging control</span></span>
@@ -232,3 +232,6 @@ ms.suite: ems
 <span data-ttu-id="4306a-239">**Q**: 샘플 앱 프레임워크가 Xcode 5에 맞게 조정되었습니다. Xcode 4.6에서도 사용할 수 있나요?</span><span class="sxs-lookup"><span data-stu-id="4306a-239">**Q**: Sample app framework is adapted to Xcode 5, can I work with Xcode 4.6?</span></span>
 
 <span data-ttu-id="4306a-240">**A**: OS X SDK는 Xcode 4.6 이상과 OS X 10.8 이상에서만 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-240">**A**:The OS X SDK works with Xcode 4.6 and later only, as well as OS X 10.8 and later.</span></span>
+
+<!-- URLs. -->
+[Portal Azure]: https://portal.azure.com/
