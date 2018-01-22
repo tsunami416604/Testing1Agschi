@@ -101,7 +101,6 @@ ms.suite: ems
 
     <span data-ttu-id="4306a-160">로그 수준 제어 설정을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-160">Log level control settings enabled.</span></span>
 
-
     <span data-ttu-id="4306a-162">캐시 지우기 지원이 추가되었습니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-162">Cache clearing support added.</span></span>
 
     <span data-ttu-id="4306a-163">자세한 내용은 [MSProtection:resetStateWithCompletionBlock](https://msdn.microsoft.com/library/mt210991.aspx)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="4306a-163">For more information, see [MSProtection:resetStateWithCompletionBlock](https://msdn.microsoft.com/library/mt210991.aspx).</span></span>
