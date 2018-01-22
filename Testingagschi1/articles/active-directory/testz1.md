@@ -74,7 +74,7 @@ ms.suite: ems
 
     [<span data-ttu-id="4306a-145">UserPolicy.acquire 동기 메서드</span><span class="sxs-lookup"><span data-stu-id="4306a-145">UserPolicy.acquire synchronous method</span></span>](https://msdn.microsoft.com/library/mt631384.aspx)
 
-    [<span data-ttu-id="4306a-146">UserPolicy.create(PolicyDescriptor...) 동기 메서드**</span><span class="sxs-lookup"><span data-stu-id="4306a-146">UserPolicy.create (PolicyDescriptor…) synchronous method**</span></span>](https://msdn.microsoft.com/library/mt631385.aspx)
+    [<span data-ttu-id="4306a-146">UserPolicy.create(PolicyDescriptor...) 동기 메서드** </span><span class="sxs-lookup"><span data-stu-id="4306a-146">UserPolicy.create (PolicyDescriptor…) synchronous method**</span></span>](https://msdn.microsoft.com/library/mt631385.aspx)
 
     [<span data-ttu-id="4306a-147">UserPolicy.create(TempalteDescriptor...) 동기 메서드</span><span class="sxs-lookup"><span data-stu-id="4306a-147">UserPolicy.create (TempalteDescriptor…) synchronous method</span></span>](https://msdn.microsoft.com/library/mt631386.aspx)
 
