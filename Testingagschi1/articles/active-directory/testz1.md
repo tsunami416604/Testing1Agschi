@@ -1,4 +1,4 @@
----
+htmlDecoded = Server.HtmlDecode("&lt;html&gt;");---
 title: What's new and release notes
 description: Outlines important changes and features in this and previous versions.
 author: lleonard-msft
@@ -15,6 +15,8 @@ ms.suite: ems
 ---
 
 # <a name="whats-new-and-release-notes"></a><span data-ttu-id="4306a-104">새로운 기능 및 릴리스 정보</span><span class="sxs-lookup"><span data-stu-id="4306a-104">What's new and Release notes</span></span>
+
+htmlDecoded = Server.HtmlDecode("&lt;html&gt;");
 
 ## <a name="whats-new"></a><span data-ttu-id="4306a-105">새로운 기능</span><span class="sxs-lookup"><span data-stu-id="4306a-105">What's new</span></span>
 
