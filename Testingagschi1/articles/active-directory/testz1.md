@@ -68,7 +68,7 @@ ms.suite: ems
 
     [<span data-ttu-id="4306a-142">ProtectedFileInputStream.create 동기 메서드</span><span class="sxs-lookup"><span data-stu-id="4306a-142">ProtectedFileInputStream.create synchronous method</span></span>](https://msdn.microsoft.com/library/mt631375.aspx)
 
-    [<span data-ttu-id="4306a-143">ProtectedFileOutputStream.create 동기 메서드</span><span class="sxs-lookup"><span data-stu-id="4306a-143">ProtectedFileOutputStream.create synchronous method</span></span>](https://msdn.microsoft.com/library/mt631376.aspx)
+     [<span data-ttu-id="4306a-143">ProtectedFileOutputStream.create 동기 메서드</span><span class="sxs-lookup"><span data-stu-id="4306a-143">ProtectedFileOutputStream.create synchronous method</span></span>](https://msdn.microsoft.com/library/mt631376.aspx)
 
     [<span data-ttu-id="4306a-144">TemplateDescriptor.getTemplates 동기 메서드</span><span class="sxs-lookup"><span data-stu-id="4306a-144">TemplateDescriptor.getTemplates synchronous method</span></span>](https://msdn.microsoft.com/library/mt631380.aspx)
 
@@ -234,4 +234,4 @@ o    - [<span data-ttu-id="4306a-211">MSCustomProtectedData.customProtectedDataW
 <span data-ttu-id="4306a-240">**A**: OS X SDK는 Xcode 4.6 이상과 OS X 10.8 이상에서만 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-240">**A**:The OS X SDK works with Xcode 4.6 and later only, as well as OS X 10.8 and later.</span></span>
 
 <!-- URLs. -->
-[ Portal1 Azure]: https://portal.azure.com/
+[Portal1 Azure]: https://portal.azure.com/
