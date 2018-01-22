@@ -86,7 +86,7 @@ ms.suite: ems
 
 <span data-ttu-id="4306a-152">이 릴리스에서는 다음 업데이트가 추가되었습니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-152">This release adds the following updates:</span></span>
 
--   <span data-ttu-id="4306a-153">Linux 플랫폼용 RMS SDK 4.1 [ Portal Azure]</span><span class="sxs-lookup"><span data-stu-id="4306a-153">RMS SDK 4.1 for Linux platforms [Portal Azure]</span></span>
+-   <span data-ttu-id="4306a-153">Linux 플랫폼용 RMS SDK 4.1 [ Portal1 Azure]</span><span class="sxs-lookup"><span data-stu-id="4306a-153">RMS SDK 4.1 for Linux platforms [Portal Azure]</span></span>
 
    
 ### <a name="may-2015-update---adds-logging-control"></a><span data-ttu-id="4306a-155">2015년 5월 업데이트 - 로깅 제어 추가</span><span class="sxs-lookup"><span data-stu-id="4306a-155">May 2015 Update - Adds logging control</span></span>
@@ -181,7 +181,7 @@ ms.suite: ems
     <span data-ttu-id="4306a-208">다음 메서드는 동시에 실행하면 안 됩니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-208">The following methods must not be run concurrently.</span></span> <span data-ttu-id="4306a-209">실행 완료를 모니터링하려면 설명된 대로 완료 블록 방법을 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-209">In order to monitor for execution completion, use the completion block approach as noted.</span></span>
 
     - [<span data-ttu-id="4306a-210">MSProtectedData.protectedDataWithProtectedFile</span><span class="sxs-lookup"><span data-stu-id="4306a-210">MSProtectedData.protectedDataWithProtectedFile</span></span>](https://msdn.microsoft.com/library/dn758351.aspx)
-    - [<span data-ttu-id="4306a-211">MSCustomProtectedData.customProtectedDataWithPolicy</span><span class="sxs-lookup"><span data-stu-id="4306a-211">MSCustomProtectedData.customProtectedDataWithPolicy</span></span>](https://msdn.microsoft.com/library/dn758315.aspx)
+o    - [<span data-ttu-id="4306a-211">MSCustomProtectedData.customProtectedDataWithPolicy</span><span class="sxs-lookup"><span data-stu-id="4306a-211">MSCustomProtectedData.customProtectedDataWithPolicy</span></span>](https://msdn.microsoft.com/library/dn758315.aspx)
 
 
 
@@ -191,7 +191,7 @@ ms.suite: ems
 
 <span data-ttu-id="4306a-214">**모든 플랫폼**</span><span class="sxs-lookup"><span data-stu-id="4306a-214">**All platforms**</span></span>
 
-<span data-ttu-id="4306a-215">**Q**: 보호 워크플로에 **사용자 지정 권한** 선택 UI가 표시되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-215">**Q**: I don’t see a **Custom Permissions** selection UI in the protection workflow.</span></span> <span data-ttu-id="4306a-216">그 이유는 무엇일까요?</span><span class="sxs-lookup"><span data-stu-id="4306a-216">Why?</span></span>
+ <span data-ttu-id="4306a-215">**Q**: 보호 워크플로에 **사용자 지정 권한** 선택 UI가 표시되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-215">**Q**: I don’t see a **Custom Permissions** selection UI in the protection workflow.</span></span> <span data-ttu-id="4306a-216">그 이유는 무엇일까요?</span><span class="sxs-lookup"><span data-stu-id="4306a-216">Why?</span></span>
 
 <span data-ttu-id="4306a-217">**A**: 알려진 문제이며 나중에 해결할 예정입니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-217">**A**: This is a known issue and will be addressed later.</span></span>
 
@@ -234,4 +234,4 @@ ms.suite: ems
 <span data-ttu-id="4306a-240">**A**: OS X SDK는 Xcode 4.6 이상과 OS X 10.8 이상에서만 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-240">**A**:The OS X SDK works with Xcode 4.6 and later only, as well as OS X 10.8 and later.</span></span>
 
 <!-- URLs. -->
-[Portal Azure]: https://portal.azure.com/
+[ Portal1 Azure]: https://portal.azure.com/
