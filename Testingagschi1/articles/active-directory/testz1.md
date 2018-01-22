@@ -1,8 +1,17 @@
 ---
-# <a name="required-metadata"></a>필수 메타데이터
-
-제목: 새로운 기능과 릴리스 정보 설명: 이 버전 및 이전 버전에 포함된 중요한 변경 내용과 기능을 간략하게 설명합니다.
-작성자: lleonard-msft ms.author: alleonar 관리자: mbaldwin ms.date: 09/25/2017 ms.topic: 문서 ms.service: information-protection ms.technology: techgroup-identity ms.assetid: 4fa1c686-b00b-4734-9abb-141ce582a6af 대상: 개발자 ms.reviewer: kartikk ms.suite: ems
+title: What's new and release notes
+description: Outlines important changes and features in this and previous versions.
+author: lleonard-msft
+ms.author: alleonar
+manager: mbaldwin
+ms.date: 09/25/2017
+ms.topic: article
+ms.service: information-protection
+ms.technology: techgroup-identity
+ms.assetid: 4fa1c686-b00b-4734-9abb-141ce582a6af
+audience: developer
+ms.reviewer: kartikk
+ms.suite: ems
 ---
 
 # <a name="whats-new-and-release-notes"></a>새로운 기능 및 릴리스 정보
