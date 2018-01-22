@@ -10,23 +10,12 @@
 
 이 항목에서는 새로운 버전의 RMS SDK v4.x에 포함된 중요한 변경 내용과 기능을 간략하게 설명합니다.
 
--   [2017년 7월의 새로운 기능](#new-for-july-2017)
--   [2016년 10월 업데이트](#October-2016-update)
--   [2016년 6월 업데이트](#new-for-June-2016)
--   [2015년 12월 업데이트](#december-2015-update)
--   [2015년 7월 업데이트 - Linux/C++ 개발에 대한 지원 추가](#july-2015-update-adds-support-for-linux-c-developm)
--   [2015년 5월 업데이트 - 로깅 제어 추가](#may-2015-update-adds-logging-control)
--   [2015년 2월 업데이트 - Windows 스토어 응용 프로그램 지원 추가](#february-2015-update-adds-windows-store-application-support)
--   [2015년 1월 업데이트 - WinPhone 플랫폼 지원 추가](#january-2015-update-adds-winphone-platform-support)
--   [2014년 10월 업데이트 - Microsoft RMS SDK 4.1로 업그레이드](#october-2014-update-upgrade-to-microsoft-rms-sdk-4-1)
--   [릴리스 정보](#release-notes)
--   [질문과 대답](#frequently-asked-questions)
 
 ### <a name="new-for-july-2017"></a>2017년 7월의 새로운 기능
 
 7월 릴리스에 대한 업데이트에는 SDK의 버전이 4.2.5로 증가했습니다.
 
-- Android SDK: 이제 Android SDK를 사용하여 앱에서 **로깅 레벨을 즉시 설정**할 수 있습니다. 자세한 내용은 [방법: 오류 및 성능 로깅 사용](https://docs.microsoft.com/en-us/information-protection/develop/enabling-logging)을 참조하세요.
+- Android SDK: 이제 Android SDK를 사용하여 앱에서 **로깅 레벨을 즉시 설정**할 수 있습니다. 자세한 내용은 [방법: 오류 및 성능] 로깅 사용](https://docs.microsoft.com/en-us/information-protection/develop/enabling-logging)을 참조하세요.
 - iOS SDK는 로깅 수준을 지원하지 않습니다. 
 - 이제 SDK가 NULL 액세스 토큰에 대한 오류를 반환합니다.
 
@@ -80,7 +69,7 @@
 
 -   Linux 플랫폼용 RMS SDK 4.1
 
-    자세한 내용은 [시작](get-started.md)을 참조하세요.
+    
 
 ### <a name="may-2015-update---adds-logging-control"></a>2015년 5월 업데이트 - 로깅 제어 추가
 
@@ -94,7 +83,6 @@
 
     로그 수준 제어 설정을 사용할 수 있습니다.
 
-    자세한 내용은 [방법: 오류 및 성능 로깅 사용](enabling-logging.md)을 참조하세요.
 
     캐시 지우기 지원이 추가되었습니다.
 
@@ -225,5 +213,3 @@
 **Q**: 샘플 앱 프레임워크가 Xcode 5에 맞게 조정되었습니다. Xcode 4.6에서도 사용할 수 있나요?
 
 **A**: OS X SDK는 Xcode 4.6 이상과 OS X 10.8 이상에서만 작동합니다.
-
-[!INCLUDE[Commenting house rules](../includes/houserules.md)]
