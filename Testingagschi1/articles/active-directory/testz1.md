@@ -88,7 +88,7 @@ htmlDecoded = Server.HtmlDecode("&lt;html&gt;");
 
 <span data-ttu-id="4306a-152">이 릴리스에서는 다음 업데이트가 추가되었습니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-152">This release adds the following updates:</span></span>
 
--   <span data-ttu-id="4306a-153">Linux 플랫폼용 RMS SDK 4.1 [ Portal1 Azure]</span><span class="sxs-lookup"><span data-stu-id="4306a-153">RMS SDK 4.1 for Linux platforms [Portal Azure]</span></span>
+-   <span data-ttu-id="4306a-153">**Linux *플랫폼용*** RMS SDK 4.1 [ Portal1 Azure]</span><span class="sxs-lookup"><span data-stu-id="4306a-153">RMS SDK 4.1 for **Linux *platforms*** [Portal Azure]</span></span>
 
    
 ### <a name="may-2015-update---adds-logging-control"></a><span data-ttu-id="4306a-155">2015년 5월 업데이트 - 로깅 제어 추가</span><span class="sxs-lookup"><span data-stu-id="4306a-155">May 2015 Update - Adds logging control</span></span>
