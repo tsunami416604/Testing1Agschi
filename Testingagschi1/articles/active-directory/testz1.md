@@ -30,9 +30,18 @@ You can use [] \(to access [this page](testz2.md))
 
 [![Test image](../media/testz1/unicorn2.png)](testz2.md)
 
-bla bla | | bla bla 
+| 域名 | 出站端口 | 说明 |
+| --- | --- | --- |
+| *.download.microsoft.com |80 |用于下载安装程序的 HTTP。 |
+| *.powerbi.com | &#124; 443 |HTTPS |
 
-bla bla | &#124; bla bla 
+
+| 域名 | 出站端口 | 说明 |
+| --- | --- | --- |
+| *.download.microsoft.com |80 |用于下载安装程序的 HTTP。 |
+| *.powerbi.com | | 443 |HTTPS |
+
+
 
 ## <a name="whats-new"></a><span data-ttu-id="4306a-105">새로운 기능</span><span class="sxs-lookup"><span data-stu-id="4306a-105">What's new</span></span>
 
