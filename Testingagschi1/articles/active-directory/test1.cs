@@ -1,1 +1,1 @@
-var htmlDecoded = Server.HtmlDecode("<html>");
+var htmlDecoded = Server.HtmlDecode("&lt;html&gt;");

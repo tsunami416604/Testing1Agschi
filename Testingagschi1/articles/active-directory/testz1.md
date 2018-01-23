@@ -28,7 +28,7 @@ OR
 
 You can use [] \(to access [this page](testz2.md))
 
-[Test image![](../media/testz1/unicorn2.png)](testz2.md)
+[![Test image](../media/testz1/unicorn2.png)](testz2.md)
 
 
 
