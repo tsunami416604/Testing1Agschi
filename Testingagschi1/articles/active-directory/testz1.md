@@ -18,6 +18,8 @@ ms.suite: ems
 
 htmlDecoded = Server.HtmlDecode("&lt;html&gt;");
 
+You can use [] (to access [this page](testz2.md))
+
 ## <a name="whats-new"></a><span data-ttu-id="4306a-105">새로운 기능</span><span class="sxs-lookup"><span data-stu-id="4306a-105">What's new</span></span>
 
 <span data-ttu-id="4306a-106">이 항목에서는 새로운 버전의 RMS SDK v4.x에 포함된 중요한 변경 내용과 기능을 간략하게 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="4306a-106">This topic outlines important changes and features in this new version of the RMS  SDK v4.x.</span></span>
