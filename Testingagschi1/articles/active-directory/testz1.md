@@ -41,7 +41,9 @@ You can use [] \(to access [this page](testz2.md))
 | *.download.microsoft.com |80 |用于下载安装程序的 HTTP。 |
 | *.powerbi.com | | 443 |HTTPS |
 
+您現在可以從 Mac 電腦使用瀏覽器連入文件追蹤網站 (https://track.azurerms.com)，從而追蹤及撤銷此文件
 
+您現在可以從 Mac 電腦使用瀏覽器連入文件追蹤網站 (https://track.azurerms.com) ，從而追蹤及撤銷此文件
 
 ## <a name="whats-new"></a><span data-ttu-id="4306a-105">새로운 기능</span><span class="sxs-lookup"><span data-stu-id="4306a-105">What's new</span></span>
 
