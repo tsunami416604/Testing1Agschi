@@ -41,7 +41,7 @@ You can use [] \(to access [this page](testz2.md))
 | *.download.microsoft.com |80 |用于下载安装程序的 HTTP。 |
 | *.powerbi.com | | 443 |HTTPS |
 
-您現在可以從 Mac 電腦使用瀏覽器連入文件追蹤網站 (https://track.azurerms.com)，從而追蹤及撤銷此文件
+您現在可以從 Mac 電腦使用瀏覽器連入文件追蹤網站 (https://track.azurerms.com) 從而追蹤及撤銷此文件
 
 您現在可以從 Mac 電腦使用瀏覽器連入文件追蹤網站 (https://track.azurerms.com) ，從而追蹤及撤銷此文件
 
@@ -60,6 +60,12 @@ You can use [] \(to access [this page](testz2.md))
 -   [<span data-ttu-id="4306a-115">2014년 10월 업데이트 - Microsoft RMS SDK 4.1로 업그레이드</span><span class="sxs-lookup"><span data-stu-id="4306a-115">October 2014 update - Upgrade to Microsoft RMS SDK 4.1</span></span>](#october-2014-update-upgrade-to-microsoft-rms-sdk-4-1)
 -   [<span data-ttu-id="4306a-116">릴리스 정보</span><span class="sxs-lookup"><span data-stu-id="4306a-116">Release notes</span></span>](#release-notes)
 -   [<span data-ttu-id="4306a-117">질문과 대답</span><span class="sxs-lookup"><span data-stu-id="4306a-117">Frequently asked questions</span></span>](#frequently-asked-questions)
+
+<span data-ttu-id="2f594-145">Para asegurarse de que las consultas enviadas al origen de datos subyacente tengan un rendimiento aceptable, se aplican limitaciones a las medidas de forma predeterminada.</span><span class="sxs-lookup"><span data-stu-id="2f594-145">To ensure that queries sent to the underlying data source have acceptable performance, limitations are imposed on measures by default.</span></span> <span data-ttu-id="2f594-146">Los usuarios avanzados pueden optar por omitir esta limitación. Para ello, deben seleccionar **Archivo > Opciones**, **Configuración > Opciones y configuración > DirectQuery** y, después, la opción *Permitir medidas sin restricciones en el modo DirectQuery**. </span><span class="sxs-lookup"><span data-stu-id="2f594-146">Advanced users can choose to bypass this limitation by selecting **File > Options** and then **Settings > Options and settings > DirectQuery**, then selecting the option *Allow unrestricted measures in DirectQuery mode**.</span></span> 
+<span data-ttu-id="2f594-147">Si se selecciona esta opción, se puede usar cualquier expresión DAX que sea válida para una medida.</span><span class="sxs-lookup"><span data-stu-id="2f594-147">When that option is selected, any DAX expression that is valid for a measure can be used.</span></span> <span data-ttu-id="2f594-148">Los usuarios deben tener en cuenta, sin embargo, que algunas expresiones que funcionan muy bien al importar datos pueden derivar en consultas muy lentas para el origen de back-end en el modo DirectQuery.</span><span class="sxs-lookup"><span data-stu-id="2f594-148">Users must be aware, however, that some expressions that perform very well when the data is imported may result in very slow queries to the backend source when in DirectQuery mode.</span></span>
+
+
+
 
 ### <a name="new-for-july-2017"></a><span data-ttu-id="4306a-118">2017년 7월의 새로운 기능</span><span class="sxs-lookup"><span data-stu-id="4306a-118">New for July 2017</span></span>
 
