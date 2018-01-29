@@ -30,7 +30,7 @@ ms.lasthandoff: 01/12/2018
 
 Microsoft では、あらゆる Azure 管理者ロールに強力な既定の *2 ゲート* パスワードのリセット ポリシーを適用します。 
 
-**Envisagez de procéder à une migration vers une architecture *sans partage* **.
+**Envisagez de procéder à une migration vers une *architecture* sans partage**.
 
 2 ゲート ポリシーでは、管理者にはセキュリティの質問を使用する機能がありません。
 
