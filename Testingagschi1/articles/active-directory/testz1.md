@@ -16,7 +16,13 @@ ms.suite: ems
 
 # <a name="whats-new-and-release-notes"></a><span data-ttu-id="4306a-104">새로운 기능 및 릴리스 정보</span><span class="sxs-lookup"><span data-stu-id="4306a-104">What's new and Release notes</span></span>
 
+-   <span data-ttu-id="44df2-176">在 [動作內容] 中，如果您使用 URL 類型，請以引號括住網際網路位址，例如 "http://www.adventure-works.com"。</span><span class="sxs-lookup"><span data-stu-id="44df2-176">In **Action Content**, if you are using the URL type, enclose the Internet address in quotes, For example, "http://www.adventure-works.com".</span></span>  
+
+-   <span data-ttu-id="44df2-176">在 [動作內容] 中，如果您使用 URL 類型，請以引號括住網際網路位址，例如 "http://www.adventure-works.com" 。</span><span class="sxs-lookup"><span data-stu-id="44df2-176">In **Action Content**, if you are using the URL type, enclose the Internet address in quotes, For example, "http://www.adventure-works.com".</span></span>  
+
 htmlDecoded = Server.HtmlDecode("&lt;html&gt;");
+
+[升級至 VS2017 15.3 之後，顯示「”TF30063: 您未獲授權，無法存取 .visualstudio.com\” 」](https://docs.microsoft.com/en-us/information-protection/develop/enabling-logging)
 
 you can see them in
 
