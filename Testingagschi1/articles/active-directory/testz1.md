@@ -22,6 +22,8 @@ ms.suite: ems
 
 htmlDecoded = Server.HtmlDecode("&lt;html&gt;");
 
+升級至 VS2017 15.3 之後，顯示「”TF30063: 您未獲授權，無法存取 .visualstudio.com\” 」](https://docs.microsoft.com/en-us/information-protection/develop/enabling-logging)
+
 [升級至 VS2017 15.3 之後，顯示「”TF30063: 您未獲授權，無法存取 .visualstudio.com\” 」](https://docs.microsoft.com/en-us/information-protection/develop/enabling-logging)
 
 you can see them in
