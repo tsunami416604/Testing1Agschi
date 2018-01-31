@@ -1,12 +1,13 @@
 ---
-title: "セルフサービスによるパスワード リセット ポリシー - Azure Active Directory"
-description: "Azure AD のセルフ サービスによるパスワード リセット ポリシーのオプション"
+title: Self-service password reset policies - Azure Active Directory
+description: Azure AD self-service password reset policy options
 services: active-directory
-keywords: "Active Directory パスワード管理, パスワード管理, Azure AD セルフサービスによるパスワードのリセット"
-documentationcenter: 
+keywords: Active directory password management, password management, Azure AD self service password reset
+documentationcenter: ''
 author: MicrosoftGuyJFlo
 manager: mtillman
 ms.reviewer: sahenry
+
 ms.assetid: 
 ms.service: active-directory
 ms.workload: identity
@@ -15,151 +16,145 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/11/2018
 ms.author: joflore
-ms.custom: it-pro
-ms.openlocfilehash: 51eb7c594c02310c083b42b6c0d964b4af239d76
-ms.sourcegitcommit: 562a537ed9b96c9116c504738414e5d8c0fd53b1
-ms.translationtype: HT
-ms.contentlocale: ja-JP
-ms.lasthandoff: 01/12/2018
+ms.custom: it-pro;seohack1
+
 ---
-# <a name="password-policies-and-restrictions-in-azure-active-directory"></a>Azure Active Directory のパスワード ポリシーと制限
+# Password policies and restrictions in Azure Active Directory
 
-この記事では、Azure Active Directory (Azure AD) テナントに格納されているユーザー アカウントと関連付けられたパスワード ポリシーと複雑さの要件について説明します。
+This article describes the password policies and complexity requirements associated with user accounts stored in your Azure Active Directory (Azure AD) tenant.
 
-## <a name="administrator-password-policy-differences"></a>管理者パスワード ポリシーの相違点
+## Administrator password policy differences
 
-Microsoft では、あらゆる Azure 管理者ロールに強力な既定の *2 ゲート* パスワードのリセット ポリシーを適用します。 
+Microsoft enforces a strong default *two-gate* password reset policy for any Azure administrator role. 
 
-**Envisagez de procéder à une migration vers une *architecture* sans partage**.
+With a two-gate policy, administrators don't have the ability to use security questions.
 
-2 ゲート ポリシーでは、管理者にはセキュリティの質問を使用する機能がありません。
+ A two-gate policy requires two pieces of authentication data, such as an email address *and* a phone number. A two-gate policy applies in the following circumstances:
 
- 2 ゲート ポリシーには、 2 つの認証データが必要です。電子メール アドレス*および*電話番号、などです。 2 ゲート ポリシーは次のような状況で適用されます。
-
-* 次のすべての Azure 管理者ロールが影響を受けます。
-  * ヘルプデスク管理者
-  * サービス サポート管理者
-  * 課金管理者
-  * パートナー レベル 1 のサポート
-  * パートナー レベル 2 のサポート
-  * Exchange サービス管理者
-  * Lync サービス管理者
-  * ユーザー アカウント管理者
-  * ディレクトリ ライター
-  * グローバル管理者または会社の管理者
-  * SharePoint サービス管理者
-  * コンプライアンス管理者
-  * アプリケーション管理者
-  * セキュリティ管理者
-  * 特権ロール管理者
-  * Microsoft Intune サービス管理者
-  * アプリケーション プロキシ サービス管理者
-  * CRM サービス管理者
-  * Power BI サービス管理者
+* All the following Azure administrator roles are affected:
+  * Helpdesk administrator
+  * Service support administrator
+  * Billing administrator
+  * Partner Tier1 Support
+  * Partner Tier2 Support
+  * Exchange service administrator
+  * Lync service administrator
+  * User account administrator
+  * Directory writers
+  * Global administrator or company administrator
+  * SharePoint service administrator
+  * Compliance administrator
+  * Application administrator
+  * Security administrator
+  * Privileged role administrator
+  * Microsoft Intune service administrator
+  * Application proxy service administrator
+  * CRM service administrator
+  * Power BI service administrator
   
-* 評価版サブスクリプションで 30 日間が経過した
+* If 30 days have elapsed in a trial subscription
 
   or
 
-* バニティ ドメインが存在する (contoso.com など)
+* A vanity domain is present, such as contoso.com
 
   or
 
-* Azure AD Connect がオンプレミスのディレクトリからの ID を同期している
+* Azure AD Connect is synchronizing identities from your on-premises directory
 
-### <a name="exceptions"></a>例外
-1 ゲート ポリシーには、1 つの認証データが必要です。電子メール アドレス*または*電話番号などです。 1 ゲート ポリシーは次のような状況で適用されます。
+### Exceptions
+A one-gate policy requires one piece of authentication data, such as an email address *or* phone number. A one-gate policy applies in the following circumstances:
 
-* 試用版サブスクリプションの最初の 30 日以内である
+* It's within the first 30 days of a trial subscription
 
   or
 
-* バニティ ドメインが存在しない (*.onmicrosoft.com) 
+* A vanity domain isn't present (*.onmicrosoft.com) 
 
   and 
 
-  Azure AD Connect が ID と同期していない
+  Azure AD Connect isn't synchronizing identities
 
 
-## <a name="userprincipalname-policies-that-apply-to-all-user-accounts"></a>すべてのユーザー アカウントに適用される UserPrincipalName ポリシー
+## UserPrincipalName policies that apply to all user accounts
 
-Azure AD にサインインする必要があるすべてのユーザー アカウントは、一意のユーザー プリンシパル名 (UPN) 属性値がそのアカウントに関連付けられている必要があります。 次の表は、クラウドに同期されているオンプレミスの Active Directory ユーザー アカウントとクラウドのみのユーザー アカウントの両方に適用されるポリシーの概要です。
+Every user account that needs to sign in to Azure AD must have a unique user principal name (UPN) attribute value associated with their account. The following table outlines the polices that apply to both on-premises Active Directory user accounts that are synchronized to the cloud and to cloud-only user accounts:
 
-| プロパティ | UserPrincipalName の要件 |
+| Property | UserPrincipalName requirements |
 | --- | --- |
-| 使用できる文字 |<ul> <li>A - Z</li> <li>a - z</li><li>0 – 9</li> <li> が必要です。 - \_ ! \# ^ \~</li></ul> |
-| 使用できない文字 |<ul> <li>ユーザー名とドメインの間以外にある '@' 文字。</li> <li>ピリオド文字 '.' を '@' 記号の直前に含めることはできません</li></ul> |
-| 長さの制限 |<ul> <li>全体の長さは 113 文字以内にする必要があります</li><li>'@' 記号の前に最大 64 文字まで可能</li><li>'@' 記号の後に最大 48 文字まで可能</li></ul> |
+| Characters allowed |<ul> <li>A – Z</li> <li>a - z</li><li>0 – 9</li> <li> . - \_ ! \# ^ \~</li></ul> |
+| Characters not allowed |<ul> <li>Any "@" character that's not separating the username from the domain.</li> <li>Can't contain a period character "." immediately preceding the "@" symbol</li></ul> |
+| Length constraints |<ul> <li>The total length must not exceed 113 characters</li><li>There can be up to 64 characters before the "@" symbol</li><li>There can be up to 48 characters after the "@" symbol</li></ul> |
 
-## <a name="password-policies-that-only-apply-to-cloud-user-accounts"></a>クラウド ユーザー アカウントにのみ適用されるパスワード ポリシー
+## Password policies that only apply to cloud user accounts
 
-次の表は、Azure AD で作成および管理されているユーザー アカウントに適用できるパスワード ポリシー設定の説明です。
+The following table describes the available password policy settings that can be applied to user accounts that are created and managed in Azure AD:
 
-| プロパティ | 必要条件 |
+| Property | Requirements |
 | --- | --- |
-| 使用できる文字 |<ul><li>A - Z</li><li>a - z</li><li>0 – 9</li> <li>@ # $ % ^ & * - \_ ! + = [ ] { } &#124; \ : ‘ , . ? / ` ~ “ ( ) ;</li></ul> |
-| 使用できない文字 |<ul><li>Unicode 文字。</li><li>スペース。</li><li> 強力なパスワードのみ: '@' 記号の直前にピリオド文字 '.' を含めることはできません。</li></ul> |
-| パスワードの制限 |<ul><li>8 文字以上 16 文字以下。</li><li>強力なパスワードのみ: 次の 4 つのうち、3 つが必要です。<ul><li>小文字。</li><li>大文字。</li><li>数字 (0-9)。</li><li>記号 (上述のパスワード制限を参照してください)。</li></ul></li></ul> |
-| パスワードの有効期間 |<ul><li>規定値: **90** 日。</li><li>値を構成するには、Windows PowerShell 用 Azure Active Directory モジュールから `Set-MsolPasswordPolicy` コマンドレットを使用します。</li></ul> |
-| パスワードの期限切れの通知 |<ul><li>既定値: **14** 日 (パスワードの有効期限が切れる前)。</li><li>値を構成するには、`Set-MsolPasswordPolicy` コマンドレットを使用します。</li></ul> |
-| パスワードの期限切れ |<ul><li>既定値: **false** 日 (パスワードの有効期限が有効になっていることを示します)。</li><li>各ユーザー アカウントの値を構成するには、`Set-MsolUser` コマンドレットを使用します。</li></ul> |
-| パスワード変更履歴 |ユーザーがパスワードを変更する場合、前回のパスワードを再度使用することは*できません*。 |
-| パスワード リセット履歴 | ユーザーが忘れたパスワードをリセットする場合、前回のパスワードを再度使用することは*できます*。 |
-| アカウントのロックアウト |正しくないパスワードでサインイン試行に 10 回失敗すると、ユーザーを 1 分間ロックアウトします。 不適切なサインイン試行をさらに行った場合は、ロックアウトの期間が延長されます。 |
+| Characters allowed |<ul><li>A – Z</li><li>a - z</li><li>0 – 9</li> <li>@ # $ % ^ & * - _ ! + = [ ] { } &#124; \ : ‘ , . ? / ` ~ “ ( ) ;</li></ul> |
+| Characters not allowed |<ul><li>Unicode characters.</li><li>Spaces.</li><li> Strong passwords only: Can't contain a dot character "." immediately preceding the "@" symbol.</li></ul> |
+| Password restrictions |<ul><li>A minimum of 8 characters and a maximum of 16 characters.</li><li>Strong passwords only: Requires three out of four of the following:<ul><li>Lowercase characters.</li><li>Uppercase characters.</li><li>Numbers (0-9).</li><li>Symbols (see the previous password restrictions).</li></ul></li></ul> |
+| Password expiry duration |<ul><li>Default value: **90** days.</li><li>The value is configurable by using the `Set-MsolPasswordPolicy` cmdlet from the Azure Active Directory Module for Windows PowerShell.</li></ul> |
+| Password expiry notification |<ul><li>Default value: **14** days (before password expires).</li><li>The value is configurable by using the `Set-MsolPasswordPolicy` cmdlet.</li></ul> |
+| Password expiry |<ul><li>Default value: **false** days (indicates that password expiry is enabled).</li><li>The value can be configured for individual user accounts by using the `Set-MsolUser` cmdlet.</li></ul> |
+| Password change history |The last password *can't* be used again when the user changes a password. |
+| Password reset history | The last password *can* be used again when the user resets a forgotten password. |
+| Account lockout |After 10 unsuccessful sign-in attempts with the wrong password, the user is locked out for one minute. Further incorrect sign-in attempts lock out the user for increasing durations of time. |
 
-## <a name="set-password-expiration-policies-in-azure-ad"></a>Azure AD でパスワード有効期限ポリシーを設定する
+## Set password expiration policies in Azure AD
 
-Microsoft クラウド サービスのグローバル管理者は、Windows PowerShell 用 Microsoft Azure AD モジュールを使用して、ユーザーのパスワード有効期限が切れないように設定できます。 また、Windows PowerShell コマンドレットを使用すると、期限が切れない構成を削除したり、期限が切れないように設定されているユーザー パスワードを確認したりすることもできます。 
+A global administrator for a Microsoft cloud service can use the Microsoft Azure AD Module for Windows PowerShell to set user passwords not to expire. You can also use Windows PowerShell cmdlets to remove the never-expires configuration or to see which user passwords are set to never expire. 
 
-このガイダンスは、Intune や Office 365 などの他のプロバイダーに適用され、これらは ID およびディレクトリ サービスについては Azure AD にも依存します。 パスワード有効期限が、ポリシーの変更できる唯一の部分です。
+This guidance applies to other providers, such as Intune and Office 365, which also rely on Azure AD for identity and directory services. Password expiration is the only part of the policy that can be changed.
 
 > [!NOTE]
-> 有効期限が切れないように構成できるのは、ディレクトリ同期によって同期されていないユーザー アカウントのパスワードだけです。 ディレクトリ同期の詳細については、[AD と Azure AD の接続](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect)に関するページをご覧ください。
+> Only passwords for user accounts that are not synchronized through directory synchronization can be configured to not expire. For more information about directory synchronization, see [Connect AD with Azure AD](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect).
 >
 >
 
-## <a name="set-or-check-the-password-policies-by-using-powershell"></a>PowerShell を使用したパスワード ポリシーの設定または確認
+## Set or check the password policies by using PowerShell
 
-操作を開始するには、[Azure AD PowerShell モジュールをダウンロードしてインストールする](https://docs.microsoft.com/powershell/module/Azuread/?view=azureadps-2.0)必要があります。 インストールした後、次の手順に従って各フィールドを構成できます。
+To get started, you need to [download and install the Azure AD PowerShell module](https://docs.microsoft.com/powershell/module/Azuread/?view=azureadps-2.0). After you have it installed, you can use the following steps to configure each field.
 
-### <a name="how-to-check-the-expiration-policy-for-a-password"></a>パスワードの有効期限ポリシーを確認する方法
-1. 会社の管理者の資格情報を使用して Windows PowerShell に接続します。
-2. 次のいずれかのコマンドを実行します。
+### How to check the expiration policy for a password
+1. Connect to Windows PowerShell by using your company administrator credentials.
+2. Execute one of the following commands:
 
-   * 特定のユーザーについてパスワードの有効期限が切れないかどうか確認するには、確認するユーザーの UPN (例: *aprilr@contoso.onmicrosoft.com*) またはユーザー ID を使用して、次のコマンドレットを実行します。`Get-MSOLUser -UserPrincipalName <user ID> | Select PasswordNeverExpires`
-   * すべてのユーザーについて**パスワードを無期限にする**設定を表示するには、次のコマンドレットを実行します。`Get-MSOLUser | Select UserPrincipalName, PasswordNeverExpires`
+   * To see if a single user’s password is set to never expire, run the following cmdlet by using the UPN (for example, *aprilr@contoso.onmicrosoft.com*) or the user ID of the user you want to check: `Get-MSOLUser -UserPrincipalName <user ID> | Select PasswordNeverExpires`
+   * To see the **Password never expires** setting for all users, run the following cmdlet: `Get-MSOLUser | Select UserPrincipalName, PasswordNeverExpires`
 
-### <a name="set-a-password-to-expire"></a>パスワードを期限付きに設定する
+### Set a password to expire
 
-1. 会社の管理者の資格情報を使用して Windows PowerShell に接続します。
-2. 次のいずれかのコマンドを実行します。
+1. Connect to Windows PowerShell by using your company administrator credentials.
+2. Execute one of the following commands:
 
-   * 特定のユーザーのパスワードを期限付きに設定するには、そのユーザーの UPN またはユーザー ID を使用して、次のコマンドレットを実行します。`Set-MsolUser -UserPrincipalName <user ID> -PasswordNeverExpires $false`
-   * 組織内のすべてのユーザーのパスワードを期限付きに設定するには、次のコマンドレットを使用します。 `Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $false`
+   * To set the password of one user so that the password expires, run the following cmdlet by using the UPN or the user ID of the user: `Set-MsolUser -UserPrincipalName <user ID> -PasswordNeverExpires $false`
+   * To set the passwords of all users in the organization so that they expire, use the following cmdlet: `Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $false`
 
-### <a name="set-a-password-to-never-expire"></a>パスワードを無期限に設定する
+### Set a password to never expire
 
-1. 会社の管理者の資格情報を使用して Windows PowerShell に接続します。
-2. 次のいずれかのコマンドを実行します。
+1. Connect to Windows PowerShell by using your company administrator credentials.
+2. Execute one of the following commands:
 
-   * 特定のユーザーのパスワードを無期限に設定するには、そのユーザーの UPN またはユーザー ID を使用して、次のコマンドレットを実行します。`Set-MsolUser -UserPrincipalName <user ID> -PasswordNeverExpires $true`
-   * 組織内のすべてのユーザーのパスワードを無期限に設定するには、次のコマンドレットを実行します。 `Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $true`
+   * To set the password of one user to never expire, run the following cmdlet by using the UPN or the user ID of the user: `Set-MsolUser -UserPrincipalName <user ID> -PasswordNeverExpires $true`
+   * To set the passwords of all the users in an organization to never expire, run the following cmdlet: `Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $true`
 
    > [!WARNING]
-   > `-PasswordNeverExpires $true` を設定したパスワードは、引き続き `pwdLastSet` 属性に基づいて使用時間が計測されます。 ユーザーのパスワードを無期限に設定し、90 日以上たつと、パスワードは期限切れになります。 `pwdLastSet` 属性に基づいて、有効期限を `-PasswordNeverExpires $false` に変更すると、90 日より古い `pwdLastSet` を持つすべてのパスワードは、ユーザーが次回サインインで変更する必要があります。 この変更は多数のユーザーに影響を与える可能性があります。 
+   > Passwords set to `-PasswordNeverExpires $true` still age based on the `pwdLastSet` attribute. If you set the user passwords to never expire and then 90+ days go by, the passwords expire. Based on the `pwdLastSet` attribute, if you change the expiration to `-PasswordNeverExpires $false`, all passwords that have a `pwdLastSet` older than 90 days require the user to change them the next time they sign in. This change can affect a large number of users. 
 
-## <a name="next-steps"></a>次の手順
+## Next steps
 
-次の記事では、Azure AD によるパスワードのリセットに関する追加情報が得られます。
+The following articles provide additional information about password reset through Azure AD:
 
-* [SSPR のロールアウトを正常に完了する方法](active-directory-passwords-best-practices.md)
-* [パスワードのリセットと変更。](active-directory-passwords-update-your-own-password.md)
-* [セルフサービスによるパスワード リセットの登録。](active-directory-passwords-reset-register.md)
-* [ライセンスに関する質問](active-directory-passwords-licensing.md)
-* [SSPR が使用するデータと、ユーザー用に事前設定が必要なデータ。](active-directory-passwords-data.md)
-* [ユーザーが使用できる認証方法。](active-directory-passwords-how-it-works.md#authentication-methods)
-* [パスワード ライトバックと、それが必要な理由。](active-directory-passwords-writeback.md)
-* [SSPR でアクティビティをレポートする方法。](active-directory-passwords-reporting.md)
-* [SSPR のすべてのオプションとその意味。](active-directory-passwords-how-it-works.md)
-* [不具合が発生していると思われる場合のSSPR のトラブルシューティング方法。](active-directory-passwords-troubleshoot.md)
-* [質問したい内容に関する説明がどこにもない。](active-directory-passwords-faq.md)
+* [How do I complete a successful rollout of SSPR?](active-directory-passwords-best-practices.md)
+* [Reset or change your password](active-directory-passwords-update-your-own-password.md).
+* [Register for self-service password reset](active-directory-passwords-reset-register.md).
+* [Do you have a licensing question?](active-directory-passwords-licensing.md)
+* [What data is used by SSPR and what data should you populate for your users?](active-directory-passwords-data.md)
+* [What authentication methods are available to users?](active-directory-passwords-how-it-works.md#authentication-methods)
+* [What is password writeback and why do I care about it?](active-directory-passwords-writeback.md)
+* [How do I report on activity in SSPR?](active-directory-passwords-reporting.md)
+* [What are all of the options in SSPR and what do they mean?](active-directory-passwords-how-it-works.md)
+* [I think something is broken. How do I troubleshoot SSPR?](active-directory-passwords-troubleshoot.md)
+* [I have a question that was not covered somewhere else](active-directory-passwords-faq.md)
