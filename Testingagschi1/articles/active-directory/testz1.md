@@ -28,6 +28,12 @@ htmlDecoded = Server.HtmlDecode("&lt;html&gt;");
 
 you can see them in
 
+Bu genellikle "https://www.zuora.com" dur, aşağıdaki  bu parametreleri bulma  başlığından ayrıntıları bulabilirsiniz.
+
+Bu genellikle "https://www.zuora.com\" dur, aşağıdaki  bu parametreleri bulma  başlığından ayrıntıları bulabilirsiniz.
+
+Bu genellikle "https://www.zuora.com " dur, aşağıdaki  bu parametreleri bulma  başlığından ayrıntıları bulabilirsiniz.
+
 [!code-csharp[Main](test1.cs)]
 
 OR
