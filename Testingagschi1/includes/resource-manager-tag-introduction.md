@@ -1,12 +1,17 @@
-您可將標籤套用至 Azure 資源，以便以邏輯方式依照類別組織這些資源。 每個標籤是由一個索引鍵和一個值所組成。 比方說，您可以將「環境」索引鍵和「生產」值套用至生產環境中的所有資源。 若沒有此標籤，您可能難易識別資源主要用於開發、測試或生產環境。 不過，「環境」和「生產」只是範例。 您可定義最適合用於組織您的訂用帳戶的索引鍵和值。
+You apply tags to your Azure resources to logically organize them by categories. Each tag consists of a name and a value. For example, you can apply the name "Environment" and the value "Production" to all the resources in production. Without this tag, you might have difficulty identifying whether a resource is intended for development, test, or production. However, "Environment" and "Production" are just examples. You define the names and values that make the most sense for organizing your subscription.
 
-套用標籤之後，您可以擷取您的訂用帳戶中具有該標籤索引鍵和值的所有資源。 標籤可讓您擷取不同資源群組中的相關資源。 當您需要組織資源以進行計費或管理時，此方法很有用。
+After you apply tags, you can retrieve all the resources in your subscription with that tag name and value. Tags enable you to retrieve related resources that reside in different resource groups. This approach is helpful when you need to organize resources for billing or management.
 
-標籤具有下列限制：
+The following limitations apply to tags:
 
-* 每個資源或資源群組最多可以有 15 個標記索引鍵/值組。 此限制只適用於直接套用至資源群組或資源的標記。 資源群組可以包含許多資源，其各自有 15 個標記索引鍵/值組。 
-* 標籤名稱的上限為 512 個字元。
-* 標籤值的上限為 256 個字元。 
-* 資源群組中的資源不會繼承套用至該資源群組的標籤。 
-
-如果您有超過 15 個要與資源產生關聯的值，請使用 JSON 字串作為標記值。 JSON 字串可以包含許多套用至單一標記索引鍵的值。 本文會顯示將 JSON 字串指派給標記索引鍵的範例。
+* Each resource or resource group can have a maximum of 15 tag name/value pairs. This limitation applies only to tags directly applied to the resource group or resource. A resource group can contain many resources that each have 15 tag name/value pairs. If you have more than 15 values that you need to associate with a resource, use a JSON string for the tag value. The JSON string can contain many values that are applied to a single tag name. This article shows an example of assigning a JSON string to the tag.
+* The tag name is limited to 512 characters, and the tag value is limited to 256 characters. For storage accounts, the tag name is limited to 128 characters, and the tag value is limited to 256 characters.
+* Tags applied to the resource group are not inherited by the resources in that resource group.
+* These characters are not supported:
+  * `<`
+  * `>`
+  * `%`
+  * `&`
+  * `\\`
+  * `?`
+  * `/`

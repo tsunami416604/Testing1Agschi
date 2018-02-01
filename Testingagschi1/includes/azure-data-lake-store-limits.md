@@ -1,6 +1,7 @@
-Azure 資料湖存放區是容納巨量資料分析工作負載的企業級超大規模存放庫。 Data Lake Store 可讓您在單一位置擷取任何大小、類型和擷取速度的資料，以進行運作和探究分析。 您可以在 Data Lake Store 帳戶中儲存的資料量並無任何限制。
+Azure Data Lake Store is an enterprise-wide hyper-scale repository for big data analytic workloads. Data Lake Store enables you to capture data of any size, type, and ingestion speed in one single place for operational and exploratory analytics. There is no limit to the amount of data you can store in a Data Lake Store account.
 
-| **Resource** | **預設限制** | **註解** |
+| **Resource** | **Default Limit** | **Comments** |
 | --- | --- | --- |
-| 每個區域中每個訂用帳戶的 Data Lake Store 帳戶數目上限 |10 | 請連絡支援人員以要求提高此限制 |
-
+| Max number of Data Lake Store accounts, per subscription, per region |10 | Contact Support to request an increase for this limit |
+| Max number of access ACLs, per file or folder |32 | This is a hard limit. Use groups to manage access with fewer entries |
+| Max number of default ACLs, per file or folder |32 | This is a hard limit. Use groups to manage access with fewer entries |

@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> 使用閘道子網路時，避免將網路安全性群組 (NSG) 與閘道子網路產生關聯。 將網路安全性群組與此子網路產生關聯，可能會導致您的 VPN 閘道如預期般停止運作。 如需有關網路安全性群組的詳細資訊，請參閱[什麼是網路安全性群組？](../articles/virtual-network/virtual-networks-nsg.md)
+> When working with gateway subnets, avoid associating a network security group (NSG) to the gateway subnet. Associating a network security group to this subnet may cause your VPN gateway to stop functioning as expected. For more information about network security groups, see [What is a network security group?](../articles/virtual-network/virtual-networks-nsg.md)
 > 
 > 
 

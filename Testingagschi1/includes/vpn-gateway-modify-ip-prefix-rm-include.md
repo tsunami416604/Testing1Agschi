@@ -1,58 +1,55 @@
-### <a name="noconnection"></a>修改首碼 - 沒有閘道連線
+### <a name="noconnection"></a>To modify local network gateway IP address prefixes - no gateway connection
 
-- 若要新增其他位址首碼：
+To add additional address prefixes:
 
-  ```powershell
-  $local = Get-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName -ResourceGroupName MyRGName `
-  Set-AzureRmLocalNetworkGateway -LocalNetworkGateway $local `
-  -AddressPrefix @('10.0.0.0/24','20.0.0.0/24','30.0.0.0/24')
-  ```
+```powershell
+$local = Get-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName -ResourceGroupName MyRGName `
+Set-AzureRmLocalNetworkGateway -LocalNetworkGateway $local `
+-AddressPrefix @('10.0.0.0/24','20.0.0.0/24','30.0.0.0/24')
+```
 
-- 若要移除位址首碼：<br>
-  省略您不再需要的首碼。 此範例中不再需要首碼 20.0.0.0/24 (來自先前的範例)，因此我們將更新區域網路閘道，並排除該首碼。
+To remove address prefixes:<br>
+Leave out the prefixes that you no longer need. In this example, we no longer need prefix 20.0.0.0/24 (from the previous example), so we update the local network gateway, excluding that prefix.
 
-  ```powershell
-  $local = Get-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName -ResourceGroupName MyRGName `
-  Set-AzureRmLocalNetworkGateway -LocalNetworkGateway $local `
-  -AddressPrefix @('10.0.0.0/24','30.0.0.0/24')
-  ```
+```powershell
+$local = Get-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName -ResourceGroupName MyRGName `
+Set-AzureRmLocalNetworkGateway -LocalNetworkGateway $local `
+-AddressPrefix @('10.0.0.0/24','30.0.0.0/24')
+```
 
-### <a name="withconnection"></a>修改首碼 - 現有閘道連線
-如果您有閘道連線並想要新增或移除包含在區域網路閘道中的 IP 位址首碼，您必須依序執行下列步驟。 這會導致您 VPN 連線的停機時間。
+### <a name="withconnection"></a>To modify local network gateway IP address prefixes - existing gateway connection
 
-> [!IMPORTANT]
-> 請勿刪除 VPN 閘道。 如果您這樣做，您必須重新執行各個步驟來重新建立閘道。 此外，您必須以新的 VPN 閘道 IP 位址來更新內部部署 VPN 裝置。
-> 
-> 
+If you have a gateway connection and want to add or remove the IP address prefixes contained in your local network gateway, you need to do the following steps, in order. This results in some downtime for your VPN connection. When modifying IP address prefixes, you don't need to delete the VPN gateway. You only need to remove the connection.
 
-1. 移除連線。
+
+1. Remove the connection.
 
   ```powershell
   Remove-AzureRmVirtualNetworkGatewayConnection -Name MyGWConnectionName -ResourceGroupName MyRGName
   ```
-2. 修改區域網路閘道的位址首碼。
+2. Modify the address prefixes for your local network gateway.
    
-  設定 LocalNetworkGateway 的變數。
+  Set the variable for the LocalNetworkGateway.
 
   ```powershell
   $local = Get-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName -ResourceGroupName MyRGName
   ```
    
-  修改首碼。
+  Modify the prefixes.
    
   ```powershell
   Set-AzureRmLocalNetworkGateway -LocalNetworkGateway $local `
   -AddressPrefix @('10.0.0.0/24','20.0.0.0/24','30.0.0.0/24')
   ```
-3. 建立連線。 在此範例中，我們會設定 IPsec 連線類型。 當您重新建立連線時，請使用針對設定指定的連線類型。 對於其他連線類型，請參閱 [PowerShell Cmdlet](https://msdn.microsoft.com/library/mt603611.aspx) 頁面。
+3. Create the connection. In this example, we configure an IPsec connection type. When you recreate your connection, use the connection type that is specified for your configuration. For additional connection types, see the [PowerShell cmdlet](https://msdn.microsoft.com/library/mt603611.aspx) page.
    
-  設定 VirtualNetworkGateway 的變數。
+  Set the variable for the VirtualNetworkGateway.
 
   ```powershell
   $gateway1 = Get-AzureRmVirtualNetworkGateway -Name RMGateway  -ResourceGroupName MyRGName
   ```
    
-  建立連線。 此範例使用您在步驟 2 中設定的 $local 變數。
+  Create the connection. This example uses the variable $local that you set in step 2.
 
   ```powershell
   New-AzureRmVirtualNetworkGatewayConnection -Name MyGWConnectionName `

@@ -1,10 +1,36 @@
-## <a name="incremental-and-complete-deployments"></a>累加部署與完整部署
-部署您的資源時，您可以指定部署是累加式更新或完整更新。 這兩種模式的主要差異在於 Resource Manager 會如何處理資源群組中未在範本內的現有資源︰
+## Incremental and complete deployments
+When deploying your resources, you specify that the deployment is either an incremental update or a complete update. The primary difference between these two modes is how Resource Manager handles existing resources in the resource group that are not in the template:
 
-* 在完整模式中，Resource Manager 會**刪除**現存於資源群組中但未在範本內指定的資源。 
-* 在累加模式中，Resource Manager 會讓現存於資源群組中但未在範本內指定的資源**保持不變**。
+* In complete mode, Resource Manager **deletes** resources that exist in the resource group but are not specified in the template. 
+* In incremental mode, Resource Manager **leaves unchanged** resources that exist in the resource group but are not specified in the template.
 
-在這兩種模式中，Resource Manager 都會嘗試佈建範本內指定的所有資源。 如果資源已存在於資源群組中，且其設定保持不變，此作業不會導致任何變更。 如果您變更資源設定，則會以這些新設定佈建資源。 不過，您無法更新現有資源的位置或類型。 相反地，請以您需要的位置或類型部署新的資源。
+For both modes, Resource Manager attempts to provision all resources specified in the template. If the resource already exists in the resource group and its settings are unchanged, the operation results in no change. If you change the settings for a resource, the resource is provisioned with those new settings. If you attempt to update the location or type of an existing resource, the deployment fails with an error. Instead, deploy a new resource with the location or type that you need.
 
-根據預設，Resource Manager 會使用累加模式。
+By default, Resource Manager uses the incremental mode.
 
+To illustrate the difference between incremental and complete modes, consider the following scenario.
+
+**Existing Resource Group** contains:
+
+* Resource A
+* Resource B
+* Resource C
+
+**Template** defines:
+
+* Resource A
+* Resource B
+* Resource D
+
+When deployed in **incremental** mode, the resource group contains:
+
+* Resource A
+* Resource B
+* Resource C
+* Resource D
+
+When deployed in **complete** mode, Resource C is deleted. The resource group contains:
+
+* Resource A
+* Resource B
+* Resource D

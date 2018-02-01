@@ -1,8 +1,8 @@
 
 
-1. 在您的 Mac 上啟動 **Keychain Access**。 在左側導覽列的 [類別] 下，開啟 [我的憑證]。 尋找您在上一節中下載的 SSL 憑證，並公開其內容。 僅選取憑證 (不選取私密金鑰)，然後[將它匯出](https://support.apple.com/kb/PH20122?locale=en_US)。
-2. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [瀏覽全部] > [應用程式服務]，再按一下 [Mobile Apps 後端]。 在 [設定] 中，按一下 [App Service 推播]，然後按一下通知中樞名稱。 移至 [Apple 推播通知服務] > [上傳憑證]。 上傳 .p12 檔案，選取正確的**模式** (根據您稍早的用戶端 SSL 憑證為生產或沙箱)。 儲存任何變更。
+1. On your Mac, launch **Keychain Access**. On the left navigation bar, under **Category**, open **My Certificates**. Find the SSL certificate you downloaded in the previous section, and disclose its contents. Select only the certificate (do not select the private key), and [export it](https://support.apple.com/kb/PH20122?locale=en_US).
+2. In the [Azure portal](https://portal.azure.com/), click **Browse All** > **App Services**, and click your Mobile Apps back end. Under **Settings**, click **App Service Push**, and then click your notification hub name. Go to **Apple Push Notification Services** > **Upload Certificate**. Upload the .p12 file, selecting the correct **Mode** (depending on whether your client SSL certificate from earlier is production or sandbox). Save any changes.
 
-您的服務現在已設定成在 iOS 上使用推播通知。
+Your service is now configured to work with push notifications on iOS.
 
 [1]: ./media/app-service-mobile-apns-configure-push/mobile-push-notification-hub.png

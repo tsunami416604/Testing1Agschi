@@ -1,8 +1,8 @@
-只有在使用 Azure 資源管理員和 Azure 資源群組時才適用下列限制。
+The following limits apply when performing management operations using the Azure Resource Manager only.
 
-| 資源 | 預設限制 |
+| Resource | Default Limit |
 | --- | --- |
-| 儲存體帳戶的管理作業 (讀取) |每 5 分鐘 800 |
-| 儲存體帳戶管理作業 (寫入) |每小時 200 |
-| 儲存體帳戶的管理作業 (清單) |每 5 分鐘 100 |
+| Storage account management operations (read) |800 per 5 minutes |
+| Storage account management operations (write) |200 per hour |
+| Storage account management operations (list) |100 per 5 minutes |
 

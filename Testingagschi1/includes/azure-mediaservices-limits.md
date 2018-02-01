@@ -1,46 +1,48 @@
 >[!NOTE]
->如果是不固定的資源，您可以建立支援票證，要求增加配額。 **請勿**為了嘗試取得更高的限制而建立其他 Azure 媒體服務。
+>For resources that are not fixed, you may ask for the quotas to be raised, by opening a support ticket. Do **not** create additional Azure Media Services accounts in an attempt to obtain higher limits.
 
-| 資源 | 預設限制 | 
+| Resource | Default Limit | 
 | --- | --- | 
-| 在單一訂用帳戶的 Azure 媒體服務 (AMS) 帳戶 | 25 (固定) |
-| 每個 AMS 帳戶的媒體保留單元 (RU) |25 (S1, S2)<br/>10 (S3) <sup>(1)</sup> | 
-| 每個 AMS 帳戶的作業 | 50,000<sup>(2)</sup> |
-| 每個作業的鏈結工作 | 30 (固定) |
-| 每個 AMS 帳戶的資產 | 1,000,000|
-| 每個工作的資產 | 50 |
-| 每個作業的資產 | 100 |
-| 一次與資產相關聯的唯一定位器 | 5<sup>(4)</sup> |
-| 每個 AMS 帳戶的即時通道  |5|
-| 每個通道中已停止狀態的程式  |50|
-| 每個通道中執行中的程式  |3|
-| 每個 AMS 帳戶執行中的串流端點|2|
-| 每個串流端點的資料流單位  |10 |
-| 儲存體帳戶 | 1,000<sup>(5)</sup> (固定) |
-| 原則 | 1,000,000<sup>(6)</sup> |
-| 檔案大小| 在某些情況下，對於媒體服務中支援處理的檔案大小上限有所限制。 <sup>7</sup> |
+| Azure Media Services (AMS) accounts in a single subscription | 25 (fixed) |
+| Media Reserved Units (RUs) per AMS account |25 (S1, S2)<br/>10 (S3) <sup>(1)</sup> | 
+| Jobs per AMS account | 50,000<sup>(2)</sup> |
+| Chained tasks per job | 30 (fixed) |
+| Assets per AMS account | 1,000,000|
+| Assets per task | 50 |
+| Assets per job | 100 |
+| Unique locators associated with an asset at one time | 5<sup>(4)</sup> |
+| Live channels per AMS account |5|
+| Programs in stopped state per channel |50|
+| Programs in running state per channel |3|
+| Streaming endpoints in running state per AMS account|2|
+| Streaming units per streaming endpoint |10 |
+| Storage accounts | 1,000<sup>(5)</sup> (fixed) |
+| Policies | 1,000,000<sup>(6)</sup> |
+| File size| In some scenarios, there is a limit on the maximum file size supported for processing in Media Services. <sup>7</sup> |
   
-<sup>1</sup> 印度西部無法使用 S3 RU。
+<sup>1</sup> S3 RUs are not available in India West. If you change the type (for example, from S2 to S1,) the max RU limits are reset.
 
-<sup>2</sup> 這個數目包括佇列、已完成、作用中和已取消的工作。 不包含已刪除的工作。 您可以使用 **IJob.Delete** 或 **DELETE** HTTP 要求刪除舊工作。
+<sup>2</sup> This number includes queued, finished, active, and canceled jobs. It does not include deleted jobs. You can delete the old jobs using **IJob.Delete** or the **DELETE** HTTP request.
 
-從 2017 年 4 月 1 日起，您的帳戶中任何超過 90 天的作業記錄以及其相關工作記錄都會自動刪除，即使記錄總數低於配額上限亦然。 如果您需要封存作業/工作資訊，您可以使用[這裡](../articles/media-services/media-services-dotnet-manage-entities.md)所述的程式碼。
+As of April 1, 2017, any Job record in your account older than 90 days will be automatically deleted, along with its associated Task records, even if the total number of records is below the maximum quota. If you need to archive the job/task information, you can use the code described [here](../articles/media-services/media-services-dotnet-manage-entities.md).
 
-<sup>3</sup> 提出要求來列出工作實體時，每個要求會傳回最多 1000 個。 如果您需要追蹤所有已送出的工作，您可以如 [OData 系統查詢選項](http://msdn.microsoft.com/library/gg309461.aspx)中所述，使用 top/skip。
+<sup>3</sup> When making a request to list Job entities, a maximum of 1,000 jobs is returned per request. If you need to keep track of all submitted Jobs, you can use top/skip as described in [OData system query options](http://msdn.microsoft.com/library/gg309461.aspx).
 
-<sup>4</sup> 定位器並非設計來管理每個使用者的存取控制。 若要給予個別使用者不同的存取權限，請使用數位版權管理 (DRM) 方案。 如需詳細資訊，請參閱 [本節](../articles/media-services/media-services-content-protection-overview.md) 。
+<sup>4</sup> Locators are not designed for managing per-user access control. To give different access rights to individual users, use Digital Rights Management (DRM) solutions. For more information, see [this](../articles/media-services/media-services-content-protection-overview.md) section.
 
-<sup>5</sup> 儲存體帳戶必須來自相同的 Azure 訂用帳戶。
+<sup>5</sup> The storage accounts must be from the same Azure subscription.
 
-<sup>6</sup> 對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 
+<sup>6</sup> There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy). 
 
 >[!NOTE]
-> 如果您總是使用相同的天數 / 存取權限 / 等等，您應該使用相同的原則識別碼。如需詳細資訊與範例，請參閱[本節](../articles/media-services/media-services-dotnet-manage-entities.md#limit-access-policies)。
+> You should use the same policy ID if you are always using the same days / access permissions / etc. For information and an example, see [this](../articles/media-services/media-services-dotnet-manage-entities.md#limit-access-policies) section.
 
-<sup>7</sup>如果您要將內容上傳至 Azure 媒體服務中的資產，以在我們的服務中透過其中一種媒體處理器加以處理 (也就是像媒體編碼器標準和媒體編碼器高階工作流程之類的編碼器，或像臉部偵測器這類分析引擎)，則您應該注意下列限制。 
+<sup>7</sup>If you are uploading content to an Asset in Azure Media Services to process it with one of the media processors in the service (that is, encoders like Media Encoder Standard and Media Encoder Premium Workflow, or analysis engines like Face Detector), then you should be aware of the constraints on the maximum file sizes supported. 
 
-| 媒體保留單元類型 | 檔案大小上限 (GB)| 
+The maximum size supported for a single blob is currently up to 5 TB in Azure Blob Storage. However, additional limits apply in Azure Media Services based on the VM sizes that are used by the service. The following table shows the limits on each of the Media Reserved Units (S1, S2, S3.) If your source file is larger than the limits defined in the table, your encoding job will fail. If you are encoding 4K resolution sources of long duration, you are required to use S3 Media Reserved Units to achieve the performance needed. If you have 4K content that is larger than 260 GB limit on the S3 Media Reserved Units, contact us at amshelp@microsoft.com for potential mitigations to support your scenario.
+
+| Media Reserved Unit type | Maximum Input Size (GB)| 
 | --- | --- | 
-|S1    | 325|
-|S2    | 640|
-|S3    | 260|
+|S1	| 325|
+|S2	| 640|
+|S3	| 260|

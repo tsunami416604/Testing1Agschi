@@ -1,27 +1,27 @@
-#### <a name="configure-the-ios-project-in-xamarin-studio"></a>在 Xamarin Studio 中設定 iOS 專案
-1. 在 Xamarin.Studio 中，開啟 **Info.plist**，然後使用您稍早以新應用程式識別碼建立的套件組合識別碼，來更新 [套件組合識別碼]。
+#### Configure the iOS project in Xamarin Studio
+1. In Xamarin.Studio, open **Info.plist**, and update the **Bundle Identifier** with the bundle ID that you created earlier with your new app ID.
 
     ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-21.png)
-2. 向下捲動到 [背景模式]。 選取 [啟用背景模式] 方塊與 **[遠端通知]** 方塊。
+2. Scroll down to **Background Modes**. Select the **Enable Background Modes** box and the **Remote notifications** box.
 
     ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-22.png)
-3. 按兩下 [方案面板] 中的專案，以開啟 [專案選項]。
-4. 選擇 [建置] 下的 [iOS 套件組合簽署]，然後選取對應的身分識別以及您為此專案設定的 [佈建設定檔]。
+3. Double-click your project in the Solution Panel to open **Project Options**.
+4. Under **Build**, choose **iOS Bundle Signing**, and select the corresponding identity and provisioning profile you just set up for this project.
 
    ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-20.png)
 
-   這將確保專案使用新的設定檔進行程式碼簽署。 如需官方 Xamarin 裝置佈建文件，請參閱 [Xamarin 裝置佈建]。
+   This ensures that the project uses the new profile for code signing. For the official Xamarin device provisioning documentation, see [Xamarin Device Provisioning].
 
-#### <a name="configure-the-ios-project-in-visual-studio"></a>在 Visual Studio 中設定 iOS 專案
-1. 在 Visual Studio 中，以滑鼠右鍵按一下專案，然後按一下 [屬性] 。
-2. 在 [屬性] 頁面中，按一下 [iOS 應用程式] 索引標籤，然後使用您稍早建立的識別碼更新 [識別碼]。
+#### Configure the iOS project in Visual Studio
+1. In Visual Studio, right-click the project, and then click **Properties**.
+2. In the properties pages, click the **iOS Application** tab, and update the **Identifier** with the ID that you created earlier.
 
     ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-23.png)
-3. 在 [iOS 套件組合簽署] 索引標籤中，選取對應的身分識別以及您為此專案設定的佈建設定檔。
+3. In the **iOS Bundle Signing** tab, select the corresponding identity and provisioning profile you just set up for this project.
 
     ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-24.png)
 
-    這將確保專案使用新的設定檔進行程式碼簽署。 如需官方 Xamarin 裝置佈建文件，請參閱 [Xamarin 裝置佈建]。
-4. 按兩下 Info.plist 以開啟，並啟用 [背景模式] 下的 **RemoteNotifications**。
+    This ensures that the project uses the new profile for code signing. For the official Xamarin device provisioning documentation, see [Xamarin Device Provisioning].
+4. Double-click Info.plist to open it, and then enable **RemoteNotifications** under **Background Modes**.
 
-[Xamarin 裝置佈建]: http://developer.xamarin.com/guides/ios/getting_started/installation/device_provisioning/
+[Xamarin Device Provisioning]: http://developer.xamarin.com/guides/ios/getting_started/installation/device_provisioning/

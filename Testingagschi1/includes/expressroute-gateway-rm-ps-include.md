@@ -1,30 +1,30 @@
-適用於此工作的步驟會根據下列組態參考清單中的值來使用 VNet。 其他設定和名稱也會概述於這份清單中。 雖然我們會根據這份清單中的值加入變數，但不會在任何步驟中直接使用這份清單。 您可以複製清單以供參考，並使用您自己的值來取代其中的值。
+The steps for this task use a VNet based on the values in the following configuration reference list. Additional settings and names are also outlined in this list. We don't use this list directly in any of the steps, although we do add variables based on the values in this list. You can copy the list to use as a reference, replacing the values with your own.
 
-**組態參考清單**
+**Configuration reference list**
 
-* 虛擬網路名稱 = "TestVNet"
-* 虛擬網路位址空間 = 192.168.0.0/16
-* 資源群組 = "TestRG"
-* Subnet1 名稱 = "FrontEnd" 
-* Subnet1 位址空間 = "192.168.1.0/24"
-* 閘道器子網路名稱："GatewaySubnet"，您必須一律將閘道器子網路命名為 *GatewaySubnet*。
-* 閘道子網路位址空間 = "192.168.200.0/26"
-* 區域 = "East US"
-* 閘道名稱 = "GW"
-* 閘道 IP 名稱 = "GWIP"
-* 閘道 IP 組態名稱 = "gwipconf"
-* 類型 = "ExpressRoute"，ExpressRoute 組態需要有這個類型。
-* 閘道公用 IP 名稱 = "gwpip"
+* Virtual Network Name = "TestVNet"
+* Virtual Network address space = 192.168.0.0/16
+* Resource Group = "TestRG"
+* Subnet1 Name = "FrontEnd" 
+* Subnet1 address space = "192.168.1.0/24"
+* Gateway Subnet name: "GatewaySubnet" You must always name a gateway subnet *GatewaySubnet*.
+* Gateway Subnet address space = "192.168.200.0/26"
+* Region = "East US"
+* Gateway Name = "GW"
+* Gateway IP Name = "GWIP"
+* Gateway IP configuration Name = "gwipconf"
+* Type = "ExpressRoute" This type is required for an ExpressRoute configuration.
+* Gateway Public IP Name = "gwpip"
 
-## <a name="add-a-gateway"></a>新增閘道
-1. 連接到您的 Azure 訂用帳戶。
+## Add a gateway
+1. Connect to your Azure Subscription.
 
   ```powershell 
   Login-AzureRmAccount
   Get-AzureRmSubscription 
   Select-AzureRmSubscription -SubscriptionName "Name of subscription"
   ```
-2. 宣告您在本練習中使用的變數。 請務必編輯範例，以反映您要使用的設定。
+2. Declare your variables for this exercise. Be sure to edit the sample to reflect the settings that you want to use.
 
   ```powershell 
   $RG = "TestRG"
@@ -34,54 +34,54 @@
   $GWIPconfName = "gwipconf"
   $VNetName = "TestVNet"
   ```
-3. 將虛擬網路物件儲存為變數。
+3. Store the virtual network object as a variable.
 
   ```powershell
   $vnet = Get-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $RG
   ```
-4. 將閘道子網路加入至虛擬網路。 閘道子網路必須命名為 "GatewaySubnet"。 您應建立 /27 或更大 (/26、/25 等) 的閘道子網路。
+4. Add a gateway subnet to your Virtual Network. The gateway subnet must be named "GatewaySubnet". You should create a gateway subnet that is /27 or larger (/26, /25, etc.).
 
   ```powershell
   Add-AzureRmVirtualNetworkSubnetConfig -Name GatewaySubnet -VirtualNetwork $vnet -AddressPrefix 192.168.200.0/26
   ```
-5. 設定組態。
+5. Set the configuration.
 
   ```powershell
   Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
   ```
-6. 將閘道子網路儲存為變數。
+6. Store the gateway subnet as a variable.
 
   ```powershell
   $subnet = Get-AzureRmVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -VirtualNetwork $vnet
   ```
-7. 要求公用 IP 位址。 建立閘道之前需要有 IP 位址。 您無法指定想要使用的 IP 位址；該 IP 位址會以動態方式進行配置。 下一個組態章節將使用此 IP 位址。 AllocationMethod 必須是動態的。
+7. Request a public IP address. The IP address is requested before creating the gateway. You cannot specify the IP address that you want to use; it’s dynamically allocated. You'll use this IP address in the next configuration section. The AllocationMethod must be Dynamic.
 
   ```powershell
   $pip = New-AzureRmPublicIpAddress -Name $GWIPName  -ResourceGroupName $RG -Location $Location -AllocationMethod Dynamic
   ```
-8. 建立適用於閘道的組態。 閘道器組態定義要使用的子網路和公用 IP 位址。 在此步驟中，您要指定在建立閘道將使用的組態。 這個步驟不會實際建立閘道物件。 使用以下的範例來建立閘道器組態。
+8. Create the configuration for your gateway. The gateway configuration defines the subnet and the public IP address to use. In this step, you are specifying the configuration that will be used when you create the gateway. This step does not actually create the gateway object. Use the sample below to create your gateway configuration.
 
   ```powershell
   $ipconf = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName -Subnet $subnet -PublicIpAddress $pip
   ```
-9. 建立閘道。 在這個步驟中， **-GatewayType** 特別重要。 您必須使用值 **ExpressRoute**。 執行這些 Cmdlet 之後，閘道需要花費 45 分鐘或更久的時間來建立。
+9. Create the gateway. In this step, the **-GatewayType** is especially important. You must use the value **ExpressRoute**. After running these cmdlets, the gateway can take 45 minutes or more to create.
 
   ```powershell
   New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG -Location $Location -IpConfigurations $ipconf -GatewayType Expressroute -GatewaySku Standard
   ```
 
-## <a name="verify-the-gateway-was-created"></a>確認已建立閘道
-使用下列命令，確認已建立閘道：
+## Verify the gateway was created
+Use the following commands to verify that the gateway has been created:
 
 ```powershell
 Get-AzureRmVirtualNetworkGateway -ResourceGroupName $RG
 ```
 
-## <a name="resize-a-gateway"></a>調整閘道器大小
-有幾個 [閘道 SKU](../articles/expressroute/expressroute-about-virtual-network-gateways.md)。 您可以使用下列命令隨時變更閘道器 SKU。
+## Resize a gateway
+There are a number of [Gateway SKUs](../articles/expressroute/expressroute-about-virtual-network-gateways.md). You can use the following command to change the Gateway SKU at any time.
 
 > [!IMPORTANT]
-> 此命令不適用於 UltraPerformance 閘道。 若要將您的閘道變更為 UltraPerformance 閘道，請先移除現有的 ExpressRoute 閘道，然後建立新的 UltraPerformance 閘道。 若要從 UltraPerformance 閘道降級您的閘道，請先移除 UltraPerformance 閘道，然後建立新的閘道。
+> This command doesn't work for UltraPerformance gateway. To change your gateway to an UltraPerformance gateway, first remove the existing ExpressRoute gateway, and then create a new UltraPerformance gateway. To downgrade your gateway from an UltraPerformance gateway, first remove the UltraPerformance gateway, and then create a new gateway.
 > 
 > 
 
@@ -90,8 +90,8 @@ $gw = Get-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG
 Resize-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw -GatewaySku HighPerformance
 ```
 
-## <a name="remove-a-gateway"></a>移除閘道器
-使用下列命令來移除閘道：
+## Remove a gateway
+Use the following command to remove a gateway:
 
 ```powershell
 Remove-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG

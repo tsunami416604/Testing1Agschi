@@ -1,24 +1,27 @@
 > [!div class="op_single_selector"]
 > * [Node.js](../articles/iot-hub/iot-hub-node-node-twin-how-to-configure.md)
-> * [C#](../articles/iot-hub/iot-hub-csharp-node-twin-how-to-configure.md)
+> * [C#/Node.js](../articles/iot-hub/iot-hub-csharp-node-twin-how-to-configure.md)
+> * [C#](../articles/iot-hub/iot-hub-csharp-csharp-twin-how-to-configure.md)
+> * [Java](../articles/iot-hub/iot-hub-java-java-twin-how-to-configure.md)
 > 
 > 
 
-## <a name="introduction"></a>簡介
-在[開始使用 IoT 中樞裝置對應項][lnk-twin-tutorial]中，您會學到如何使用「標籤」從解決方案後端設定裝置中繼資料，使用「報告屬性」從裝置應用程式報告裝置條件，以及使用類似 SQL 的語言查詢此資訊。
+## Introduction
 
-在本教學課程中，您將學習如何使用裝置對應項的「所需屬性」搭配「報告屬性」，遠端設定裝置應用程式。 更具體來說，本教學課程示範裝置對應項的報告和所需屬性如何啟用裝置應用程式的多步驟組態，並提供所有裝置的這項作業狀態的解決方案後端可見性。 您可以在[使用 IoT 中樞的裝置管理概觀][lnk-dm-overview]中，找到關於裝置組態所扮演角色的詳細資訊。
+In [Get started with IoT Hub device twins][lnk-twin-tutorial], you learned how to set device metadata from your solution back end using *tags*, report device conditions from a device app using *reported properties*, and query this information using a SQL-like language.
 
-概括而言，使用裝置對應項讓解決方案後端能夠指定受管理裝置所需的設定，而不是傳送特定的命令。 這樣會讓裝置負責設定更新其組態的最佳方式 (在特定裝置條件會影響立即執行特定命令能力的 IoT 案例中非常重要)，同時持續向解決方案後端報告更新程序的目前狀態和潛在錯誤條件。 這個模式對於大量裝置的管理很有幫助，因為它可讓解決方案後端具有所有裝置上設定程序狀態的完整可見性。
+In this tutorial, you learn how to use the device twin's *desired properties* along with *reported properties*, to remotely configure device apps. More specifically, this tutorial shows how a device twin's reported and desired properties enable a multi-step configuration of a device application, and provide the visibility to the solution back end of the status of this operation across all devices. You can find more information regarding the role of device configurations in [Overview of device management with IoT Hub][lnk-dm-overview].
+
+At a high level, using device twins enables the solution back end to specify the desired configuration for the managed devices, instead of sending specific commands. This puts the device in charge of setting up the best way to update its configuration (important in IoT scenarios where specific device conditions affect the ability to immediately carry out specific commands), while continually reporting to the solution back end the current state and potential error conditions of the update process. This pattern is instrumental to the management of large sets of devices, as it enables the solution back end to have full visibility of the state of the configuration process across all devices.
 
 > [!NOTE]
-> 在裝置是以更為互動的方式控制的案例中 (從使用者控制的應用程式開啟風扇)，請考量使用[直接方法][lnk-methods]。
+> In scenarios where devices are controlled in a more interactive fashion (turn on a fan from a user-controlled app), consider using [direct methods][lnk-methods].
 > 
 > 
 
-在本教學課程中，解決方案後端會變更目標裝置的遙測組態，因此，裝置應用程式會遵循多步驟程序以套用組態更新 (例如，需要軟體模組重新啟動)，此教學課程會模擬簡單的延遲。
+In this tutorial, the solution back end changes the telemetry configuration of a target device and, as a result of that, the device app follows a multi-step process to apply a configuration update (for example, requiring a software module restart, which this tutorial simulates with a simple delay).
 
-解決方案後端會以下列方式在裝置對應項的所需屬性中儲存組態：
+The solution back end stores the configuration in the device twin's desired properties in the following way:
 
         {
             ...
@@ -36,11 +39,11 @@
         }
 
 > [!NOTE]
-> 因為組態可以是複雜的物件，通常會為它們指派唯一的識別碼 (雜湊或 [GUID][lnk-guid]) 以簡化其比較。
+> Since configurations can be complex objects, they are assigned unique IDs (hashes or [GUIDs][lnk-guid]) to simplify their comparisons.
 > 
 > 
 
-裝置應用程式會在報告屬性中報告其目前組態鏡像所需屬性 **telemetryConfig**︰
+The device app reports its current configuration mirroring the desired property **telemetryConfig** in the reported properties:
 
         {
             "properties": {
@@ -56,9 +59,9 @@
             }
         }
 
-請注意報告 **telemetryConfig** 如何具有額外屬性 **status**，用來報告組態更新程序的狀態。
+Note how the reported **telemetryConfig** has an additional property **status**, used to report the state of the configuration update process.
 
-當收到新的所需組態時，裝置應用程式會藉由變更資訊來報告暫止的組態︰
+When a new desired configuration is received, the device app reports a pending configuration by changing the information:
 
         {
             "properties": {
@@ -78,13 +81,13 @@
             }
         }
 
-然後，在稍後的時間，裝置應用程式將會藉由更新上述屬性來報告這項作業成功或失敗。
-請注意解決方案後端如何隨時查詢所有裝置的組態程序狀態。
+Then, at some later time, the device app reports the success or failure of this operation by updating the above property.
+Note how the solution back end is able, at any time, to query the status of the configuration process across all the devices.
 
-本教學課程說明如何：
+This tutorial shows you how to:
 
-* 建立模擬裝置應用程式，接收來自解決方案後端的組態更新，並且將多個更新報告為組態更新程序上的「報告屬性」。
-* 建立後端應用程式，更新裝置的所需組態，然後查詢組態更新程序。
+* Create a simulated device app that receives configuration updates from the solution back end, and reports multiple updates as *reported properties* on the configuration update process.
+* Create a back-end app that updates the desired configuration of a device, and then queries the configuration update process.
 
 <!-- links -->
 

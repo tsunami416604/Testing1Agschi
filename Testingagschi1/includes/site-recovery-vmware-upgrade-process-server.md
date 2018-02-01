@@ -1,4 +1,4 @@
 
-通常當您使用 Azure 資源庫映像建立處理序伺服器時，它會隨著當時可用的最新版處理序伺服器軟體一起佈建。 Azure Site Recovery 小組會定期發行產品的 Bug 修正和新增強功能。 強烈建議您讓處理序伺服器持續更新為最新版本，以便充分利用已發行的 Bug 修正、新功能和增強功能。 請遵循下列步驟來更新在 Azure 中執行的處理序伺服器。
+Typically when you create a process server using the Azure Gallery Image, it is provisioned with the latest version of the process server software available at that time. The Azure Site Recovery team releases bugs fixes & new enhancements to the product on a periodic basis. It is strongly recommended that you keep your process server updated to the latest version to take advantage of the bug fixes, new features & enhancements that have been released. Follow the below steps to update your Process Server running in Azure.
 
 [!INCLUDE [site-recovery-configuration-server-requirements](site-recovery-vmware-upgrade-process-server-internal.md)]

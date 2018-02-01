@@ -1,33 +1,33 @@
-# <a name="common-errors-during-classic-to-azure-resource-manager-migration"></a>從傳統到 Azure Resource Manager 移轉的常見錯誤
-本文收錄將 IaaS 資源從 Azure 傳統部署模型移轉至 Azure Resource Manager 堆疊的常見錯誤和緩和措施。
+# Common errors during Classic to Azure Resource Manager migration
+This article catalogs the most common errors and mitigations during the migration of IaaS resources from Azure classic deployment model to the Azure Resource Manager stack.
 
-## <a name="list-of-errors"></a>錯誤清單
-| 錯誤字串 | 緩和 |
+## List of errors
+| Error string | Mitigation |
 | --- | --- |
-| 內部伺服器錯誤 |在某些情況下，這是隨著重試消失的暫時性錯誤。 如果持續發生，請[連絡 Azure 支援](../articles/azure-supportability/how-to-create-azure-support-request.md)，因為需要平台記錄檔的調查。 <br><br> **注意︰**一旦支援小組追蹤事件，請不要嘗試任何自我緩和，這可能會使您的環境中產生非預期的結果。 |
-| 移轉不支援 HostedService {hosted-service-name} 中的部署 {deployment-name}，因為它是 PaaS 部署 (Web/背景工作角色)。 |這會在部署包含 Web/背景工作角色時發生。 因為移轉僅支援虛擬機器，請從部署移除 Web/背景工作角色，然後再試一次移轉。 |
-| 範本 {template-name} 部署失敗。 相互關聯識別碼 = {guid} |在移轉服務後端，我們可以使用 Azure Resource Manager 範本來建立 Azure Resource Manager 堆疊中的資源。 因為範本具有等冪性，通常您可以安全地重試移轉作業，以通過這項錯誤。 如果此錯誤持續存在，請[連絡 Azure 支援](../articles/azure-supportability/how-to-create-azure-support-request.md)，並給予他們相互關聯識別碼。 <br><br> **注意︰**一旦支援小組追蹤事件，請不要嘗試任何自我緩和，這可能會使您的環境中產生非預期的結果。 |
-| 虛擬網路 {virtual-network-name} 不存在。 |如果您在新的 Azure 入口網站中建立虛擬網路，會發生這種情形。 實際虛擬網路名稱遵循 "Group * <VNET name>" 模式 |
-| HostedService {hosted-service-name} 中的 VM {vm-name} 包含擴充 {extension-name}，在 Azure Resource Manager 中不支援。 建議您先從 VM 中將它解除安裝，再繼續進行移轉。 |XML 擴充，例如 BGInfo 1.*，在 Azure Resource Manager 中不支援。 因此，這些擴充功能不能移轉。 如果這些擴充功能保持安裝在虛擬機器上，它們會在完成移轉之前自動解除安裝。 |
-| HostedService {hosted-service-name} 中的 VM {vm-name} 包含擴充 VMSnapshot/VMSnapshotLinux，目前不支援移轉。 從 VM 解除安裝，並且在移轉完成之後使用 Azure Resource Manager 將它新增回來 |這是虛擬機器針對 Azure 備份進行設定的案例。 由於這是目前不支援的案例，請遵循 https://aka.ms/vmbackupmigration 的因應措施 |
-| HostedService {hosted-service-name} 中的 VM {vm-name} 包含擴充 {extension-name}，其狀態未從 VM 報告。 因此，無法移轉此 VM。 請確定擴充的狀態已報告，或從 VM 解除安裝擴充，然後重試移轉。 <br><br> HostedService {hosted-service-name} 中的 VM {vm-name} 包含擴充 {extension-name}，報告處理常式狀態：{handler-status}。 因此，無法移轉 VM。 請確定報告的擴充處理常式狀態是 {handler-status}，或從 VM 解除安裝，然後重試移轉。 <br><br> HostedService {hosted-service-name} 中 VM {vm-name} 的 VM 代理程式將整體代理程式狀態報告為「未就緒」。 因此，VM 可能不會移轉，如果它有可移轉的擴充。 請確定 VM 代理程式將整體代理程式狀態報告為「就緒」。 請參閱 https://aka.ms/classiciaasmigrationfaqs。 |Azure 客體代理程式與 VM 擴充需要 VM 儲存體帳戶的輸出網際網路存取，來填入其狀態。 狀態失敗的常見原因包括 <li> 封鎖輸出網際網路存取的網路安全性群組 <li> 如果 VNET 有內部部署 DNS 伺服器且 DNS 連線遺失 <br><br> 如果您持續看到不支援的狀態，您可以解除安裝擴充以略過這項檢查，然後繼續進行移轉。 |
-| 移轉不支援 HostedService {hosted-service-name} 中的部署 {deployment-name}，因為它有多個可用性設定組。 |目前，只能移轉具有 1 或更少可用性設定組的託管服務。 若要解決這個問題，請將額外可用性設定組和這些可用性設定組中的虛擬機器移至不同的託管服務。 |
-| 移轉不支援 HostedService {hosted-service-name} 中的部署 {deployment-name}，因為它有不屬於可用性設定組的 VM，即使 HostedService 包含一個 VM。 |此案例的因應措施是將所有虛擬機器都移到單一可用性設定組，或在託管服務中從可用性設定組移除所有虛擬機器。 |
-| 儲存體帳戶/HostedService/虛擬網路 {virtual-network-name} 正在移轉，因此無法變更 |在資源上已完成「準備」移轉作業，並且觸發會對資源進行變更的作業時，就會發生這個錯誤。 因為在「準備」作業之後會鎖定管理平面，所以對資源的任何變更都會遭到封鎖。 若要解除鎖定管理平面，您可以執行「認可」移轉作業以完成移轉，或「中止」移轉作業以回復「準備」作業。 |
-| HostedService {hosted-service-name} 不允許移轉，因為它有 VM {vm-name} 處於下列「狀態」：RoleStateUnknown。 只有在 VM 處於下列其中一種狀態時才允許移轉 - 執行中、已停止、已停止解除配置。 |VM 可能會在轉換狀態時進行，通常發生在 HostedService 上的更新作業期間，例如重新啟動、擴充安裝等。建議在嘗試移轉之前在 HostedService 上完成更新作業。 |
-| HostedService {hosted-service-name} 中的部署 {deployment-name} 包含具有資料磁碟 {data-disk-name} 的 VM {vm-name}，其實體 blob 大小 {size-of-the-vhd-blob-backing-the-data-disk} 個位元組不符合 VM 資料磁碟邏輯大小 {size-of-the-data-disk-specified-in-the-vm-api} 個位元組。 移轉會繼續進行，但不需指定 Azure Resource Manager VM 的資料磁碟大小。 如果您想要在繼續移轉之前，先更正資料磁碟大小，請造訪 https://aka.ms/vmdiskresize。 | 如果您已調整 VHD blob 的大小，但未更新 VM API 模型中的大小，則會發生此錯誤。 詳細的緩和步驟說明[如下](#vm-with-data-disk-whose-physical-blob-size-bytes-does-not-match-the-vm-data-disk-logical-size-bytes)。|
-| 驗證具有雲端服務 {Cloud Service name} 中 VM {VM name} 之媒體連結 {data disk Uri} 的資料磁碟 {data disk name} 時發生儲存體例外狀況。 請確定此虛擬機器的 VHD 媒體連結可供存取 | 如果 VM 的磁碟已被刪除或不再可供存取，就可能發生此錯誤。 請確定 VM 的磁碟存在。|
-| HostedService {cloud-service-name} 中的 VM {vm-name} 包含 Disk with MediaLink {vhd-uri}，其具有 Azure Resource Manager 不支援的 blob 名稱 {vhd-blob-name}。 | 當 blob 的名稱包含計算資源提供者目前不支援的 "/" 時，就會發生此錯誤。 |
-| HostedService {cloud-service-name} 中的 Deployment {deployment-name} 不允許移轉，因為它不在區域範圍中。 請參閱 http://aka.ms/regionalscope 以便將此部署移到區域範圍。 | 在 2014 年，Azure 宣布網路資源會從叢集層級範圍移到區域範圍。 請參閱 [http://aka.ms/regionalscope] 以取得詳細資訊 (http://aka.ms/regionalscope)。 當正在移轉的部署還沒有可自動將它移至區域範圍的更新作業時，就會發生此錯誤。 最佳的解決方法是將端點新增至 VM 或將資料磁碟新增至 VM，然後再試一次移轉。 <br> 請參閱[如何在 Azure 中的傳統 Windows 虛擬機器上設定端點](../articles/virtual-machines/windows/classic/setup-endpoints.md#create-an-endpoint)或[將資料磁碟連結至使用傳統部署模型建立的 Windows 虛擬機器](../articles/virtual-machines/windows/classic/attach-disk.md)|
+| Internal server error |In some cases, this is a transient error that goes away with a retry. If it continues to persist, [contact Azure support](../articles/azure-supportability/how-to-create-azure-support-request.md) as it needs investigation of platform logs. <br><br> **NOTE:** Once the incident is tracked by the support team, please do not attempt any self-mitigation as this might have unintended consequences on your environment. |
+| Migration is not supported for Deployment {deployment-name}  in HostedService {hosted-service-name} because it is a PaaS deployment (Web/Worker). |This happens when a deployment contains a web/worker role. Since migration is only supported for Virtual Machines, please remove the web/worker role from the deployment and try migration again. |
+| Template {template-name} deployment failed. CorrelationId={guid} |In the backend of migration service, we use Azure Resource Manager templates to create resources in the Azure Resource Manager stack. Since templates are idempotent, usually you can safely retry the migration operation to get past this error. If this error continues to persist, please [contact Azure support](../articles/azure-supportability/how-to-create-azure-support-request.md) and give them the CorrelationId. <br><br> **NOTE:** Once the incident is tracked by the support team, please do not attempt any self-mitigation as this might have unintended consequences on your environment. |
+| The virtual network {virtual-network-name} does not exist. |This can happen if you created the Virtual Network in the new Azure portal. The actual Virtual Network name follows the pattern "Group * <VNET name>" |
+| VM {vm-name} in HostedService {hosted-service-name} contains Extension {extension-name} which is not supported in Azure Resource Manager. It is recommended to uninstall it from the VM before continuing with migration. |XML extensions such as BGInfo 1.* are not supported in Azure Resource Manager. Therefore, these extensions cannot be migrated. If these extensions are left installed on the virtual machine, they are automatically uninstalled before completing the migration. |
+| VM {vm-name} in HostedService {hosted-service-name} contains Extension VMSnapshot/VMSnapshotLinux, which is currently not supported for Migration. Uninstall it from the VM and add it back using Azure Resource Manager after the Migration is Complete |This is the scenario where the virtual machine is configured for Azure Backup. Since this is currently an unsupported scenario, please follow the workaround at https://aka.ms/vmbackupmigration |
+| VM {vm-name} in HostedService {hosted-service-name} contains Extension {extension-name} whose Status is not being reported from the VM. Hence, this VM cannot be migrated. Ensure that the Extension status is being reported or uninstall the extension from the VM and retry migration. <br><br> VM {vm-name} in HostedService {hosted-service-name} contains Extension {extension-name} reporting Handler Status: {handler-status}. Hence, the VM cannot be migrated. Ensure that the Extension handler status being reported is {handler-status} or uninstall it from the VM and retry migration. <br><br> VM Agent for VM {vm-name} in HostedService {hosted-service-name} is reporting the overall agent status as Not Ready. Hence, the VM may not be migrated, if it has a migratable extension. Ensure that the VM Agent is reporting overall agent status as Ready. Refer to https://aka.ms/classiciaasmigrationfaqs. |Azure guest agent & VM Extensions need outbound internet access to the VM storage account to populate their status. Common causes of status failure include <li> a Network Security Group that blocks outbound access to the internet <li> If the VNET has on-prem DNS servers and DNS connectivity is lost <br><br> If you continue to see an unsupported status, you can uninstall the extensions to skip this check and move forward with migration. |
+| Migration is not supported for Deployment {deployment-name} in HostedService {hosted-service-name} because it has multiple Availability Sets. |Currently, only hosted services that have 1 or less Availability sets can be migrated. To work around this problem, please move the additional Availability sets and Virtual machines in those Availability sets to a different hosted service. |
+| Migration is not supported for Deployment {deployment-name} in HostedService {hosted-service-name because it has VMs that are not part of the Availability Set even though the HostedService contains one. |The workaround for this scenario is to either move all the virtual machines into a single Availability set or remove all Virtual machines from the Availability set in the hosted service. |
+| Storage account/HostedService/Virtual Network {virtual-network-name} is in the process of being migrated and hence cannot be changed |This error happens when the "Prepare" migration operation has been completed on the resource and an operation that would make a change to the resource is triggered. Because of the lock on the management plane after "Prepare" operation, any changes to the resource are blocked. To unlock the management plane, you can run the "Commit" migration operation to complete migration or the "Abort" migration operation to roll back the "Prepare" operation. |
+| Migration is not allowed for HostedService {hosted-service-name} because it has VM {vm-name} in State: RoleStateUnknown. Migration is allowed only when the VM is in one of the following states - Running, Stopped, Stopped Deallocated. |The VM might be undergoing through a state transition, which usually happens when during an update operation on the HostedService such as a reboot, extension installation etc. It is recommended for the update operation to complete on the HostedService before trying migration. |
+| Deployment {deployment-name} in HostedService {hosted-service-name} contains a VM {vm-name} with Data Disk {data-disk-name} whose physical blob size {size-of-the-vhd-blob-backing-the-data-disk} bytes does not match the VM Data Disk logical size {size-of-the-data-disk-specified-in-the-vm-api} bytes. Migration will proceed without specifying a size for the data disk for the Azure Resource Manager VM. | This error happens if you've resized the VHD blob without updating the size in the VM API model. Detailed mitigation steps are outlined [below](#vm-with-data-disk-whose-physical-blob-size-bytes-does-not-match-the-vm-data-disk-logical-size-bytes).|
+| A storage exception occurred while validating data disk {data disk name} with media link {data disk Uri} for VM {VM name} in Cloud Service {Cloud Service name}. Please ensure that the VHD media link is accessible for this virtual machine | This error can happen if the disks of the VM have been deleted or are not accessible anymore. Please make sure the disks for the VM exist.|
+| VM {vm-name} in HostedService {cloud-service-name} contains Disk with MediaLink {vhd-uri} which has blob name {vhd-blob-name}  that is not supported in Azure Resource Manager. | This error occurs when the name of the blob has a "/" in it which is not supported in Compute Resource Provider currently. |
+| Migration is not allowed for Deployment {deployment-name} in HostedService {cloud-service-name} as it is not in the regional scope. Please refer to http://aka.ms/regionalscope for moving this deployment to regional scope. | In 2014, Azure announced that networking resources will move from a cluster level scope to regional scope. See [http://aka.ms/regionalscope] for more details (http://aka.ms/regionalscope). This error happens when the deployment being migrated has not had an update operation, which automatically moves it to a regional scope. Best workaround is to either add an endpoint to a VM or a data disk to the VM and then retry migration. <br> See [How to set up endpoints on a classic Windows virtual machine in Azure](../articles/virtual-machines/windows/classic/setup-endpoints.md#create-an-endpoint) or [Attach a data disk to a Windows virtual machine created with the classic deployment model](../articles/virtual-machines/windows/classic/attach-disk.md)|
 
 
-## <a name="detailed-mitigations"></a>詳細的緩和措施
+## Detailed mitigations
 
-### <a name="vm-with-data-disk-whose-physical-blob-size-bytes-does-not-match-the-vm-data-disk-logical-size-bytes"></a>VM 資料磁碟的實體 blob 大小位元組不符合 VM 資料磁碟的邏輯大小位元組。
+### VM with Data Disk whose physical blob size bytes does not match the VM Data Disk logical size bytes.
 
-當資料磁碟的邏輯大小與實際的 VHD blob 大小不符時會發生此問題。 使用下列命令，即可輕鬆確認此問題︰
+This happens when the Data disk logical size can get out of sync with the actual VHD blob size. This can be easily verified using the following commands:
 
-#### <a name="verifying-the-issue"></a>確認問題
+#### Verifying the issue
 
 ```PowerShell
 # Store the VM details in the VM object
@@ -65,7 +65,7 @@ Context           : Microsoft.WindowsAzure.Commands.Common.Storage.AzureStorageC
 Name              : coreosvm-dd1.vhd
 ```
 
-#### <a name="mitigating-the-issue"></a>緩和問題
+#### Mitigating the issue
 
 ```PowerShell
 # Convert the blob size in bytes to GB into a variable which we'll use later
@@ -143,17 +143,17 @@ OperationDescription OperationId                          OperationStatus
 Update-AzureVM       b0ad3d4c-4v68-45vb-xxc1-134fd010d0f8 Succeeded      
 ```
 
-### <a name="moving-a-vm-to-a-different-subscription-after-completing-migration"></a>在完成移轉後將 VM 移到不同的訂用帳戶
+### Moving a VM to a different subscription after completing migration
 
-完成移轉程序之後，您可以將 VM 移到另一個訂用帳戶。 不過，如果 VM 上有參考 Key Vault 資源的秘密/憑證，則目前不支援進行此移動。 下列指示將可讓您解決此問題。 
+After you complete the migration process, you may want to move the VM to another subscription. However, if you have a secret/certificate on the VM that references a Key Vault resource, the move is currently not supported. The below instructions will allow you to workaround the issue. 
 
-#### <a name="powershell"></a>PowerShell
+#### PowerShell
 ```powershell
 $vm = Get-AzureRmVM -ResourceGroupName "MyRG" -Name "MyVM"
 Remove-AzureRmVMSecret -VM $vm
 Update-AzureRmVM -ResourceGroupName "MyRG" -VM $vm
 ```
-#### <a name="azure-cli-20"></a>Azure CLI 2.0
+#### Azure CLI 2.0
 
 ```bash
 az vm update -g "myrg" -n "myvm" --set osProfile.Secrets=[]

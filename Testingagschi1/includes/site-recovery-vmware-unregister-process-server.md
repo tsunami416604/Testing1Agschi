@@ -1,22 +1,22 @@
-取消註冊處理序伺服器的步驟，隨著其與設定伺服器的連線狀態而有所不同。
+The steps to unregister a process server differs depending on its connection status with the Configuration Server.
 
-### <a name="unregister-a-process-server-that-is-in-a-connected-state"></a>取消註冊處於已連線狀態的處理序伺服器
+### Unregister a process server that is in a connected state
 
-1. 以系統管理員身分遠端登入處理序伺服器。
-2. 啟動 [控制台] 並開啟 [程式集] > [解除安裝程式]
-3. 解除安裝名為 **Microsoft Azure Site Recovery Configuration/Process Server** 的程式
-4. 完成步驟 3 後，您就可以解除安裝 **Microsoft Azure Site Recovery Configuration/Process Server 相依項目**
+1. Remote into the process server as an Administrator.
+2. Launch the **Control Panel** and open **Programs > Uninstall a program**
+3. Uninstall a program by the name **Microsoft Azure Site Recovery Configuration/Process Server**
+4. Once step 3 is completed, you can uninstall **Microsoft Azure Site Recovery Configuration/Process Server Dependencies**
 
-### <a name="unregister-a-process-server-that-is-in-a-disconnected-state"></a>取消註冊處於已中斷連線狀態的處理序伺服器
+### Unregister a process server that is in a disconnected state
 
 > [!WARNING]
-> 如果沒辦法恢復處理序伺服器安裝所在的虛擬機器，使用下列步驟應很有用。
+> Use the below steps should be used if there is no way to revive the virtual machine on which the Process Server was installed.
 
-1. 以系統管理員身分登入設定伺服器。
-2. 開啟系統管理命令提示字元並瀏覽至目錄 `%ProgramData%\ASR\home\svsystems\bin`。
-3. 現在執行命令。
+1. Log on to your configuration server as an Administrator.
+2. Open an Administrative command prompt and browse to the directory `%ProgramData%\ASR\home\svsystems\bin`.
+3. Now run the command.
 
     ```
     perl Unregister-ASRComponent.pl -IPAddress <IP_of_Process_Server> -Component PS
     ```
-4. 這將會從系統清除處理序伺服器的詳細資料。
+4. This will purge the details of the process server from the system.

@@ -1,17 +1,28 @@
 
-1. 瀏覽 [Azure 入口網站]。
-2. 按一下 [瀏覽全部] > [Mobile Apps] > 您建立的後端。
-3. 在行動應用程式設定中，按一下 [快速入門]  >  [Cordova]。
-4. 在 [設定用戶端應用程式] 下方，選取 [建立新的應用程式]，然後按 [下載]。
-2. 將下載的 ZIP 檔案解壓縮至您硬碟上的目錄，瀏覽至方案檔 (.sln) 並使用 Visual Studio 加以開啟。
-3. 在 Visual Studio 中，從開始箭號旁邊的下拉式清單中選擇解決方案平台 (Android、iOS 或 Windows)。 按一下綠色箭號上的下拉式清單以選取特定的部署裝置或模擬器。 您可以使用預設 Android 平台和 Ripple 模擬器。 更進階的教學課程 (例如，推播通知) 會要求您選取支援的裝置或模擬器。
-4. 若要建置和執行 Cordova 應用程式，請按 F5 或按一下綠色箭號。 如果您在模擬器中看到要求網路存取權的安全性對話方塊，請接受它。
-5. 在裝置或模擬器上啟動應用程式後，請在 [輸入新文字] 中輸入有意義的文字 (例如 Complete the tutorial)，然後按一下 [新增] 按鈕。
+1. Visit the [Azure portal].
+2. Click **App Services** > the backend that you created.
+3. In the mobile app settings, click **Quickstart** > **Cordova**.
+![Azure Portal with Mobile Apps Quickstart highlighted][quickstart]
+4. Under **Configure your client application**, select **Create a New App**, then click **Download**.
+2. Unpack the downloaded ZIP file to a directory on your hard drive, navigate to the solution file (.sln) and
+    open it using Visual Studio.
+3. In Visual Studio, choose the solution platform (Android, iOS, or Windows) from the drop-down next to the
+    start arrow. Select a specific deployment device or emulator by clicking the drop-down on the green
+    arrow. You can use the default Android platform and Ripple emulator. More advanced tutorials
+    (for example, push notifications) require you to select a supported device or emulator.
+4. To build and run your Cordova app, press F5 or click the green arrow. If you see a security dialog
+    in the emulator requesting access to the network, accept it.
+5. After the app is started on the device or emulator, type meaningful text in **Enter new text**, such
+    as *Complete the tutorial* and then click the **Add** button.
 
-後端會將要求中的資料插入 SQL Database 中的 TodoItem 資料表，並將新儲存之項目的相關資訊傳回給行動應用程式。 行動應用程式會以清單顯示此資料。
+The backend inserts data from the request into the TodoItem table in the SQL Database, and returns
+information about the newly stored items back to the mobile app. The mobile app displays this data in
+the list.
 
-![](./media/app-service-mobile-cordova-quickstart/quickstart-startup.png)
+You can repeat steps 3 through 5 for other platforms.
 
-您可以對其他平台重複步驟 3 到 5。
+<!-- Images. -->
+[quickstart]: ./media/app-service-mobile-configure-new-backend/quickstart.png
 
-[Azure 入口網站]: https://portal.azure.com/
+<!-- URLs -->
+[Azure portal]: https://portal.azure.com/

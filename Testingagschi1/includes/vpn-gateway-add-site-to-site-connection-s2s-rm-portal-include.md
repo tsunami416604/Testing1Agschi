@@ -1,15 +1,16 @@
-1. 找出您的虛擬網路閘道。
-2. 按一下 [連線]。 在 [連線] 刀鋒視窗的頂部，按一下 [+新增] 以開啟 [新增連線] 刀鋒視窗。
-   
-    ![建立站對站連線](./media/vpn-gateway-add-site-to-site-connection-s2s-rm-portal-include/connection.png)
-3. 在 [新增連線] 刀鋒視窗中，輸入您的連線 [名稱]。 
-4. 對於 [連線類型]，選取 [站對站 (IPSec)]。
-5. 對於 [虛擬網路閘道] ，因為您正從此閘道連線，所以值是固定的。
-6. 對於 [區域網路閘道]，按一下 [選擇區域網路閘道] 並選取要使用的區域網路閘道。 
-7. 對於 [共用金鑰] ，這裡的值必須與您用於本機內部部署 VPN 裝置的值相符。 在範例中，我們使用的是 'abc123'，但是您可以(且應該) 使用更為複雜的值。 重要的是，您在此指定的值必須與您在設定 VPN 裝置時指定的值相同。
-8. **訂用帳戶**、**資源群組**和**位置**的其餘值是固定的。
-9. 按一下 [確定]  來建立連線。 您會看到畫面上閃爍「正在建立連線」  。
-10. 連線完成時，它會出現在虛擬網路閘道的 [連線] 刀鋒視窗中。
-    
-    ![建立站對站連線](./media/vpn-gateway-add-site-to-site-connection-s2s-rm-portal-include/connectionstatus450.png)
+1. Navigate to and open the blade for your virtual network gateway. There are multiple ways to navigate. In our example, we navigated to the gateway 'VNet1GW' by going to **TestVNet1 -> Overview -> Connected devices -> VNet1GW**.
+2. On the blade for VNet1GW, click **Connections**. At the top of the Connections blade, click **+Add** to open the **Add connection** blade.
 
+    ![Create Site-to-Site connection](./media/vpn-gateway-add-site-to-site-connection-s2s-rm-portal-include/connection1.png)
+
+3. On the **Add connection** blade, fill in the values to create your connection.
+
+  - **Name:** Name your connection. We use **VNet1toSite2** in our example.
+  - **Connection type:** Select **Site-to-site(IPSec)**.
+  - **Virtual network gateway:** The value is fixed because you are connecting from this gateway.
+  - **Local network gateway:** Click **Choose a local network gateway** and select the local network gateway that you want to use. In our example, we use **Site2**.
+  - **Shared Key:** the value here must match the value that you are using for your local on-premises VPN device. In the example, we used 'abc123', but you can (and should) use something more complex. The important thing is that the value you specify here must be the same value that you specified when configuring your VPN device.
+  - The remaining values for **Subscription**, **Resource Group**, and **Location** are fixed.
+
+4. Click **OK** to create your connection. You'll see *Creating Connection* flash on the screen.
+5. You can view the connection in the **Connections** blade of the virtual network gateway. The Status will go from *Unknown* to *Connecting*, and then to *Succeeded*.

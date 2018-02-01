@@ -1,2 +1,2 @@
-建立可用性群組接聽程式之後，可能需要調整接聽程式資源的 **RegisterAllProvidersIP** 和 **HostRecordTTL** 叢集參數。  這些參數可縮短容錯移轉可能導致連線逾時之後的重新連線時間。 如需這些參數的詳細資訊，以及範例程式碼，請參閱 [建立或設定可用性群組接聽程式](https://msdn.microsoft.com/library/hh213080.aspx#MultiSubnetFailover)。
+After you create the availability group listener, it might be necessary to adjust the RegisterAllProvidersIP and HostRecordTTL cluster parameters for the listener resource. These parameters can reduce reconnection time after a failover, which might prevent connection timeouts. For more information about these parameters, as well as sample code, see [Create or configure an availability group listener](https://msdn.microsoft.com/library/hh213080.aspx#MultiSubnetFailover).
 

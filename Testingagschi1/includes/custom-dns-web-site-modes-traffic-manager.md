@@ -1,4 +1,4 @@
-在由流量管理員進行負載平衡的 Azure App Service 中的 Web 應用程式上設定自訂網域名稱只適用於 [ **標準** ] 模式網站。 將 Web 應用程式從「免費」App Service 方案模式切換到「共用」、「基本」或「標準」模式之前，您必須先移除您的 App Service 訂用帳戶的支出上限。 
+Setting a custom domain name on a web app that is integrated with Traffic Manager is only available for the **Standard** pricing tier.  
 
-如需 App Service 計劃模式的詳細資訊 (包括如何變更網站模式)，請參閱 [如何調整網站規模](../articles/app-service-web/web-sites-scale.md)。
+For more information on the App Service pricing tiers, including how to change your app's pricing tier, see [Scale up an app in Azure](../articles/app-service/web-sites-scale.md).
 

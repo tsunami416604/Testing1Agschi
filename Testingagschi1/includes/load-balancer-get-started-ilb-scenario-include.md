@@ -1,11 +1,11 @@
-## <a name="scenario"></a>案例
+## Configuration scenario
 
-您正在依下列案例建立內部負載平衡器
+In this scenario, we're creating an internal load balancer in a virtual network as shown in the following figure:
 
-![影像說明](./media/load-balancer-get-started-ilb-scenario-include/figure1.png)
+![Internal load balancer scenario](./media/load-balancer-get-started-ilb-scenario-include/figure1.png)
 
-虛擬網路中設定了內部負載平衡器
+The configuration for our scenario is as follows:
 
-* 名為 DB1 和 DB2 的 2 部虛擬機器
-* 端點
-* 內部負載平衡器
+* Two virtual machines named **DB1** and **DB2**
+* Endpoints for the internal load balancer
+* An internal load balancer

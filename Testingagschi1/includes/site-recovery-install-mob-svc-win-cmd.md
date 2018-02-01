@@ -1,4 +1,4 @@
-1. 將安裝程式複製到您想要保護之伺服器上的本機資料夾 (例如 C:\Temp)。 請以網域系統管理員身分在命令提示字元執行下列命令：
+1. Copy the installer to a local folder (for example, C:\Temp) on the server that you want to protect. Run the following commands as an administrator at a command prompt:
 
   ```
   cd C:\Temp
@@ -6,29 +6,47 @@
   MobilityServiceInstaller.exe /q /x:C:\Temp\Extracted
   cd C:\Temp\Extracted.
   ```
-2. 若要安裝行動服務，請執行下列命令：
+2. To install Mobility Service, run the following command:
 
   ```
-  UnifiedAgent.exe /Role "Agent" /CSEndpoint "IP address of the configuration server" /PassphraseFilePath <Full path to the passphrase file>``
+  UnifiedAgent.exe /Role "MS" /InstallLocation "C:\Program Files (x86)\Microsoft Azure Site Recovery" /Platform "VmWare" /Silent
+  ```
+3. Now the agent needs to be registered with the Configuration Server.
+
+  ```
+  cd C:\Program Files (x86)\Microsoft Azure Site Recovery\agent
+  UnifiedAgentConfigurator.exe”  /CSEndPoint <CSIP> /PassphraseFilePath <PassphraseFilePath>
   ```
 
-#### <a name="mobility-service-installer-command-line-arguments"></a>行動服務安裝程式命令列引數
+#### Mobility Service installer command-line arguments
 
 ```
 Usage :
-UnifiedAgent.exe [/Role <Agent/MasterTarget>] [/InstallLocation <Installation directory>] [/CSIP <IP address>] [/PassphraseFilePath <Passphrase file path>] [/LogFilePath <Log file path>]<br/>
+UnifiedAgent.exe /Role <MS|MT> /InstallLocation <Install Location> /Platform “VmWare” /Silent
 ```
 
-  | 參數|類型|說明|可能的值|
+| Parameter|Type|Description|Possible values|
+|-|-|-|-|
+|/Role|Mandatory|Specifies whether Mobility Service (MS) should be installed or MasterTarget(MT) should be installed|MS </br> MT|
+|/InstallLocation|Optional|Location where Mobility Service is installed|Any folder on the computer|
+|/Platform|Mandatory|Specifies the platform on which the Mobility Service is getting installed </br> </br>- **VMware** : use this value if you are installing mobility service on a VM running on *VMware vSphere ESXi Hosts*, *Hyper-V Hosts* and *Physical Servers* </br> - **Azure** : use this value if you are installing agent on a Azure IaaS VM| VMware </br> Azure|
+|/Silent|Optional|Specifies to run the installer in silent mode| NA|
+
+>[!TIP]
+> The setup logs can be found under %ProgramData%\ASRSetupLogs\ASRUnifiedAgentInstaller.log
+
+#### Mobility Service registration command-line arguments
+
+```
+Usage :
+UnifiedAgentConfigurator.exe  /CSEndPoint <CSIP> /PassphraseFilePath <PassphraseFilePath>
+```
+
+  | Parameter|Type|Description|Possible values|
   |-|-|-|-|
-  |/Role|強制|指定是否應該安裝行動服務|代理程式 </br> MasterTarget|
-  |/InstallLocation|強制|行動服務的安裝位置|電腦上的任何資料夾|
-  |/CSIP|強制|組態伺服器的 IP 位址| 任何有效的 IP 位址|
-  |/PassphraseFilePath|強制|複雜密碼的位置 |任何有效的 UNC 或本機檔案路徑|
-  |/LogFilePath|選用|安裝記錄檔的位置|電腦上的任何有效資料夾|
+  |/CSEndPoint |Mandatory|IP address of the configuration server| Any valid IP address|
+  |/PassphraseFilePath|Mandatory|Location of the passphrase |Any valid UNC or local file path|
 
-#### <a name="example"></a>範例
 
-```
-  UnifiedAgent.exe /Role "Agent" /CSEndpoint "I192.168.2.35" /PassphraseFilePath "C:\Temp\MobSvc.passphrase"
-```
+>[!TIP]
+> The AgentConfiguration logs can be found under %ProgramData%\ASRSetupLogs\ASRUnifiedAgentConfigurator.log

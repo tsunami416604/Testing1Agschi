@@ -1,7 +1,7 @@
-## <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶
-建立您第一個 Azure 儲存體帳戶最簡單的方法，就是使用 [Azure 入口網站](https://portal.azure.com)。 若要深入了解，請參閱 [建立儲存體帳戶](../articles/storage/storage-create-storage-account.md#create-a-storage-account)。
+## Create an Azure storage account
+The easiest way to create your first Azure storage account is by using the [Azure portal](https://portal.azure.com). To learn more, see [Create a storage account](../articles/storage/common/storage-create-storage-account.md#create-a-storage-account).
 
-您也可以使用 [Azure PowerShell](../articles/storage/storage-powershell-guide-full.md)、[Azure CLI](../articles/storage/storage-azure-cli.md)，或 [Storage Resource Provider Client Library for .NET](/dotnet/api/microsoft.azure.management.storage) 來建立 Azure 儲存體帳戶。
+You can also create an Azure storage account by using [Azure PowerShell](../articles/storage/common/storage-powershell-guide-full.md), [Azure CLI](../articles/storage/common/storage-azure-cli.md), or the [Storage Resource Provider Client Library for .NET](/dotnet/api/microsoft.azure.management.storage).
 
-如果您不想在此時建立儲存體帳戶，也可以使用 Azure 儲存體模擬器在本機環境中執行並測試您的程式碼。 如需詳細資訊，請參閱 [使用 Azure 儲存體模擬器進行開發和測試](../articles/storage/storage-use-emulator.md)。
+If you prefer not to create a storage account at this time, you can also use the Azure storage emulator to run and test your code in a local environment. For more information, see [Use the Azure Storage Emulator for Development and Testing](../articles/storage/common/storage-use-emulator.md).
 

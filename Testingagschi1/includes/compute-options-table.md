@@ -1,10 +1,10 @@
 
-| 計算選項 | Audience |
+| Compute Options | Audience |
 | --- | --- |
-| [App Service][lnk_app] |適用於所有裝置的可調整 Web Apps、Mobile Apps、API Apps 及 Logic Apps |
-| [雲端服務][lnk_cloud] |可用性和延展性極佳，且能透過 OS 更充分進行控制的多層式架構 (N-Tier) 雲端應用程式 |
-| [虛擬機器][lnk_vm] |具備完整作業系統控制能力的自訂 Windows 和 Linux VM |
+| [App Service][lnk_app] |Scalable Web Apps, Mobile Apps, API Apps, and Logic Apps for any device |
+| [Cloud Services][lnk_cloud] |Highly available, scalable n-tier cloud apps with more control of the OS |
+| [Virtual Machines][lnk_vm] |Customized Windows and Linux VMs with complete control of the OS |
 
-[lnk_app]: ../articles/app-service-web/app-service-web-overview.md
-[lnk_vm]:../articles/virtual-machines/windows/about.md
+[lnk_app]: ../articles/app-service/app-service-web-overview.md
+[lnk_vm]:../articles/virtual-machines/windows/overview.md
 [lnk_cloud]: ../articles/cloud-services/cloud-services-choose-me.md

@@ -1,9 +1,9 @@
-若要繼續開始使用 IoT 中樞並瀏覽其他 IoT 案例，請參閱︰
+To continue to get started with Azure IoT Hub and to explore other IoT scenarios, see the following:
 
-- [透過 iothub-explorer 管理雲端裝置傳訊](../articles/iot-hub/iot-hub-explorer-cloud-device-messaging.md)
-- [將 IoT 中樞IoT 中樞儲存至 Azure 資料儲存體](../articles/iot-hub/iot-hub-store-data-in-azure-table-storage.md)
-- [使用 Power BI 將來自 Azure IoT 中樞的即時感應器資料視覺化](../articles/iot-hub/iot-hub-live-data-visualization-in-power-bi.md)。
-- [使用 Azure Web Apps 將來自 Azure IoT 中樞的即時感應器資料視覺化](../articles/iot-hub/iot-hub-live-data-visualization-in-web-apps.md)。
-- [在 Azure Machine Learning 中使用 IoT 中樞的感應器資料進行天氣預測](../articles/iot-hub/iot-hub-weather-forecast-machine-learning.md)
-- [透過 iothub-explorer進行裝置管理](../articles/iot-hub/iot-hub-device-management-iothub-explorer.md)
-- [搭配 Logic Apps 進行遠端監視和通知](../articles/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps.md)
+- [Manage cloud device messaging with iothub-explorer](../articles/iot-hub/iot-hub-explorer-cloud-device-messaging.md)
+- [Save your Azure IoT hub messages to Azure data storage](../articles/iot-hub/iot-hub-store-data-in-azure-table-storage.md)
+- [Use Power BI to visualize real-time sensor data from your IoT hub](../articles/iot-hub/iot-hub-live-data-visualization-in-power-bi.md)
+- [Use the Web Apps feature of Azure App Service to visualize real-time sensor data from your IoT hub](../articles/iot-hub/iot-hub-live-data-visualization-in-web-apps.md)
+- [Forecast weather by using the sensor data from your IoT hub in Azure Machine Learning](../articles/iot-hub/iot-hub-weather-forecast-machine-learning.md)
+- [Manage devices with iothub-explorer](../articles/iot-hub/iot-hub-device-management-iot-extension-azure-cli-2-0.md)
+- [Use ​​Logic ​​Apps for remote monitoring and notifications](../articles/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps.md)

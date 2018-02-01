@@ -1,7 +1,7 @@
 > [!NOTE]
-> 我們建議您使用最新版的 Azure Storage Client Library for .NET 完成本教學課程。 您可以在 [NuGet](https://www.nuget.org/packages/WindowsAzure.Storage/) 上找到可供下載的最新版本。 用戶端程式庫的原始程式碼可於 [GitHub](https://github.com/Azure/azure-storage-net)取得。
+> The Azure Storage Common Library for .NET (Preview) is required to complete this tutorial. You can find the latest version for download on [NuGet](https://www.nuget.org/packages/Microsoft.Azure.Storage.Common/).
 > 
-> 如果您是使用儲存體模擬器，請參閱[用戶端程式庫讀我檔案](https://github.com/Azure/azure-storage-net/blob/master/README.md)以取得版本需求。 若要搭配使用 Storage Client Library for .NET 與儲存體模擬器，您必須使用對應之最小版本的 Azure 儲存體模擬器。
+> If you are using the storage emulator, see the [client library README](https://github.com/Azure/azure-storage-net/blob/master/README.md) for version requirements. In order to use the Storage Client Library for .NET with the storage emulator, a corresponding minimum version of the Azure storage emulator must be used.
 > 
 > 
 

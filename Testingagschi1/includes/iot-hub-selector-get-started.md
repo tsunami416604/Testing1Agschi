@@ -3,19 +3,18 @@
 > * [Java](../articles/iot-hub/iot-hub-java-java-getstarted.md)
 > * [Node.js](../articles/iot-hub/iot-hub-node-node-getstarted.md)
 > * [Python](../articles/iot-hub/iot-hub-python-getstarted.md)
-> 
-> 
 
-## <a name="introduction"></a>簡介
-Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 (IoT) 裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。 IoT 專案所面臨的其中一個最大挑戰，就是如何可靠且安全地將裝置連線至解決方案後端。 若要解決這個問題，IoT 中樞：
+## Introduction
 
-* 提供可靠的裝置到雲端和雲端到裝置的超大規模傳訊。
-* 使用每一裝置的安全性認證和存取控制來啟用安全通訊。
-* 包括適用於最受歡迎的語言和平台的裝置程式庫。
+Azure IoT Hub is a fully managed Azure service. This service enables reliable and secure bi-directional communications between millions of Internet of Things (IoT) devices and a solution back end. One of the biggest challenges that IoT projects face is how to reliably and securely connect devices to the solution back end. To address this challenge, IoT Hub:
 
-本教學課程說明如何：
+* Offers reliable device-to-cloud and cloud-to-device hyper-scale messaging.
+* Enables secure communications using per-device security credentials and access control.
+* Includes device libraries for the most popular languages and platforms.
 
-* 使用 Azure 入口網站來建立 IoT 中樞。
-* 在您的 IoT 中樞中建立裝置身分識別。
-* 建立可將遙測傳送到解決方案後端的模擬裝置應用程式。
+This tutorial shows you how to:
+
+* Use the Azure portal to create an IoT hub.
+* Create a device identity in your IoT hub.
+* Create a simulated device app that sends telemetry to your solution back end.
 

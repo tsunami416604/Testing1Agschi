@@ -1,10 +1,11 @@
-``*.accesscontrol.windows.net``：用於存取控制和身分識別管理<br/><br/>``\*.backup.windowsazure.com``：用於複寫資料的傳輸和協調 <br/><br/> ``\*.blob.core.windows.net``：用於存取儲存體帳戶來儲存複寫的資料<br/><br/> ``\*.hypervrecoverymanager.windowsazure.com``：用於複寫管理作業和協調流程<br/><br/>
-``time.nist.gov`` 和 ``time.windows.com``：用來檢查系統時間與通用時間之間的時間同步處理
+``*.accesscontrol.windows.net``. Used for access control and identity management. (ACS based authentication will be deprecated by December 2017) <br/><br/>
+``https://login.microsoftonline.com`` Used for access control and identity management using AAD
+
+``\*.backup.windowsazure.com``. Used for replication data transfer and coordination. <br/><br/> ``\*.blob.core.windows.net``. Used for access to the storage account that stores replicated data.<br/><br/> ``\*.hypervrecoverymanager.windowsazure.com``. Used for replication management operations and coordination.<br/><br/>
+``time.nist.gov`` and ``time.windows.com``. Used to check time synchronization between system and global time.
 <br/><br/>
+URLs for Azure Government cloud:<br/>- .ugv.hypervrecoverymanager.windowsazure.us<br/>- .ugv.backup.windowsazure.us<br/>- .ugi.hypervrecoverymanager.windowsazure.us<br/>- .ugi.backup.windowsazure.us<br/>-
+https://login-us.microsoftonline.com<br/>-
+https://login.microsoftonline.us<br/>-
+https://login.microsoftonline.com<br/>
 
-適用於 Azure Government 雲端的 URL：
-
-- \*\.ugv.hypervrecoverymanager.windowsazure.us
-- \*\.ugv.backup.windowsazure.us
-- \*\.ugi.hypervrecoverymanager.windowsazure.us
-- \*\.ugi.backup.windowsazure.us

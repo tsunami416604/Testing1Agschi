@@ -1,14 +1,14 @@
-## <a name="what-are-service-bus-queues"></a>什麼是服務匯流排佇列？
-服務匯流排佇列支援 **代理傳訊** 通訊模型。 使用佇列時，分散式應用程式的元件彼此不直接通訊，相反的，他們會透過扮演中繼角色 (代理人) 的佇列來交換訊息。 訊息產生者 (傳送者) 會將訊息遞交給佇列，然後繼續其處理工作。 訊息取用者 (接收者) 非同步地從佇列中提取訊息並處理。 產生者不必等待取用者的回覆，即可繼續處理及傳送其他訊息。 如果有一或多個競爭取用者，佇列會採取 **先進先出 (FIFO)** 訊息傳遞機制。 亦即，通常由接收者依訊息加入佇列的順序來接收和處理訊息，而且每則訊息只能由一個訊息取用者接收和處理。
+## What are Service Bus queues?
+Service Bus queues support a **brokered messaging** communication model. When using queues, components of a distributed application do not communicate directly with each other; instead they exchange messages via a queue, which acts as an intermediary (broker). A message producer (sender) hands off a message to the queue and then continues its processing. Asynchronously, a message consumer (receiver) pulls the message from the queue and processes it. The producer does not have to wait for a reply from the consumer in order to continue to process and send further messages. Queues offer **First In, First Out (FIFO)** message delivery to one or more competing consumers. That is, messages are typically received and processed by the receivers in the order in which they were added to the queue, and each message is received and processed by only one message consumer.
 
-![佇列概念](./media/howto-service-bus-queues/sb-queues-08.png)
+![QueueConcepts](./media/howto-service-bus-queues/sb-queues-08.png)
 
-服務匯流排佇列為適用於各種情況的通用技術：
+Service Bus queues are a general-purpose technology that can be used for a wide variety of scenarios:
 
-* 多層式 Azure 應用程式中 Web 角色和背景工作角色之間的通訊。
-* 混合式解決方案中的內部部署應用程式和 Azure 代管應用程式之間的通訊。
-* 在不同組織或同一組織的不同部門中，在內部部署執行之分散式應用程式的各元件之間的通訊。
+* Communication between web and worker roles in a multi-tier Azure application.
+* Communication between on-premises apps and Azure-hosted apps in a hybrid solution.
+* Communication between components of a distributed application running on-premises in different organizations or departments of an organization.
 
-使用佇列可讓應用程式更容易地進一步延展，提高架構的備援能力。
+Using queues enables you to scale your applications more easily, and enable more resiliency to your architecture.
 
 

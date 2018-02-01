@@ -1,18 +1,18 @@
-您可以使用 **Get-AzureVNetConnection** 來驗證傳統虛擬網路閘道的連線。 
+You can verify that your connection succeeded by using the 'Get-AzureVNetConnection' cmdlet.
 
-1. 請使用下列 Cmdlet 範例，並將值設定為與您狀況相符的值。 如果虛擬網路的名稱包含空格，則必須以引號括住。
+1. Use the following cmdlet example, configuring the values to match your own. The name of the virtual network must be in quotes if it contains spaces.
 
   ```powershell
   Get-AzureVNetConnection "Group ClassicRG ClassicVNet"
   ```
-2. 完成 Cmdlet 之後，請檢視值。 在下列範例中，[連線狀態] 會顯示為 [已連接]，而您可以看見輸入和輸出位元組。
+2. After the cmdlet has finished, view the values. In the example below, the Connectivity State shows as 'Connected' and you can see ingress and egress bytes.
 
-        ConnectivityState         : Connected
-        EgressBytesTransferred    : 181664
-        IngressBytesTransferred   : 182080
-        LastConnectionEstablished : 1/7/2016 12:40:54 AM
-        LastEventID               : 24401
-        LastEventMessage          : The connectivity state for the local network site 'RMVNetLocal' changed from Connecting to
-                                    Connected.
-        LastEventTimeStamp        : 1/7/2016 12:40:54 AM
-        LocalNetworkSiteName      : RMVNetLocal
+		ConnectivityState         : Connected
+		EgressBytesTransferred    : 181664
+		IngressBytesTransferred   : 182080
+		LastConnectionEstablished : 1/7/2016 12:40:54 AM
+		LastEventID               : 24401
+		LastEventMessage          : The connectivity state for the local network site 'RMVNetLocal' changed from Connecting to
+		                            Connected.
+		LastEventTimeStamp        : 1/7/2016 12:40:54 AM
+		LocalNetworkSiteName      : RMVNetLocal

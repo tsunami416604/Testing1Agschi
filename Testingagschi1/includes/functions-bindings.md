@@ -1,20 +1,30 @@
-| 類型 | 服務 | 觸發程序* | 輸入 | 輸出 |  
-| --- | --- | --- | --- | --- |  
-| [排程](../articles/azure-functions/functions-bindings-timer.md)  |Azure Functions |✔ | | |  
-| [HTTP (REST 或 webhook)](../articles/azure-functions/functions-bindings-http-webhook.md) |Azure Functions |✔ |  |✔\** |  
-| [Blob 儲存體](../articles/azure-functions/functions-bindings-storage-blob.md) |Azure 儲存體 |✔ |✔ |✔ |  
-| [事件](../articles/azure-functions/functions-bindings-event-hubs.md) |Azure 事件中心 |✔ | |✔ |  
-| [佇列](../articles/azure-functions/functions-bindings-storage-queue.md) |Azure 儲存體 |✔ | |✔ |  
-| [佇列和主題](../articles/azure-functions/functions-bindings-service-bus.md) |Azure 服務匯流排 |✔ | |✔ |  
-| [儲存體資料表](../articles/azure-functions/functions-bindings-storage-table.md) |Azure 儲存體 | |✔ |✔ |  
-| [SQL 資料表](../articles/azure-functions/functions-bindings-mobile-apps.md) |Azure Mobile Apps | |✔ |✔ |  
-| [No-SQL DB](../articles/azure-functions/functions-bindings-documentdb.md) | Azure DocumentDB | |✔ |✔ |  
-| [推播通知](../articles/azure-functions/functions-bindings-notification-hubs.md) |Azure 通知中心 | | |✔ |  
-| [Twilio 簡訊文字](../articles/azure-functions/functions-bindings-twilio.md) |Twilio | | |✔ |
-| [SendGrid 電子郵件](../articles/azure-functions/functions-bindings-sendgrid.md) | SendGrid | | |✔ |
+The following table shows the bindings that are supported in the two major versions of the Azure Functions runtime.
 
-(\* - 所有觸發程序都具有相關聯的輸入資料)
+| Type | 1.x | 2.x | Trigger | Input | Output |  
+| ---- | :-: | :-: | :------: | :---: | :----: |
+| [Blob Storage](../articles/azure-functions/functions-bindings-storage-blob.md)          |✔|✔|✔|✔|✔|  
+| [Cosmos DB](../articles/azure-functions/functions-bindings-documentdb.md)               |✔|✔<sup>1</sup>|✔|✔|✔|  
+| [Event Grid](../articles/azure-functions/functions-bindings-event-grid.md)              |✔|✔|✔| | |  
+| [Event Hubs](../articles/azure-functions/functions-bindings-event-hubs.md)              |✔|✔|✔| |✔|  
+| [External File](../articles/azure-functions/functions-bindings-external-file.md)<sup>2</sup>    |✔|| |✔|✔|  
+| [External Table](../articles/azure-functions/functions-bindings-external-table.md)<sup>2</sup>  |✔|| |✔|✔|  
+| [HTTP](../articles/azure-functions/functions-bindings-http-webhook.md)             |✔|✔|✔| |✔|
+| [Microsoft Graph<br/>Excel tables](../articles/azure-functions/functions-bindings-microsoft-graph.md)   ||✔<sup>1</sup>| |✔|✔|
+| [Microsoft Graph<br/>OneDrive files](../articles/azure-functions/functions-bindings-microsoft-graph.md) ||✔<sup>1</sup>| |✔|✔|
+| [Microsoft Graph<br/>Outlook email](../articles/azure-functions/functions-bindings-microsoft-graph.md)  ||✔<sup>1</sup>| | |✔|
+| [Microsoft Graph<br/>Events](../articles/azure-functions/functions-bindings-microsoft-graph.md)         ||✔<sup>1</sup>|✔|✔|✔|
+| [Microsoft Graph<br/>Auth tokens](../articles/azure-functions/functions-bindings-microsoft-graph.md)    ||✔<sup>1</sup>| |✔| |
+| [Mobile Apps](../articles/azure-functions/functions-bindings-mobile-apps.md)             |✔|✔<sup>1</sup>| |✔|✔|  
+| [Notification Hubs](../articles/azure-functions/functions-bindings-notification-hubs.md) |✔|| | |✔|
+| [Queue storage](../articles/azure-functions/functions-bindings-storage-queue.md)         |✔|✔|✔| |✔|  
+| [SendGrid](../articles/azure-functions/functions-bindings-sendgrid.md)                   |✔|✔<sup>1</sup>| | |✔|
+| [Service Bus](../articles/azure-functions/functions-bindings-service-bus.md)             |✔|✔<sup>1</sup>|✔| |✔|  
+| [Table storage](../articles/azure-functions/functions-bindings-storage-table.md)         |✔|✔| |✔|✔|  
+| [Timer](../articles/azure-functions/functions-bindings-timer.md)                         |✔|✔|✔| | |
+| [Twilio](../articles/azure-functions/functions-bindings-twilio.md)                       |✔|✔<sup>1</sup>| | |✔|
+| [Webhooks](../articles/azure-functions/functions-bindings-http-webhook.md)             |✔||✔| |✔|
+  
+<sup>1</sup> Must be registered as a binding extension in 2.x. See [Known issues in 2.x](https://github.com/Azure/azure-webjobs-sdk-script/wiki/Azure-Functions-runtime-2.0-known-issues).
 
-(\** - HTTP 對外繫結需要 HTTP 觸發程序)
-
+<sup>2</sup> Experimental &mdash; not supported and might be abandoned in the future.
 

@@ -1,1 +1,3 @@
-若要執行此範例，確定您已安裝最新版的 [Azure PowerShell](/powershell/azureps-cmdlets-docs)。 若要啟動，請執行 `Login-AzureRmAccount` 來建立與 Azure 的連線。 
+This sample requires the Azure PowerShell module version 5.1.1 or later. Run ` Get-Module -ListAvailable AzureRM` to find the version. If you need to install or upgrade, see [Install Azure PowerShell module](/powershell/azure/install-azurerm-ps). 
+
+Run `Login-AzureRmAccount` to create a connection with Azure. 

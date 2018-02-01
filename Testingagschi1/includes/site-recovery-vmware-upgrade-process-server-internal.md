@@ -1,4 +1,4 @@
-1. 以系統管理員身分登入處理序伺服器。
-2. 下載最新版的[整合安裝程式](http://aka.ms/unifiedinstaller)。
-3. 按兩下安裝程式，即可啟動更新程序。
-4. 安裝程式會偵測各種已安裝的元件，並將它們升級為最新版本。
+1. Login to the process server as an Administrator.
+2. Download the latest version of the [Unified Setup](http://aka.ms/unifiedinstaller).
+3. Double-click the installer to launch the update process.
+4. The installer will detect the various components that are installed and upgrade them to the latest version.

@@ -1,98 +1,93 @@
-# <a name="azure-service-bus"></a>Azure 服務匯流排
-無論應用程式或服務是在雲端或內部部署中執行，通常都需要與其他應用程式或服務互動。 Azure 提供「服務匯流排」，讓您有更多實用的作法。 本文探討這項技術，並說明其為何物及為何需要採用。
+# Azure Service Bus
+Whether an application or service runs in the cloud or on premises, it often needs to interact with other applications or services. To provide a broadly useful way to do this, Azure offers Service Bus. This article takes a look at this technology, describing what it is and why you might want to use it.
 
-## <a name="service-bus-fundamentals"></a>服務匯流排基本概念
-不同的情況需要不同的通訊方式。 有時，讓應用程式透過簡單的佇列來傳送和接收訊息，就是最好的解決方案。 在其他情況下，普通的佇列仍嫌不足，具有發佈與訂閱機制的佇列會更好。 在某些情況下，就只需要應用程式之間的連線，根本不需要佇列。 服務匯流排提供這三種選項，可讓應用程式以幾種不同的方式互動。
+## Service Bus fundamentals
+Different situations call for different styles of communication. Sometimes, letting applications send and receive messages through a simple queue is the best solution. In other situations, an ordinary queue isn't enough; a queue with a publish-and-subscribe mechanism is better. And in some cases, all that's really needed is a connection between applications&#151;queues aren't required. Service Bus provides all three options, letting your applications interact in several different ways.
 
-服務匯流排是多租用戶的雲端服務，亦即，由多位使用者共用服務。 每個使用者 (例如應用程式開發人員) 可建立 *命名空間*，然後在該命名空間內定義所需的通訊機制。 [圖 1](#Fig1) 顯示運作架構。
+Service Bus is a multi-tenant cloud service, which means that the service is shared by multiple users. Each user, such as an application developer, creates a *namespace*, then defines the communication mechanisms she needs within that namespace. [Figure 1](#Fig1) shows how this looks.
 
-<a name="Fig1"></a>![Azure 服務匯流排圖表][svc-bus]
+<a name="Fig1"></a>![Diagram of Azure Service Bus][svc-bus]
 
-**圖 1：服務匯流排提供多租用戶服務，可透過雲端連接應用程式。**
+**Figure 1: Service Bus provides a multi-tenant service for connecting applications through the cloud.**
 
-在一個命名空間內，您可以使用四種不同通訊機制的一或多個執行個體，這些機制各以不同的方式連接應用程式。 選擇如下：
+Within a namespace, you can use one or more instances of four different communication mechanisms, each of which connects applications in a different way. The choices are:
 
-* 佇列，允許單向通訊。 每個佇列扮演中繼角色 (有時稱為代理人 )，儲存已傳送但尚未接收的訊息。 每個訊息會由單一收件者接收。
-* 「主題」提供使用「訂用帳戶」的單向通訊，而單一主題可以有多個訂用帳戶。 就像佇列一樣，主題也扮演訊息代理程式的角色，但每個訂用帳戶可選擇性地使用篩選條件，以便只接收符合特定準則的訊息。
-* *轉送*，提供雙向通訊。 與佇列和主題不同，轉送不是代理人，不會儲存途中訊息。 只是單純地將訊息傳遞至目的地應用程式。
-* *事件中樞*，提供雲端的大規模事件和遙測輸入 (具低延遲且高可靠性)。
+* *Queues*, which allow one-directional communication. Each queue acts as an intermediary (sometimes called a *broker*) that stores sent messages until they are received. Each message is received by a single recipient.
+* *Topics*, which provide one-directional communication using *subscriptions*-a single topic can have multiple subscriptions. Like a queue, a topic acts as a broker, but each subscription can optionally use a filter to receive only messages that match specific criteria.
+* *Relays*, which provide bi-directional communication. Unlike queues and topics, a relay doesn't store in-flight messages-it's not a broker. Instead, it just passes them on to the destination application.
+* *Event Hubs*, which provide event and telemetry ingress to the cloud at massive scale, with low latency and high reliability.
 
-當您建立佇列、主題、轉送或事件中樞時，您會指定其名稱。 此名稱結合命名空間的名稱，就形成物件的唯一識別碼。 應用程式可以提供此名稱給服務匯流排，然後利用該佇列、主題、轉送或事件中樞，即可相互通訊。 
+When you create a queue, topic, relay, or Event Hub, you give it a name. Combined with whatever you called your namespace, this name creates a unique identifier for the object. Applications can provide this name to Service Bus, then use that queue, topic, relay, or Event Hub to communicate with one another. 
 
-Windows 應用程式可以利用 Windows Communication Foundation (WCF) 來使用任何這些物件。 對於佇列、主題和事件中樞，Windows 應用程式也可以使用服務匯流排定義的訊息 API。 為了讓您更輕鬆地從非 Windows 應用程式使用這些物件，Microsoft 提供了 Java、Node.js 和其他語言的 SDK。 您也可以透過 HTTP 使用 REST API，存取佇列、主題和事件中樞。 
+To use any of these objects, Windows applications can use Windows Communication Foundation (WCF). For queues, topics, and Event Hubs Windows applications can also use Service Bus-defined messaging APIs. To make these objects easier to use from non-Windows applications, Microsoft provides SDKs for Java, Node.js, and other languages. You can also access queues, topics, and Event Hubs using REST APIs over HTTP. 
 
-請務必了解，雖然服務匯流排本身是在雲端執行 (亦即，在 Microsoft 的 Azure 資料中心)，但用到服務匯流排的應用程式可在任何地方執行。 舉例來說，您可以使用服務匯流排來連接 Azure 上執行的應用程式，或您自己的資料中心內執行的應用程式。 服務匯流排也可讓您將 Azure 或其他雲端平台上執行的應用程式，與內部部署應用程式連接，或與平板電腦和電話連接。 甚至可以將家電產品、感應器和其他裝置，連接至中央應用程式或其他應用程式。 服務匯流排是雲端中通用的通訊機制，幾乎從任何地方都能存取。 用途視應用程式的需求而定。
+It's important to understand that even though Service Bus itself runs in the cloud (that is, in Microsoft's Azure datacenters), applications that use it can run anywhere. You can use Service Bus to connect applications running on Azure, for example, or applications running inside your own datacenter. You can also use it to connect an application running on Azure or another cloud platform with an on-premises application or with tablets and phones. It's even possible to connect household appliances, sensors, and other devices to a central application or to one other. Service Bus is a generic communication mechanism in the cloud that's accessible from pretty much anywhere. How you use it depends on what your applications need to do.
 
-## <a name="queues"></a>佇列
-假設您決定使用服務匯流排佇列來連接兩個應用程式。 [圖 2](#Fig2) 顯示此情形。
+## Queues
+Suppose you decide to connect two applications using a Service Bus queue. [Figure 2](#Fig2) illustrates this situation.
 
-<a name="Fig2"></a>![服務匯流排佇列的圖表][queues]
+<a name="Fig2"></a>![Diagram of Service Bus Queues][queues]
 
-**圖 2：服務匯流排佇列提供單向非同步的佇列作業。**
+**Figure 2: Service Bus queues provide one-way asynchronous queuing.**
 
-程序非常簡單：傳送者將訊息傳送至服務匯流排佇列，稍後由接收者取得該訊息。 一個佇列只有一個接收者，如 [圖 2](#Fig2) 所示，或者，多個應用程式可以讀取相同的佇列。 在後面的情況下，每個訊息只由一個接收者讀取，對於多點傳送服務，您應改用主題。
+The process is simple: A sender sends a message to a Service Bus queue, and a receiver picks up that message at some later time. A queue can have just a single receiver, as [Figure 2](#Fig2) shows, or multiple applications can read from the same queue. In the latter situation, each message is read by just one receiver-for a multi-cast service you should use a topic instead.
 
-每個訊息有兩個部分：一組屬性 (各為機碼/值組) 和二進位訊息本文。 他們的使用方式會取決於應用程式的目的。 例如，假設應用程式會傳送最近一筆交易的相關訊息，則可能包含屬性 Seller="Ava" 和 Amount=10000。 訊息本文可能包含該交易簽訂之合約的掃描影像，如果沒有的話，則維持空白。
+Each message has two parts: a set of properties, each a key/value pair, and a binary message body. How they're used depends on what an application is trying to do. For example, an application sending a message about a recent sale might include the properties *Seller="Ava"* and *Amount=10000*. The message body might contain a scanned image of the sale's signed contract or, if there isn't one, just remain empty.
 
-接收者以兩種不同的方法從服務匯流排佇列讀取訊息。 第一個選項 (稱為 *ReceiveAndDelete*) 會從佇列中移除訊息，並立即刪除訊息。 這很簡單，但如果接收者在完成訊息處理之前當掉，則會遺失訊息。 因為訊息已從佇列中移除，其他接收者無法再取得該訊息。 
+A receiver can read a message from a Service Bus queue in two different ways. The first option, called *ReceiveAndDelete*, removes a message from the queue and immediately deletes it. This is simple, but if the receiver crashes before it finishes processing the message, the message will be lost. Because it's been removed from the queue, no other receiver can access it. 
 
-第二個選項 PeekLock 就是為了解決此問題。 就像 ReceiveAndDelete 一樣，PeekLock 讀取也會從佇列中移除訊息， 但並不會刪除訊息。 相反地，此選項會鎖定訊息，不讓其他接收者看到訊息，然後等待三種事件發生：
+The second option, *PeekLock*, is meant to help with this problem. Like ReceiveAndDelete, a PeekLock read removes a message from the queue. It doesn't delete the message, however. Instead, it locks the message, making it invisible to other receivers, then waits for one of three events:
 
-* 如果接收者成功處理訊息，則會呼叫 *Complete*，然後佇列會刪除訊息。 
-* 如果接收者判斷無法成功處理訊息，則會呼叫 *Abandon*。 然後，佇列會解除訊息的鎖定，讓其他接收者可以存取訊息。
-* 如果接收者在一段可設定的時間內 (預設為 60 秒) 未呼叫這些方法，佇列會假定接收者已失效。 在此情況下，就視為接收者已呼叫 Abandon，讓其他接收者可以存取訊息。
+* If the receiver processes the message successfully, it calls *Complete*, and the queue deletes the message. 
+* If the receiver decides that it can't process the message successfully, it calls *Abandon*. The queue then removes the lock from the message and makes it available to other receivers.
+* If the receiver calls neither of these within a configurable period of time (by default, 60 seconds), the queue assumes the receiver has failed. In this case, it behaves as if the receiver had called Abandon, making the message available to other receivers.
 
-請注意這裡發生的情形：相同的訊息可能傳遞兩次，或許是傳給兩個不同的接收者。 使用服務匯流排佇列的應用程式對此必須有因應之道。 為了輕鬆偵測重複訊息，每個訊息都有唯一的 MessageID 屬性，不論同一個訊息從佇列中讀取多少次，依預設此屬性維持不變。 
+Notice what can happen here: The same message might be delivered twice, perhaps to two different receivers. Applications using Service Bus queues must be prepared for this. To make duplicate detection easier, each message has a unique MessageID property that by default stays the same no matter how many times the message is read from a queue. 
 
-佇列在許多情況下都很有用。 即使兩個應用程式未同時都在執行，佇列仍可讓應用程式通訊，這尤其適用於批次和行動應用程式。 如果佇列有多個接收者，由於傳送的訊息會襲捲這些接收者，此佇列也提供自動的負載平衡。
+Queues are useful in quite a few situations. They let applications communicate even when both aren't running at the same time, something that's especially handy with batch and mobile applications. A queue with multiple receivers also provides automatic load balancing, since sent messages are spread across these receivers.
 
-## <a name="topics"></a>主題
-佇列雖然很實用，但不見得是最適當的解決方案。 有時，服務匯流排主題更適合。 [圖 3](#Fig3) 闡明此概念。
+## Topics
+Useful as they are, queues aren't always the right solution. Sometimes, Service Bus topics are better. [Figure 3](#Fig3) illustrates this idea.
 
-<a name="Fig3"></a>![服務匯流排主題和訂用帳戶的圖表][topics-subs]
+<a name="Fig3"></a>![Diagram of Service Bus Topics and Subscriptions][topics-subs]
 
-**圖 3：根據訂閱端應用程式所指定的篩選，應用程式可以接收部分或所有傳送至服務匯流排主題的訊息。**
+**Figure 3: Based on the filter a subscribing application specifies, it can receive some or all of the messages sent to a Service Bus topic.**
 
-主題在許多方面與佇列很類似。 傳送者將訊息提交至主題，作法如同將訊息提交至佇列一樣，而這些訊息就像使用佇列時一樣，看起來完全相同。 主要的差別在於，主題可讓每個接收端應用程式定義 *篩選*，以建立其本身的訂用帳戶。 所以，訂閱者只會看到符合此篩選的訊息。 例如， [圖 3](#Fig3) 顯示一個傳送者、一個主題及三個訂閱者，而訂閱者各有其本身的篩選：
+A topic is similar in many ways to a queue. Senders submit messages to a topic in the same way that they submit messages to a queue, and those messages look the same as with queues. The big difference is that topics let each receiving application create its own subscription by defining a *filter*. A subscriber will then see only the messages that match that filter. For example, [Figure 3](#Fig3) shows a sender and a topic with three subscribers, each with its own filter:
 
-* 訂閱者 1 只接收包含屬性 *Seller="Ava"*的訊息。
-* 訂閱者 2 可接收包含 Seller="Ruby" 屬性及/或包含 Amount 屬性 (其值大於 100,000) 的訊息。 Ruby 可能是銷售經理，因此想查看自己的銷售和所有人的銷售佳績。
-* 訂閱者 3 將篩選設為 *True*，這表示接收所有訊息。 例如，此應用程式可能負責維護稽核記錄，因此需要查看所有的訊息。
+* Subscriber 1 receives only messages that contain the property *Seller="Ava"*.
+* Subscriber 2 receives messages that contain the property *Seller="Ruby"* and/or contain an *Amount* property whose value is greater than 100,000. Perhaps Ruby is the sales manager, and so she wants to see both her own sales and all big sales regardless of who makes them.
+* Subscriber 3 has set its filter to *True*, which means that it receives all messages. For example, this application might be responsible for maintaining an audit trail and therefore it needs to see all the messages.
 
-如同佇列一樣，主題的訂閱者也可以使用 ReceiveAndDelete 或 PeekLock 來讀取訊息。 但與佇列不同，傳送至主題的單一訊息可以由多個訂閱者接收。 每當多個應用程式可能都需要存取相同的訊息時，此方法很有用，這個方法通常稱為 *發佈和訂閱*。 每個訂閱者只要定義正確的篩選，即可只存取所需的訊息資料流部分。
+As with queues, subscribers to a topic can read messages using either ReceiveAndDelete or PeekLock. Unlike queues, however, a single message sent to a topic can be received by multiple subscribers. This approach, commonly called *publish and subscribe*, is useful whenever multiple applications might be interested in the same messages. By defining the right filter, each subscriber can tap into just the part of the message stream that it needs to see.
 
-## <a name="relays"></a>轉送
-佇列和主題都是透過訊息代理程式來提供單向非同步通訊。 流量只往一個方向流動，傳送者和接收者之間並未直接連接。 但如果不想要這種方式又該如何？ 假設應用程式同時需要傳送和接收訊息，或您可能希望應用程式之間直接連結，而不需要代理人來儲存訊息。 為了處理此種案例，服務匯流排會提供轉送，如 [圖 4](#Fig4) 所示。
+## Relays
+Both queues and topics provide one-way asynchronous communication through a broker. Traffic flows in just one direction, and there's no direct connection between senders and receivers. But what if you don't want this? Suppose your applications need to both send and receive messages, or perhaps you want a direct link between them and you don't need a broker to store messages. To address scenarios such as this, Service Bus provides relays, as [Figure 4](#Fig4) shows.
 
-<a name="Fig4"></a>![服務匯流排轉送的圖表][relay]
+<a name="Fig4"></a>![Diagram of Service Bus Relay][relay]
 
-**圖 4：服務匯流排轉送在應用程式之間提供同步、雙向的通訊。**
+**Figure 4: Service Bus relay provides synchronous, two-way communication between applications.**
 
-關於轉送，最直接的問題就是：為什麼要使用轉送？ 即使我不需要佇列，為何要讓應用程式透過雲端服務來通訊，而不是直接互動？ 答案就是直接通訊並不如您想像地那麼簡單。
+The obvious question to ask about relays is this: Why would I use one? Even if I don't need queues, why make applications communicate via a cloud service rather than just interact directly? The answer is that talking directly can be harder than you might think.
 
-假設您想要連接兩個內部部署的應用程式，兩者都在公司資料中心內執行。 每個應用程式都位於防火牆後面，且每個資料中心可能使用網路位址轉譯 (NAT)。 防火牆會阻擋所有連接埠 (少數連接埠除外) 傳入的資料，而 NAT 意味著執行每個應用程式的電腦沒有固定的 IP 位址可供您從資料中心外部直接連接。 需要一些額外的協助，否則透過公用網際網路來連接這些應用程式會有困難。
+Suppose you want to connect two on-premises applications, both running inside corporate datacenters. Each of these applications sits behind a firewall, and each datacenter probably uses network address translation (NAT). The firewall blocks incoming data on all but a few ports, and NAT implies that the machine each application is running on doesn't have a fixed IP address that you can reach directly from outside the datacenter. Without some extra help, connecting these applications over the public Internet is problematic.
 
-服務匯流排轉送可解決此問題。 為了透過轉送進行雙向通訊，每個應用程式可以與服務匯流排建立輸出 TCP 連線，然後保持開啟。 兩個應用程式之間的所有通訊都在這些連線上進行。 因為每個連線都是從資料中心內建立，防火牆會允許流量傳入每個應用程式，而不需要開啟新的連接埠。 此方法也克服 NAT 問題，因為每個應用程式在整個通訊期間的雲端中具有一致的端點。 透過轉送來交換資料，應用程式得以解決難以通訊的問題。 
+A Service Bus relay provides this help. To communicate bi-directionally through a relay, each application establishes an outbound TCP connection with Service Bus, then keeps it open. All communication between the two applications will travel over these connections. Because each connection was established from inside the datacenter, the firewall will allow incoming traffic to each application without opening new ports. This approach also gets around the NAT problem, because each application has a consistent endpoint in the cloud throughout the communication. By exchanging data through the relay, the applications can avoid the problems that would otherwise make communication difficult. 
 
-應用程式需要 Windows Communication Foundation (WCF)，才能使用服務匯流排轉送。 服務匯流排提供 WCF 繫結，可讓 Windows 應用程式輕鬆地透過轉送來互動。 已使用 WCF 的應用程式通常只需要指定其中一個繫結，即可透過轉送來彼此通訊。 然而，與佇列和主題不同，雖然可能從非 Windows 應用程式中使用轉送，但需要投入一些程式設計工作。沒有標準的程式庫可用。
+To use Service Bus relays, applications rely on Windows Communication Foundation (WCF). Service Bus provides WCF bindings that make it straightforward for Windows applications to interact via relays. Applications that already use WCF can typically just specify one of these bindings, then talk to each other through a relay. Unlike queues and topics, however, using relays from non-Windows applications, while possible, requires some programming effort; no standard libraries are provided.
 
-與佇列和主題不同，應用程式不會明確建立轉送。 反之，當需要接收訊息的應用程式對服務匯流排建立 TCP 連線時，將會自動建立轉送。 連線中止時，就會刪除轉送。 為了讓應用程式尋找特定接聽程式所建立的轉送，服務匯流排提供一個登錄，讓應用程式依名稱尋找特定的轉送。
+Unlike queues and topics, applications don't explicitly create relays. Instead, when an application that wishes to receive messages establishes a TCP connection with Service Bus, a relay is created automatically. When the connection is dropped, the relay is deleted. To let an application find the relay created by a specific listener, Service Bus provides a registry that enables applications to locate a specific relay by name.
 
-當您需要應用程式進行直接通訊時，轉送就是最適合的解決方案。 舉例來說，假設有一個在內部部署資料中心執行的飛機訂票系統，且必須從自助登機亭、行動裝置和其他電腦來存取此系統。 所有這些系統上執行的應用程式，不論在何處執行，都可以依賴雲端的服務匯流排轉送來通訊。
+Relays are the right solution when you need direct communication between applications. For example, consider an airline reservation system running in an on-premises datacenter that must be accessed from check-in kiosks, mobile devices, and other computers. Applications running on all of these systems could rely on Service Bus relays in the cloud to communicate, wherever they might be running.
 
-## <a name="event-hubs"></a>事件中樞
-事件中樞是可高度擴充的內嵌系統，每秒可處理數百萬事件，可讓您的應用程式處理和分析連接的裝置和應用程式所產生的大量資料。 例如，您可以使用事件中樞收集車隊的即時引擎效能資料。 收集到事件中樞後，您可以使用任何即時分析提供者或儲存體叢集轉換和儲存資料。 如需事件中樞的詳細資訊，請參閱[事件中樞概觀][Event Hubs overview]。
+## Event Hubs
+Event Hubs is a highly scalable ingestion system that can process millions of events per second, enabling your application to process and analyze the massive amounts of data produced by your connected devices and applications. For example, you could use an Event Hub to collect live engine performance data from a fleet of cars. Once collected into Event Hubs, you can transform and store data using any real-time analytics provider or storage cluster. For more information about Event Hubs, see the [Event Hubs overview][Event Hubs overview].
 
-## <a name="summary"></a>摘要
-建置完整的解決方案時一律會連接應用程式，而需要應用程式和服務彼此通訊的案例範圍會設定為隨著連到網際網路的應用程式和裝置日益增加而增加。 服務匯流排提供雲端技術，透過佇列、主題、轉送和事件中樞來解決此問題，目的就是為了輕鬆實作此基本功能，並使之更加普及。
+## Summary
+Connecting applications has always been part of building complete solutions, and the range of scenarios that require applications and services to communicate with each other is set to increase as more applications and devices are connected to the Internet. By providing cloud-based technologies for achieving this through queues, topics, relays, and Event Hubs, Service Bus aims to make this essential function easier to implement and more broadly available.
 
 [svc-bus]: ./media/hybrid-solutions/SvcBus_01_architecture.png
 [queues]: ./media/hybrid-solutions/SvcBus_02_queues.png
 [topics-subs]: ./media/hybrid-solutions/SvcBus_03_topicsandsubscriptions.png
 [relay]: ./media/hybrid-solutions/SvcBus_04_relay.png
 [Event Hubs overview]: https://msdn.microsoft.com/library/azure/dn836025.aspx
-
-
-<!--HONumber=Jan17_HO3-->
-
-

@@ -1,7 +1,12 @@
+<!-- Not used for Ls-series -->
 
-## <a name="size-table-definitions"></a>資料表大小定義
+## Size table definitions
 
-* 儲存容量會以 GiB 或是 1024^3 位元組為單位顯示。 當比較使用 GB (1000^3 位元組) 為度量單位的磁碟與使用 GiB (1024^3) 為度量單位的磁碟時，請記住以 GiB 為單位提供的容量數字可能較小。 例如，1023 GiB = 1098.4 GB
-* 磁碟輸送量是以每秒輸入/輸出作業 (IOPS) 和 MBps 進行測量，其中 MBps = 10^6 位元組/每秒。
-* 資料磁碟可以在快取模式或取消快取模式下運作。  針對快取的資料磁碟作業，主機快取模式必須設定為 **ReadOnly** 或 **ReadWrite**。  針對取消快取的資料磁碟作業，主機快取模式必須設定為 **None**。
-* 最大網路頻寬是依據各 VM 類型而配置與指派的最大彙總頻寬。 最大頻寬能指導我們選取正確的 VM 類型，以確保有適當的網路容量可用。 在低、中度、高和極高之間移動時，輸送量將隨之增加。 實際的網路效能將取決於許多因素，包括網路和應用程式負載，以及應用程式的網路設定。
+- Storage capacity is shown in units of GiB or 1024^3 bytes. When comparing disks measured in GB (1000^3 bytes) to disks measured in GiB (1024^3) remember that capacity numbers given in GiB may appear smaller. For example, 1023 GiB = 1098.4 GB
+- Disk throughput is measured in input/output operations per second (IOPS) and MBps where MBps = 10^6 bytes/sec.
+- Data disks can operate in cached or uncached modes. For cached data disk operation, the host cache mode is set to **ReadOnly** or **ReadWrite**.  For uncached data disk operation, the host cache mode is set to **None**.
+-	If you want to get the best performance for your VMs, you should limit the number of data disks to 2 disks per vCPU.
+- **Expected network bandwidth** is the maximum aggregated [bandwidth allocated per VM type](../articles/virtual-network/virtual-machine-network-throughput.md) across all NICs, for all destinations. Upper limits are not guaranteed, but are intended to provide guidance for selecting the right VM type for the intended application. Actual network performance will depend on a variety of factors including network congestion, application loads, and network settings. For information on optimizing network throughput, see [Optimizing network throughput for Windows and Linux](../articles/virtual-network/virtual-network-optimize-network-bandwidth.md). To achieve the expected network performance on Linux or Windows, it may be necessary to select a specific version or optimize your VM. For more information, see [How to reliably test for virtual machine throughput](../articles/virtual-network/virtual-network-bandwidth-testing.md).
+
+
+

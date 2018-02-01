@@ -1,16 +1,18 @@
-確定您已建立轉送命名空間，如[這裡][namespace-how-to]所示。
+Ensure that you have already [created a Relay namespace][namespace-how-to].
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在入口網站的左方瀏覽窗格中，按一下 [轉送]。
-3. 選取要在其中建立混合式連線的命名空間。 在此例中是 **mynewns**。
+1. Sign in to the [Azure portal](https://portal.azure.com).
+2. In the left menu, select **All resources**.
+3. Select the namespace where you want to create the hybrid connection. In this case, it is **mynewns**.  
+4. Under **Relay namespace**, select **Hybrid Connections**.
+
+    ![Create a hybrid connection](./media/relay-create-hybrid-connection-portal/create-hc-1.png)
+
+5. In the namespace overview window, select **+ Hybrid Connection**
    
-    ![建立 hc](./media/relay-create-hybrid-connection-portal/create-hc-1.png)
-4. 在 [轉送命名空間] 刀鋒視窗中，選取 [混合式連接]，然後按一下 [+ 混合式連接]。
+    ![Select the hybrid connection](./media/relay-create-hybrid-connection-portal/create-hc-2.png)
+6. Under **Create Hybrid Connection**, enter a value for the hybrid connection name. Leave the other default values.
    
-    ![選取 hc](./media/relay-create-hybrid-connection-portal/create-hc-2.png)
-5. 輸入**混合式連接名稱**，並且讓其他值保留其預設值。
-   
-    ![選取新增](./media/relay-create-hybrid-connection-portal/create-hc-3.png)
-6. 按一下刀鋒視窗底部的 [建立] 。
+    ![Select New](./media/relay-create-hybrid-connection-portal/create-hc-3.png)
+7. Select **Create**.
 
 [namespace-how-to]: ../articles/service-bus-relay/relay-create-namespace-portal.md 

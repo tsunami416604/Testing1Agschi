@@ -1,41 +1,36 @@
 <!--author=alkohli last changed: 02/06/17-->
 
-#### <a name="to-install-an-update-from-the-azure-portal"></a>從 Azure 入口網站安裝更新
+#### To install an update from the Azure portal
 
-1. 在 [StorSimple 服務] 頁面上，選取您的裝置。 瀏覽至 [裝置]  >  [維護]。
-2. 按一下頁面底部的 [ **掃描更新**]。 系統會建立用來掃描可用更新的作業。 當作業成功完成時，系統會通知您。
-3. 在相同頁面的 [軟體更新] 區段中，會有新的軟體更新可供使用。 我們建議您先檢閱版本資訊，然後再於裝置上套用更新。
-4. 在頁面底部，依序按一下 [安裝更新] 及 [確定]。
-5. 在 [安裝更新] 對話方塊中，確定您已經依照建議，然後選取 [我了解上述需求而且已準備好升級我的裝置]，然後按一下核取按鈕。
+1. On the StorSimple service page, select your device. Navigate to **Devices** > **Maintenance**.
+2. At the bottom of the page, click **Scan Updates**. A job is created to scan for available updates. You are notified when the job completes successfully.
+3. In the **Software Updates** section on the same page, the new software updates are available. We recommend that you review the release notes before you apply an update on your device.
+4. At the bottom of the page, click **Install Updates**, and then **OK**.
+5. In the **Install updates** dialog box, make sure that you've followed the recommendations, then select **I understand the above requirement and am ready to upgrade my device** and click the check button.
    
-    ![確認訊息](./media/storsimple-install-update2-via-portal/InstallUpdate12_2M.png)
-6. 一組必要條件檢查會隨即開始。 這些檢查包括︰
+    ![Confirmation message](./media/storsimple-install-update2-via-portal/InstallUpdate12_2M.png)
+6. A set of prerequisite checks starts. These checks include:
    
-   * **控制器健康狀況檢查** ：確認這兩個裝置控制器的狀況良好且在線上。
-   * **硬體元件健康狀況檢查** ：確認您的 StorSimple 裝置上的所有硬體元件的狀況良好。
-   * **DATA 0 檢查** ：確認您的裝置已啟用 DATA 0。 如果未啟用此介面，您必須啟用它，然後重試。
-   * **DATA 2 和 DATA 3 檢查** ：確認未啟用 DATA 2 和 DATA 3 網路介面。 如果已啟用這些介面，則必須停用它們，然後嘗試更新您的裝置。 只有在您要從執行 GA 軟體的裝置更新時，才需要執行這項檢查。 執行 0.1、0.2 或 0.3 版的裝置將不需要這項檢查。
-   * **閘道器檢查** ：在任何執行 Update 1 之前版本的裝置上進行。 這項檢查只能在執行 Update 1 之前版本軟體的所有裝置上執行，但是會在已為 DATA 0 以外的網路介面設定閘道器的裝置上無法執行。
+   * **Controller health checks** to verify that both the device controllers are healthy and online.
+   * **Hardware component health checks** to verify that all the hardware components on your StorSimple device are healthy.
+   * **DATA 0 checks** to verify that DATA 0 is enabled on your device. If this interface is not enabled, you must enable it and then retry.
+   * **DATA 2 and DATA 3 checks** to verify that DATA 2 and DATA 3 network interfaces are not enabled. If these interfaces are enabled, then you must disable these and then try to update your device. This check is performed only if you are updating from a device running GA software. Devices running versions 0.1, 0.2, or 0.3 will not need this check.
+   * **Gateway check** on any device running a version prior to Update 1. This check is performed on all the device running pre-update 1 software but fails on the devices that have a gateway configured for a network interface other than DATA 0.
      
-     如果所有檢查都成功完成，則會套用更新。 當檢查進行時，您會收到通知。
+     The update is applied if all checks are successfully completed. You are notified when the checks are in progress.
      
-     ![前置檢查通知](./media/storsimple-install-update2-via-portal/InstallUpdate12_3M.png)
+     ![Pre-check notification](./media/storsimple-install-update2-via-portal/InstallUpdate12_3M.png)
      
-     以下是檢查失敗的範例。 您必須確認這兩個裝置控制器狀況良好且在線上。 您也必須檢查硬體元件的健全狀態。 在此範例中，需要注意控制器 0 及控制器 1 元件。 如果您不能自行解決這些問題，您可能需要連絡 Microsoft 支援服務。
+     The following is an example in which the checks failed. You must verify that both the device controllers are healthy and online. You also need to check the health of the hardware components. In this example, Controller 0 and Controller 1 components need attention. You may need to contact Microsoft Support if you cannot address these issues by yourself.
      
-       ![檢查失敗](./media/storsimple-install-update2-via-portal/HCS_PreUpgradeChecksFailed-include.png)
-7. 檢查成功完成後，將會建立更新作業。 成功建立更新作業時，系統將會通知您。
+       ![Checks failed](./media/storsimple-install-update2-via-portal/HCS_PreUpgradeChecksFailed-include.png)
+7. After the checks are successfully completed, an update job is created. You are notified when the update job is successfully created.
    
-    ![建立更新工作](./media/storsimple-install-update2-via-portal/InstallUpdate12_44M.png)
+    ![Update job creation](./media/storsimple-install-update2-via-portal/InstallUpdate12_44M.png)
    
-    接著，更新會套用到您的裝置上。
+    The update is then applied on your device.
     
-8. 若要監視更新工作的進度，請按一下 [ **檢視工作**]。 在 [工作]  頁面中，您可以看到更新進度。
-9. 更新需要幾個小時才能完成。 隨時可選取更新工作並按一下 [詳細資料]  來檢視工作的詳細資料。
-10. 作業完成後，瀏覽至 [維護] 頁面，並向下捲動至 [軟體更新]。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
+8. To monitor the progress of the update job, click **View Job**. On the **Jobs** page, you can see the update progress.
+9. The update takes a few hours to complete. Select the update job and click **Details** to view the details of the job at any time.
+10. After the job is complete, navigate to the **Maintenance** page and scroll down to **Software Updates**.
 

@@ -1,12 +1,12 @@
-以下是 Azure Active Directory 服務的使用條件約束和其他服務限制。
+Here are the usage constraints and other service limits for the Azure Active Directory service.
 
-| 類別 | 限制 |
+| Category | Limits |
 | --- | --- |
-| 目錄 |單一使用者最多只能與 20 個 Azure Active Directory 目錄相關聯。<br />可能組合的範例︰ <ul> <li>單一使用者建立 20 個目錄。</li><li>單一使用者新增 20 個目錄作為成員。</li><li>單一使用者建立 10 個目錄，之後由其他使用者加入到 10 個不同的目錄。</li></ul> |
-| 物件 |<ul><li>在免費版的 Azure Active Directory 中，最多可以在單一目錄中使用 500,000 個物件。</li><li>非系統管理員的使用者最多可以建立 250 個物件。</li></ul> |
-| 結構描述延伸模組 |<ul><li>字串類型延伸模組最多可有 256 個字元。 </li><li>二進位類型延伸模組受限於 256 個位元組。</li><li>任何單一物件均可寫入 100 個延伸模組值 (所有類型和所有應用程式皆可)。</li><li>只能使用「字串」類型或「二進位」類型單一值屬性來擴充 “User”、“Group”、“TenantDetail”、“Device”、“Application” 和 “ServicePrincipal” 實體。</li><li>結構描述延伸模組僅適用於圖形 API 版本 1.21 預覽。 應用程式必須取得寫入權限才能登錄延伸模組。</li></ul> |
-| 應用程式 |最多 100 個使用者可以成為單一應用程式的擁有者。 |
-| 群組 |<ul><li>最多 100 個使用者可以成為單一群組的擁有者。</li><li>任何數目的物件都可以是 Azure Active Directory 中的單一群組的成員。</li><li>可以使用 Azure Active Directory 目錄同步處理 (DirSync) 從您的內部部署 Active Directory 同步至 Azure Active Directory 群組中的成員數目限制為 15K 個成員。</li><li>可以使用 Azure AD Connect 從您的內部部署 Active Directory 同步至 Azure Active Directory 群組中的成員數目限制為 50K 個成員。</li></ul> |
-| 存取面板 |<ul><li>對於 Azure AD Premium 或 Enterprise Mobility Suite 使用者已指派授權，每位使用者在存取面板中可以看到的應用程式數目沒有限制。</li><li>對於 Azure Active Directory 免費版或 Azure AD Basic 版的使用者已指派授權，每位使用者在存取面板中最多可以看到 10 個應用程式磚 (例如：Box、Salesforce 或 Dropbox)。 此限制不適用於系統管理員帳戶。</li></ul> |
-| 報告 | 在任何報告中，最多可以檢視或下載 1000 個資料列。 任何其他資料會遭到截斷。 |
-| 管理單位 | 物件可以是有不超過 30 個管理單位的成員。 |
+| Directories |A single user can only be associated with a maximum of 20 Azure Active Directory directories.<br />Examples of possible combinations: <ul> <li>A single user creates 20 directories.</li><li>A single user is added to 20 directories as a member.</li><li>A single user creates 10 directories and later is added by others to 10 different directories.</li></ul> |
+| Objects |<ul><li>A maximum of 500,000 objects can be created in a single directory by users of the Free edition of Azure Active Directory.</li><li>A non-admin user can create no more than 250 objects.</li></ul> |
+| Schema extensions |<ul><li>String type extensions can have maximum of 256 characters. </li><li>Binary type extensions are limited to 256 bytes.</li><li>100 extension values (across ALL types and ALL applications) can be written to any single object.</li><li>Only “User”, “Group”, “TenantDetail”, “Device”, “Application” and “ServicePrincipal” entities can be extended with “String” type or “Binary” type single-valued attributes.</li><li>Schema extensions are available only in Graph API-version 1.21-preview. The application must be granted write access to register an extension.</li></ul> |
+| Applications |A maximum of 100 users can be owners of a single application. |
+| Groups |<ul><li>A maximum of 100 users can be owners of a single group.</li><li>Any number of objects can be members of a single group in Azure Active Directory.</li><li>The number of members in a group you can synchronize from your on-premises Active Directory to Azure Active Directory is limited to 15K members, using Azure Active Directory Directory Synchronization (DirSync).</li><li>The number of members in a group you can synchronize from your on-premises Active Directory to Azure Active Directory using Azure AD Connect is limited to 50K members.</li></ul> |
+| Access Panel |<ul><li>There is no limit to the number of applications that can be seen in the Access Panel per end user, for users assigned licenses for Azure AD Premium or the Enterprise Mobility Suite.</li><li>A maximum of 10 app tiles (examples: Box, Salesforce, or Dropbox) can be seen in the Access Panel for each end user for users assigned licenses for Free or Azure AD Basic editions of Azure Active Directory. This limit does not apply to Administrator accounts.</li></ul> |
+| Reports | A maximum of 1,000 rows can be viewed or downloaded in any report. Any additional data is truncated. |
+| Administrative units | An object can be a member of no more than 30 administrative units. |

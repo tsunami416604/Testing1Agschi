@@ -1,11 +1,16 @@
+Key transactions (Max transactions allowed in 10 seconds, per vault per region<sup>1</sup>):
 
-| 交易類型 | 每個區域中的每個保存庫在 10 秒內允許的最大交易數<sup>1</sup> |
+|Key type|HSM-Key<br>CREATE Key|HSM-key<br>All other transactions|Software-key<br>CREATE Key|Software-key<br>All other transactions|
+|:---|---:|---:|---:|---:|
+|RSA 2048-bit|5|1000|10|2000|
+|RSA 3072-bit|5|250|10|500|
+|RSA 4096-bit|5|125|10|250|
+|
+
+Secrets, Managed Storage Account Keys, and vault transactions:
+| Transactions Type | Max transactions allowed in 10 seconds, per vault per region<sup>1</sup> |
 | --- | --- |
-| HSM - 建立金鑰 |5 |
-| HSM - 其他交易 |1000 |
-| 螢幕按鍵建立金鑰 |10 |
-| 螢幕按鍵其他交易 |1500 |
-| 所有密碼、保存庫相關交易 |2000 |
+| All transactions |2000 |
+|
 
-<sup>1</sup> 所有交易類型都有全訂用帳戶限制，也就是每個金鑰保存庫 5x 的限制。 例如，每個訂用帳戶的 HSM - 其他交易受限於每個訂閱 10 秒內 5000 筆交易。
-
+<sup>1</sup> There is a subscription-wide limit for all transaction types, that is 5x per key vault limit. For example, HSM- other transactions per subscription are limited to 5000 transactions in 10 seconds per subscription.

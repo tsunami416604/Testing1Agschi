@@ -1,10 +1,10 @@
-1. 在您的設定伺服器上，啟動 CSPSConfigtool.exe。 它會是桌面上可用的捷徑，位於「安裝位置」\home\svsystems\bin 資料夾中。
-2. 按一下 [管理帳戶]  >  [加入帳戶]。
+1. On your configuration server, launch CSPSConfigtool.exe. It is available as a shortcut on the desktop and located in the *install location*\home\svsystems\bin folder.
+2. Click **Manage Accounts** > **Add Account**.
 
-    ![新增帳戶](./media/site-recovery-add-vcenter-account/credentials1.png)
-3. 在 [帳戶詳細資料] 中，新增將用來進行自動探索的帳戶。
+    ![Add account](./media/site-recovery-add-vcenter-account/credentials1.png)
+3. In **Account Details**, add the account that will be used for automatic discovery.
 
-    ![詳細資料](./media/site-recovery-add-vcenter-account/credentials2.png)
+    ![Details](./media/site-recovery-add-vcenter-account/credentials2.png)
 
-    > [!Note]
-  > 可能需要 15 分鐘以上，帳戶名稱才會出現在入口網站。 若要立即更新，請按一下 [設定伺服器] > 伺服器名稱 > [重新整理伺服器]。
+	> [!Note]
+  > It can take 15 minutes or more for the account name to appear in the portal. To update immediately, click **Configuration Servers** > ***server name*** > **Refresh Server**.

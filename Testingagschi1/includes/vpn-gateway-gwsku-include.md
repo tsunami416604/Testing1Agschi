@@ -1,17 +1,39 @@
-建立虛擬網路閘道時，您必須指定想要使用的閘道 SKU。 當您選取較高的閘道 SKU 時，會配置更多的 CPU 和網路頻寬給閘道，如此一來，閘道即可支援對虛擬網路的更高網路輸送量。
+When you create a virtual network gateway, you need to specify the gateway SKU that you want to use. Select the SKUs that satisfy your requirements based on the types of workloads, throughputs, features, and SLAs.
 
-VPN 閘道可以使用下列 SKU：
+[!INCLUDE [classic SKU](./vpn-gateway-classic-sku-support-include.md)]
 
-* 基本
-* 標準
-* 高效能
+[!INCLUDE [Aggregated throughput by SKU](./vpn-gateway-table-gwtype-aggtput-include.md)]
 
-VPN 閘道不會使用 UltraPerformance 閘道 SKU。 如需 UltraPerformance SKU 的相關資訊，請參閱 [ExpressRoute](../articles/expressroute/expressroute-about-virtual-network-gateways.md) 文件。
+###  <a name="workloads"></a>Production *vs.* Dev-Test Workloads
 
-選取 SKU 時，請考慮下列：
+Due to the differences in SLAs and feature sets, we recommend the following SKUs for production *vs.* dev-test:
 
-* 如果您想要使用原則式 VPN 類型，您必須使用基本 SKU。 其他所有 SKU 均不支援原則式 VPN (先前稱為靜態路由)。
-* 基本 SKU 不支援 BGP。
-* 基本 SKU 不支援 ExpressRoute-VPN 閘道共存組態。
-* 僅可以在高效能 SKU 上設定主動-主動 S2S VPN 閘道連線。
+| **Workload**                       | **SKUs**               |
+| ---                                | ---                    |
+| **Production, critical workloads** | VpnGw1, VpnGw2, VpnGw3 |
+| **Dev-test or proof of concept**   | Basic                  |
+|                                    |                        |
 
+If you are using the old SKUs, the production SKU recommendations are Standard and HighPerformance SKUs. For information on the old SKUs, see [Gateway SKUs (legacy SKUs)](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md).
+
+###  <a name="feature"></a>Gateway SKU feature sets
+
+The new gateway SKUs streamline the feature sets offered on the gateways:
+
+| **SKU**| **Features**|
+| ---    | ---         |
+|**Basic**   | **Route-based VPN**: 10 tunnels with P2S; no RADIUS authentication for P2S; no IKEv2 for P2S<br>**Policy-based VPN**: (IKEv1): 1 tunnel; no P2S|
+| **VpnGw1, VpnGw2, and VpnGw3** | **Route-based VPN**: up to 30 tunnels (*), P2S, BGP, active-active, custom IPsec/IKE policy, ExpressRoute/VPN co-existence |
+|        |             |
+
+(*) You can configure "PolicyBasedTrafficSelectors" to connect a route-based VPN gateway (VpnGw1, VpnGw2, VpnGw3) to multiple on-premises policy-based firewall devices. Refer to [Connect VPN gateways to multiple on-premises policy-based VPN devices using PowerShell](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md) for details.
+
+###  <a name="resize"></a>Resizing gateway SKUs
+
+1. You can resize between VpnGw1, VpnGw2, and VpnGw3 SKUs.
+2. When working with the old gateway SKUs, you can resize between Basic, Standard, and HighPerformance SKUs.
+2. You **cannot** resize from Basic/Standard/HighPerformance SKUs to the new VpnGw1/VpnGw2/VpnGw3 SKUs. You must, instead, [migrate](#migrate) to the new SKUs.
+
+###  <a name="migrate"></a>Migrating from old SKUs to the new SKUs
+
+[!INCLUDE [Migrate SKU](./vpn-gateway-migrate-legacy-sku-include.md)]

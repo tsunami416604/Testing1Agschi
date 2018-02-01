@@ -1,12 +1,11 @@
 ---
-| 限制識別碼 | 限制 | 註解 |
+| Limit identifier | Limit | Comments |
 | --- | --- | --- |
-| 每個區域的每個訂用帳戶串流單位數目上限 |50 |如需要求將訂用帳戶的串流單位數目增加至 50 個以上，請連絡 [Microsoft 支援](https://support.microsoft.com/en-us)。 |
-| 串流單位的最大輸送量 |1 MB/秒* |每個 SU 的最大輸送量取決於視案例。 實際的輸送量可能較低，而且取決於查詢複雜性和資料分割。 可在 [調整 Azure 串流分析工作以增加輸送量](../articles/stream-analytics/stream-analytics-scale-jobs.md) 文章中找到進一步的詳細資料。 |
-| 每個工作的輸入數目上限 |60 |每個串流分析工作固定限制 60 個輸入。 |
-| 每個工作的輸出數目上限 |60 |每個串流分析工作固定限制 60 個輸出。 |
-| 每個工作的函式數目上限 |60 |每個串流分析工作固定限制 60 個函式。 |
-| 每個作業的串流單位數量上限 |120 |每個串流分析作業固定限制 120 個串流單位。 |
-| 每個地區的工作數目上限 |1500 |每個訂用帳戶在每個地理區域最多可以有 1500 個工作。 |
-| 參考資料 Blob MB | 100 | 每個參考資料 blob 不得大於 100 MB。 |
+| Maximum number of Streaming Units per subscription per region |200 |A request to increase streaming units for your subscription beyond 200 can be made by contacting [Microsoft Support](https://support.microsoft.com/en-us). |
+| Maximum number of inputs per job |60 |There is a hard limit of 60 inputs per Stream Analytics job. |
+| Maximum number of outputs per job |60 |There is a hard limit of 60 outputs per Stream Analytics job. |
+| Maximum number of functions per job |60 |There is a hard limit of 60 functions per Stream Analytics job. |
+| Maximum number of Streaming Units per job |120 |There is a hard limit of 120 Streaming Units per Stream Analytics job. |
+| Maximum number of jobs per region |1500 |Each subscription may have up to 1500 jobs per geographical region. |
+| Reference data blob MB | 100 | Reference data blobs cannot be larger than 100 MB each. |
 

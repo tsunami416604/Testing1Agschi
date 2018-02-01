@@ -1,27 +1,26 @@
-## <a name="create-a-device-identity"></a>建立裝置識別
-在本節中，您可以使用名為 [IoT Hub Explorer][iot-hub-explorer] 的 Node.js 工具，針對本教學課程建立裝置身分識別。
+## Create a device identity
 
-1. 在命令列環境中執行下列命令：
-   
-    ```
-    npm install -g iothub-explorer@latest
-    ```
-2. 接著，執行下列命令來登入您的中樞。 將 `{iot hub connection string}` 替換成您先前複製的 IoT 中樞連接字串：
+In this section, you use a Node.js tool called [iothub-explorer][iot-hub-explorer] to create a device identity for this tutorial. Device IDs are case sensitive.
 
-    ```
-    iothub-explorer login "{iot hub connection string}"
-    ```
-3. 最後，使用以下命令建立名為 `myDeviceId` 的新裝置身分識別：
-   
-    ```
-    iothub-explorer create myDeviceId --connection-string
-    ```
+1. Run the following in your command-line environment:
 
-記下結果中的裝置連接字串。 裝置應用程式會使用此裝置連接字串，以裝置的形式連接到您的 IoT 中樞。
+    `npm install -g iothub-explorer@latest`
+
+1. Then, run the following command to login to your hub. Substitute `{iot hub connection string}` with the IoT Hub connection string you previously copied:
+
+    `iothub-explorer login "{iot hub connection string}"`
+
+1. Finally, create a new device identity called `myDeviceId` with the command:
+
+    `iothub-explorer create myDeviceId --connection-string`
+
+   [!INCLUDE [iot-hub-pii-note-naming-device](iot-hub-pii-note-naming-device.md)]
+
+Make a note of the device connection string from the result. This device connection string is used by the device app to connect to your IoT Hub as a device.
 
 ![][img-identity]
 
-請參閱[開始使用 IoT 中樞][lnk-getstarted]，以程式設計方式建立裝置身分識別。
+Refer to [Getting started with IoT Hub][lnk-getstarted] to programmatically create device identities.
 
 <!-- images and links -->
 [img-identity]: media/iot-hub-get-started-create-device-identity/devidentity.png

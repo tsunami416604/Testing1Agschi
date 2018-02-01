@@ -1,41 +1,76 @@
-NC 和 NV 大小也稱為已啟用 GPU 功能的執行個體。 這些是包含 NVIDIA GPU 卡並已針對不同情況和使用案例進行最佳化的特製化虛擬機器。 NV 大小會針對遠端視覺效果、串流、遊戲、編碼及利用 OpenGL 和 DirectX 這類架構的 VDI 案例進行最佳化和設計。 NC 大小則是對運算密集型和網路密集型應用程式和演算法 (包括以 CUDA 和 OpenCL 為基礎的應用程式及模擬) 有更深入的最佳化。 
+
+GPU optimized VM sizes are specialized virtual machines available with single or multiple NVIDIA GPUs. These sizes are designed for compute-intensive, graphics-intensive, and visualization workloads. This article provides information about the number and type of GPUs, vCPUs, data disks, and NICs as well as storage throughput and network bandwidth for each size in this grouping. 
+
+* **NC, NCv2, and ND** sizes are optimized for compute-intensive and network-intensive applications and algorithms, including CUDA- and OpenCL-based applications and simulations, AI, and Deep Learning. 
+* **NV** sizes are optimized and designed for remote visualization, streaming, gaming, encoding, and VDI scenarios utilizing frameworks such as OpenGL and DirectX.  
 
 
-NV 執行個體是由 NVIDIA 的 Tesla M60 GPU 卡和 NVIDIA GRID 提供技術支援，適用於桌面加速應用程式和虛擬桌面，可供客戶從中將其資料或模擬視覺化。 使用者將能夠在 NV 執行個體上，將其圖形密集型工作流程視覺化以獲得較佳的圖形功能，此外還能夠執行單精確度工作負載，例如編碼和轉譯。 Tesla M60 以雙 GPU 設計提供 4096 個 CUDA 核心，最多可達 36 個 1080p H.264 的串流。 
+## NC instances
 
-NC 執行個體是由 NVIDIA 的 Tesla K80 卡提供技術支援。 使用者現在可以藉由將 CUDA 用於能源探勘應用程式、當機模擬、光線追蹤轉譯、深入學習等等，更快速地處理資料。 Tesla K80 以雙 GPU 設計提供 4992 個 CUDA 核心，最多可達 2.91 個兆級浮點運算 (Teraflop) 的雙精確度效能及最多 8.93 個兆級浮點運算的單精確度效能。
+The NC instances are powered by the [NVIDIA Tesla K80](http://images.nvidia.com/content/pdf/kepler/Tesla-K80-BoardSpec-07317-001-v05.pdf) card. Users can crunch through data faster by leveraging CUDA for energy exploration applications, crash simulations, ray traced rendering, deep learning and more. The NC24r configuration provides a low latency, high-throughput network interface optimized for tightly coupled parallel computing workloads.
 
-## <a name="nv-instances"></a>NV 執行個體
 
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | GPU |
-| --- | --- | --- | --- | --- |
-| Standard_NV6 |6 |56 |380 | 1 |
-| Standard_NV12 |12 |112 |680 | 2 |
-| Standard_NV24 |24 |224 |1440 | 4 |
+| Size | vCPU | Memory: GiB | Temp storage (SSD) GiB | GPU | Maximum data disks |
+| --- | --- | --- | --- | --- | --- |
+| Standard_NC6 |6 |56 | 380 | 1 | 24 |
+| Standard_NC12 |12 |112 | 680 | 2 | 48 |
+| Standard_NC24 |24 |224 | 1440 | 4 | 64 |
+| Standard_NC24r* |24 |224 | 1440 | 4 | 64 |
 
-1 GPU = 1/2 M60 卡。
+1 GPU = one-half K80 card.
 
-**受支援的作業系統**
+*RDMA capable
 
-* Windows Server 2016、Windows Server 2012 R2 - 請參閱[適用於 Windows 的 N 系列驅動程式設定](../articles/virtual-machines/windows/n-series-driver-setup.md)
+## NCv2 instances
 
-## <a name="nc-instances"></a>NC 執行個體
+NCv2 instances are the next generation of the NC-series machines, powered by [NVIDIA Tesla P100](http://images.nvidia.com/content/tesla/pdf/nvidia-tesla-p100-datasheet.pdf) GPUs. These GPUs can provide more than 2x the computational performance of the current NC-series. Customers can take advantage of these updated GPUs for traditional HPC workloads such as reservoir modeling, DNA sequencing, protein analysis, Monte Carlo simulations, and others. Like the NC-series, the NCv2-series offers a configuration with a low latency, high-throughput network interface optimized for tightly coupled parallel computing workloads.
 
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | GPU |
-| --- | --- | --- | --- | --- |
-| Standard_NC6 |6 |56 | 380 | 1 |
-| Standard_NC12 |12 |112 | 680 | 2 |
-| Standard_NC24 |24 |224 | 1440 | 4 |
-| Standard_NC24r* |24 |224 | 1440 | 4 |
+> [!IMPORTANT]
+> For this size family, the vCPU (core) quota in your subscription is initially set to 0 in each region. [Request a vCPU quota increase](../articles/azure-supportability/resource-manager-core-quotas-request.md) for this family in an [available region](https://azure.microsoft.com/regions/services/).
+>
 
-1 GPU = 1/2 K80 卡。
+| Size | vCPU | Memory: GiB | Temp storage (SSD) GiB | GPU | Maximum data disks |
+| --- | --- | --- | --- | --- | --- |
+| Standard_NC6s_v2 |6 |112 | 336 | 1 | 12 |
+| Standard_NC12s_v2 |12 |224 | 672 | 2 | 24 |
+| Standard_NC24s_v2 |24 |448 | 1344 | 4 | 32 |
+| Standard_NC24rs_v2* |24 |1448 | 1344 | 4 | 32 |
 
-*支援 RDMA
+1 GPU = one P100 card.
 
-**受支援的作業系統**
+*RDMA capable
 
-* Windows Server 2016、Windows Server 2012 R2 - 請參閱[適用於 Windows 的 N 系列驅動程式設定](../articles/virtual-machines/windows/n-series-driver-setup.md)
-* Ubuntu 16.04 LTS - 請參閱[適用於 Linux 的 N 系列驅動程式設定](../articles/virtual-machines/linux/n-series-driver-setup.md)
+## ND instances
 
-<br>
+The ND-series virtual machines are a new addition to the GPU family designed for AI and Deep Learning workloads. They offer excellent performance for training and inference. ND instances are powered by [NVIDIA Tesla P40](http://images.nvidia.com/content/pdf/tesla/184427-Tesla-P40-Datasheet-NV-Final-Letter-Web.pdf) GPUs. These instances provide excellent performance for single-precision floating point operations, for AI workloads utilizing Microsoft Cognitive Toolkit, TensorFlow, Caffe, and other frameworks. The ND-series also offers a much larger GPU memory size (24 GB), enabling to fit much larger neural net models. Like the NC-series, the ND-series offers a configuration with a secondary low-latency, high-throughput network through RDMA, and InfiniBand connectivity so you can run large-scale training jobs spanning many GPUs.
+
+> [!IMPORTANT]
+> For this size family, the vCPU (core) quota per region in your subscription is initially set to 0. [Request a vCPU quota increase](../articles/azure-supportability/resource-manager-core-quotas-request.md) for this family in an [available region](https://azure.microsoft.com/regions/services/).
+>
+
+| Size | vCPU | Memory: GiB | Temp storage (SSD) GiB | GPU | Maximum data disks |
+| --- | --- | --- | --- | --- | --- |
+| Standard_ND6s |6 |112 | 336 | 1 | 12 |
+| Standard_ND12s |12 |224 | 672 | 2 | 24 |
+| Standard_ND24s |24 |448 | 1344 | 4 | 32 |
+| Standard_ND24rs* |24 |1448 | 1344 | 4 | 32 |
+
+1 GPU = one P40 card.
+
+*RDMA capable
+
+## NV instances
+
+
+
+The NV instances are powered by [NVIDIA Tesla M60 ](http://images.nvidia.com/content/tesla/pdf/188417-Tesla-M60-DS-A4-fnl-Web.pdf) GPUs and NVIDIA GRID technology for desktop accelerated applications and virtual desktops where customers are able to visualize their data or simulations. Users are able to visualize their graphics intensive workflows on the NV instances to get superior graphics capability and additionally run single precision workloads such as encoding and rendering. 
+
+| Size | vCPU | Memory: GiB | Temp storage (SSD) GiB | GPU | Maximum data disks |
+| --- | --- | --- | --- | --- | --- |
+| Standard_NV6 |6 |56 |380 | 1 | 24 |
+| Standard_NV12 |12 |112 |680 | 2 | 48 |
+| Standard_NV24 |24 |224 |1440 | 4 | 64 |
+
+1 GPU = one-half M60 card.
+
 

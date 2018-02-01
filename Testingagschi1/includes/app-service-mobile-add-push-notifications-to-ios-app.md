@@ -1,16 +1,16 @@
 
-**Objective-C**：
+**Objective-C**:
 
-1. 在 **QSAppDelegate.m** 中，匯入 iOS SDK 和 **QSTodoService.h**：
+1. In **QSAppDelegate.m**, import the iOS SDK and **QSTodoService.h**:
    
         #import <MicrosoftAzureMobile/MicrosoftAzureMobile.h>
         #import "QSTodoService.h"
-2. 在 **QSAppDelegate.m** 的 `didFinishLaunchingWithOptions` 中，於 `return YES;` 之前插入下列幾行：
+2. In `didFinishLaunchingWithOptions` in **QSAppDelegate.m**, insert the following lines right before `return YES;`:
    
         UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
-3. 在 **QSAppDelegate.m**中，新增下列處理常式方法。 您的應用程式現在已更新為支援推播通知。 
+3. In **QSAppDelegate.m**, add the following handler methods. Your app is now updated to support push notifications. 
    
         // Registration with APNs is successful
         - (void)application:(UIApplication *)application
@@ -77,17 +77,17 @@
    
         }
 
-**Swift**：
+**Swift**:
 
-1. 新增含有以下內容的檔案 **ClientManager.swift** 。 使用 Azure 行動應用程式後端的 URL 取代 *%AppUrl%*。
+1. Add file **ClientManager.swift** with the following contents. Replace *%AppUrl%* with the URL of the Azure Mobile App backend.
    
         class ClientManager {
             static let sharedClient = MSClient(applicationURLString: "%AppUrl%")
         }
-2. 在 **ToDoTableViewController.swift** 中，將初始化 `MSClient` 的 `let client` 行取代為這一行：
+2. In **ToDoTableViewController.swift**, replace the `let client` line that initializes an `MSClient` with this line:
    
         let client = ClientManager.sharedClient
-3. 在 **AppDelegate.swift**，將 `func application` 的主體取代為：
+3. In **AppDelegate.swift**, replace the body of `func application` as follows:
    
         func application(application: UIApplication,
           didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -97,7 +97,7 @@
            application.registerForRemoteNotifications()
            return true
         }
-4. 在 **AppDelegate.swift**中，新增下列處理常式方法。 您的應用程式現在已更新為支援推播通知。
+4. In **AppDelegate.swift**, add the following handler methods. Your app is now updated to support push notifications.
    
         func application(application: UIApplication,
            didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {

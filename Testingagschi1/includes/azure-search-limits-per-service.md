@@ -1,18 +1,18 @@
-儲存體受限於磁碟空間，或者索引或文件的「數目上限」  ，取決於何者較早出現。
+Storage is constrained by disk space or by a hard limit on the *maximum number* of indexes or documents, whichever comes first.
 
-| 資源 | 免費 | 基本 | S1 | S2 | S3 | S3 HD |
+| Resource | Free | Basic | S1 | S2 | S3 | S3 HD |
 | --- | --- | --- | --- | --- | --- | --- |
-| 服務等級協定 (SLA) |否 <sup>1</sup> |是 |是 |是 |是 |是 |
-| 每個資料分割的儲存體 |50 MB |2 GB |25 GB |100 GB |200 GB |200 GB |
-| 每個服務的分割區 |N/A |1 |12 |12 |12 |3 <sup>2</sup> |
-| 分割區大小 |N/A |2 GB |25 GB |100 GB |200 GB |200 GB |
-| 複本數 |N/A |3 |12 |12 |12 |12 |
-| 索引上限 |3 |5 |50 |200 |200 |每個分割區 1000 個或每個服務 3000 個 |
-| 索引子上限 |3 |5 |50 |200 |200 |不支援索引子 |
-| 資料來源上限 |3 |5 |50 |200 |200 |不支援索引子 |
-| 文件數目上限 |10,000 |100 萬 |每個分割區 1500 萬個或每個服務 1 億 8 千萬個 |每個分割區 6000 萬個或每個服務 7 億 2 千萬個 |每個分割區 1 億 2 千萬個或每個服務 14 億個 |每個索引 1 百萬個或每個分割區 2 億個 |
-| 預估每秒查詢次數 (QPS) |N/A |~3/每個複本 |~15/每個複本 |~60/每個複本 |~60/每個複本 |>60/每個複本 |
+| Service Level Agreement (SLA) |No <sup>1</sup> |Yes |Yes |Yes |Yes |Yes |
+| Storage per partition |50 MB |2 GB |25 GB |100 GB |200 GB |200 GB |
+| Partitions per service |N/A |1 |12 |12 |12 |3 <sup>2</sup> |
+| Partition size |N/A |2 GB |25 GB |100 GB |200 GB |200 GB |
+| Replicas |N/A |3 |12 |12 |12 |12 |
+| Maximum indexes |3 |5 |50 |200 |200 |1000 per partition or 3000 per service | 
+| Maximum indexers |3 |5 |50 |200 |200 |No indexer support | 
+| Maximum datasources |3 |5 |50 |200 |200 |No indexer support | 
+| Maximum documents |10,000 |1 million |15 million per partition or 180 million per service |60 million per partition or 720 million per service |120 million per partition or 1.4 billion per service |1 million per index or 200 million per partition | 
 
-<sup>1</sup> 免費和預覽 SKU 並未隨附服務等級協定 (SLA)。 在 SKU 正式推出之後，才會強制執行 SLA。
+<sup>1</sup> Free tier and preview features do not come with service level agreements (SLAs). For all billable tiers, SLAs take effect when you provision sufficient redundancy for your service. Two or more replicas are required for query (read) SLA. Three or more replicas are required for query and indexing (read-write) SLA. The number of partitions is not an SLA consideration. 
 
-<sup>2</sup> S3 HD 上有 3 個分割區的硬式限制，低於 S3 的分割區限制。 較低的分割區限制是因為 S3 HD 的索引計數較高。 假設計算資源 (儲存體和處理) 和內容 (索引和文件) 的服務限制都存在，會先達到內容限制。
+<sup>2</sup> S3 HD has a hard limit of 3 partitions, which is lower than the partition limit for S3. The lower partition limit is imposed because the index count for S3 HD is substantially higher. Given that service limits exist for both computing resources (storage and processing) and content (indexes and documents), the content limit is reached first.
+

@@ -1,106 +1,92 @@
-可用性群組接聽程式是一個 IP 位址及網路名稱，可供 SQL Server 可用性群組接聽。 要建立可用性群組接聽程式，請執行下列步驟：
+The availability group listener is an IP address and network name that the SQL Server availability group listens on. To create the availability group listener, do the following:
 
-1. [取得叢集網路資源名稱](#getnet)。
+1. <a name="getnet"></a>Get the name of the cluster network resource.
 
-1. [新增用戶端存取點](#addcap)。
+    a. Use RDP to connect to the Azure virtual machine that hosts the primary replica. 
 
-1. [為可用性群組設定 IP 資源](#congroup)。
+    b. Open Failover Cluster Manager.
 
-1. [讓 SQL Server 可用性群組資源依存於用戶端存取點](#dependencyGroup)
+    c. Select the **Networks** node, and note the cluster network name. Use this name in the `$ClusterNetworkName` variable in the PowerShell script. In the following image the cluster network name is **Cluster Network 1**:
 
-1. [讓用戶端存取點資源依存於 IP 位址](#listname)。
+   ![Cluster Network Name](./media/virtual-machines-ag-listener-configure/90-clusternetworkname.png)
 
-1. [在 PowerShell 中設定叢集參數](#setparam)。
+2. <a name="addcap"></a>Add the client access point.  
+    The client access point is the network name that applications use to connect to the databases in an availability group. Create the client access point in Failover Cluster Manager.
 
-下列各節提供每個步驟的詳細指示。 
+    a. Expand the cluster name, and then click **Roles**.
 
-#### <a name="getnet"></a>取得叢集網路資源名稱
+    b. In the **Roles** pane, right-click the availability group name, and then select **Add Resource** > **Client Access Point**.
 
-1. 使用 RDP 連接到裝載主要複本的 Azure 虛擬機器。 
+   ![Client Access Point](./media/virtual-machines-ag-listener-configure/92-addclientaccesspoint.png)
 
-1. 開始容錯移轉叢集管理員。
-
-1. 選取 [網路]  節點，然後記下叢集網路名稱。 請在 PowerShell 指令碼的 `$ClusterNetworkName` 變數中使用這個名稱。
-
-   下圖中的叢集網路名稱為**叢集網路 1**：
-
-   ![叢集網路名稱](./media/virtual-machines-ag-listener-configure/90-clusternetworkname.png)
-
-#### <a name="addcap"></a>新增用戶端存取點
-
-用戶端存取點是一個網路名稱，應用程式可用來連線到可用性群組中的資料庫。 在容錯移轉叢集管理員中建立用戶端存取點。 
-
-1. 展開叢集名稱，然後按一下 [角色] 。
-
-1. 在 [角色] 窗格中以滑鼠右鍵按一下可用性群組名稱，然後選取 [加入資源] > [用戶端存取點]。
-
-   ![用戶端存取點](./media/virtual-machines-ag-listener-configure/92-addclientaccesspoint.png)
-
-1. 在 [名稱] 方塊中，建立新接聽程式的名稱。 
-
-   新接聽程式的名稱是應用程式將用來連線到 SQL Server 可用性群組中資料庫的網路名稱。
+    c. In the **Name** box, create a name for this new listener. 
+   The name for the new listener is the network name that applications use to connect to databases in the SQL Server availability group.
    
-   要完成建立接聽程式，按一下 [下一步] 兩次，再按一下 [結束]。 目前請勿讓接聽程式或資源上線工作。
-   
-#### <a name="congroup"></a>為可用性群組設定 IP 資源
+    d. To finish creating the listener, click **Next** twice, and then click **Finish**. Do not bring the listener or resource online at this point.
 
-1. 按一下 [資源] 索引標籤，然後展開您建立的用戶端存取點。 用戶端存取點離線。
+3. <a name="congroup"></a>Configure the IP resource for the availability group.
 
-   ![用戶端存取點](./media/virtual-machines-ag-listener-configure/94-newclientaccesspoint.png) 
+    a. Click the **Resources** tab, and then expand the client access point you created.  
+    The client access point is offline.
 
-1. 以滑鼠右鍵按一下 IP 資源，然後按一下 [屬性]。 請記下 IP 位址的名稱。 請在 PowerShell 指令碼的 `$IPResourceName` 變數中使用這個名稱。
+   ![Client Access Point](./media/virtual-machines-ag-listener-configure/94-newclientaccesspoint.png) 
 
-1. 在 [IP 地址] 下，按一下 [靜態 IP 位址]。 將 [IP 位址] 設為與您在 Azure 入口網站中設定負載平衡器的相同地址。
+    b. Right-click the IP resource, and then click properties. Note the name of the IP address, and use it in the `$IPResourceName` variable in the PowerShell script.
 
-   ![IP 資源](./media/virtual-machines-ag-listener-configure/96-ipresource.png) 
+    c. Under **IP Address**, click **Static IP Address**. Set the IP address as the same address that you used when you set the load balancer address on the Azure portal.
 
-<!-----------------------I don't see this option on server 2016
-1. Disable NetBIOS for this address and click **OK**. Repeat this step for each IP resource if your solution spans multiple Azure VNets. 
-------------------------->
+   ![IP Resource](./media/virtual-machines-ag-listener-configure/96-ipresource.png) 
 
-#### <a name = "dependencyGroup"></a>讓 SQL Server 可用性群組資源依存於用戶端存取點
+    <!-----------------------I don't see this option on server 2016
+    1. Disable NetBIOS for this address and click **OK**. Repeat this step for each IP resource if your solution spans multiple Azure VNets. 
+    ------------------------->
 
-1. 在 [容錯移轉叢集管理員] 中，按一下 [角色]，再按一下您的 [可用性群組]。
+4. <a name = "dependencyGroup"></a>Make the SQL Server availability group resource dependent on the client access point.
 
-1. 在 [資源] 索引標籤中，以滑鼠右鍵按一下 [伺服器名稱] 下的可用性資源群組，再按一下 [屬性]。 
+    a. In Failover Cluster Manager, click **Roles**, and then click your availability group.
 
-1. 在 [相依性] 索引標籤中，新增名稱資源。 此資源是用戶端存取點。 
+    b. On the **Resources** tab, under **Other Resources**, right-click the availability resource group, and then click **Properties**. 
 
-   ![IP 資源](./media/virtual-machines-ag-listener-configure/97-propertiesdependencies.png) 
+    c. On the dependencies tab, add the name of the client access point (the listener) resource.
 
-1. 按一下 [確定] 。
+   ![IP Resource](./media/virtual-machines-ag-listener-configure/97-propertiesdependencies.png) 
 
-#### <a name="listname"></a>讓用戶端存取點資源依存於 IP 位址
+    d. Click **OK**.
 
-1. 在 [容錯移轉叢集管理員] 中，按一下 [角色]，再按一下您的 [可用性群組]。 
+5. <a name="listname"></a>Make the client access point resource dependent on the IP address.
 
-1. 在 [資源] 索引標籤中，以滑鼠右鍵按一下 [伺服器名稱] 下的用戶端存取點資源，再按一下 [屬性]。 
+    a. In Failover Cluster Manager, click **Roles**, and then click your availability group. 
 
-   ![IP 資源](./media/virtual-machines-ag-listener-configure/98-dependencies.png) 
+    b. On the **Resources** tab, right-click the client access point resource under **Server Name**, and then click **Properties**. 
 
-1. 按一下 [相依性]  索引標籤。 在接聽程式資源名稱中設定相依性。 如果列出多個資源，請確認 IP 位址具有 OR 相依性，而非 AND。 按一下 [確定] 。 
+   ![IP Resource](./media/virtual-machines-ag-listener-configure/98-dependencies.png) 
 
-   ![IP 資源](./media/virtual-machines-ag-listener-configure/98-propertiesdependencies.png) 
+    c. Click the **Dependencies** tab. Verify that the IP address is a dependency. If it is not, set a dependency on the IP address. If there are multiple resources listed, verify that the IP addresses have OR, not AND, dependencies. Click **OK**. 
 
-1. 以滑鼠右鍵按一下接聽程式名稱，然後按一下 [線上工作] 。 
+   ![IP Resource](./media/virtual-machines-ag-listener-configure/98-propertiesdependencies.png) 
 
-#### <a name="setparam"></a>在 PowerShell 中設定叢集參數
+    d. Right-click the listener name, and then click **Bring Online**. 
 
-1. 將下列 PowerShell 指令碼複製到您的其中一個 SQL Server。 請更新您環境的變數。     
-   ```PowerShell
-   $ClusterNetworkName = "<MyClusterNetworkName>" # the cluster network name (Use Get-ClusterNetwork on Windows Server 2012 of higher to find the name)
-   $IPResourceName = "<IPResourceName>" # the IP Address resource name
-   $ILBIP = “<n.n.n.n>” # the IP Address of the Internal Load Balancer (ILB). This is the static IP address for the load balancer you configured in the Azure portal.
-   [int]$ProbePort = <nnnnn>
-
-   Import-Module FailoverClusters
-
-   Get-ClusterResource $IPResourceName | Set-ClusterParameter -Multiple @{"Address"="$ILBIP";"ProbePort"=$ProbePort;"SubnetMask"="255.255.255.255";"Network"="$ClusterNetworkName";"EnableDhcp"=0}
-   ```
-
-2. 在其中一個叢集節點中執行 PowerShell 指令碼，以設定叢集參數。  
-
-> [!NOTE]
-> 如果您的 SQL Server 位於不同的區域中，您需要執行 PowerShell 指令碼兩次。 若是第一次，請使用第一個區域的 `$ILBIP` 和 `$ProbePort`。 若是第二次，請使用第二個區域的 `$ILBIP` 和 `$ProbePort`。 叢集網路名稱和叢集 IP 資源名稱相同。 
+    >[!TIP]
+    >You can validate that the dependencies are correctly configured. In Failover Cluster Manager, go to Roles, right-click the availability group, click **More Actions**, and then click  **Show Dependency Report**. When the dependencies are correctly configured, the availability group is dependent on the network name, and the network name is dependent on the IP address. 
 
 
+6. <a name="setparam"></a>Set the cluster parameters in PowerShell.
+    
+    a. Copy the following PowerShell script to one of your SQL Server instances. Update the variables for your environment.     
+    
+    ```PowerShell
+    $ClusterNetworkName = "<MyClusterNetworkName>" # the cluster network name (Use Get-ClusterNetwork on Windows Server 2012 of higher to find the name)
+    $IPResourceName = "<IPResourceName>" # the IP Address resource name
+    $ILBIP = “<n.n.n.n>” # the IP Address of the Internal Load Balancer (ILB). This is the static IP address for the load balancer you configured in the Azure portal.
+    [int]$ProbePort = <nnnnn>
+    
+    Import-Module FailoverClusters
+    
+    Get-ClusterResource $IPResourceName | Set-ClusterParameter -Multiple @{"Address"="$ILBIP";"ProbePort"=$ProbePort;"SubnetMask"="255.255.255.255";"Network"="$ClusterNetworkName";"EnableDhcp"=0}
+    ```
+
+    b. Set the cluster parameters by running the PowerShell script on one of the cluster nodes.  
+
+    > [!NOTE]
+    > If your SQL Server instances are in separate regions, you need to run the PowerShell script twice. The first time, use the `$ILBIP` and `$ProbePort` from the first region. The second time, use the `$ILBIP` and `$ProbePort` from the second region. The cluster network name and the cluster IP resource name are the same. 

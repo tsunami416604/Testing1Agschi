@@ -1,43 +1,43 @@
 <!--author=alkohli last changed:02/22/16-->
 
-#### <a name="to-attach-the-sas-cables"></a>連接 SAS 纜線
-1. 識別主要機箱與 EBOD 機箱。 可以藉由查看個別後擋板來識別兩個機箱。 如需指引，請參閱下圖。 
+#### To attach the SAS cables
+1. Identify the primary and the EBOD enclosures. The two enclosures can be identified by looking at their respective back planes. See the following image for guidance. 
    
-    ![主要機箱與 EBOD 機箱的背面](./media/storsimple-sas-cable-8600/HCSBackplaneofprimaryandEBODenclosure.png)
+    ![Back plane of primary and EBOD enclosures](./media/storsimple-sas-cable-8600/HCSBackplaneofprimaryandEBODenclosure.png)
    
-    **主要機箱與 EBOD 機箱的背面檢視**
+    **Back view of primary and EBOD enclosures**
    
-   | 標籤 | 說明 |
+   | Label | Description |
    |:--- |:--- |
-   | 1 |主要機箱 |
-   | 2 |EBOD 機箱 |
-2. 找出主要機箱與 EBOD 機箱的序號。 序號貼紙貼在每個機箱的背後。 兩個機箱上的序號必須相同。 [連絡 Microsoft 支援服務](../articles/storsimple/storsimple-contact-microsoft-support.md) 。 請參閱下圖以協助您尋找序號。
+   | 1 |Primary enclosure |
+   | 2 |EBOD enclosure |
+2. Locate the serial numbers on the primary and the EBOD enclosures. The serial number sticker is affixed to the back ear of each enclosure. The serial numbers must be identical on both enclosures. [Contact Microsoft Support](../articles/storsimple/storsimple-contact-microsoft-support.md) immediately if the serial numbers do not match. See the following illustration to locate the serial numbers.
    
-    ![顯示序號的機箱後方檢視](./media/storsimple-sas-cable-8600/HCSRearviewofenclosureindicatinglocationofserialnumbersticker.png)
+    ![Rear view of enclosure showing serial number](./media/storsimple-sas-cable-8600/HCSRearviewofenclosureindicatinglocationofserialnumbersticker.png)
    
-    **序號貼紙的位置**
+    **Location of serial number sticker**
    
-   | 標籤 | 說明 |
+   | Label | Description |
    |:--- |:--- |
-   | 1 |機箱耳 |
-3. 接下來，使用提供的 SAS 纜線以連接主要機箱與 EBOD 機箱，如下所示：
+   | 1 |Ear of the enclosure |
+3. Use the provided SAS cables to connect the EBOD enclosure to the primary enclosure as follows:
    
-   1. 識別主要機箱與 EBOD 機箱上的四個 SAS 連接埠。 SAS 連接埠標在主要機箱上標示為 EBOD，對應到 EBOD 機箱上的連接埠 A，如底下的 SAS 佈線圖所示。
-   2. 使用提供的 SAS 纜線以連接 EBOD 連接埠與連接埠 A。
-   3. 控制器 0 的 EBOD 連接埠應該連接至 EBOD 控制器 0 的連接埠 A。 控制器 1 的 EBOD 連接埠應該連接至 EBOD 控制器 1 的連接埠 A。 如需指引，請參閱下圖。 
+   1. Identify the four SAS ports on the primary enclosure and the EBOD enclosure. The SAS ports are labeled as EBOD on the primary enclosure and correspond to port A on the EBOD enclosure, as shown in the SAS cabling illustration, below.
+   2. Use the provided SAS cables to connect the EBOD port to port A.
+   3. The EBOD port on controller 0 should be connected to the port A on EBOD controller 0. The EBOD port on controller 1 should be connected to the port A on EBOD controller 1. See the following illustration for guidance. 
       
-      ![您裝置的 SAS 纜線](./media/storsimple-sas-cable-8600/HCSSAScablingforyourdevice.png)
+      ![SAS cabling for your device](./media/storsimple-sas-cable-8600/HCSSAScablingforyourdevice.png)
       
-      **SAS 佈線**
+      **SAS cabling**
       
-      | 標籤 | 說明 |
+      | Label | Description |
       |:--- |:--- |
-      | A |主要機箱 |
-      | B |EBOD 機箱 |
-      | 1 |控制器 0 |
-      | 2 |控制器 1 |
-      | 3 |EBOD 控制器 0 |
-      | 4 |EBOD 控制器 1 |
-      | 5、6 |主要機箱上的 SAS 連接埠 (標示為 EBOD) |
-      | 7、8 |EBOD 機箱上的 SAS 連接埠 (連接埠 A) |
+      | A |Primary enclosure |
+      | B |EBOD enclosure |
+      | 1 |Controller 0 |
+      | 2 |Controller 1 |
+      | 3 |EBOD Controller 0 |
+      | 4 |EBOD Controller 1 |
+      | 5, 6 |SAS ports on primary enclosure (labeled EBOD) |
+      | 7, 8 |SAS ports on EBOD enclosure (Port A) |
 

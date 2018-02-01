@@ -1,13 +1,8 @@
-| **部署模型/方法** | **Azure 入口網站** | **傳統入口網站** | **PowerShell** |
+| **Deployment Model/Method** | **Azure Portal** | **PowerShell** | **Azure CLI** |
 | --- | --- | --- | --- |
-| **資源管理員** |[文章](../articles/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) |不支援 |[文章](../articles/vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md) |
-| **傳統** |[文章**](../articles/vpn-gateway/vpn-gateway-howto-site-to-site-classic-portal.md) |[文章*](../articles/vpn-gateway/vpn-gateway-site-to-site-create.md) |[文章+](../articles/vpn-gateway/vpn-gateway-multi-site.md) |
+| Resource Manager |[Article](../articles/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) |[Article](../articles/vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md) | [Article](../articles/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli.md) |
+| Classic |[Article**](../articles/vpn-gateway/vpn-gateway-howto-site-to-site-classic-portal.md) |[Article+](../articles/vpn-gateway/vpn-gateway-multi-site.md) | Not Supported |
 
-(*) 表示傳統入口網站只能支援建立一個 S2S VPN 連線。
+(**) denotes that this method contains steps that require PowerShell.
 
-(**) 表示此方法包含需要 PowerShell 的步驟。
-
-(+) 表示本文是針對多站台連線來進行撰寫。
-
-
-
+(+) denotes that this article is written for multi-site connections.

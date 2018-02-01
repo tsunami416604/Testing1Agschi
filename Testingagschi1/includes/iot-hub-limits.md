@@ -1,60 +1,60 @@
-下表列出與不同服務層 (S1, S2, S3, F1) 關聯的限制。 如需有關每一層中各個 *單位* 之成本的詳細資訊，請參閱 [IoT 中樞價格](https://azure.microsoft.com/pricing/details/iot-hub/)。
+The following table lists the limits associated with the different service tiers (S1, S2, S3, F1). For information about the cost of each *unit* in each tier, see [IoT Hub Pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
 
-| 資源 | S1 標準 | S2 標準 | S3 標準 | F1 免費 |
+| Resource | S1 Standard | S2 Standard | S3 Standard | F1 Free |
 | --- | --- | --- | --- | --- |
-| 訊息/天 |400,000 |6,000,000 |300,000,000 |8,000 |
-| 單位上限 |200 |200 |10 |1 |
+| Messages/day |400,000 |6,000,000 |300,000,000 |8,000 |
+| Maximum units |200 |200 |10 |1 |
 
 > [!NOTE]
-> 如果您預期會在一個 S1、S2 層中樞使用超過 200 個單位，或在一個 S3 層中樞使用超過 10 個單位，請連絡 Microsoft 支援服務。
+> If you anticipate using more than 200 units with an S1 or S2 or 10 units with an S3 tier hub, contact Microsoft support.
 > 
 > 
 
-下表列出適用於 IoT 中樞資源的限制：
+The following table lists the limits that apply to IoT Hub resources:
 
-| 資源 | 限制 |
+| Resource | Limit |
 | --- | --- |
-| 每個 Azure 訂用帳戶的付費 IoT 中樞上限 |10 |
-| 每個 Azure 訂用帳戶的免費 IoT 中樞上限 |1 |
-| 單一呼叫中傳回的裝置身分識別 <br/> 數目上限 |1000 |
-| 裝置到雲端訊息的 IoT 中樞訊息保留上限 |7 天 |
-| 裝置到雲端訊息的大小上限 |256 KB |
-| 裝置到雲端批次的大小上限 |256 KB |
-| 裝置到雲端批次的訊息上限 |500 |
-| 雲端到裝置訊息的大小上限 |64 KB |
-| 雲端到裝置訊息的 TTL 上限 |2 天 |
-| 雲端到裝置訊息的傳遞計數  <br/> 上限 |100 |
-| 回應雲端到裝置訊息之反應訊息的  <br/> 傳遞計數上限 |100 |
-| 回應雲端到裝置訊息之反應訊息的  <br/> TTL 上限 |2 天 |
-| 裝置對應項的大小上限 <br/> (標記、報告的屬性，以及所需的屬性) | 8 KB |
-| 裝置對應項字串值的大小上限 | 512 個位元組 |
-| 裝置對應項中的物件深度上限 | 5 |
-| 直接方法承載的大小上限 | 8 KB |
-| 作業歷程記錄的保留期上限 | 30 天 |
-| 並行作業數上限 | 10 (適用於 S3)、5 (適用於 S2)、1 (適用於 S1) |
-| 額外端點上限 | 10 (適用於 S1、S2、S3) |
-| 訊息路由規則數上限 | 100 (適用於 S1、S2、S3) |
+| Maximum paid IoT hubs per Azure subscription |10 |
+| Maximum free IoT hubs per Azure subscription |1 |
+| Maximum number of device identities<br/> returned in a single call |1000 |
+| IoT Hub message maximum retention for device-to-cloud messages |7 days |
+| Maximum size of device-to-cloud message |256 KB |
+| Maximum size of device-to-cloud batch |256 KB |
+| Maximum messages in device-to-cloud batch |500 |
+| Maximum size of cloud-to-device message |64 KB |
+| Maximum TTL for cloud-to-device messages |2 days |
+| Maximum delivery count for cloud-to-device <br/> messages |100 |
+| Maximum delivery count for feedback messages <br/> in response to a cloud-to-device message |100 |
+| Maximum TTL for feedback messages in <br/> response to a cloud-to-device message |2 days |
+| Maximum size of device twin <br/> (tags, reported properties, and desired properties) | 8 KB |
+| Maximum size of device twin string value | 4 KB |
+| Maximum depth of object in device twin | 5 |
+| Maximum size of direct method payload | 128 KB |
+| Job history maximum retention | 30 days |
+| Maximum concurrent jobs | 10 (for S3), 5 for (S2), 1 (for S1) |
+| Maximum additional endpoints | 10 (for S1, S2, S3) |
+| Maximum message routing rules | 100 (for S1, S2, S3) |
 
 
 > [!NOTE]
-> 如果您的一個 Azure 訂用帳戶中需要超過 10 個付費的 IoT 中樞，請連絡 Microsoft 支援服務。
+> If you need more than 10 paid IoT hubs in an Azure subscription, contact Microsoft support.
 
 
 > [!NOTE]
-> 您目前可以連線到單一 IoT 中樞的裝置數目上限為 500,000 個。 如果您想要上調此限制，請連絡 [Microsoft 支援服務](https://azure.microsoft.com/en-us/support/options/)。
+> Currently, the maximum number of devices you can connect to a single IoT hub is 500,000. If you want to increase this limit, contact [Microsoft Support](https://azure.microsoft.com/en-us/support/options/).
 
-IoT 中樞服務將在超過下列配額時開始對要求進行節流：
+The IoT Hub service throttles requests when the following quotas are exceeded:
 
-| 節流 | 每個中心的值 |
+| Throttle | Per-hub value |
 | --- | --- |
-| 身分識別登錄作業 <br/> (建立、擷取、列出、更新、刪除)， <br/> 個別或大量匯入/匯出 |83.33/秒/單位 (5000/分鐘/單位) (適用於 S3) <br/> 1.67/秒/單位 (100/分鐘/單位) (適用於 S1 和 S2)。 |
-| 裝置連線 |6000/秒/單位 (適用於 S3)，120/秒/單位 (適用於 S2)，12/秒/單位 (適用於 S1)。 <br/>最小值為 100/秒 |
-| 裝置到雲端傳送 |6000/秒/單位 (適用於 S3)，120/秒/單位 (適用於 S2)，12/秒/單位 (適用於 S1)。 <br/>最小值為 100/秒 |
-| 雲端到裝置的傳送 | 83.33/秒/單位 (5000/分鐘/單位) (適用於 S3)，1.67/秒/單位 (100/分鐘/單位 (適用於 S1 和 S2)。 |
-| 雲端到裝置的接收 |833.33/秒/單位 (50000/分鐘/單位) (適用於 S3)，16.67/秒/單位 (1000/分鐘/單位) (適用於 S1 和 S2)。 |
-| 檔案上傳作業 |83.33 個檔案上傳通知/秒/單位 (5000/分鐘/單位) (適用於 S3)，1.67 個檔案上傳通知/秒/單位 (100/分鐘/單位) (適用於 S1 和 S2)。 <br/> 10000 個 SAS URI 可以讓 Azure 儲存體帳戶一次用盡。<br/> 10 個 SAS URI/裝置可以一次用盡。 |
-| 直接方法 | 1500/秒/單位 (適用於 S3)、30/秒/單位 (適用於 S2)、10/秒/單位 (適用於 S1) |
-| 裝置對應項讀取 | 50/秒/單位 (適用於 S3)、上限為 10/秒或 1/秒/單位 (適用於 S2)、10/秒 (適用於 S1) |
-| 裝置對應項更新 | 50/秒/單位 (適用於 S3)、上限為 10/秒或 1/秒/單位 (適用於 S2)、10/秒 (適用於 S1) |
-| 作業的操作 <br/> (建立、更新、列出、刪除) | 83.33/秒/單位 (5000/分鐘/單位) (適用於 S3)，1.67/秒/單位 (100/分鐘/單位) (適用於 S2)，1.67/秒/單位 (100/分鐘/單位) (適用於 S1) |
-| 作業的每一裝置操作輸送量 | 50/秒/單位 (適用於 S3)、上限為 10/秒或 1/秒/單位 (適用於 S2)、10/秒 (適用於 S1) |
+| Identity registry operations <br/> (create, retrieve, list, update, delete), <br/> individual or bulk import/export |83.33/sec/unit (5000/min/unit) (for S3) <br/> 1.67/sec/unit (100/min/unit) (for S1 and S2). |
+| Device connections |6000/sec/unit (for S3), 120/sec/unit (for S2), 12/sec/unit (for S1). <br/>Minimum of 100/sec. |
+| Device-to-cloud sends |6000/sec/unit (for S3), 120/sec/unit (for S2), 12/sec/unit (for S1). <br/>Minimum of 100/sec. |
+| Cloud-to-device sends | 83.33/sec/unit (5000/min/unit) (for S3), 1.67/sec/unit (100/min/unit) (for S1 and S2). |
+| Cloud-to-device receives |833.33/sec/unit (50000/min/unit) (for S3), 16.67/sec/unit (1000/min/unit) (for S1 and S2). |
+| File upload operations |83.33 file upload notifications/sec/unit (5000/min/unit) (for S3), 1.67 file upload notifications/sec/unit (100/min/unit) (for S1 and S2). <br/> 10000 SAS URIs can be out for an Azure Storage account at one time.<br/> 10 SAS URIs/device can be out at one time. |
+| Direct methods | 24MB/sec/unit (for S3), 480KB/sec/unit (for S2), 160KB/sec/unit (for S1)<br/> Based on 8KB throttling meter size. |
+| Device twin reads | 50/sec/unit (for S3), Maximum of 10/sec or 1/sec/unit (for S2), 10/sec (for S1) |
+| Device twin updates | 50/sec/unit (for S3), Maximum of 10/sec or 1/sec/unit (for S2), 10/sec (for S1) |
+| Jobs operations <br/> (create, update, list, delete) | 83.33/sec/unit (5000/min/unit) (for S3), 1.67/sec/unit (100/min/unit) (for S2), 1.67/sec/unit (100/min/unit) (for S1) |
+| Jobs per-device operation throughput | 50/sec/unit (for S3), Maximum of 10/sec or 1/sec/unit (for S2), 10/sec (for S1) |

@@ -1,10 +1,15 @@
-1. 將安裝複製到伺服器上，然後開啟安裝程式。
-2. 在 [開始之前] 刀鋒視窗上，選取 [安裝行動服務]。
+1. Copy the installation to the server, and then open the installer.
+2. On the **Installation Option** blade, select **Install Mobility Service**.
 
-    ![行動服務](./media/site-recovery-install-mob-svc-gui/mobility3.png)
-3. 在 [組態伺服器詳細資料] 刀鋒視窗上，輸入組態伺服器的 IP 位址和複雜密碼。
+    ![Mobility Service Install Option Page ](./media/site-recovery-install-mob-svc-gui/mobility1.png)
+3. Select the install location  and click **Install** to being the installation procedure.
 
-    ![行動服務](./media/site-recovery-install-mob-svc-gui/mobility6.png)
-4. 在 [安裝位置] 刀鋒視窗上，保留預設設定，然後選取 [下一步] 來開始安裝。
-5. 在 [安裝進度] 刀鋒視窗上，監視安裝。 出現提示時，重新啟動電腦。 安裝服務之後，可能需要大約 15 分鐘，才會在 Azure 入口網站中更新狀態。
+    ![Mobility Service Install Location Page ](./media/site-recovery-install-mob-svc-gui/mobility2.png)
+4. You can use **Installation Progress** page to monitor the installer's progress.
+    ![Mobility Service Install Progress ](./media/site-recovery-install-mob-svc-gui/mobility3.png)
 
+5. Once installation is complete, click the **Proceed to Configuration** button to register the Mobility Service with your Configuration server.
+    ![Mobility service Register Page ](./media/site-recovery-install-mob-svc-gui/mobility4.png)
+
+6. Click on the **Register** button to complete the registration.
+    ![Mobility service Register Page ](./media/site-recovery-install-mob-svc-gui/mobility5.png)

@@ -1,7 +1,7 @@
 
 
 > [!WARNING]
-> 不論使用與否，HDInsight 叢集都是按分鐘計費。 請務必在使用完叢集後將其刪除。 如需詳細資訊，請參閱[如何刪除 HDInsight 叢集](../articles/hdinsight/hdinsight-delete-cluster.md)。
+> Billing for HDInsight clusters is prorated per minute, whether you are using them or not. Be sure to delete your cluster after you have finished using it. For more information, see [How to delete an HDInsight cluster](../articles/hdinsight/hdinsight-delete-cluster.md).
 > 
 > 
 

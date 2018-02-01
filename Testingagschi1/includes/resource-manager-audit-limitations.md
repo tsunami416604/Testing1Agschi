@@ -1,4 +1,4 @@
-活動記錄包含在您的資源上執行的所有寫入作業 (PUT、POST、DELETE)。 不包含讀取作業 (GET)。 您可以使用稽核記錄檔在進行疑難排解時發現錯誤，或是監視貴組織使用者修改資源的方式。
+The activity log contains all write operations (PUT, POST, DELETE) performed on your resources. It does not include read operations (GET). For a list of resource actions, see [Azure Resource Manager Resource Provider operations](../articles/active-directory/role-based-access-control-resource-provider-operations.md). You can use the audit logs to find an error when troubleshooting or to monitor how a user in your organization modified a resource.
 
-活動記錄檔會保留 90 天。 您可以查詢任何的日期範圍，只要開始日期不是在過去 90 天以前。
+Activity logs are retained for 90 days. You can query for any range of dates, as long as the starting date is not more than 90 days in the past.
 

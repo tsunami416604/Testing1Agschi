@@ -1,7 +1,9 @@
-## <a name="clean-up-resources"></a>清除資源
+## Clean up resources
 
-若要移除此快速入門所建立的所有資源，請執行下列命令︰
+In the preceding steps, you created Azure resources in a resource group. If you don't expect to need these resources in the future, delete the resource group by running the following command in the Cloud Shell:
 
-```azurecli
+```azurecli-interactive
 az group delete --name myResourceGroup
 ```
+
+This command may take a minute to run.

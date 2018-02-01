@@ -1,14 +1,14 @@
 
-### <a name="create-a-google-firebase-project-with-api-key"></a>利用 API 金鑰建立 Google Firebase 專案
+### Create a Google Firebase project with API key
 > [!NOTE]
-> 若要完成此程序，您必須要有已通過電子郵件地址驗證的 Google 帳戶。 若要建立新的 Google 帳戶，請前往 <a href="http://go.microsoft.com/fwlink/p/?LinkId=268302" target="_blank">accounts.google.com</a>。
+> To complete this procedure, you must have a Google account that has a verified email address. To create a new Google account, go to <a href="http://go.microsoft.com/fwlink/p/?LinkId=268302" target="_blank">accounts.google.com</a>.
 > 
 > 
 
-1. 瀏覽至 [Firebase 主控台](https://console.firebase.google.com/)，然後使用您的 Google 帳戶認證登入。
-2. 按一下 [建立新專案] 按鈕，建立新的專案。 或者，您也可以按一下 [匯入 Google 專案] 以匯入現有的專案。 
-3. 如果您選擇建立新的專案，則提供 [專案名稱] 選擇 [國家/區域]。
-4. 在您的專案頁面上，按一下左上方的 [設定] 齒輪。 在功能表中按一下 [專案設定]。  
-5. 按一下頂端的 [雲端通訊] 索引標籤。 
-6. 請記下您稍後會在 *Android 資訊清單檔案*中使用的 [伺服器金鑰] 和 [寄件者識別碼]。  
+1. Navigate to the [Firebase Console](https://console.firebase.google.com/) and sign-in with your Google account credentials.
+2. Click on **Create new Project** button to create a new project. Alternatively, you can also click on **Import Google Project** to import and existing project. 
+3. If you opted for creating a new project then provide a **Project name** and choose a **Country/Region**.
+4. On your project page, click the **Settings** cog wheel at the top left. In the menu, click on **Project settings**.  
+5. Click on the **Cloud Messaging** tab at the top. 
+6. Make a note of the **Server Key** and the **Sender ID** that you will use later in the *Android Manifest file*.  
 

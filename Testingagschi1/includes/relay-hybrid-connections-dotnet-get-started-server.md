@@ -1,12 +1,16 @@
-### <a name="create-a-console-application"></a>建立主控台應用程式
-* 啟動 Visual Studio，並建立新的主控台應用程式。
+### Create a console application
 
-### <a name="add-the-relay-nuget-package"></a>新增轉送 NuGet 封裝
-1. 以滑鼠右鍵按一下新建立的專案，然後選取 [管理 NuGet 套件]。
-2. 按一下 [瀏覽] 索引標籤，然後搜尋 "Microsoft Azure 轉送"，並選取 [Microsoft Azure 轉送] 項目。 按一下 [安裝]  完成安裝作業，然後關閉此對話方塊。
+In Visual Studio, create a new **Console App (.NET Framework)** project.
 
-### <a name="write-some-code-to-receive-messages"></a>撰寫一些程式碼來接收訊息
-1. 將 Program.cs 檔案頂端的 `using` 陳述式替換為下列陳述式：
+### Add the Relay NuGet package
+
+1. Right-click the newly created project, and then select **Manage NuGet Packages**.
+2. Select **Browse**, and then search for **Microsoft.Azure.Relay**. In the search results, select  **Microsoft Azure Relay**. 
+3. Select **Install** to complete the installation. Close the dialog box.
+
+### Write code to receive messages
+
+1. At the top of the Program.cs file, replace the existing `using` statements with the following `using` statements:
    
     ```csharp
     using System;
@@ -15,7 +19,7 @@
     using System.Threading.Tasks;
     using Microsoft.Azure.Relay;
     ```
-2. 將常數新增至 `Program` 類別以取得混合式連接的連接詳細資料。 將方括號中的預留位置以建立混合式連接時所取得的正確值取代。 務必使用完整命名空間名稱︰
+2. Add constants to the `Program` class for the hybrid connection details. Replace the placeholders in brackets with the values that you obtained when you created the hybrid connection. Be sure to use the fully qualified namespace name.
    
     ```csharp
     private const string RelayNamespace = "{RelayNamespace}.servicebus.windows.net";
@@ -23,45 +27,45 @@
     private const string KeyName = "{SASKeyName}";
     private const string Key = "{SASKey}";
     ```
-3. 將名為 `ProcessMessagesOnConnection` 的下列新方法新增至 `Program` 類別：
+3. Add the `ProcessMessagesOnConnection` method to the `Program` class:
    
     ```csharp
-    // Method is used to initiate connection
+    // The method initiates the connection.
     private static async void ProcessMessagesOnConnection(HybridConnectionStream relayConnection, CancellationTokenSource cts)
     {
         Console.WriteLine("New session");
    
         // The connection is a fully bidrectional stream. 
-        // We put a stream reader and a stream writer over it 
-        // which allows us to read UTF-8 text that comes from 
-        // the sender and to write text replies back.
+        // Put a stream reader and a stream writer over it.  
+        // This allows you to read UTF-8 text that comes from 
+        // the sender, and to write text replies back.
         var reader = new StreamReader(relayConnection);
         var writer = new StreamWriter(relayConnection) { AutoFlush = true };
         while (!cts.IsCancellationRequested)
         {
             try
             {
-                // Read a line of input until a newline is encountered
+                // Read a line of input until a newline is encountered.
                 var line = await reader.ReadLineAsync();
    
                 if (string.IsNullOrEmpty(line))
                 {
-                    // If there's no input data, we will signal that 
-                    // we will no longer send data on this connection
+                    // If there's no input data, signal that 
+                    // you will no longer send data on this connection,
                     // and then break out of the processing loop.
                     await relayConnection.ShutdownAsync(cts.Token);
                     break;
                 }
    
-                // Output the line on the console
+                // Write the line on the console.
                 Console.WriteLine(line);
    
-                // Write the line back to the client, prepending "Echo:"
+                // Write the line back to the client, prepended with "Echo:"
                 await writer.WriteLineAsync($"Echo: {line}");
             }
             catch (IOException)
             {
-                // Catch an IO exception that is likely caused because
+                // Catch an I/O exception. This likely occurred when
                 // the client disconnected.
                 Console.WriteLine("Client closed connection");
                 break;
@@ -70,11 +74,11 @@
    
         Console.WriteLine("End session");
    
-        // Closing the connection
+        // Close the connection.
         await relayConnection.CloseAsync(cts.Token);
     }
     ```
-4. 將另一個名為 `RunAsync` 的新方法新增至 `Program` 類別，如下所示：
+4. Add the `RunAsync` method to the `Program` class:
    
     ```csharp
     private static async Task RunAsync()
@@ -84,26 +88,26 @@
         var tokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider(KeyName, Key);
         var listener = new HybridConnectionListener(new Uri(string.Format("sb://{0}/{1}", RelayNamespace, ConnectionName)), tokenProvider);
    
-        // Subscribe to the status events
+        // Subscribe to the status events.
         listener.Connecting += (o, e) => { Console.WriteLine("Connecting"); };
         listener.Offline += (o, e) => { Console.WriteLine("Offline"); };
         listener.Online += (o, e) => { Console.WriteLine("Online"); };
    
-        // Opening the listener will establish the control channel to
-        // the Azure Relay service. The control channel will be continuously 
-        // maintained and reestablished when connectivity is disrupted.
+        // Opening the listener establishes the control channel to
+        // the Azure Relay service. The control channel is continuously 
+        // maintained, and is reestablished when connectivity is disrupted.
         await listener.OpenAsync(cts.Token);
         Console.WriteLine("Server listening");
    
-        // Providing callback for cancellation token that will close the listener.
+        // Provide callback for the cancellation token that will close the listener.
         cts.Token.Register(() => listener.CloseAsync(CancellationToken.None));
    
         // Start a new thread that will continuously read the console.
         new Task(() => Console.In.ReadLineAsync().ContinueWith((s) => { cts.Cancel(); })).Start();
    
         // Accept the next available, pending connection request. 
-        // Shutting down the listener will allow a clean exit with 
-        // this method returning null
+        // Shutting down the listener allows a clean exit. 
+        // This method returns null.
         while (true)
         {
             var relayConnection = await listener.AcceptConnectionAsync();
@@ -115,17 +119,17 @@
             ProcessMessagesOnConnection(relayConnection, cts);
         }
    
-        // Close the listener after we exit the processing loop
+        // Close the listener after you exit the processing loop.
         await listener.CloseAsync(cts.Token);
     }
     ```
-5. 將下列程式碼行新增至 `Program` 類別中的 `Main` 方法。
+5. Add the following line of code to the `Main` method in the `Program` class:
    
     ```csharp
     RunAsync().GetAwaiter().GetResult();
     ```
    
-    Program.cs 看起來應該會像下面這樣：
+    The completed Program.cs file should look like this:
    
     ```csharp
     namespace Server
@@ -155,26 +159,26 @@
                 var tokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider(KeyName, Key);
                 var listener = new HybridConnectionListener(new Uri(string.Format("sb://{0}/{1}", RelayNamespace, ConnectionName)), tokenProvider);
    
-                // Subscribe to the status events
+                // Subscribe to the status events.
                 listener.Connecting += (o, e) => { Console.WriteLine("Connecting"); };
                 listener.Offline += (o, e) => { Console.WriteLine("Offline"); };
                 listener.Online += (o, e) => { Console.WriteLine("Online"); };
    
-                // Opening the listener will establish the control channel to
-                // the Azure Relay service. The control channel will be continuously 
-                // maintained and reestablished when connectivity is disrupted.
+                // Opening the listener establishes the control channel to
+                // the Azure Relay service. The control channel is continuously 
+                // maintained, and is reestablished when connectivity is disrupted.
                 await listener.OpenAsync(cts.Token);
                 Console.WriteLine("Server listening");
    
-                // Providing callback for cancellation token that will close the listener.
+                // Provide callback for a cancellation token that will close the listener.
                 cts.Token.Register(() => listener.CloseAsync(CancellationToken.None));
    
                 // Start a new thread that will continuously read the console.
                 new Task(() => Console.In.ReadLineAsync().ContinueWith((s) => { cts.Cancel(); })).Start();
    
                 // Accept the next available, pending connection request. 
-                // Shutting down the listener will allow a clean exit with 
-                // this method returning null
+                // Shutting down the listener allows a clean exit. 
+                // This method returns null.
                 while (true)
                 {
                     var relayConnection = await listener.AcceptConnectionAsync();
@@ -186,7 +190,7 @@
                     ProcessMessagesOnConnection(relayConnection, cts);
                 }
    
-                // Close the listener after we exit the processing loop
+                // Close the listener after you exit the processing loop.
                 await listener.CloseAsync(cts.Token);
             }
    
@@ -195,36 +199,36 @@
                 Console.WriteLine("New session");
    
                 // The connection is a fully bidrectional stream. 
-                // We put a stream reader and a stream writer over it 
-                // which allows us to read UTF-8 text that comes from 
-                // the sender and to write text replies back.
+                // Put a stream reader and a stream writer over it.  
+                // This allows you to read UTF-8 text that comes from 
+                // the sender, and to write text replies back.
                 var reader = new StreamReader(relayConnection);
                 var writer = new StreamWriter(relayConnection) { AutoFlush = true };
                 while (!cts.IsCancellationRequested)
                 {
                     try
                     {
-                        // Read a line of input until a newline is encountered
+                        // Read a line of input until a newline is encountered.
                         var line = await reader.ReadLineAsync();
    
                         if (string.IsNullOrEmpty(line))
                         {
-                            // If there's no input data, we will signal that 
-                            // we will no longer send data on this connection
-                            // and then break out of the processing loop.
+                            // If there's no input data, signal that 
+                            // you will no longer send data on this connection.
+                            // Then, break out of the processing loop.
                             await relayConnection.ShutdownAsync(cts.Token);
                             break;
                         }
    
-                        // Output the line on the console
+                        // Write the line on the console.
                         Console.WriteLine(line);
    
-                        // Write the line back to the client, prepending "Echo:"
+                        // Write the line back to the client, prepended with "Echo:"
                         await writer.WriteLineAsync($"Echo: {line}");
                     }
                     catch (IOException)
                     {
-                        // Catch an IO exception that is likely caused because
+                        // Catch an I/O exception. This likely occurred when
                         // the client disconnected.
                         Console.WriteLine("Client closed connection");
                         break;
@@ -233,7 +237,7 @@
    
                 Console.WriteLine("End session");
    
-                // Closing the connection
+                // Close the connection.
                 await relayConnection.CloseAsync(cts.Token);
             }
         }

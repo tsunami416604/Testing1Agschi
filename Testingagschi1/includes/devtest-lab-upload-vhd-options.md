@@ -1,6 +1,6 @@
-## <a name="prerequisites"></a>必要條件 
-要完成此教學課程，您必須將 VHD 檔案上傳到與您建立自訂映像相關聯之實驗室的儲存體帳戶中。 選取下列任何連結，上傳 VHD 檔案：
+## Prerequisites 
+To complete this tutorial, you must have a VHD file uploaded to the storage account associated with the lab in which you are creating the custom image. Select any of the following links to upload a VHD file:
 
-- [使用 AzCopy 命令列公用程式上傳](../articles/devtest-lab/devtest-lab-upload-vhd-using-azcopy.md)
-- [使用 Microsoft Azure 儲存體總管上傳](../articles/devtest-lab/devtest-lab-upload-vhd-using-storage-explorer.md)
-- [使用 PowerShell 主控台上傳](../articles/devtest-lab/devtest-lab-upload-vhd-using-powershell.md)
+- [Upload using the AzCopy command-line utility](../articles/devtest-lab/devtest-lab-upload-vhd-using-azcopy.md)
+- [Upload using the Microsoft Azure Storage Explorer](../articles/devtest-lab/devtest-lab-upload-vhd-using-storage-explorer.md)
+- [Upload using the PowerShell console](../articles/devtest-lab/devtest-lab-upload-vhd-using-powershell.md)

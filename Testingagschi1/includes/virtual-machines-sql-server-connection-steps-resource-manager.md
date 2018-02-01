@@ -1,29 +1,36 @@
-### <a name="configure-a-dns-label-for-the-public-ip-address"></a>設定公用 IP 位址的 DNS 標籤
-若要從網際網路連線到 SQL Server Database Engine，請先設定公用 IP 位址的 DNS 標籤。
+### Configure a DNS Label for the public IP address
+
+To connect to the SQL Server Database Engine from the Internet, consider creating a DNS Label for your public IP address. You can connect by IP address, but the DNS Label creates an A Record that is easier to identify and abstracts the underlying public IP address.
 
 > [!NOTE]
-> 如果您計畫只連線到同一個虛擬網路中或只連線到本機的 SQL Server 執行個體，則不需要 DNS 標籤。
-> 
-> 
+> DNS Labels are not required if you plan to only connect to the SQL Server instance within the same Virtual Network or only locally.
 
-若要建立 DNS 標籤，請先在入口網站選取 [虛擬機器]  。 選取 SQL Server VM 以顯示其屬性。
+To create a DNS Label, first select **Virtual machines** in the portal. Select your SQL Server VM to bring up its properties.
 
-1. 在虛擬機器刀鋒視窗中，選取您的 [公用 IP 位址] 
-   
-    ![公用 IP 位址](./media/virtual-machines-sql-server-connection-steps/rm-public-ip-address.png)
-2. 在公用 IP 位址屬性中，展開 [組態] 。
-3. 輸入 DNS 標籤名稱。 此名稱是「A 紀錄」，可用來透過名稱 (而非直接透過 IP 位址) 連線到 SQL Server VM。
-4. 按一下 [儲存]  按鈕。
-   
-    ![DNS 標籤](./media/virtual-machines-sql-server-connection-steps/rm-dns-label.png)
+1. In the virtual machine overview, select your **Public IP address**.
 
-### <a name="connect-to-the-database-engine-from-another-computer"></a>從另一部電腦連接 Database Engine
-1. 在已連線網際網路的電腦上開啟 SQL Server Management Studio (SSMS)。
-2. 在 [連接到伺服器] 或 [連接到 Database Engine] 對話方塊中，編輯 [伺服器名稱] 值。 輸入虛擬機器的完整 DNS 名稱 (在前一項工作中決定)。
-3. 在 [驗證] 方塊中，選取 [SQL Server 驗證]。
-4. 在 [登入]  方塊中，輸入有效的 SQL 登入名稱。
-5. 在 [密碼]  方塊中，輸入登入的密碼。
-6. 按一下 [連接] 。
-   
-    ![SSMS 連線](./media/virtual-machines-sql-server-connection-steps/rm-ssms-connect.png)
+    ![public ip address](./media/virtual-machines-sql-server-connection-steps/rm-public-ip-address.png)
 
+1. In the properties for your Public IP address, expand **Configuration**.
+
+1. Enter a DNS Label name. This name is an A Record that can be used to connect to your SQL Server VM by name instead of by IP Address directly.
+
+1. Click the **Save** button.
+
+    ![dns label](./media/virtual-machines-sql-server-connection-steps/rm-dns-label.png)
+
+### Connect to the Database Engine from another computer
+
+1. On a computer connected to the internet, open SQL Server Management Studio (SSMS). If you do not have SQL Server Management Studio, you can download it [here](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms).
+
+1. In the **Connect to Server** or **Connect to Database Engine** dialog box, edit the **Server name** value. Enter the IP address or full DNS name of the virtual machine (determined in the previous task). You can also add a comma and provide SQL Server's TCP port. For example, `mysqlvmlabel.eastus.cloudapp.azure.com,1433`.
+
+1. In the **Authentication** box, select **SQL Server Authentication**.
+
+1. In the **Login** box, type the name of a valid SQL login.
+
+1. In the **Password** box, type the password of the login.
+
+1. Click **Connect**.
+
+    ![ssms connect](./media/virtual-machines-sql-server-connection-steps/rm-ssms-connect.png)

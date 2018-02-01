@@ -1,11 +1,12 @@
 ---
-title: "Azure AD .NET 通訊協定概觀 | Microsoft Docs"
-description: "如何使用 HTTP 訊息來使用 Azure AD 授權存取租用戶中的 Web 應用程式和 Web API。"
+title: Azure AD .NET Protocol Overview | Microsoft Docs
+description: How to use HTTP messages to authorize access to web applications and web APIs in your tenant using Azure AD.
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
 manager: mbaldwin
-editor: 
+editor: ''
+
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -13,21 +14,16 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 01/21/2016
 ms.author: priyamo
-translationtype: Human Translation
-ms.sourcegitcommit: f1e4b86a04a76513a2f0d9a9f89e49611c0447d5
-ms.openlocfilehash: b31fa50a62d5b26a7346f212076ec3a2b0386f5e
-
 ---
-## <a name="register-your-application-with-your-ad-tenant"></a>向 AD 租用戶註冊應用程式
-首先，您必須向您的 Azure Active Directory (Azure AD) 租用戶註冊應用程式。 這會讓應用程式獲得應用程式識別碼，以及讓它可以接收權杖。
+## Register your application with your AD tenant
+First, you will need to register your application with your Azure Active Directory (Azure AD) tenant. This will give you an Application ID for your application, as well as enable it to receive tokens.
 
-* 登入 [Azure 入口網站](https://portal.azure.com)。
-* 在頁面右上角按一下您的帳戶來選擇您的 Azure AD 租用戶。
-* 在左瀏覽窗格中，按一下 [Azure Active Directory]。
-* 按一下 [應用程式註冊]，然後按一下 [新增]。
-* 遵照提示進行，並建立新的應用程式。 在本教學課程中，不論它是 Web 應用程式或原生應用程式都沒關係，但如果您想要 Web 應用程式或原生應用程式的特定範例，請查看我們的[快速入門](../articles/active-directory/develop/active-directory-developers-guide.md)。
-  * 若為 Web 應用程式，請提供屬於應用程式基礎 URL 的**登入 URL**以供使用者登入，例如 `http://localhost:12345`。
+* Sign in to the [Azure Portal](https://portal.azure.com).
+* Choose your Azure AD tenant by clicking on your account in the top right corner of the page.
+* In the left hand navigation pane, click on **Azure Active Directory**.
+* Click on **App Registrations** and click on **Add**.
+* Follow the prompts and create a new application. It doesn't matter if it is a web application or a native application for this tutorial, but if you'd like specific examples for web applications or native applications, check out our [quickstarts](../articles/active-directory/develop/active-directory-developers-guide.md).
+  * For Web Applications, provide the **Sign-On URL** which is the base URL of your app, where users can sign in e.g `http://localhost:12345`.
 <!--TODO: add once App ID URI is configurable: The **App ID URI** is a unique identifier for your application. The convention is to use `https://<tenant-domain>/<app-name>`, e.g. `https://contoso.onmicrosoft.com/my-first-aad-app`-->
-  * 若為原生應用程式，請提供 **重新導向 URI**，以供 Azure AD 用來傳回權杖回應。 輸入應用程式特定的值，例如 `http://MyFirstAADApp`
-* 完成註冊後，Azure AD 將會為您的應用程式指派一個唯一用戶端識別碼 (應用程式識別碼)。 您在後續章節中將會用到這個值，所以請從應用程式頁面中複製此值。
-
+  * For Native Applications, provide a **Redirect URI**, which Azure AD will use to return token responses. Enter a value specific to your application, .e.g `http://MyFirstAADApp`
+* Once you've completed registration, Azure AD will assign your application a unique client identifier, the Application ID. You will need this value in the next sections, so copy it from the application page.

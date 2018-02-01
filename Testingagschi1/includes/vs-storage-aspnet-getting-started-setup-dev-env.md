@@ -1,31 +1,35 @@
-## <a name="set-up-the-development-environment"></a>設定開發環境
+## Set up the development environment
 
-本節將引導您設定開發環境，包括建立 ASP.NET MVC 應用程式、新增已連接的服務連線、新增控制器，以及指定必要的命名空間指示詞。
+This section walks through setting up the development environment. This includes creating an ASP.NET MVC app, adding a connected services connection, adding a controller, and specifying the required namespace directives.
 
-### <a name="create-an-aspnet-mvc-app-project"></a>建立 ASP.NET MVC 應用程式專案
+### Create an ASP.NET MVC app project
 
-1. 開啟 Visual Studio。
+1. Open Visual Studio.
 
-1. 從主功能表選取 [檔案] -> [新增] -> [專案]
+1. From the main menu, select **File** > **New** > **Project**.
 
-1. 在 [新增專案] 對話方塊上，指定下圖中醒目提示的選項︰
+1. In the **New Project** dialog box, select **Web** > **ASP.NET Web Application (.NET Framework)**. In the **Name** field, specify **StorageAspNet**. Select **OK**.
 
-    ![建立 ASP.NET 專案](./media/vs-storage-aspnet-getting-started-setup-dev-env/vs-storage-aspnet-getting-started-setup-dev-env-1.png)
+	![Screenshot of New Project dialog box](./media/vs-storage-aspnet-getting-started-setup-dev-env/vs-storage-aspnet-getting-started-setup-dev-env-1.png)
 
-1. 選取 [確定] 。
+1. In the **New ASP.NET Web Application** dialog box, select **MVC**, and then select **OK**.
 
-1. 在 [新增 ASP.NET 專案] 對話方塊上，指定下圖中醒目提示的選項︰
+	![Screenshot of New ASP.NET Web Application dialog box](./media/vs-storage-aspnet-getting-started-setup-dev-env/vs-storage-aspnet-getting-started-setup-dev-env-2.png)
 
-    ![指定 MVC](./media/vs-storage-aspnet-getting-started-setup-dev-env/vs-storage-aspnet-getting-started-setup-dev-env-2.png)
+### Use connected services to connect to an Azure storage account
 
-1. 選取 [確定] 。
+1. In **Solution Explorer**, right-click the project.
 
-### <a name="use-connected-services-to-connect-to-an-azure-storage-account"></a>使用已連接的服務連接到 Azure 儲存體帳戶
+2. From the context menu, select **Add** > **Connected Service**.
 
-1. 在 [方案總管] 中，用滑鼠右鍵按一下專案，然後從內容功能表中選取 [新增] > [已連接的服務]。
+1. In the **Connected Services** dialog box, select **Cloud Storage with Azure Storage**, and then select **Configure**.
 
-1. 在 [新增已連接的服務] 對話方塊上，選取 [Azure 儲存體]，然後選取 [設定] 按鈕。
+	![Screenshot of Connected Services dialog box](./media/vs-storage-aspnet-getting-started-setup-dev-env/vs-storage-aspnet-getting-started-setup-dev-env-3.png)
 
-    ![已連接的服務對話方塊](./media/vs-storage-aspnet-getting-started-setup-dev-env/vs-storage-aspnet-getting-started-setup-dev-env-3.png)
+1. In the **Azure Storage** dialog box, select the Azure storage account to be used for this tutorial. To create a new Azure storage account, select **Create a New Storage Account**, and complete the form. After selecting either an existing storage account or creating a new one, select **Add**. Visual Studio installs the NuGet package for Azure Storage and a storage connection string to **Web.config**.
 
-1. 在 [Azure 儲存體] 對話方塊上，選取您想要使用的所需 Azure 儲存體帳戶，然後選取 [新增]。
+> [!TIP]
+> To learn how to create a storage account with the [Azure portal](https://portal.azure.com), see [Create a storage account](../articles/storage/common/storage-create-storage-account.md#create-a-storage-account).
+>
+> You can also create a storage account by using [Azure PowerShell](../articles/storage/common/storage-powershell-guide-full.md), [Azure CLI](../articles/storage/common/storage-azure-cli.md), or [Azure Cloud Shell](../articles/cloud-shell/overview.md).
+

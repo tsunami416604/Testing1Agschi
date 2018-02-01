@@ -1,94 +1,106 @@
-AzureRm.Resources 模組的 3.0 版包含如何處理標記中的重大變更。 繼續之前，請檢查您的版本︰
+The examples in this article require version 3.0 or later of Azure PowerShell. If you do not have version 3.0 or later, [update your version](/powershell/azureps-cmdlets-docs/) by using PowerShell Gallery or Web Platform Installer.
+
+To see the existing tags for a *resource group*, use:
 
 ```powershell
-Get-Module -ListAvailable -Name AzureRm.Resources | Select Version
+(Get-AzureRmResourceGroup -Name examplegroup).Tags
 ```
 
-如果結果顯示的是版本 3.0 或更新版本，本主題中的範例可適用於您的環境。 如果版本不是 3.0 或更新版本，請在進行本主題之前，先使用 PowerShell 資源庫或 Web Platform Installer 來[更新版本](/powershell/azureps-cmdlets-docs/)。
+That script returns the following format:
 
 ```powershell
-Version
--------
-3.5.0
+Name                           Value
+----                           -----
+Dept                           IT
+Environment                    Test
 ```
 
-每當您將標籤套用到資源或資源群組時，即會覆寫該資源或資源群組上現有的標籤。 因此，您必須視該資源或資源群組是否有想要保留的現有標籤，來使用不同的方法。 若要將標籤加入至以下項目：
-
-* 沒有現有標籤的資源群組。
-
-  ```powershell
-  Set-AzureRmResourceGroup -Name TagTestGroup -Tag @{ Dept="IT"; Environment="Test" }
-  ```
-
-* 擁有現有標籤的資源群組。
-
-  ```powershell
-  $tags = (Get-AzureRmResourceGroup -Name TagTestGroup).Tags
-  $tags += @{Status="Approved"}
-  Set-AzureRmResourceGroup -Tag $tags -Name TagTestGroup
-  ```
-
-* 沒有現有標籤的資源。
-
-  ```powershell
-  Set-AzureRmResource -Tag @{ Dept="IT"; Environment="Test" } -ResourceName storageexample -ResourceGroupName TagTestGroup -ResourceType Microsoft.Storage/storageAccounts
-  ```
-
-* 擁有現有標籤的資源。
-
-  ```powershell
-  $tags = (Get-AzureRmResource -ResourceName storageexample -ResourceGroupName TagTestGroup).Tags
-  $tags += @{Status="Approved"}
-  Set-AzureRmResource -Tag $tags -ResourceName storageexample -ResourceGroupName TagTestGroup -ResourceType Microsoft.Storage/storageAccounts
-  ```
-
-若要將所有標籤從資源群組套用至其資源，而**不在資源上保留現有的標籤**，請使用下列指令碼︰
+To see the existing tags for a *resource that has a specified resource ID*, use:
 
 ```powershell
-$groups = Get-AzureRmResourceGroup
-foreach ($g in $groups) 
-{
-    Find-AzureRmResource -ResourceGroupNameEquals $g.ResourceGroupName | ForEach-Object {Set-AzureRmResource -ResourceId $_.ResourceId -Tag $g.Tags -Force } 
-}
+(Get-AzureRmResource -ResourceId {resource-id}).Tags
 ```
 
-若要將所有標籤從資源群組套用至其資源，並**在資源上保留所有非重複的現有標籤**，請使用下列指令碼︰
+Or, to see the existing tags for a *resource that has a specified name and resource group*, use:
 
 ```powershell
-$groups = Get-AzureRmResourceGroup
-foreach ($g in $groups) 
-{
-    if ($g.Tags -ne $null) {
-        $resources = Find-AzureRmResource -ResourceGroupNameEquals $g.ResourceGroupName 
-        foreach ($r in $resources)
-        {
-            $resourcetags = (Get-AzureRmResource -ResourceId $r.ResourceId).Tags
-            foreach ($key in $g.Tags.Keys)
-            {
-                if ($resourcetags.ContainsKey($key)) { $resourcetags.Remove($key) }
-            }
-            $resourcetags += $g.Tags
-            Set-AzureRmResource -Tag $resourcetags -ResourceId $r.ResourceId -Force
-        }
-    }
-}
+(Get-AzureRmResource -ResourceName examplevnet -ResourceGroupName examplegroup).Tags
 ```
 
-若要移除所有標籤，請傳遞空的雜湊表。
+To get *resource groups that have a specific tag*, use:
 
 ```powershell
-Set-AzureRmResourceGroup -Tag @{} -Name TagTestGgroup
+(Find-AzureRmResourceGroup -Tag @{ Dept="Finance" }).Name
 ```
 
-若要取得含有特定標籤的資源群組，請使用 `Find-AzureRmResourceGroup` Cmdlet。
-
-```powershell
-(Find-AzureRmResourceGroup -Tag @{ Dept="Finance" }).Name 
-```
-
-若要取得具有特定標籤和值的所有資源，請使用 `Find-AzureRmResource` Cmdlet。
+To get *resources that have a specific tag*, use:
 
 ```powershell
 (Find-AzureRmResource -TagName Dept -TagValue Finance).Name
 ```
 
+Every time you apply tags to a resource or a resource group, you overwrite the existing tags on that resource or resource group. Therefore, you must use a different approach based on whether the resource or resource group has existing tags.
+
+To add tags to a *resource group without existing tags*, use:
+
+```powershell
+Set-AzureRmResourceGroup -Name examplegroup -Tag @{ Dept="IT"; Environment="Test" }
+```
+
+To add tags to a *resource group that has existing tags*, retrieve the existing tags, add the new tag, and reapply the tags:
+
+```powershell
+$tags = (Get-AzureRmResourceGroup -Name examplegroup).Tags
+$tags += @{Status="Approved"}
+Set-AzureRmResourceGroup -Tag $tags -Name examplegroup
+```
+
+To add tags to a *resource without existing tags*, use:
+
+```powershell
+$r = Get-AzureRmResource -ResourceName examplevnet -ResourceGroupName examplegroup
+Set-AzureRmResource -Tag @{ Dept="IT"; Environment="Test" } -ResourceId $r.ResourceId -Force
+```
+
+To add tags to a *resource that has existing tags*, use:
+
+```powershell
+$r = Get-AzureRmResource -ResourceName examplevnet -ResourceGroupName examplegroup
+$r.tags += @{Status="Approved"}
+Set-AzureRmResource -Tag $r.Tags -ResourceId $r.ResourceId -Force
+```
+
+To apply all tags from a resource group to its resources, and *not retain existing tags on the resources*, use the following script:
+
+```powershell
+$groups = Get-AzureRmResourceGroup
+foreach ($g in $groups)
+{
+    Find-AzureRmResource -ResourceGroupNameEquals $g.ResourceGroupName | ForEach-Object {Set-AzureRmResource -ResourceId $_.ResourceId -Tag $g.Tags -Force }
+}
+```
+
+To apply all tags from a resource group to its resources, and *retain existing tags on resources that are not duplicates*, use the following script:
+
+```powershell
+$group = Get-AzureRmResourceGroup "examplegroup"
+if ($group.Tags -ne $null) {
+    $resources = $group | Find-AzureRmResource
+    foreach ($r in $resources)
+    {
+        $resourcetags = (Get-AzureRmResource -ResourceId $r.ResourceId).Tags
+        foreach ($key in $group.Tags.Keys)
+        {
+            if (($resourcetags) -AND ($resourcetags.ContainsKey($key))) { $resourcetags.Remove($key) }
+        }
+        $resourcetags += $group.Tags
+        Set-AzureRmResource -Tag $resourcetags -ResourceId $r.ResourceId -Force
+    }
+}
+```
+
+To remove all tags, pass an empty hash table:
+
+```powershell
+Set-AzureRmResourceGroup -Tag @{} -Name examplegroup
+```

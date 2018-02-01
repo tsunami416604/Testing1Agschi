@@ -1,18 +1,20 @@
-| 資源 | 預設限制 | 附註 |
+| Resource | Default limit | Note |
 | --- | --- | --- |
-| 應用程式閘道 |每一訂用帳戶 50 個 | |
-| 前端 IP 組態 |2 |公用 1 個和私用 1 個 |
-| 前端連接埠 |20 | |
-| 後端位址集區 |20 | |
-| 每個集區的後端伺服器 |100 | |
-| HTTP 接聽程式 |20 | |
-| HTTP 負載平衡規則 |200 |# HTTP 接聽程式的數目 * n，預設值 n = 10 |
-| 後端 HTTP 設定 |20 |每個後端位址集區 1 個 |
-| 每個閘道的執行個體 |10 | |
-| SSL 憑證 |20 |每個 HTTP 接聽程式 1 個 |
-| 驗證憑證 |5 | 最大值 10 |
-| 要求逾時最小值 |1 秒 | |
-| 要求逾時最大值 |24 小時 | |
-| 站台數目 |20 |每個 HTTP 接聽程式 1 個 |
-| 每個接聽程式的 URL 對應 |1 | |
+| Application Gateway |50 per subscription | Maximum 100 |
+| Frontend IP Configurations |2 |1 public and 1 private |
+| Frontend Ports |20 | |
+| Backend Address Pools |20 | |
+| Backend Servers per pool |100 | |
+| HTTP Listeners |20 | |
+| HTTP load balancing rules |200 |# of HTTP Listeners * n, n=10 Default |
+| Backend HTTP settings |20 |1 per Backend Address Pool |
+| Instances per gateway |10 | For more instances, open support ticket |
+| SSL certificates |20 |1 per HTTP Listeners |
+| Authentication certificates |5 | Maximum 10 |
+| Request time out min |1 second | |
+| Request time out max |24 hrs | |
+| Number of sites |20 |1 per HTTP Listeners |
+| URL Maps per listener |1 | |
+| Maximum file upload size Standard |2 GB | |
+| Maximum file upload size WAF |100 MB| |
 

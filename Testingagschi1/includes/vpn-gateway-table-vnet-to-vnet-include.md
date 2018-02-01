@@ -1,9 +1,8 @@
-| **部署模型/方法** | **Azure 入口網站** | **傳統入口網站** | **PowerShell** |
+| **Deployment Model/Method** | **Azure Portal** | **PowerShell** | **Azure CLI** |
 | --- | --- | --- | --- |
-| **傳統** |[文章*](../articles/vpn-gateway/vpn-gateway-howto-vnet-vnet-portal-classic.md)|[文章*](../articles/vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md) |支援 |
-| **資源管理員** |[文章+](../articles/vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md) |不支援 |[文章](../articles/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md) |
-| **不同部署模型之間的連線** |[文章*](../articles/vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md) |支援* |[文章](../articles/vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md) |
+| Classic |[Article*](../articles/vpn-gateway/vpn-gateway-howto-vnet-vnet-portal-classic.md)|Supported | Not Supported|
+| Resource Manager |[Article+](../articles/vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md) |Not Supported |[Article](../articles/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md) |[Article](../articles/vpn-gateway/vpn-gateway-howto-vnet-vnet-cli.md)
+| Connections between different deployment models |[Article*](../articles/vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md) |[Article](../articles/vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md) | Not Supported |
 
-(+) 表示這種部署方法僅適用於相同訂用帳戶中的 VNet。<br>
-(*) 表示這種部署方法也需要 PowerShell。
-
+(+) denotes this deployment method is available only for VNets in the same subscription.<br>
+(*) denotes that this deployment method also requires PowerShell.

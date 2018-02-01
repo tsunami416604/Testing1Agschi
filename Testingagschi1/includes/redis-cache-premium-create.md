@@ -1,18 +1,13 @@
-若要建立進階快取，請登入 [Azure 入口網站](https://portal.azure.com)，按一下 [新增] > [資料庫] > [Redis 快取]。
+To create a premium cache, sign-in to the [Azure portal](https://portal.azure.com) and click **New** > **Databases** > **Redis Cache**.
 
 ![Create cache](media/redis-cache-premium-create/redis-cache-new-cache-menu.png)
 
 > [!NOTE]
-> 除了在 Azure 入口網站中建立快取，您也可以使用 Resource Manager 範本、PowerShell 或 Azure CLI 來建立。 如需如何建立 Azure Redis 快取的詳細資訊，請參閱[建立快取](../articles/redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache)。
+> In addition to creating caches in the Azure portal, you can also create them using Resource Manager templates, PowerShell, or Azure CLI. For more information about creating an Azure Redis Cache, see [Create a cache](../articles/redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache).
 > 
 > 
 
-若要設定進階功能，請先在 [選擇定價層]  刀鋒視窗中選取其中一個進階定價層。
+To configure premium features, first select one of the premium pricing tiers in the **Pricing tier** drop-down list. For more information about each pricing tier, click **View full pricing details** and select a pricing tier from the **Choose your pricing tier** blade.
 
-![進階](media/redis-cache-premium-create/redis-cache-premium-pricing-tier.png)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
+![Choose your pricing tier](media/redis-cache-premium-create/redis-cache-premium-pricing-tier.png)
 

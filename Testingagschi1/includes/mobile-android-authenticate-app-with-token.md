@@ -1,84 +1,105 @@
 
-先前範例所示範的標準登入，在每次應用程式啟動時，皆需要用戶端連絡身分識別提供者和後端 Azure 服務。 此方法效率低，而且如果有許多客戶嘗試同時啟動應用程式，則可能會發生與使用量相關的問題。 更好的方法就是快取 Azure 服務傳回的授權權杖，然後嘗試在使用提供者形式登入前先使用此方法。
+The previous example showed a standard sign-in, which requires the client to contact both the identity provider and the back-end Azure service every time the app starts. This method is inefficient, and you can have usage-related issues if many customers try to start your app simultaneously. A better approach is to cache the authorization token returned by the Azure service, and try to use this first before using a provider-based sign-in.
 
 > [!NOTE]
-> 無論您使用用戶端管理或服務管理驗證，皆可以快取後端 Azure 服務發行的權杖。 本教學課程使用服務管理驗證。
+> You can cache the token issued by the back-end Azure service regardless of whether you are using client-managed or service-managed authentication. This tutorial uses service-managed authentication.
 >
 >
 
-1. 開啟 ToDoActivity.java 檔案，並新增下列 import 陳述式：
+1. Open the ToDoActivity.java file and add the following import statements:
 
-        import android.content.Context;
-        import android.content.SharedPreferences;
-        import android.content.SharedPreferences.Editor;
-2. 在 `ToDoActivity` 類別中新增下列成員：
+    ```java
+    import android.content.Context;
+    import android.content.SharedPreferences;
+    import android.content.SharedPreferences.Editor;
+    ```
 
-        public static final String SHAREDPREFFILE = "temp";    
-        public static final String USERIDPREF = "uid";    
-        public static final String TOKENPREF = "tkn";    
-3. 在 ToDoActivity.java 檔案中，新增下列 `cacheUserToken` 方法的定義。
+2. Add the following members to the `ToDoActivity` class.
 
-        private void cacheUserToken(MobileServiceUser user)
-        {
-            SharedPreferences prefs = getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
-            Editor editor = prefs.edit();
-            editor.putString(USERIDPREF, user.getUserId());
-            editor.putString(TOKENPREF, user.getAuthenticationToken());
-            editor.commit();
-        }    
+    ```java
+    public static final String SHAREDPREFFILE = "temp";
+    public static final String USERIDPREF = "uid";
+    public static final String TOKENPREF = "tkn";
+    ```
 
-    此方法將使用者識別碼和權杖儲存在標示為私人的慣用檔案中。 這可以保護快取的存取，如此一來裝置上的其他應用程式將無法存取權杖。 應用程式的喜好設定已沙箱化。 不過，如果有人取得裝置的存取權，他們有可能也可以透過其他方法取得權杖快取的存取權。
+3. In the ToDoActivity.java file, add the following definition for the `cacheUserToken` method.
+
+    ```java
+    private void cacheUserToken(MobileServiceUser user)
+    {
+        SharedPreferences prefs = getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
+        Editor editor = prefs.edit();
+        editor.putString(USERIDPREF, user.getUserId());
+        editor.putString(TOKENPREF, user.getAuthenticationToken());
+        editor.commit();
+    }
+    ```
+
+    This method stores the user ID and token in a preference file that is marked private. This should protect access to the cache so that other apps on the device do not have access to the token. The preference is sandboxed for the app. However, if someone gains access to the device, it is possible that they may gain access to the token cache through other means.
 
    > [!NOTE]
-   > 如果使用權杖存取的資料十分敏感，而且有人可能可以取得裝置存取權，那麼您可以使用加密來進一步保護權杖。 不過，完整的安全解決方案已超過本教學課程範圍，而且也須視您的安全性需求而定。
+   > You can further protect the token with encryption, if token access to your data is considered highly sensitive and someone may gain access to the device. A completely secure solution is beyond the scope of this tutorial, however, and depends on your security requirements.
    >
    >
-4. 在 ToDoActivity.java 檔案中，新增下列 `loadUserTokenCache` 方法的定義。
 
-        private boolean loadUserTokenCache(MobileServiceClient client)
+4. In the ToDoActivity.java file, add the following definition for the `loadUserTokenCache` method.
+
+    ```java
+    private boolean loadUserTokenCache(MobileServiceClient client)
+    {
+        SharedPreferences prefs = getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
+        String userId = prefs.getString(USERIDPREF, null);
+        if (userId == null)
+            return false;
+        String token = prefs.getString(TOKENPREF, null);
+        if (token == null)
+            return false;
+
+        MobileServiceUser user = new MobileServiceUser(userId);
+        user.setAuthenticationToken(token);
+        client.setCurrentUser(user);
+
+        return true;
+    }
+    ```
+
+5. In the *ToDoActivity.java* file, replace the `authenticate` and `onActivityResult` methods with the following ones, which uses a token cache. Change the login provider if you want to use an account other than Google.
+
+    ```java
+    private void authenticate() {
+        // We first try to load a token cache if one exists.
+        if (loadUserTokenCache(mClient))
         {
-            SharedPreferences prefs = getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
-            String userId = prefs.getString(USERIDPREF, null);
-            if (userId == null)
-                return false;
-            String token = prefs.getString(TOKENPREF, null);
-            if (token == null)
-                return false;
-
-            MobileServiceUser user = new MobileServiceUser(userId);
-            user.setAuthenticationToken(token);
-            client.setCurrentUser(user);
-
-            return true;
+            createTable();
         }
-5. 在 *ToDoActivity.java* 檔案中，將 `authenticate` 方法改為使用權杖快取的下列方法。 如果您想要使用 Google 以外的帳戶，請變更登入提供者。
+        // If we failed to load a token cache, login and create a token cache
+        else
+        {
+            // Login using the Google provider.
+            mClient.login(MobileServiceAuthenticationProvider.Google, "{url_scheme_of_your_app}", GOOGLE_LOGIN_REQUEST_CODE);
+        }
+    }
 
-        private void authenticate() {
-            // We first try to load a token cache if one exists.
-            if (loadUserTokenCache(mClient))
-            {
-                createTable();
-            }
-            // If we failed to load a token cache, login and create a token cache
-            else
-            {
-                // Login using the Google provider.    
-                ListenableFuture<MobileServiceUser> mLogin = mClient.login(MobileServiceAuthenticationProvider.Google);
-
-                Futures.addCallback(mLogin, new FutureCallback<MobileServiceUser>() {
-                    @Override
-                    public void onFailure(Throwable exc) {
-                        createAndShowDialog("You must log in. Login Required", "Error");
-                    }           
-                    @Override
-                    public void onSuccess(MobileServiceUser user) {
-                        createAndShowDialog(String.format(
-                                "You are now logged in - %1$2s",
-                                user.getUserId()), "Success");
-                        cacheUserToken(mClient.getCurrentUser());
-                        createTable();    
-                    }
-                });
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // When request completes
+        if (resultCode == RESULT_OK) {
+            // Check the request code matches the one we send in the login request
+            if (requestCode == GOOGLE_LOGIN_REQUEST_CODE) {
+                MobileServiceActivityResult result = mClient.onActivityResult(data);
+                if (result.isLoggedIn()) {
+                    // login succeeded
+                    createAndShowDialog(String.format("You are now logged in - %1$2s", mClient.getCurrentUser().getUserId()), "Success");
+                    cacheUserToken(mClient.getCurrentUser());
+                    createTable();
+                } else {
+                    // login failed, check the error message
+                    String errorMessage = result.getErrorMessage();
+                    createAndShowDialog(errorMessage, "Error");
+                }
             }
         }
-6. 使用有效的帳戶建置應用程式，並且測試驗證。 至少執行 2 次此動作。 第一次執行時，您應該會收到提示，要求您登入並建立權杖快取。 之後，每次執行會嘗試載入權杖快取來進行驗證。 您應該不需要登入。
+    }
+    ```
+
+6. Build the app and test authentication using a valid account. Run it at least twice. During the first run, you should receive a prompt to sign in and create the token cache. After that, each run attempts to load the token cache for authentication. You should not be required to sign in.

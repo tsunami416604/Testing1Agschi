@@ -1,9 +1,9 @@
 
-1. 瀏覽 [Azure 入口網站]。 按一下 [瀏覽全部] > [行動應用程式] > 您剛才建立的後端。 在行動應用程式設定中，按一下 [快速入門] >  > [Android]。 在 [設定用戶端應用程式] 下方，按一下 [下載]。 這樣會為已預先設定成連接到您後端的應用程式，下載完整的 Android 專案。 
-2. 使用 **Android Studio**、**匯入專案 (Eclipse ADT、Gradle 等等)** 開啟專案。 請確認選取此匯入選項，以避免發生 JDK 錯誤。
-3. 按 [ **執行 '應用程式'** ] 按鈕以建置專案，並在Android 模擬器中啟動應用程式。
-4. 在應用程式中輸入有意義的文字 (例如 *Complete the tutorial* )，然後按一下 [加入] 按鈕。 這會將 POST 要求傳送至先前部署的 Azure 後端。 後端會將要求中的資料插入 TodoItem SQL 資料表，並將新儲存之項目的相關資訊傳回給行動應用程式。 行動應用程式會以清單顯示此資料。 
+1. Visit the [Azure Portal]. Click **Browse All** > **Mobile Apps** > the backend that you just created. In the mobile app settings, click **Quickstart** > **Android)**. Under **Configure your client application**, click **Download**. This downloads a complete Android project for an app pre-configured to connect to your backend. 
+2. Open the project using **Android Studio**, using **Import project (Eclipse ADT, Gradle, etc.)**. Make sure you make this import selection to avoid any JDK errors.
+3. Press the **Run 'app'** button to build the project and start the app in the Android simulator.
+4. In the app, type meaningful text, such as *Complete the tutorial* and then click the 'Add' button. This sends a POST request to the Azure backend you deployed earlier. The backend inserts data from the request is into the TodoItem SQL table, and returns information about the newly stored items back to the mobile app. The mobile app displays this data in the list. 
    
     ![](./media/app-service-mobile-android-quickstart/mobile-quickstart-startup-android.png)
 
-[Azure 入口網站]: https://portal.azure.com/
+[Azure Portal]: https://portal.azure.com/

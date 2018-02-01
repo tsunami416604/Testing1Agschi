@@ -1,44 +1,43 @@
-<!-- A-series - compute-intensive instances, H-series -->
 
-A8-A11 和 H 系列大小也稱為 *計算密集型執行個體*。 執行這些大小的硬體是針對計算密集型和網路密集型應用程式 (包括高效能運算 (HPC) 叢集應用程式)、模型化及模擬而設計及最佳化的。 A8-A11 系列使用 Intel Xeon E5-2670 @ 2.6 GHZ，而 H 系列使用 Intel Xeon E5-2667 v3 @ 3.2 GHz。 
+The A8-A11 and H-series sizes are also known as *compute-intensive instances*. The hardware that runs these sizes is designed and optimized for compute-intensive and network-intensive applications, including high-performance computing (HPC) cluster applications, modeling, and simulations. The A8-A11 series uses Intel Xeon E5-2670 @ 2.6 GHZ and the H-series uses Intel Xeon E5-2667 v3 @ 3.2 GHz.  This article provides information about the number of vCPUs, data disks and NICs as well as storage throughput and network bandwidth for each size in this grouping. 
 
-Azure H 系列虛擬機器是下一代高效能運算 VM，以高端運算需求為目標，例如分子建模以及運算流體力學。 這些 8 與 16 核心 VM 是以 Intel Haswell E5-2667 V3 處理器技術，搭載 DDR4 記憶體與本機 SSD 型儲存體為基礎建置。 
+Azure H-series virtual machines are the next generation high performance computing VMs aimed at high end computational needs, like molecular modeling, and computational fluid dynamics. These 8 and 16 vCPU VMs are built on the Intel Haswell E5-2667 V3 processor technology featuring DDR4 memory and SSD-based temporary storage. 
 
-除了大量的 CPU 能力，H 系列使用 FDR InfiniBand 與數個記憶體組態，針對低延遲 RDMA 網路提供不同的選項，以支援記憶體大量運算需求。
-
+In addition to the substantial CPU power, the H-series offers diverse options for low latency RDMA networking using FDR InfiniBand and several memory configurations to support memory intensive computational requirements.
 
 
-## <a name="h-series"></a>H 系列
 
-ACU：290 - 300
+## H-series
 
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
+ACU: 290-300
+
+| Size | vCPU | Memory: GiB | Temp storage (SSD) GiB | Max data disks | Max disk throughput: IOPS | Max NICs |
 | --- | --- | --- | --- | --- | --- | --- |
-| Standard_H8 |8 |56 |1000 |16 |16 x 500 |2 / 高 |
-| Standard_H16 |16 |112 |2000 |32 |32 x 500 |4 / 非常高 |
-| Standard_H8m |8 |112 |1000 |16 |16 x 500 |2 / 高 |
-| Standard_H16m |16 |224 |2000 |32 |32 x 500 |4 / 非常高 |
-| Standard_H16r* |16 |112 |2000 |32 |32 x 500 |4 / 非常高 |
-| Standard_H16mr* |16 |224 |2000 |32 |32 x 500 |4 / 非常高 |
+| Standard_H8 |8 |56 |1000 |32 |32 x 500 |2  |
+| Standard_H16 |16 |112 |2000 |64 |64 x 500 |4 |
+| Standard_H8m |8 |112 |1000 |32 |32 x 500 |2  |
+| Standard_H16m |16 |224 |2000 |64 |64 x 500 |4  |
+| Standard_H16r <sup>1</sup> |16 |112 |2000 |64 |64 x 500 |4  |
+| Standard_H16mr <sup>1</sup> |16 |224 |2000 |64 |64 x 500 |4 |
 
-*支援 RDMA
+<sup>1</sup> For MPI applications, dedicated RDMA backend network is enabled by FDR InfiniBand network, which delivers ultra-low-latency and high bandwidth.
 
 <br>
 
 
 
-## <a name="a-series---compute-intensive-instances"></a>A 系列 - 大量計算執行個體
+## A-series - compute-intensive instances
 
-ACU：225
+ACU: 225
 
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 HDD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
+| Size | vCPU | Memory: GiB | Temp storage (HDD): GiB | Max data disks | Max data disk throughput: IOPS | Max NICs|
 | --- | --- | --- | --- | --- | --- | --- |
-| Standard_A8* |8 |56 |382 |16 |16x500 |2 / 高 |
-| Standard_A9* |16 |112 |382 |16 |16x500 |4 / 非常高 |
-| Standard_A10 |8 |56 |382 |16 |16x500 |2 / 高 |
-| Standard_A11 |16 |112 |382 |16 |16x500 |4 / 非常高 |
+| Standard_A8 <sup>1</sup> |8 |56 |382 |32 |32x500 |2 |
+| Standard_A9 <sup>1</sup> |16 |112 |382 |64 |64x500 |4 |
+| Standard_A10 |8 |56 |382 |32 |32x500 |2  |
+| Standard_A11 |16 |112 |382 |64 |64x500 |4 |
 
-*支援 RDMA
+<sup>1</sup>For MPI applications, dedicated RDMA backend network is enabled by FDR InfiniBand network, which delivers ultra-low-latency and high bandwidth.
 
 <br>
 

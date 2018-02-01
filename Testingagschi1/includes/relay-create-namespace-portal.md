@@ -1,24 +1,25 @@
-1. 登入 [Azure 入口網站][Azure portal]。
-2. 在入口網站的左方瀏覽窗格中，依序按一下 [新增]、[企業整合] 及 [轉送]。
-3. 在 [建立命名空間]  對話方塊中，輸入命名空間名稱。 系統會立即檢查此名稱是否可用。
-4. 在 [訂用帳戶]  欄位中，選擇要在其中建立命名空間的 Azure 訂用帳戶。
-5. 在 **[資源群組](../articles/azure-resource-manager/resource-group-portal.md)** 欄位中，選擇將存留命名空間的現有資源群組，或是建立新的資源群組。      
-6. 在 [位置] 中，選擇應裝載您命名空間的國家或地區。
+1. Sign in to the [Azure portal][Azure portal].
+2. In the left menu, select **+ Create a resource**. Then, select **Enterprise Integration** > **Relay**.
+3. Under **Create namespace**, enter a namespace name. The system immediately checks to see if the name is available.
+4. In the **Subscription** box, select an Azure subscription in which to create the namespace.
+5. In the [Resource group](../articles/azure-resource-manager/resource-group-portal.md) box, select an existing resource group in which to place the namespace, or create a new one.  
+6. In **Location**, select the country or region in which your namespace should be hosted.
    
-    ![建立命名空間][create-namespace]
-7. 按一下 [建立] 。 此時系統會建立並啟用命名空間。 幾分鐘後，系統便會為您的帳戶佈建資源。
+    ![Create namespace][create-namespace]
+7. Select **Create**. The system creates your namespace and enables it. After a few minutes, the system provisions resources for your account.
 
-### <a name="obtain-the-management-credentials"></a>取得管理認證
-1. 在命名空間清單中，按一下新建立的命名空間名稱。
-2. 在命名空間刀鋒視窗中，按一下 [共用存取原則]。
-3. 在 [共用存取原則] 刀鋒視窗中，按一下 **RootManageSharedAccessKey**。
+### Get management credentials
+
+1. Select **All resources**, and then select the newly created namespace name.
+2. Under the Relay namespace, select **Shared access policies**.  
+3. Under **Shared access policies**, select **RootManageSharedAccessKey**.
    
     ![connection-info][connection-info]
-4. 在 [原則: RootManageSharedAccessKey] 刀鋒視窗中，按一下 [連接字串 - 主要金鑰] 旁邊的複製按鈕，將連接字串複製到剪貼簿以供稍後使用。 將此值貼到記事本或一些其他暫存位置。
+4. Under **Policy: RootManageSharedAccessKey**, select the **Copy** button next to **Connection string–Primary key**. This copies the connection string to your clipboard for later use. Paste this value into Notepad or some other temporary location.
    
     ![connection-string][connection-string]
 
-5. 重複前一個步驟，複製 [主要金鑰] 的值並貼到暫存位置以供稍後使用。  
+5. Repeat the preceding step to copy and paste the value of **Primary key** to a temporary location for later use.  
 
 <!--Image references-->
 
@@ -26,8 +27,3 @@
 [connection-info]: ./media/relay-create-namespace-portal/connection-info.png
 [connection-string]: ./media/relay-create-namespace-portal/connection-string.png
 [Azure portal]: https://portal.azure.com
-
-
-<!--HONumber=Feb17_HO2-->
-
-

@@ -1,35 +1,35 @@
-#### <a name="to-create-a-new-service"></a>建立新服務
+#### To create a new service
 
-1.  使用您的 Microsoft 帳戶認證登入 Azure 入口網站，URL 如下：<https://portal.azure.com/>。 如果在政府機構入口網站中部署裝置，請在以下網址登入︰<https://portal.azure.us/>
+1.  Using your Microsoft account credentials, log on to the Azure portal at this URL: <https://portal.azure.com/>. If deploying the device in Government portal, log in at: <https://portal.azure.us/>
 
-2.  在 Azure 入口網站中，按一下 [+ 新增] &gt; [儲存體] &gt; [StorSimple 虛擬系列]。
+2.  In the Azure portal, click **+ New** &gt; **Storage** &gt; **StorSimple Virtual Series**.
 
-    ![建立新的服務](./media/storsimple-virtual-array-create-new-service/createnewservice2.png) 
+    ![Create new service](./media/storsimple-virtual-array-create-new-service/createnewservice2.png) 
 
-3.  在開啟的 [StorSimple 裝置管理員] 刀鋒視窗中，執行下列動作：
+3.  In the **StorSimple Device Manager** blade that opens up, do the following:
 
-    1.  為服務提供唯一的**資源名稱** 。 資源名稱是可用來識別服務的易記名稱。 名稱長度可介於 2 到 50 個字元之間，且可以是字母、數字和連字號。 名稱必須以字母或數字為開頭或結尾。
+    1.  Supply a unique **Resource name** for your service. The resource name is a friendly name that can be used to identify the service. The name can have between 2 and 50 characters that can be letters, numbers, and hyphens. The name must start and end with a letter or a number.
 
-    2.  從下拉式清單選擇 [訂用帳戶]  。 訂用帳戶會連結到您的帳單帳戶。 如果您只擁有一個訂用帳戶，則此欄位不存在。
+    2.  Choose a **Subscription** from the drop-down list. The subscription is linked to your billing account. This field is not present if you have only one subscription.
 
-    3.  針對**資源群組**，選取現有群組或建立新的群組。 如需詳細資訊，請參閱 [Azure 資源群組](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-infrastructure-resource-groups-guidelines/)。
+    3.  For **Resource group**, select an existing or create a new group. For more information, see [Azure resource groups](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-infrastructure-resource-groups-guidelines/).
 
-    4.  提供服務的 [位置]  。 如需各區域可用服務的詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/#services)。 一般而言，請選擇最接近您要部署裝置之地理區域的**位置**。 您也可能計入下列因素：
+    4.  Supply a **Location** for your service. See [Azure Regions](https://azure.microsoft.com/regions/#services) for more information about which services are available in which region. In general, choose a **Location** closest to the geographical region where you want to deploy your device. You may also want to factor in the following:
 
-        -   如果您在 Azure 中還有其他您也想利用 StorSimple 裝置來部署的工作負載，建議您使用該資料中心。
+        -   If you have existing workloads in Azure that you also intend to deploy with your StorSimple device, we recommend that you use that datacenter.
 
-        -   您的 StorSimple 裝置管理員和 Azure 儲存體可以分別位於兩個不同的位置。 如此一來，您需要分別建立 StorSimple 裝置管理員和 Azure 儲存體帳戶。 若要建立 Azure 儲存體帳戶，請前往 Azure 入口網站中的 [Azure 儲存體服務]，依[建立 Azure 儲存體帳戶](https://azure.microsoft.com/documentation/articles/storage-create-storage-account/#create-a-storage-account)中的步驟進行。 建立此帳戶之後，請依[設定服務的新儲存體帳戶](https://azure.microsoft.com/en-us/documentation/articles/storsimple-deployment-walkthrough/#configure-a-new-storage-account-for-the-service)中的步驟，將此帳戶新增到 StorSimple 裝置管理員服務。
+        -   Your StorSimple Device Manager and Azure storage can be in two separate locations. In such a case, you are required to create the StorSimple Device Manager and Azure storage account separately. To create an Azure storage account, go to the Azure Storage service in the Azure portal and follow the steps in [Create an Azure Storage account](https://azure.microsoft.com/documentation/articles/storage-create-storage-account/#create-a-storage-account). After you create this account, add it to the StorSimple Device Manager service by following the steps in [Configure a new storage account for the service](https://azure.microsoft.com/en-us/documentation/articles/storsimple-deployment-walkthrough/#configure-a-new-storage-account-for-the-service).
 
-        -   如果在政府機構入口網站中部署虛擬裝置，美國愛荷華州和美國維吉尼亞州位置可以使用 StorSimple 裝置管理員服務。
+        -   If deploying the virtual device in the Government Portal, the StorSimple Device Manager service is available in US Iowa and US Virginia locations.
 
-    5.  選取 [建立新的 Azure 儲存體帳戶]  ，以自動向此服務建立儲存體帳戶。 指定**儲存體帳戶名稱**。 如果您需要將資料放在不同的位置，取消核取此方塊。
+    5.  Select **Create a new Azure storage account** to automatically create a storage account with the service. Specify a **Storage account name**. If you need your data in a different location, uncheck this box.
 
-    6.  如果您想在儀表板上快速連結到此服務，請勾選 [釘選到儀表板]。
+    6.  Check **Pin to dashboard** if you want a quick link to this service on your dashboard.
 
-    7.  按一下 [建立] 以建立 StorSimple 裝置管理員。
+    7.  Click **Create** to create the StorSimple Device Manager.
 
-        ![建立新的服務](./media/storsimple-virtual-array-create-new-service/createnewservice4.png)  
+        ![Create new service](./media/storsimple-virtual-array-create-new-service/createnewservice4.png)  
 
-系統會將您導向至 [服務] 登陸頁面。 服務建立需要幾分鐘的時間。 成功建立服務之後，即會在適當時機通知您，並將服務狀態變更為 [作用中] 。
+You are directed to the **Service** landing page. The service creation takes a few minutes. After the service is successfully created, you will be notified appropriately and the status of the service will change to **Active**.
 
 

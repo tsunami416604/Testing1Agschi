@@ -1,28 +1,53 @@
-資料處理站是一種多租用戶服務，並具有以下的預設限制以確保客戶訂用帳戶不會受到彼此工作負載的影響。 您只要連絡支援人員，即可將您訂用帳戶的大部分限制調整至其最大限制。
+Data factory is a multi-tenant service that has the following default limits in place to make sure customer subscriptions are protected from each other's workloads. Many of the limits can be easily raised for your subscription up to the maximum limit by contacting support.
 
-| **Resource** | **預設限制** | **上限** |
+### Version 2
+
+| Resource | Default Limit | Maximum Limit | 
+| -------- | ------------- | ------------- | 
+| Data factories in an Azure subscription |	50 | [Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Pipelines within a data factory | 2500 | [Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Datasets within a data factory | 2500 | [Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Triggers within a data factory | 2500 | [Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Linked services within a data factory | 2500 | [Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Integration runtimes within a data factory <sup>4</sup> | 2500 | [Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Concurrent pipeline runs per pipeline | 20 | [Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Max activities per pipeline | 20 | 30 |
+| Max parameters per pipeline | 20 | 30 |
+| Bytes per object for pipeline objects <sup>1</sup> | 200 KB | 200 KB |
+| Bytes per object for dataset and linked service objects <sup>1</sup> | 100 KB | 2000 KB |
+| Cloud data movement units <sup>3</sup> | 32 | [Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Retry count for pipeline activity runs | 1 day(timeout) | 1 day (timeout) |
+| Write API calls | 2500/hr<br/><br/> This limit is imposed by Azure Resource Manager, not Azure Data Factory. | [Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/). |
+| Read API calls | 12,500/hr<br/><br/> This limit is imposed by Azure Resource Manager, not Azure Data Factory. | [Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+
+
+### Version 1
+
+| **Resource** | **Default Limit** | **Maximum Limit** |
 | --- | --- | --- |
-| Azure 訂用帳戶中的 Data Factory |50 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
-| 資料處理站中的管線 |2500 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
-| 資料處理站中的資料集 |5000 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
-| 每個資料集的並行配量 |10 |10 |
-| 管線物件的每個物件位元組大小<sup>1</sup> |200 KB |200 KB |
-| 資料集和已連結服務的每個物件位元組大小<sup>1</sup> |100 KB |2000 KB |
-| 訂用帳戶中的 HDInsight 隨選叢集核心<sup>2</sup> |60 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
-| 雲端資料移動單位 <sup>3</sup> |32 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
-| 管線活動執行的重試計數 |1000 |MaxInt (32 位元) |
+| Data factories in an Azure subscription |50 |[Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Pipelines within a data factory |2500 |[Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Datasets within a data factory |5000 |[Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Concurrent slices per dataset |10 |10 |
+| Bytes per object for pipeline objects <sup>1</sup> |200 KB |200 KB |
+| Bytes per object for dataset and linked service objects <sup>1</sup> |100 KB |2000 KB |
+| HDInsight on-demand cluster cores within a subscription <sup>2</sup> |60 |[Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Cloud data movement units <sup>3</sup> |32 |[Contact support](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| Retry count for pipeline activity runs |1000 |MaxInt (32 bit) |
 
-<sup>1</sup>管線、 資料集和連結的服務物件代表您工作負載的邏輯群組。 這些物件的限制與您可使用 Azure Data Factory 服務移動或處理的資料量無關。 資料處理站可視需要調整以處理數 PB 的資料。
+<sup>1</sup> Pipeline, dataset, and linked service objects represent a logical grouping of your workload. Limits for these objects do not relate to amount of data you can move and process with the Azure Data Factory service. Data factory is designed to scale to handle petabytes of data.
 
-<sup>2</sup> 隨選 HDInsight 核心並非配置在包含資料處理站的訂用帳戶之中。 因此，上述限制為 Data Factory 針對隨選 HDInsight 核心所強制的核心限制，不同於您 Azure 訂用帳戶相關聯的核心限制。
+<sup>2</sup> On-demand HDInsight cores are allocated out of the subscription that contains the data factory. As a result, the above limit is the Data Factory enforced core limit for on-demand HDInsight cores and is different from the core limit associated with your Azure subscription.
 
-<sup>3</sup> 雲端資料移動單位 (DMU) 正用於雲端到雲端複製作業。 它是一項量值，代表 Data Factory 中單一單位的能力 (CPU、記憶體和網路資源配置的組合)。 在某些情況下，利用更多 DMU 可以達到更高的複製輸送量。 如需詳細資料，請參閱[雲端資料移動單位](../articles/data-factory/data-factory-copy-activity-performance.md#cloud-data-movement-units)小節。
+<sup>3</sup> Cloud data movement unit (DMU) is being used in a cloud-to-cloud copy operation. It is a measure that represents the power (a combination of CPU, memory, and network resource allocation) of a single unit in Data Factory. You can achieve higher copy throughput by using more DMUs for some scenarios. Refer to [Cloud data movement units](../articles/data-factory/v1/data-factory-copy-activity-performance.md#cloud-data-movement-units) section on details.
 
-| **Resource** | **預設下限** | **下限** |
+<sup>4</sup> The Integration Runtime (IR) is the compute infrastructure used by Azure Data Factory to provide the following data integration capabilities across different network environments: data movement, dispatching activities to compute services, execution of SSIS packages. For more information, see [Integration Runtime overview](../articles/data-factory/concepts-integration-runtime.md).
+
+| **Resource** | **Default lower limit** | **Minimum limit** |
 | --- | --- | --- |
-| 排程間隔 |15 Minuten |15 Minuten |
-| 重試嘗試間的間隔 |1 秒 |1 秒 |
-| 重試逾時值 |1 秒 |1 秒 |
+| Scheduling interval |15 minutes |15 minutes |
+| Interval between retry attempts |1 second |1 second |
+| Retry timeout value |1 second |1 second |
 
-### <a name="web-service-call-limits"></a>Web 服務呼叫限制
-Azure Resource Manager 有 API 呼叫限制。 您可使用 [Azure 資源管理員 API 限制](../articles/azure-subscription-service-limits.md#resource-group-limits)內的速率進行 API 呼叫。
+#### Web service call limits
+Azure Resource Manager has limits for API calls. You can make API calls at a rate within the [Azure Resource Manager API limits](../articles/azure-subscription-service-limits.md#resource-group-limits).

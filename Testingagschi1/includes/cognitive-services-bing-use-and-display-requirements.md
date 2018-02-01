@@ -1,102 +1,87 @@
-這些使用和顯示需求適用於您可透過呼叫 Bing Web 搜尋、映像搜尋、視訊搜尋和新聞搜尋 API、Bing 拼字檢查和 Bing 自動建議 API 提供的內容實作和關聯資訊 (例如，關聯性、中繼資料和其他訊號)。 特定功能和結果的文件中可以找到與這些需求相關的實作詳細資料。
+2017-10-01
 
-## <a name="1--bing-spell-check-api-and-bing-autosuggest-api--you-must-not"></a>1.Bing 拼字檢查 API 和 Bing 自動建議 API。  您不得：
+These use and display requirements apply to your implementation of the content and associated information (for example, relationships, metadata and other signals) available through calls to the Bing Custom Search, Entity Search, Image Search, News Search, Video Search, Web Search, Spell Check, and Autosuggest APIs. Implementation details related to these requirements can be found in documentation for specific features and results.
 
-- 複製、儲存或快取您收到來自 Bing 拼字檢查或 Bing 自動建議 API 的任何資料；或使用來自 Bing 拼字檢查或 Bing 自動建議 API 的資料作為任何機器學習或類似演算法活動的一部分，可訓練、評估或改進您或第三方可能會提供之新的或現有服務。
+## 1. Bing Spell Check and Bing Autosuggest API.
 
-- 使用來自 Bing 拼字檢查或 Bing 自動建議 API 的資料作為任何機器學習或類似演算法活動的一部分，可訓練、評估或改進您或第三方可能會提供之新的或現有服務。
+You must not:
 
-## <a name="2--bing-web-search-image-search-news-search-and-video-search-apis-the-search-apis"></a>2.BING 網站搜尋、映像搜尋、新聞搜尋和視訊搜尋服務 API (「搜尋服務API」)：
+- copy, store, or cache any data you receive from the Bing Spell Check or Bing Autosuggest APIs
+- use data you receive from the Bing Spell Check or Bing Autosuggest APIs as part of any machine learning or similar algorithmic activity to train, evaluate, or improve new or existing services which you or third parties may offer.
 
-**定義。** 下列定義適用於第 2 章到第 7 章的這些使用及顯示需求︰
+## 2. Definitions
 
-- 「解答」是指的回應中傳回的結果類別。 例如，來自 Bing Web 搜尋 API 的回應可能包含網頁結果、映像、影片和新聞類別中的解答；
-- 「回應」表示對搜尋服務 API 的單一呼叫回應中所收到的所有及任何解答和相關聯的資料；
-- 「結果」是指解答中資訊的項目。  例如，與單一新聞文章連線的資料集是新聞回應中的結果。
+- "answer" refers to a category of results returned in a response. For example, a response from the Bing Web Search API may include answers in the categories of webpage results, image, video, and news;
+- "response" means any and all answers and associated data received in response to a single call to a Search API;
+- "result" refers to an item of information in an answer. For example, the set of data connected with a single news article is a result in a news answer.
+- “Search APIs” means, collectively, the Bing Custom Search, Entity Search, Image Search, News Search, Video Search, and Web Search APIs. 
 
-**網際網路搜尋體驗。** 回應中傳回的所有資料可能僅用於網際網路搜尋體驗。 網際網路搜尋體驗表示所顯示的內容，如適用︰
+## 3. Search APIs
 
-- 相關且可回應使用者的直接查詢或其他使用者的搜尋有興趣與意圖指示 (例如，使用者指示的搜尋查詢)； 
+The requirements in this Section 3 apply to the Search APIs.
 
-- 協助使用者尋找並瀏覽至資料的來源 (例如，提供的 URL 會實作為超連結，因此內容或屬性為與資料顯著顯示的可點選連結)； 
+**A. Internet search experience.** All data returned in responses may only be used in internet search experiences. An internet search experience means the content displayed, as applicable:
 
-- 包含多個結果可供使用者從選取 (例如，會顯示來自新聞回應的多個結果，或如果所傳回的少於多個，則會顯示所有的結果)； 
+- is relevant and responsive to the end user's direct query or other indication of the user's search interest and intent (for example, user-indicated search query); 
+- helps users find and navigate to the sources of data (for example, the provided URLs are implemented as hyperlinks so the content or attribution is a clickable link conspicuously displayed with the data); or, in the case of Bing Entity Search API, visibly link to the bing.com URL provided in the response that enables the user to navigate to the search results for the relevant query on bing.com;
+- includes multiple results for the end user to select from (for example, several results from the news answer are displayed, or all results if fewer than several are returned); 
+- is limited to an amount appropriate to serve the search purpose (for example, image thumbnails are thumbnail-sized in proportion to the user's display); 
+- includes visible indication to the end user that the content is Internet search results (for example, a statement that the content is "From the web"); and
+- includes any other combination of measures appropriate to ensure your use of data received from the Search APIs does not violate any applicable laws or third-party rights (for example, if relying on a Creative Commons license, complying with the applicable license terms). Consult your legal advisors to determine what measures may be appropriate.
 
-- 僅限於適用於提供搜尋用途的數量 (例如，映像縮圖會將縮圖大小調整為使用者的顯示比例)； 
+The only exception to the internet search experience requirement is for URL discovery as described in Section 3E (Non-display URL discovery) below.
 
-- 包含使用者的可見指示，內容為網際網路搜尋結果 (例如，內容是「來自網路」的陳述式)；和
+**B. Restrictions.** You must not:
 
-- 包含任何其他適用於確保您所使用從搜尋 API 收到的資料不違反任何相關法律或第三方權利的量值組合。  請諮詢法律顧問以決定可能適合的量值。
+- copy, store, or cache any data from responses (except retention to the extent permitted by the "Continuity of Service" section below); 
+- use data received from the Search APIs as part of any machine learning or similar algorithmic activity to train, evaluate, or improve new or existing services which you or third parties may offer.
+- modify content of results (other than to reformat them in a way that does not violate any other requirement), unless required by law or agreed by Microsoft; 
+- omit attribution and URLs associated with result content;
+- re-order, including by omission, results displayed in an answer when an order or ranking is provided (for the Bing Custom Search API, this does not apply to re-ordering implemented through the customsearch.ai portal), unless required by law or agreed by Microsoft;
+- display other content within any part of a response in a way that would lead an end user to believe that the other content is part of the response; 
+- display advertising that is not provided by Microsoft on any page that displays any part of a response; 
+- display any advertising with responses (i) from the Bing Image, News or Video Search APIs; or (ii) that are filtered or limited primarily (or solely) to image, news and/or video results.
 
-網際網路搜尋體驗需求的唯一例外狀況是針對 URL 探索，如下面第 7 章所述 (非顯示 URL 探索)。
+**C. Branding.** 
 
-**一般。** 您不得： 
+- You may attribute each response (or portion of a response) displayed from the Bing Web, Image, News, and Video APIs to Microsoft as described in [https://go.microsoft.com/fwlink/?linkid=833278](https://go.microsoft.com/fwlink/?linkid=833278), unless Microsoft specifies otherwise in writing for your use.  
+- You must not attribute responses (or portions of responses) displayed from the Bing Custom Search API to Microsoft, unless Microsoft specifies otherwise in writing for your particular use.
 
-- 從回應複製、儲存或快取任何資料 (惟保留下面「服務持續性」一節所允許之範圍內除外)； 
+**D. Transferring responses.** If you enable a user to transferIf you enable a user to transfer a response from a Search API to another user, such as through a messaging app or social media posting, the following apply:
 
-- 修改結果的內容 (而非以不違反任何其他需求的方式將它們重新格式化)； 
+- Transferred responses must:
+    - Consist of content that is unmodified from the content of the responses displayed to the transferring user (formatting changes are permissible);
+    -	Not include any data in metadata form;
+    -	For responses from the Bing Web, Image, News, and Video APIs, display language indicating the response was obtained through an internet search experience powered by Bing (for example, "Powered by Bing," "Learn more about this image on Bing," or using the Bing logo);
+    -	For responses from the Bing Custom Search API, display language indicating the response was obtained through an internet search experience (for example, "Learn more about this search result”);
+    -	Prominently display the full query used to generate the response; and
+    -	Include a prominent link or similar attribution to the underlying source of the response, either directly or through the search engine (bing.com, m.bing.com or your custom search service, as applicable).
+-	You may not automate the transfer of responses. A transfer must be initiated by a user action clearly evidencing an intent to transfer a response.
+-	You may only enable a user to transfer responses that were displayed in response to the transferring user's query.
 
-- 略過與結果內容相關聯的屬性和 URL；
+**E. Continuity of service.** You must not copy, store or cache any data from Search API responses. However, to enable continuity of service access and data rendering, you may retain results solely under the following conditions:
 
-- 重新排列 (包括由省略) 提供順序或等級時在解答中顯示的結果；
+**Device.** You may enable an end user to retain results on a device for the lesser of (i) 24 hours from the time of the query or (ii) until an end user submits another query for updated results, provided that retained results may be used only:
 
-- 以可能導致使用者相信其他內容包含在回應中的方式顯示回應任何部分內的其他內容； 
+-	to enable the end user to access results previously returned to that end user on that device (for example, in case of service interruption); or
+-	to store results returned for your proactive query personalized in anticipation of the end user's needs based on that end user's signals (for example, in case of anticipated service interruption).
 
-- 顯示非 Microsoft 在顯示回應之任何部分的任何頁面上所提供的廣告；
+**Server.** You may retain results specific to a single end user securely on a server you control and display the retained results only:
 
-- 使用來自搜尋 API 的資料作為任何機器學習或類似演算法活動的一部分，可訓練、評估或改進您或第三方可能會提供之新的或現有服務。
+-	to enable the end user to access a historical report of results previously returned to that user in your solution, provided that the results may not be (i) retained for more than 21 days from the time of the end user's initial query and (ii) displayed in response to an end user's new or repeated query; or
+-	to store results returned for your proactive query personalized in anticipation of an end user's needs based on that end user's signals for the lesser of (i) 24 hours from the time of the query or (ii) until an end user submits another query for updated results.
 
-## <a name="3-advertising"></a>3.廣告。
-廣告 (無論是由 Microsoft 或其他提供者所提供) 不得與下列回應共同顯示：(i) 來自映像、新聞或影片搜尋 API；或 (ii) 主要 (或完全) 篩選或限制於來自其他搜尋 API 的映像、新聞和/或影片結果。
+Whenever retained, results for a specific user cannot be commingled with results for another user, i.e., the results of each user must be retained and delivered separately.
 
-## <a name="4-branding"></a>4.商標。
-除非 Microsoft 以書面方式另外指定您的特殊用途，您將如 https://go.microsoft.com/fwlink/?linkid=833278 中所述，將每個顯示的回應 (或一部分的回應) 歸因於 Microsoft。
+**General.** For all presentation of retained results, you must:
 
+-	include a clear, visible notice of the time the query was sent,
+-	present the user a button or similar means to re-query and obtain updated results, 
+-	retain the Bing branding in the presentation of the results, and
+-	delete (and refresh with a new query if needed) the stored results within the timeframes specified.
 
-## <a name="5--transferring-responses"></a>5.傳輸回應。
-如果您讓使用者傳輸回應給另一位使用者，例如透過傳訊應用程式或社交媒體貼文，則適用下列步驟︰
+**F. Non-display URL discovery.** You may only use search responses in a non-internet search experience for the sole purpose of discovering URLs of sources of information responsive to a query from your user or customer. You may copy such URLs in a report or similar response you provide (i) only to that user or customer, in response to that query and (ii) which includes significant additional valuable content relevant to the query. The requirements in sections 3A through 3E of these use and display requirements do not apply to this non-display use, except: 
 
-* 傳輸的回應必須︰
-  * 從對傳輸之使用者顯示的回應內容未經修改的內容所組成 (允許格式變更)；
-  * 在中繼資料表單中未包含任何資料；
-  * 指出回應是透過由 Bing 所提供之網際網路搜尋體驗取得的顯示語言 (例如，「由 Bing 所提供」、「在 Bing 上進一步了解此映像」、「在 Bing 上進一步探索此映像」或透過使用 Bing 標誌)；
-  * 以醒目方式顯示用來產生回應的完整查詢；和
-  * 在回應的基礎來源包括醒目連結或類似的屬性，可能是直接或透過 bing.com 或 m.bing.com。
-
-* 您不可以自動化回應的傳輸。  傳輸必須由使用者動作啟動，清楚地證明傳輸回應之意圖。
-* 您只可以讓使用者傳輸在傳輸使用者的查詢結果下所取得之回應。
-
-##<a name="6-continuity-of-service"></a>6.服務的持續性。
-您不得複製、儲存或快取回應中的任何資料。 不過，若要啟用服務存取持續性和資料轉譯，您僅在下列情況下才可以保留結果︰
-
-**裝置。**  您可讓使用者在裝置上保留結果，惟必須低於 (i) 查詢時間起的 24 小時，或 (ii) 直到使用者提交更新結果的另一個查詢，前提是保留的結果只可用於︰
-
-- 讓使用者存取先前在該裝置上傳回給該使用者的結果 (例如，發生服務中斷)；或
-
-- 根據該使用者的訊號，儲存預期使用者的需求所個人化之主動式查詢傳回的結果 (例如，發生預期的服務中斷)。
-
-**伺服器。**  您僅在下列情況才可以在您控制的伺服器上安全地保留單一使用者特定的結果和顯示保留的結果︰
-
-- 讓使用者存取先前在您的解決方案中傳回給該使用者的結果歷程記錄報告，前提是結果可能不會 (i) 從使用者的初始查詢時間起保留超過 21 天，(ii) 顯示以回應使用者的新的或重複查詢；或
-
-- 根據該使用者的訊號，儲存預期使用者的需求所個人化之主動式查詢傳回的結果，惟必須低於 (i) 自查詢時間起的 24 小時或 (ii) 直到使用者提交更新結果的另一個查詢。
-
-只要保留，特定使用者的結果便不能與另一位使用者合併，也就是必須保留並分別傳送每個使用者的結果。
-
-**一般。** 對於所有保留結果的呈現，您必須︰
-
-- 包含傳送查詢時間格式的清晰可見通知，
-
-- 將按鈕或類似的方法呈現給使用者，以重新查詢並取得更新的結果， 
-
-- 在結果的呈現方式中保留 Bing 商標，以及
-
-- 刪除 (和視需要使用新的查詢重新整理) 指定時段內儲存的結果。
-
-
-##<a name="7--non-display-url-discovery"></a>7.非顯示 URL 探索。
-您只能就探索來自您的使用者或客戶查詢之回應資訊來源 URL 的目的，在非網際網路搜尋體驗中使用搜尋回應。 您可以在您所提供的報告或類似回應中複製這類 URL (i) 僅針對該使用者或客戶回應特定的查詢，以及 (ii) 其中包括大幅與查詢相關的其他寶貴的內容。 第 2 章到第 6 章中這些使用的需求和顯示需求不適用於此非顯示用途，除非︰ 
-
-* 除上面所述受限制的 URL 複製外，您不得快取、複製或儲存來自或衍生自搜尋回應的任何資料或內容；
-* 您必須確保您所使用從搜尋 API 收到的資料 (包含 URL) 不違反任何相關法律或第三方權利；以及
-* 您不得使用來自搜尋 API 的資料 (包含 URL) 作為任何搜尋索引或機器學習或類似演算法活動的一部分，可訓練、評估或改進您或第三方可能會提供之服務。
+-	You shall not cache, copy or store any data or content from, or derived from, the search response, other than the limited URL copying described above;
+-	You must ensure your use of data (including the URLs) received from the Search APIs does not violate any applicable laws or third-party rights; and
+-	You shall not use the data (including the URLs) received from the Search APIs as part of any search index or machine learning or similar algorithmic activity to create train, evaluate, or improve services which you or third parties may offer.

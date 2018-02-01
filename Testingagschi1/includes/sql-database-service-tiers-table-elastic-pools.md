@@ -1,94 +1,109 @@
 <!--
 Used in:
-sql-database-elastic-pool.md   
-sql-database-resource-limits.md
-sql-database-service-tiers.md  
+sql-database-elastic-pool.md 
 -->
+
  
-### <a name="basic-elastic-pool-limits"></a>基本彈性集區限制
+### Basic elastic pool limits
 
-| 集區大小 (eDTU)  | **50** | **100** | **200** | **300** | **400** | **800** | **1200** | **1600** |
+| eDTUs per pool | **50** | **100** | **200** | **300** | **400** | **800** | **1200** | **1600** |
 |:---|---:|---:|---:| ---: | ---: | ---: | ---: | ---: |
-| 每個集區的資料儲存體上限* | 5 GB | 10 GB | 20 GB | 29 GB | 39 GB | 78 GB | 117 GB | 156 GB |
-| 每個集區的 OLTP 儲存體記憶體內部上限* | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| 每個集區的最大 DB 數 | 100 | 200 | 500 | 500 | 500 | 500 | 500 | 500 |
-| 每個集區的並行背景工作數上限 | 100 | 200 | 400 | 600 | 800 | 1600 | 2400 | 3200 |
-| 每集區的並行登入數上限 | 100 | 200 | 400 | 600 | 800 | 1600 | 2400 | 3200 |
-| 每集區並行工作階段數上限 | 30000 | 30000 | 30000 | 30000 |30000 | 30000 | 30000 | 30000 |
-| 每資料庫的 eDTU 下限 | {0, 5} | {0, 5} | {0, 5} | {0, 5} | {0, 5} | {0, 5} | {0, 5} | {0, 5} | {0, 5} |
-| 每資料庫的 eDTU 上限 | {5} | {5} | {5} | {5} | {5} | {5} | {5} | {5} | {5} |
+| Included storage per pool (GB) | 5 | 10 | 20 | 29 | 39 | 78 | 117 | 156 |
+| Max storage choices per pool (GB) | 5 | 10 | 20 | 29 | 39 | 78 | 117 | 156 |
+| Max In-Memory OLTP storage per pool (GB) | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
+| Max number DBs per pool | 100 | 200 | 500 | 500 | 500 | 500 | 500 | 500 |
+| Max concurrent workers (requests) per pool | 100 | 200 | 400 | 600 | 800 | 1600 | 2400 | 3200 |
+| Max concurrent logins per pool | 100 | 200 | 400 | 600 | 800 | 1600 | 2400 | 3200 |
+| Max concurrent sessions per pool | 30000 | 30000 | 30000 | 30000 |30000 | 30000 | 30000 | 30000 |
+| Min eDTUs choices per database | 0, 5 | 0, 5 | 0, 5 | 0, 5 | 0, 5 | 0, 5 | 0, 5 | 0, 5 |
+| Max eDTUs choices per database | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| Max storage per database (GB) | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 
 ||||||||
 
-### <a name="standard-elastic-pool-limits"></a>標準彈性集區限制
+### Standard elastic pool limits
 
-| 集區大小 (eDTU)  | **50** | **100** | **200** | **300** | **400** | **800** | 
+| eDTUs per pool | **50** | **100** | **200** | **300** | **400** | **800**| 
 |:---|---:|---:|---:| ---: | ---: | ---: | 
-| 每個集區的資料儲存體上限* | 50 GB| 100 GB| 200 GB | 300 GB| 400 GB | 800 GB | 
-| 每個集區的 OLTP 儲存體記憶體內部上限* | N/A | N/A | N/A | N/A | N/A | N/A | 
-| 每個集區的最大 DB 數 | 100 | 200 | 500 | 500 | 500 | 500 | 
-| 每個集區的並行背景工作數上限 | 100 | 200 | 400 | 600 |  800 | 1600 |
-| 每集區的並行登入數上限 | 100 | 200 | 400 | 600 |  800 | 1600 |
-| 每集區並行工作階段數上限 | 30000 | 30000 | 30000 | 30000 | 30000 | 30000 |
-| 每資料庫的 eDTU 下限 | {0,10,20,<br>50} | {0,10,20,<br>50,100} | {0,10,20,<br>50,100} | {0,10,20,<br>50,100} | {0,10,20,<br>50,100} | {0,10,20,<br>50,100} |
-| 每資料庫的 eDTU 上限 | {10,20,<br>50} | {10,20,<br>50,100} | {10,20,<br>50,100} | {10,20,<br>50,100} | {10,20,<br>50,100} | {10,20,<br>50,100} | 
+| Included storage per pool (GB) | 50 | 100 | 200 | 300 | 400 | 800 | 
+| Max storage choices per pool (GB)* | 50, 250, 500 | 100, 250, 500, 750 | 200, 250, 500, 750, 1024 | 300, 500, 750, 1024, 1280 | 400, 500, 750, 1024, 1280, 1536 | 800, 1024, 1280, 1536, 1792, 2048 | 
+| Max In-Memory OLTP storage per pool (GB) | N/A | N/A | N/A | N/A | N/A | N/A | 
+| Max number DBs per pool | 100 | 200 | 500 | 500 | 500 | 500 | 
+| Max concurrent workers (requests) per pool | 100 | 200 | 400 | 600 | 800 | 1600 |
+| Max concurrent logins per pool | 100 | 200 | 400 | 600 | 800 | 1600 |
+| Max concurrent sessions per pool | 30000 | 30000 | 30000 | 30000 | 30000 | 30000 |
+| Min eDTUs choices per database** | 0, 10, 20, 50 | 0, 10, 20, 50, 100 | 0, 10, 20, 50, 100, 200 | 0, 10, 20, 50, 100, 200, 300 | 0, 10, 20, 50, 100, 200, 300, 400 | 0, 10, 20, 50, 100, 200, 300, 400, 800 |
+| Max eDTUs choices per database** | 10, 20, 50 | 10, 20, 50, 100 | 10, 20, 50, 100, 200 | 10, 20, 50, 100, 200, 300 | 10, 20, 50, 100, 200, 300, 400 | 10, 20, 50, 100, 200, 300, 400, 800 | 
+| Max storage per database (GB)* | 500 | 750 | 1024 | 1024 | 1024 | 1024 |
 ||||||||
 
-### <a name="standard-elastic-pool-limits-continued"></a>標準彈性集區限制 (續) 
+### Standard elastic pool limits (continued) 
 
-| 集區大小 (eDTU)  |  **1200** | **1600** | **2000** | **2500** | **3000** |
+| eDTUs per pool | **1200** | **1600** | **2000** | **2500** | **3000** |
 |:---|---:|---:|---:| ---: | ---: |
-| 每個集區的資料儲存體上限* | 1.2 TB | 1.6 TB | 2 TB | 2.4 TB | 2.9 TB | 
-| 每個集區的 OLTP 儲存體記憶體內部上限* | N/A | N/A | N/A | N/A | N/A | 
-| 每個集區的最大 DB 數 | 500 | 500 | 500 | 500 | 500 | 500 |
-| 每個集區的並行背景工作數上限 |  2400 | 3200 | 4000 | 5000 | 6000 |
-| 每集區的並行登入數上限 |  2400 | 3200 | 4000 | 5000 | 6000 |
-| 每集區並行工作階段數上限 | 30000 | 30000 | 30000 | 30000 | 30000 | 
-| 每資料庫的 eDTU 下限 | {0,10,20,<br>50,100} | {0,10,20,<br>50,100} | {0,10,20,<br>50,100} | {0,10,20,<br>50,100} | {0,10,20,<br>50,100} |
-| 每資料庫的 eDTU 上限 | {10,20,<br>50,100} | {10,20,<br>50,100} | {10,20,<br>50,100} | {10,20,<br>50,100} | {10,20,<br>50,100} | 
+| Included storage per pool (GB) | 1200 | 1600 | 2000 | 2500 | 3000 | 
+| Max storage choices per pool (GB)* | 1200, 1280, 1536, 1792, 2048, 2304, 2560 | 1600, 1792, 2048, 2304, 2560, 2816, 3072 | 2000, 2048, 2304, 2560, 2816, 3072, 3328, 3584 | 2500, 2560, 2816, 3072, 3328, 3584, 3840, 4096 | 3000, 3072, 3328, 3584, 3840, 4096 |
+| Max In-Memory OLTP storage per pool (GB) | N/A | N/A | N/A | N/A | N/A | 
+| Max number DBs per pool | 500 | 500 | 500 | 500 | 500 | 
+| Max concurrent workers (requests) per pool | 2400 | 3200 | 4000 | 5000 | 6000 |
+| Max concurrent logins per pool | 2400 | 3200 | 4000 | 5000 | 6000 |
+| Max concurrent sessions per pool | 30000 | 30000 | 30000 | 30000 | 30000 | 
+| Min eDTUs choices per database** | 0, 10, 20, 50, 100, 200, 300, 400, 800, 1200 | 0, 10, 20, 50, 100, 200, 300, 400, 800, 1200, 1600 | 0, 10, 20, 50, 100, 200, 300, 400, 800, 1200, 1600, 2000 | 0, 10, 20, 50, 100, 200, 300, 400, 800, 1200, 1600, 2000, 2500 | 0, 10, 20, 50, 100, 200, 300, 400, 800, 1200, 1600, 2000, 2500, 3000 |
+| Max eDTUs choices per database** | 10, 20, 50, 100, 200, 300, 400, 800, 1200 | 10, 20, 50, 100, 200, 300, 400, 800, 1200, 1600 | 10, 20, 50, 100, 200, 300, 400, 800, 1200, 1600, 2000 | 10, 20, 50, 100, 200, 300, 400, 800, 1200, 1600, 2000, 2500 | 10, 20, 50, 100, 200, 300, 400, 800, 1200, 1600, 2000, 2500, 3000 | 
+| Max storage choices per database (GB)* | 1024 | 1024 | 1024 | 1024 | 1024 | 
 ||||||||
 
-### <a name="premium-elastic-pool-limits"></a>高階彈性集區限制
+### Premium elastic pool limits
 
-| 集區大小 (eDTU)  | **125** | **250** | **500** | **1000** | **1500** | 
+| eDTUs per pool | **125** | **250** | **500** | **1000** | **1500**| 
 |:---|---:|---:|---:| ---: | ---: | 
-| 每個集區的資料儲存體上限* | 250 GB| 500 GB| 750 GB| 750 GB| 750 GB| 
-| 每個集區的 OLTP 儲存體記憶體內部上限* | 1 GB| 2 GB| 4 GB| 10 GB| 12 GB| 
-| 每個集區的最大 DB 數 | 50 | 100 | 100 | 100 | 100 |  
-| 每個集區的並行背景工作數上限 | 200 | 400 | 800 | 1600 |  2400 | 
-| 每集區的並行登入數上限 | 200 | 400 | 800 | 1600 |  2400 |
-| 每集區並行工作階段數上限 | 30000 | 30000 | 30000 | 30000 | 30000 | 
-| 每資料庫的 eDTU 下限 | {0,25,50,75,<br>125} | {0,25,50,75,<br>125,250} | {0,25,50,75,<br>125,250,500} | {0,25,50,75,<br>125,250,500,<br>1000} | {0,25,50,75,<br>125,250,500,<br>1000,1500} | 
-| 每資料庫的 eDTU 上限 | {25,50,75,<br>125} | {25,50,75,<br>125,250} | {25,50,75,<br>125,250,500} | {25,50,75,<br>125,250,500,<br>1000} | {25,50,75,<br>125,250,500,<br>1000,1500} |  
+| Included storage per pool (GB) | 250 | 500 | 750 | 1024 | 1536 | 
+| Max storage choices per pool (GB)* | 250, 500, 750, 1024 | 500, 750, 1024 | 750, 1024 | 1024 | 1536 |
+| Max In-Memory OLTP storage per pool (GB) | 1 | 2 | 4 | 10 | 12 | 
+| Max number DBs per pool | 50 | 100 | 100 | 100 | 100 | 
+| Max concurrent workers per pool (requests) | 200 | 400 | 800 | 1600 | 2400 | 
+| Max concurrent logins per pool | 200 | 400 | 800 | 1600 | 2400 |
+| Max concurrent sessions per pool | 30000 | 30000 | 30000 | 30000 | 30000 | 
+| Min eDTUs per database | 0, 25, 50, 75, 125 | 0, 25, 50, 75, 125, 250 | 0, 25, 50, 75, 125, 250, 500 | 0, 25, 50, 75, 125, 250, 500, 1000 | 0, 25, 50, 75, 125, 250, 500, 1000, 1500 | 
+| Max eDTUs per database | 25, 50, 75, 125 | 25, 50, 75, 125, 250 | 25, 50, 75, 125, 250, 500 | 25, 50, 75, 125, 250, 500, 1000 | 25, 50, 75, 125, 250, 500, 1000, 1500 |
+| Max storage per database (GB)* | 1024 | 1024 | 1024 | 1024 | 1024 | 
 ||||||||
 
-### <a name="premium-elastic-pool-limits-continued"></a>高階彈性集區限制 (續) 
+### Premium elastic pool limits (continued) 
 
-| 集區大小 (eDTU)  |  **2000** | **2500** | **3000** | **3500** | **4000** |
+| eDTUs per pool | **2000** | **2500** | **3000** | **3500** | **4000**|
 |:---|---:|---:|---:| ---: | ---: | 
-| 每個集區的資料儲存體上限* | 750 GB | 750 GB | 750 GB | 750 GB | 750 GB |
-| 每個集區的 OLTP 儲存體記憶體內部上限* | 16 GB | 20 GB | 24 GB | 28 GB | 32 GB |
-| 每個集區的最大 DB 數 | 100 | 100 | 100 | 100 | 100 | 
-| 每個集區的並行背景工作數上限 |  3200 | 4000 | 4800 | 5600 | 6400 |
-| 每集區的並行登入數上限 |  3200 | 4000 | 4800 | 5600 | 6400 |
-| 每集區並行工作階段數上限 | 30000 | 30000 | 30000 | 30000 | 30000 | 
-| 每資料庫的 eDTU 下限 | {0,25,50,75,<br>125,250,500,<br>1000,1750} | {0,25,50,75,<br>125,250,500,<br>1000,1750} | {0,25,50,75,<br>125,250,500,<br>1000,1750} | {0,25,50,75,<br>125,250,500,<br>1000,1750} |  {0,25,50,75,<br>125,250,500,<br>1000,1750,4000} | 
-| 每資料庫的 eDTU 上限 | {25,50,75,<br>125,250,500,<br>1000,1750} | {25,50,75,<br>125,250,500,<br>1000,1750} | {25,50,75,<br>125,250,500,<br>1000,1750} | {25,50,75,<br>125,250,500,<br>1000,1750} | {25,50,75,<br>125,250,500,<br>1000,1750,4000} | 
+| Included storage per pool (GB) | 2048 | 2560 | 3072 | 3548 | 4096 |
+| Max storage choices per pool (GB)* | 2048 | 2560 | 3072 | 3548 | 4096|
+| Max In-Memory OLTP storage per pool (GB) | 16 | 20 | 24 | 28 | 32 |
+| Max number DBs per pool | 100 | 100 | 100 | 100 | 100 | 
+| Max concurrent workers (requests) per pool | 3200 | 4000 | 4800 | 5600 | 6400 |
+| Max concurrent logins per pool | 3200 | 4000 | 4800 | 5600 | 6400 |
+| Max concurrent sessions per pool | 30000 | 30000 | 30000 | 30000 | 30000 | 
+| Min eDTUs choices per database | 0, 25, 50, 75, 125, 250, 500, 1000, 1750 | 0, 25, 50, 75, 125, 250, 500, 1000, 1750 | 0, 25, 50, 75, 125, 250, 500, 1000, 1750 | 0, 25, 50, 75, 125, 250, 500, 1000, 1750 | 0, 25, 50, 75, 125, 250, 500, 1000, 1750, 4000 | 
+| Max eDTUs choices per database | 25, 50, 75, 125, 250, 500, 1000, 1750 | 25, 50, 75, 125, 250, 500, 1000, 1750 | 25, 50, 75, 125, 250, 500, 1000, 1750 | 25, 50, 75, 125, 250, 500, 1000, 1750 | 25, 50, 75, 125, 250, 500, 1000, 1750, 4000 | 
+| Max storage per database (GB)* | 1024 | 1024 | 1024 | 1024 | 1024 | 
 ||||||||
 
-### <a name="premium-rs-elastic-pool-limits"></a>進階 RS 彈性集區限制
+### Premium RS elastic pool limits
 
-| 集區大小 (eDTU)  | **125** | **250** | **500** | **1000** |
+| eDTUs per pool | **125** | **250** | **500** | **1000** |
 |:---|---:|---:|---:| ---: | ---: | 
-| 每個集區的資料儲存體上限* | 250 GB| 500 GB | 750 GB | 750 GB |
-| 每個集區的 OLTP 儲存體記憶體內部上限* | 1 GB | 2 GB | 4 GB | 10 GB |
-| 每個集區的最大 DB 數 | 50 | 100 | 100 | 100 |
-| 每個集區的並行背景工作數上限 | 200 | 400 | 800 | 1600 |
-| 每集區的並行登入數上限 | 200 | 400 | 800 | 1600 |
-| 每集區並行工作階段數上限 | 30000 | 30000 | 30000 | 30000 |
-| 每資料庫的 eDTU 下限 | {0,25,50,75,<br>125} | {0,25,50,75,<br>125,250} | {0,25,50,75,<br>125,250,500} | {0,25,50,75,<br>125,250,500,<br>1000} |
-| 每資料庫的 eDTU 上限 | {25,50,75,<br>125} | {25,50,75,<br>125,250} | {25,50,75,<br>125,250,500} | {25,50,75,<br>125,250,500,<br>1000} | 
+| Included storage per pool (GB) | 250 | 500 | 750 | 750 |
+| Max storage choices per pool (GB)* | 250, 500, 750, 1024 | 500, 750, 1024 | 750, 1024 | 1024 | 
+| Max In-Memory OLTP storage per pool (GB) | 1 | 2 | 4 | 10 |
+| Max number DBs per pool | 50 | 100 | 100 | 100 |
+| Max concurrent workers (requests) per pool | 200 | 400 | 800 | 1600 |
+| Max concurrent logins per pool | 200 | 400 | 800 | 1600 |
+| Max concurrent sessions per pool | 30000 | 30000 | 30000 | 30000 |
+| Min eDTUs choices per database | 0, 25, 50, 75, 125 | 0, 25, 50, 75, 125, 250 | 0, 25, 50, 75, 125, 250, 500 | 0, 25, 50, 75, 125, 250, 500, 1000 |
+| Max eDTUs choices per database | 25, 50, 75, 125 | 25, 50, 75, 125, 250 | 25, 50, 75, 125, 250, 500 | 25, 50, 75, 125, 250, 500, 1000 | 
+| Max storage per database (GB)* | 1024 | 1024 | 1024 | 1024 | 
 ||||||||
 
 > [!IMPORTANT]
->\* 集區資料庫會共用集區儲存體，所以彈性集區中的資料儲存體大小會限制為以下兩者中的較小者：剩餘的集區儲存體或每個資料庫的儲存體上限。
+> \* Storage sizes greater than the amount of included storage are in preview and extra costs apply. For details, see the [SQL Database pricing page](https://azure.microsoft.com/pricing/details/sql-database/). Storage sizes greater than the amount of included storage are in preview and extra costs apply. For details, see the [SQL Database pricing page](https://azure.microsoft.com/pricing/details/sql-database/).
+>
+> \* In the Premium tier, more than 1 TB of storage is currently available in the following regions: Australia East, Australia Southeast, Canada Central, Canada East, France Central, Germany Central, Japan East, Korea Central, South Central US, South East Asia, US East2, West US, US Gov Virginia, and West Europe. 
+>
+>\*\* Min/max eDTUs per database starting at 200 eDTUs and higher in **Standard** pools are in preview.
 >

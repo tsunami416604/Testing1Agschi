@@ -1,24 +1,24 @@
-## <a name="what-is-queue-storage"></a>什麼是佇列儲存體？
-Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方都可利用 HTTP 或 HTTPS 並透過驗證的呼叫來存取這些訊息。 單一佇列訊息的大小上限為 64 KB，而一個佇列可以包含數百萬個訊息，以儲存體帳戶的總容量為限。
+## What is Queue Storage?
+Azure Queue storage is a service for storing large numbers of messages that can be accessed from anywhere in the world via authenticated calls using HTTP or HTTPS. A single queue message can be up to 64 KB in size, and a queue can contain millions of messages, up to the total capacity limit of a storage account.
 
-佇列儲存體的一般用途包括：
+Common uses of Queue storage include:
 
-* 建立積存的工作供非同步處理
-* 將訊息從 Azure Web 角色傳遞至 Azure 背景工作角色
+* Creating a backlog of work to process asynchronously
+* Passing messages from an Azure web role to an Azure worker role
 
-## <a name="queue-service-concepts"></a>佇列服務概念
-佇列服務包含下列元件：
+## Queue Service Concepts
+The Queue service contains the following components:
 
 ![Queue1](./media/storage-queue-concepts-include/queue1.png)
 
-* **URL 格式：**可利用下列 URL 格式來定址佇列：   
+* **URL format:** Queues are addressable using the following URL format:   
     http://`<storage account>`.queue.core.windows.net/`<queue>` 
   
-    下列 URL 可定址圖中的佇列：  
+    The following URL addresses a queue in the diagram:  
   
     `http://myaccount.queue.core.windows.net/images-to-download`
 
-* **儲存體帳戶：** 一律透過儲存體帳戶來存取 Azure 儲存體。 如需關於儲存體帳戶容量的詳細資訊，請參閱＜ [Azure 儲存體延展性和效能目標](../articles/storage/storage-scalability-targets.md) ＞(英文)。
-* **佇列：** 佇列包含一組訊息。 所有訊息都必須放在佇列中。 請注意，佇列名稱必須是小寫。 如需為佇列命名的詳細資訊，請參閱 [為佇列和中繼資料命名](https://msdn.microsoft.com/library/azure/dd179349.aspx)。
-* **訊息：** 大小上限為 64 KB 的訊息 (任何格式)。 訊息可保留在佇列中的時間上限為 7 天。
+* **Storage Account:** All access to Azure Storage is done through a storage account. See [Azure Storage Scalability and Performance Targets](../articles/storage/common/storage-scalability-targets.md) for details about storage account capacity.
+* **Queue:** A queue contains a set of messages. All messages must be in a queue. Note that the queue name must be all lowercase. For information on naming queues, see [Naming Queues and Metadata](https://msdn.microsoft.com/library/azure/dd179349.aspx).
+* **Message:** A message, in any format, of up to 64 KB. The maximum time that a message can remain in the queue is 7 days.
 

@@ -1,11 +1,11 @@
-Azure App Service 的 Mobile Apps 使用 [Azure 通知中樞]來傳送推送，因此您將為行動應用程式設定通知中樞。
+The Mobile Apps feature of Azure App Service uses [Azure Notification Hubs] to send pushes, so you will be configuring a notification hub for your mobile app.
 
-1. 在 [Azure 入口網站]中，移至 [應用程式服務]，然後按一下應用程式後端。 在 [設定] 下方，按一下 [推送]。
-2. 按一下 [連接]，將通知中樞資源新增至應用程式。 您可以建立中樞或連線到現有的中樞。
+1. In the [Azure portal], go to **App Services**, and then click your app back end. Under **Settings**, click **Push**.
+2. Click **Connect** to add a notification hub resource to the app. You can either create a hub or connect to an existing one.
 
     ![](./media/app-service-mobile-create-notification-hub/configure-hub-flow.png)
 
-現在您已將通知中樞連接到 Mobile Apps 後端專案。 稍後您將設定此通知中樞，使其連接到平台通知系統 (PNS) 以推播至裝置。
+Now you have connected a notification hub to your Mobile Apps back-end project. Later you will configure this notification hub to connect to a platform notification system (PNS) to push to devices.
 
-[Azure 入口網站]: https://portal.azure.com/
-[Azure 通知中樞]: https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-push-notification-overview/
+[Azure portal]: https://portal.azure.com/
+[Azure Notification Hubs]: https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-push-notification-overview/

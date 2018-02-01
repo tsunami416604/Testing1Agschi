@@ -1,16 +1,27 @@
-**建立新的 CDN 設定檔**
+**To create a new CDN profile**
 
-1. 在 [Azure 入口網站](https://portal.azure.com)的左上角，按一下 [新增]。  在 [新增] 刀鋒視窗中，依序選取 [媒體 + CDN] 和 [CDN]。
+1. In the [Azure portal](https://portal.azure.com), in the upper left, select **Create a resource**.
+    
+2. In the **New** blade, select **Web + Mobile**, then **CDN**.
    
-    此時會顯示新的 [CDN 設定檔] 刀鋒視窗。
+    The **CDN profile** blade appears.
    
-    ![新增 CDN 設定檔](./media/cdn-create-profile/new-cdn-profile-include.png)
-2. 輸入 CDN 設定檔的名稱。
-3. 選取 [位置] 。  此為儲存您 CDN 設定檔資訊的所在 Azure 位置。  其不會影響 CDN 端點位置。
-4. 選取或建立 **資源群組**。  如需資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../articles/azure-resource-manager/resource-group-overview.md#resource-groups)。
-5. 選取 **定價層**。  如需定價層的比較，請參閱 [CDN 概觀](../articles/cdn/cdn-overview.md#azure-cdn-features)。
+    ![New CDN Profile](./media/cdn-create-profile/new-cdn-profile-include.png)
+3. For **Name**, enter a unique name for your CDN profile.
+    
+4. For **Subscription**, select the subscription to use for this CDN profile.
    
-    ![CDN 定價層選取項目](./media/cdn-create-profile/cdn-choose-sku-include.png)
-6. 選取這個 CDN 設定檔的 [訂用帳戶]  。
-7. 按一下 [建立]  按鈕，以建立新的設定檔。 
+5. For **Resource group**, select or create a resource group. For information about resource groups, see [Azure Resource Manager overview](../articles/azure-resource-manager/resource-group-overview.md#resource-groups).
+    
+6. For **Resource group location**, select the Azure location to store your CDN profile information. This location has no impact on CDN endpoint locations.
+    
+7. For **Pricing tier**, select a tier. For a comparison of the features available with each pricing tier, see [Azure CDN features](../articles/cdn/cdn-overview.md#azure-cdn-features).
+   
+    ![CDN pricing tier selection](./media/cdn-create-profile/cdn-choose-sku-include.png)
+
+8. Optionally, select **Create a new CDN endpoint now** to display the options for creating an endpoint at the same time that you create the profile. For more information, see [Create a new CDN endpoint](../articles/cdn/cdn-create-new-endpoint.md#create-a-new-cdn-endpoint).
+   
+9. If you want to save the profile to your dashboard after it is created to make it easier to find, select **Pin to dashboard**.
+    
+10. Select **Create** to create the profile. 
 

@@ -1,39 +1,39 @@
-當不再需要某個連接至虛擬機器的資料磁碟時，卸離此資料磁碟很簡單。 將磁碟中斷連結會將它從虛擬機器中移除，但不會從 Azure 儲存體帳戶中刪除。
+When you no longer need a data disk that's attached to a virtual machine, you can easily detach it. Detaching a disk removes the disk from the virtual machine, but doesn't delete the disk from the Azure storage account.
 
-如果您想要再次使用磁碟上現有的資料，您可以將磁碟重新連接至相同或其他虛擬機器。  
+If you want to use the existing data on the disk again, you can reattach it to the same virtual machine, or another one.  
 
 > [!NOTE]
-> 若要將作業系統磁碟中斷連結，您必須先刪除虛擬機器。
+> To detach an operating system disk, you first need to delete the virtual machine.
 >
 
-## <a name="find-the-disk"></a>尋找磁碟
-如果您不知道磁碟的名稱，或想要先驗證它再卸離，請遵循下列步驟。
+## Find the disk
+If you don't know the name of the disk or want to verify it before you detach it, follow these steps.
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
-2. 按一下 [虛擬機器] ，然後選取適當的 VM。
+2. Click **Virtual Machines**, and then select the appropriate VM.
 
-3. 按一下沿著虛擬機器儀表板左側邊緣 [設定] 底下的 [磁碟]。
+3. Click **Disks** along the left edge of the virtual machine dashboard, under **Settings**.
 
- 虛擬機器儀表板會列出所有已連結之磁碟的名稱和類型。 例如，此畫面會顯示虛擬機器及一個作業系統 (OS) 磁碟和一個資料磁碟：
+ The virtual machine dashboard lists the name and type of all attached disks. For example, this screen shows a virtual machine with one operating system (OS) disk and one data disk:
 
-    ![尋找資料磁碟](./media/howto-detach-disk-windows-linux/vmwithdisklist.png)
+    ![Find data disk](./media/howto-detach-disk-windows-linux/vmwithdisklist.png)
 
-## <a name="detach-the-disk"></a>卸離磁碟
-1. 從 Azure 入口網站中，按一下 [虛擬機器]，然後按一下擁有您想要中斷連結之資料磁碟的虛擬機器名稱。
+## Detach the disk
+1. From the Azure portal, click **Virtual Machines**, and then click the name of the virtual machine that has the data disk you want to detach.
 
-2. 按一下沿著虛擬機器儀表板左側邊緣 [設定] 底下的 [磁碟]。
+2. Click **Disks** along the left edge of the virtual machine dashboard, under **Settings**.
 
-3. 按一下您想要中斷連結的磁碟。
+3. Click the disk you want to detach.
 
-  ![識別要中斷連結的磁碟](./media/howto-detach-disk-windows-linux/disklist.png)
+  ![Identify the disk to detach](./media/howto-detach-disk-windows-linux/disklist.png)
 
-4. 從命令列中，按一下 [中斷連結]。
+4. From the command bar, click **Detach**.
 
-  ![找出中斷連結命令](./media/howto-detach-disk-windows-linux/diskdetachcommand.png)
+  ![Locate the detach command](./media/howto-detach-disk-windows-linux/diskdetachcommand.png)
 
-5. 在確認對話方塊中，按一下 [是] 以將磁碟中斷連結。
+5. In the confirmation window, click **Yes** to detach the disk.
 
-  ![確認將磁碟中斷連結](./media/howto-detach-disk-windows-linux/confirmdetach.png)
+  ![Confirm detaching the disk](./media/howto-detach-disk-windows-linux/confirmdetach.png)
 
-磁碟仍留在儲存體中，但不再連接至虛擬機器。
+The disk remains in storage but is no longer attached to a virtual machine.

@@ -1,14 +1,14 @@
 
-首先，您必須在身分識別提供者網站中註冊您的應用程式，然後在 Mobile Apps 後端中設定提供者產生的認證。
+First, you need to register your app at an identity provider's site, and then you will set the provider-generated credentials in the Mobile Apps back end.
 
-1. 依照提供者特定的指示設定您偏好的身分識別提供者：
+1. Configure your preferred identity provider by following the provider-specific instructions:
 
-   * [Azure Active Directory](../articles/app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md)
-   * [Facebook](../articles/app-service-mobile/app-service-mobile-how-to-configure-facebook-authentication.md)
-   * [Google](../articles/app-service-mobile/app-service-mobile-how-to-configure-google-authentication.md)
-   * [Microsoft](../articles/app-service-mobile/app-service-mobile-how-to-configure-microsoft-authentication.md)
-   * [Twitter](../articles/app-service-mobile/app-service-mobile-how-to-configure-twitter-authentication.md)
-2. 針對您要在應用程式中支援的每個提供者重複上述步驟。
+   * [Azure Active Directory](../articles/app-service/app-service-mobile-how-to-configure-active-directory-authentication.md)
+   * [Facebook](../articles/app-service/app-service-mobile-how-to-configure-facebook-authentication.md)
+   * [Google](../articles/app-service/app-service-mobile-how-to-configure-google-authentication.md)
+   * [Microsoft](../articles/app-service/app-service-mobile-how-to-configure-microsoft-authentication.md)
+   * [Twitter](../articles/app-service/app-service-mobile-how-to-configure-twitter-authentication.md)
+2. Repeat the previous steps for each provider you want to support in your app.
 
 <!-- URLs. -->
 [Azure portal]: https://portal.azure.com/

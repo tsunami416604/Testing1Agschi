@@ -1,19 +1,19 @@
-當您不再需要某個連結至虛擬機器 (VM) 的資料磁碟時，可以輕鬆將它中斷連結。 當您從 VM 中斷連結磁碟時，磁碟不會從儲存體中移除。 如果您想要再次使用磁碟上現有的資料，您可以將磁碟重新連結至相同 VM 或其他 VM。  
+When you no longer need a data disk that's attached to a virtual machine (VM), you can easily detach it. When you detach a disk from the VM, the disk is not removed it from storage. If you want to use the existing data on the disk again, you can reattach it to the same VM, or another one.  
 
 > [!NOTE]
-> Azure 中的 VM 使用不同類型的磁碟 - 作業系統磁碟、本機暫存磁碟，以及選擇性的資料磁碟。 如需詳細資訊，請參閱[有關虛擬機器的磁碟和 VHD](../articles/storage/storage-about-disks-and-vhds-linux.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 您無法將作業系統磁碟中斷連結，除非您同時刪除 VM。
+> A VM in Azure uses different types of disks - an operating system disk, a local temporary disk, and optional data disks. For details, see [About Disks and VHDs for Virtual Machines](../articles/virtual-machines/linux/about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). You cannot detach an operating system disk unless you also delete the VM.
 
-## <a name="find-the-disk"></a>尋找磁碟
-您必須先找出 LUN 編號 (要中斷連結之磁碟的識別碼)，才能將磁碟與 VM 中斷連結。 若要這樣做，請遵循下列步驟：
+## Find the disk
+Before you can detach a disk from a VM you need to find out the LUN number, which is an identifier for the disk to be detached. To do that, follow these steps:
 
-1. 開啟 Azure CLI 並 [連接至您的 Azure 訂用帳戶](../articles/xplat-cli-connect.md)。 確定處於 Azure 服務管理模式中 (`azure config mode asm`)。
-2. 找出哪些磁碟已連結至您的 VM。 下列範例會列出名為 `myVM` 的 VM 的磁碟：
+1. Open Azure CLI and [connect to your Azure subscription](/cli/azure/authenticate-azure-cli). Make sure you are in Azure Service Management mode (`azure config mode asm`).
+2. Find out which disks are attached to your VM. The following example lists disks for the VM named `myVM`:
 
     ```azurecli
     azure vm disk list myVM
     ```
 
-    輸出類似於下列範例：
+    The output is similar to the following example:
 
     ```azurecli
     * Fetching disk images
@@ -26,12 +26,12 @@
       info:    vm disk list command OK
     ```
 
-3. 請記下您要卸離之磁碟的 LUN 或 **邏輯單元編號** 。
+3. Note the LUN or the **logical unit number** for the disk that you want to detach.
 
-## <a name="remove-operating-system-references-to-the-disk"></a>移除磁碟的作業系統參考
-在從 Linux 客體中斷連結磁碟之前，您應該先確定磁碟上的所有磁碟分割都不在使用中。 請確定作業系統沒有在重新開機之後嘗試重新掛接它們。 下列步驟可復原您在[附加](../articles/virtual-machines/linux/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)磁碟時可能建立的組態。
+## Remove operating system references to the disk
+Before detaching the disk from the Linux guest, you should make sure that all partitions on the disk are not in use. Ensure that the operating system does not attempt to remount them after a reboot. These steps undo the configuration you likely created when [attaching](../articles/virtual-machines/linux/classic/attach-disk-classic.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) the disk.
 
-1. 使用 `lsscsi` 命令來找出磁碟識別碼。 您可透過 `yum install lsscsi` (Red Hat 式散發) 或 `apt-get install lsscsi`(Debian 式散發) 來安裝 `lsscsi`。 您可以使用 LUN 編號找到要尋找的磁碟識別碼。 在每個資料列的 Tuple 中，最後一個數字即為 LUN。 在下列範例從 `lsscsi`，LUN 0 對應至 /dev/sdc
+1. Use the `lsscsi` command to discover the disk identifier. `lsscsi` can be installed by either `yum install lsscsi` (on Red Hat based distributions) or `apt-get install lsscsi` (on Debian based distributions). You can find the disk identifier you are looking for by using the LUN number. The last number in the tuple in each row is the LUN. In the following example from `lsscsi`, LUN 0 maps to */dev/sdc*
 
     ```bash
     [1:0:0:0]    cd/dvd  Msft     Virtual CD/ROM   1.0   /dev/sr0
@@ -40,7 +40,7 @@
     [5:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sdc
     ```
 
-2. 使用 `fdisk -l <disk>` 探索與要卸離之磁碟相關聯的分割區。 下列範例顯示 `/dev/sdc`的輸出：
+2. Use `fdisk -l <disk>` to discover the partitions associated with the disk to be detached. The following example shows the output for `/dev/sdc`:
 
     ```bash
     Disk /dev/sdc: 1098.4 GB, 1098437885952 bytes, 2145386496 sectors
@@ -54,13 +54,13 @@
     /dev/sdc1            2048  2145386495  1072692224   83  Linux
     ```
 
-3. 取消掛接每個列出的磁碟分割區。 下列範例會卸載 `/dev/sdc1`：
+3. Unmount each partition listed for the disk. The following example unmounts `/dev/sdc1`:
 
     ```bash
     sudo umount /dev/sdc1
     ```
 
-4. 使用 `blkid` 命令來探索所有分割區的 UUID。 輸出類似於下列範例：
+4. Use the `blkid` command to discovery the UUIDs for all partitions. The output is similar to the following example:
 
     ```bash
     /dev/sda1: UUID="11111111-1b1b-1c1c-1d1d-1e1e1e1e1e1e" TYPE="ext4"
@@ -68,35 +68,35 @@
     /dev/sdc1: UUID="33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e" TYPE="ext4"
     ```
 
-5. 移除 **/etc/fstab** 檔案 (與裝置路徑或要卸離之磁碟的所有分割區的 UUID 相關聯) 中的項目。  此範例中的項目可能是︰
+5. Remove entries in the **/etc/fstab** file associated with either the device paths or UUIDs for all partitions for the disk to be detached.  Entries for this example might be:
 
     ```sh  
    UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults   1   2
    ```
 
-    或
+    or
    
    ```sh   
    /dev/sdc1   /datadrive   ext4   defaults   1   2
    ```
 
-## <a name="detach-the-disk"></a>卸離磁碟
-找出磁碟的 LUN 編號並移除作業系統參考之後，您可以開始卸離磁碟︰
+## Detach the disk
+After you find the LUN number of the disk and removed the operating system references, you're ready to detach it:
 
-1. 執行命令 `azure vm disk detach
-   <virtual-machine-name> <LUN>`，從虛擬機器卸離選取的磁碟。 下列範例會從名為 `myVM` 的 VM 卸離 LUN `0`：
+1. Detach the selected disk from the virtual machine by running the command `azure vm disk detach
+   <virtual-machine-name> <LUN>`. The following example detaches LUN `0` from the VM named `myVM`:
    
     ```azurecli
     azure vm disk detach myVM 0
     ```
 
-2. 您可以再次執行 `azure vm disk list`，檢查是否已卸離磁碟。 下列範例會檢查名為 `myVM` 的 VM：
+2. You can check if the disk got detached by running `azure vm disk list` again. The following example checks the VM named `myVM`:
    
     ```azurecli
     azure vm disk list myVM
     ```
 
-    輸出會類似下列範例，其中顯示資料磁碟再也無法附加︰
+    The output is similar to the following example, which shows the data disk is no longer attached:
 
     ```azurecli
     info:    Executing command vm disk list
@@ -110,5 +110,5 @@
      info:    vm disk list command OK
     ```
 
-卸離的磁碟仍留在儲存體中，但不再連接至虛擬機器。
+The detached disk remains in storage but is no longer attached to a virtual machine.
 

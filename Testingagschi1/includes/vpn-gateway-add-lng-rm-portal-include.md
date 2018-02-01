@@ -1,12 +1,18 @@
-1. 在入口網站中，從 [所有資源]，按一下 [+新增]。 在 [一切] 刀鋒視窗搜尋方塊中，輸入**區域網路閘道**，然後按一下以傳回資源清單。 按一下 [區域網路閘道] 以開啟刀鋒視窗，然後按一下 [建立] 開啟 [建立區域網路閘道] 刀鋒視窗。
-   
-    ![建立區域網路閘道](./media/vpn-gateway-add-lng-rm-portal-include/lng.png)
+1. In the portal, from **All resources**, click **+Add**.
+2. In the **Everything** page search box, type **Local network gateway**, then click to return a list of resources. Click **Local network gateway** to open the page, then click **Create** to open the **Create local network gateway** page.
 
-2. 在 [建立區域網路閘道] 刀鋒視窗中，指定區域網路閘道物件的 [名稱]。 可能的話，請使用直覺式名稱，例如 **ClassicVNetLocal** 或 **TestVNet1Local**。 這可讓您更輕鬆地識別入口網站中的區域網路閘道。
-3. 為您要連線的 VPN 裝置或虛擬網路閘道指定有效的公用 **IP 位址**。<br>**如果此區域網路代表內部部署位置：**指定您想要連線之 VPN 裝置的公用 IP 位址。 它不能在 NAT 後方且必須可讓 Azure 連線。<br>**如果此區域網路代表另一個 VNet：**指定已指派給該 Vnet 之虛擬網路閘道的公用 IP 位址。<br>**如果您還沒有 IP 位址︰**您可以構成有效的預留位置 IP 位址，而後返回並在連線前修改此設定。
-4.  是指此區域網路所代表之網路的位址範圍。 您可以新增多個位址空間範圍。 確定您在此指定的範圍，不會與您要連線的其他網路範圍重疊。
-5. 對於 [訂用帳戶] ，請確認顯示的是正確的訂用帳戶。
-6. 對於 [資源群組] ，請選取要使用的資源群組。 您可以建立新的資源群組或選取已建立的資源群組。
-7. 針對 [位置]，選取將要建立此資源的位置。 建議您選取 VNet 所在的相同位置，但您可以不用這麼做。
-8. 按一下 [建立]  來建立區域網路閘道。
+  ![create local network gateway](./media/vpn-gateway-add-lng-rm-portal-include/lng.png)
+3. On the **Create local network gateway page**, specify the values for your local network gateway.
 
+  - **Name:** Specify a name for your local network gateway object. If possible, use something intuitive, such as **ClassicVNetLocal** or **TestVNet1Local**. This makes it easier for you to identify the local network gateway in the portal.
+  - **IP address:** Specify a valid Public **IP address** for the VPN device or virtual network gateway to which you want to connect.
+
+    * **If this local network represents an on-premises location:** Specify the Public IP address of the VPN device that you want to connect to. It cannot be behind NAT and has to be reachable by Azure.
+    * **If this local network represents another VNet:** Specify the Public IP address that was assigned to the virtual network gateway for that VNet.
+    * **If you don't yet have the IP address:** You can make up a valid placeholder IP address, and then come back and modify this setting before connecting.
+  - **Address Space** refers to the address ranges for the network that this local network represents. You can add multiple address space ranges. Make sure that the ranges you specify here do not overlap with ranges of other networks to which you connect.
+  - **Configure BGP settings:** Use only when configuring BGP. Otherwise, don't select this.
+  - **Subscription:** Verify that the correct subscription is showing.
+  - **Resource Group:** Select the resource group that you want to use. You can either create a new resource group, or select one that you have already created.
+  - **Location:** Select the location that this object will be created in. You may want to select the same location that your VNet resides in, but you are not required to do so.
+4. Click **Create** to create the local network gateway.

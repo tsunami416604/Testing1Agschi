@@ -1,13 +1,19 @@
-內部部署網路的站對站連線需要 VPN 裝置。 雖然我們不會提供所有 VPN 裝置的組態步驟，但您可能會發現下列連結中的資訊很有幫助︰
+**See the following links for configuration information:**
 
-- 如需有關相容的 VPN 裝置資訊，請參閱[ VPN 裝置](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md)。 
-- 如需裝置組態設定的連結，請參閱[已經驗證的 VPN 裝置](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md#devicetable)。 會以最佳方式來提供裝置組態連結。 最好一律洽詢您的裝置製造商以取得最新的組態資訊。
-- 如需編輯裝置組態範例的相關資訊，請參閱[編輯範例](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md#editing)。
-- 如需 IPsec/IKE 參數，請參閱[參數](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md#ipsec)。
-- 請在設定 VPN 裝置之前，檢查您要使用的 VPN 裝置是否有任何[已知裝置相容性問題](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md#known)。
+- For information about compatible VPN devices, see [VPN Devices](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md).
 
-在設定 VPN 裝置時，您需要下列項目：
+- Before configuring your VPN device, check for any [Known device compatibility issues](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md#known) for the VPN device that you want to use.
 
-- 共用金鑰。 這個共同金鑰與您建立站對站 VPN 連線時指定的共用金鑰相同。 在我們的範例中，我們會使用基本的共用金鑰。 我們建議您產生更複雜的金鑰以供使用。
+- For links to device configuration settings, see [Validated VPN Devices](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md#devicetable). The device configuration links are provided on a best-effort basis. It's always best to check with your device manufacturer for the latest configuration information. The list we provide shows the versions we have tested. If your OS is not on that list, it is still possible that the version is compatible. Check with your device manufacturer to verify that OS version for your VPN device is compatible.
 
-- 虛擬網路閘道的公用 IP 位址。 您可以使用 Azure 入口網站、PowerShell 或 CLI 來檢視公用 IP 位址。
+- For an overview of VPN device configuration, see [Overview of 3rd party VPN device configurations](../articles/vpn-gateway/vpn-gateway-3rdparty-device-config-overview.md).
+
+- For information about editing device configuration samples, see [Editing samples](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md#editing).
+
+- For cryptographic requirements, see [About cryptographic requirements and Azure VPN gateways](../articles/vpn-gateway/vpn-gateway-about-compliance-crypto.md).
+
+- For information about IPsec/IKE parameters, see [About VPN devices and IPsec/IKE parameters for Site-to-Site VPN gateway connections](../articles/vpn-gateway/vpn-gateway-about-vpn-devices.md#ipsec). This link shows information about IKE version, Diffie-Hellman Group, Authentication method, encryption and hashing algorithms, SA lifetime, PFS, and DPD, in addition to other parameter information that you need to complete your configuration.
+
+- For IPsec/IKE policy configuration steps, see [Configure IPsec/IKE policy for S2S VPN or VNet-to-VNet connections](../articles/vpn-gateway/vpn-gateway-ipsecikepolicy-rm-powershell.md).
+
+- To connect multiple policy-based VPN devices, see [Connect Azure VPN gateways to multiple on-premises policy-based VPN devices using PowerShell](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md).

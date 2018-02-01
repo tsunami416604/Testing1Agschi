@@ -1,25 +1,25 @@
-## <a name="create-a-simulated-device-app"></a>建立模擬裝置應用程式
-在本節中，您可：
+## Create a simulated device app
+In this section, you:
 
-* 建立 Node.js 主控台應用程式，以回應雲端所呼叫的直接方法
-* 觸發模擬韌體更新
-* 使用報告屬性來啟用裝置對應項查詢，以識別裝置及其上次完成韌體更新的時間
+* Create a Node.js console app that responds to a direct method called by the cloud
+* Trigger a simulated firmware update
+* Use the reported properties to enable device twin queries to identify devices and when they last completed a firmware update
 
-步驟 1：建立稱為 **manageddevice** 的空資料夾。  在 **manageddevice** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。 接受所有預設值：
+1. Create an empty folder called **manageddevice**.  In the **manageddevice** folder, create a package.json file using the following command at your command prompt. Accept all the defaults:
    
     ```
     npm init
     ```
 
-步驟 2：在命令提示字元中，於 **manageddevice** 資料夾中執行下列命令來安裝 **azure-iot-device** 和 **azure-iot-device-mqtt** 裝置 SDK 套件：
+2. At your command prompt in the **manageddevice** folder, run the following command to install the **azure-iot-device** and **azure-iot-device-mqtt** Device SDK packages:
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 
-步驟 3：使用文字編輯器，在 **manageddevice** 資料夾中建立 **dmpatterns_fwupdate_device.js** 檔案。
+3. Using a text editor, create a **dmpatterns_fwupdate_device.js** file in the **manageddevice** folder.
 
-步驟 4：在 **dmpatterns_fwupdate_device.js** 檔案開頭新增下列 'require' 陳述式：
+4. Add the following 'require' statements at the start of the **dmpatterns_fwupdate_device.js** file:
    
     ```
     'use strict';
@@ -27,14 +27,14 @@
     var Client = require('azure-iot-device').Client;
     var Protocol = require('azure-iot-device-mqtt').Mqtt;
     ```
-步驟 5：新增 **connectionString** 變數，並用它來建立**用戶端**執行個體。 將 `{yourdeviceconnectionstring}` 預留位置取代為您先前在〈建立裝置身分識別〉一節中記下的連接字串：
+5. Add a **connectionString** variable and use it to create a **Client** instance. Replace the `{yourdeviceconnectionstring}` placeholder with the connection string you previously made a note of in the "Create a device identity" section previously:
    
     ```
     var connectionString = '{yourdeviceconnectionstring}';
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
 
-步驟 6：新增下列函式，用來更新報告屬性：
+6. Add the following function that is used to update reported properties:
    
     ```
     var reportFWUpdateThroughTwin = function(twin, firmwareUpdateValue) {
@@ -51,7 +51,7 @@
     };
     ```
 
-步驟 7：新增下列函式，以模擬韌體映像的下載和套用：
+7. Add the following functions that simulate downloading and applying the firmware image:
    
     ```
     var simulateDownloadImage = function(imageUrl, callback) {
@@ -74,7 +74,7 @@
     }
     ```
 
-步驟 8：新增下列函式，以透過報告的屬性將韌體更新狀態更新為 **waiting**。 一般而言，會通知裝置可用的更新，系統管理員會定義原則讓裝置開始下載並套用更新。 此函式是讓該原則執行的邏輯所在位置。 為了簡單起見，此範例會等待 4 秒，再繼續下載韌體映像：
+8. Add the following function that updates the firmware update status through the reported properties to **waiting**. Typically, devices are informed of an available update and an administrator defined policy causes the device to start downloading and applying the update. This function is where the logic to enable that policy should run. For simplicity, the sample waits for four seconds before proceeding to download the firmware image:
    
     ```
     var waitToDownload = function(twin, fwPackageUriVal, callback) {
@@ -90,7 +90,7 @@
     };
     ```
 
-步驟 9：新增下列函式，以透過報告的屬性將韌體更新狀態更新為 **downloading**。 此函式會接著模擬韌體下載，最後將韌體更新狀態更新為 **downloadFailed** 或 **downloadComplete**：
+9. Add the following function that updates the firmware update status through the reported properties to **downloading**. The function then simulates a firmware download and finally updates the firmware update status to either **downloadFailed** or **downloadComplete**:
    
     ```
     var downloadImage = function(twin, fwPackageUriVal, callback) {
@@ -128,7 +128,7 @@
     }
     ```
 
-步驟 10：新增下列函式，以透過報告的屬性將韌體更新狀態更新為 **applying**。 此函式會接著模擬韌體映像的套用，最後將韌體更新狀態更新為 **applyFailed** 或 **applyComplete**：
+10. Add the following function that updates the firmware update status through the reported properties to **applying**. The function then simulates applying the firmware image and finally updates the firmware update status to either **applyFailed** or **applyComplete**:
     
     ```
     var applyImage = function(twin, imageData, callback) {
@@ -166,7 +166,7 @@
     }
     ```
 
-步驟 11：新增下列函式，以處理 **firmwareUpdate** 直接方法並起始多階段韌體更新程序：
+11. Add the following function that handles the **firmwareUpdate** direct method and initiates the multi-stage firmware update process:
     
     ```
     var onFirmwareUpdate = function(request, response) {
@@ -202,7 +202,7 @@
     }
     ```
 
-步驟 12：最後，新增下列程式碼，以連線至 IoT 中樞：
+12. Finally, add the following code that connects to your IoT hub:
     
     ```
     client.open(function(err) {
@@ -217,6 +217,6 @@
     ```
 
 > [!NOTE]
-> 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理](https://msdn.microsoft.com/library/hh675232.aspx)所建議，實作重試原則 (例如指數型輪詢)。
+> To keep things simple, this tutorial does not implement any retry policy. In production code, you should implement retry policies (such as an exponential backoff), as suggested in the MSDN article [Transient Fault Handling](https://msdn.microsoft.com/library/hh675232.aspx).
 > 
 > 

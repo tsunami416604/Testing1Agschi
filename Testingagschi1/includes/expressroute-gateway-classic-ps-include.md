@@ -1,26 +1,42 @@
-您必須先建立 VNET 和閘道器子網路，才能進行下列工作。 如需詳細資訊，請參閱 [使用傳統入口網站設定虛擬網路](../articles/expressroute/expressroute-howto-vnet-portal-classic.md) 一文。   
+You must create a VNet and a gateway subnet first, before working on the following tasks.
 
-## <a name="add-a-gateway"></a>新增閘道
-使用以下的命令建立閘道器。 所有的值請務必替換成您自己的值。
+> [!NOTE]
+> These examples do not apply to S2S/ExpressRoute coexist configurations.
+> For more information about working with gateways in a coexist configuration, see [Configure coexisting connections](../articles/expressroute/expressroute-howto-coexist-classic.md#gw)
 
-    New-AzureVirtualNetworkGateway -VNetName "MyAzureVNET" -GatewayName "ERGateway" -GatewayType Dedicated -GatewaySKU  Standard
+## Add a gateway
 
-## <a name="verify-the-gateway-was-created"></a>確認已建立閘道
-使用下列命令，確認已建立閘道。 這個命令也會擷取閘道器識別碼，您在其他作業會需要它。
+Use the command below to create a gateway. Be sure to substitute any values for your own.
 
-    Get-AzureVirtualNetworkGateway
+```powershell
+New-AzureVNetGateway -VNetName "MyAzureVNET" -GatewayName "ERGateway" -GatewayType DynamicRouting -GatewaySKU  Standard
+```
 
-## <a name="resize-a-gateway"></a>調整閘道器大小
-有幾個 [閘道 SKU](../articles/expressroute/expressroute-about-virtual-network-gateways.md)。 您可以使用下列命令隨時變更閘道器 SKU。
+## Verify the gateway was created
+
+Use the command below to verify that the gateway has been created. This command also retrieves the gateway ID, which you need for other operations.
+
+```powershell
+Get-AzureVNetGateway
+```
+
+## Resize a gateway
+
+There are a number of [Gateway SKUs](../articles/expressroute/expressroute-about-virtual-network-gateways.md). You can use the following command to change the Gateway SKU at any time.
 
 > [!IMPORTANT]
-> 此命令不適用於 UltraPerformance 閘道。 若要將您的閘道變更為 UltraPerformance 閘道，請先移除現有的 ExpressRoute 閘道，然後建立新的 UltraPerformance 閘道。 若要從 UltraPerformance 閘道降級您的閘道，請先移除 UltraPerformance 閘道，然後建立新的閘道。 
-> 
-> 
+> This command doesn't work for UltraPerformance gateway. To change your gateway to an UltraPerformance gateway, first remove the existing ExpressRoute gateway, and then create a new UltraPerformance gateway. To downgrade your gateway from an UltraPerformance gateway, first remove the UltraPerformance gateway, and then create a new gateway. 
+>
+>
 
-    Resize-AzureVirtualNetworkGateway -GatewayId <Gateway ID> -GatewaySKU HighPerformance
+```powershell
+Resize-AzureVNetGateway -GatewayId <Gateway ID> -GatewaySKU HighPerformance
+```
 
-## <a name="remove-a-gateway"></a>移除閘道器
-使用以下的命令移除閘道器
+## Remove a gateway
 
-    Remove-AzureVirtualNetworkGateway -GatewayId <Gateway ID>
+Use the command below to remove a gateway
+
+```powershell
+Remove-AzureVnetGateway -GatewayId <Gateway ID>
+```

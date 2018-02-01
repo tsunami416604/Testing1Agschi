@@ -1,31 +1,31 @@
-## <a name="create-a-service-namespace"></a>建立服務命名空間
+To begin using Service Bus messaging entities in Azure, you must first create a namespace with a name that is unique across Azure. A namespace provides a scoping container for addressing Service Bus resources within your application.
 
-若要開始在 Azure 中使用服務匯流排佇列，必須先建立命名空間。 命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。 
+To create a namespace:
 
-若要建立命名空間：
-
-1. 登入 [Azure 入口網站][Azure portal]。
-2. 在入口網站的左方瀏覽窗格中，依序按一下 [新增]，[企業整合] 及 [服務匯流排]。
-3. 在 [建立命名空間]  對話方塊中，輸入命名空間名稱。 系統會立即檢查此名稱是否可用。
-4. 確定命名空間名稱可用之後，請選擇定價層 ([基本]、[標準] 或 [進階])。
-5. 在 [訂用帳戶]  欄位中，選擇要在其中建立命名空間的 Azure 訂用帳戶。
-6. 在 [資源群組]  欄位中，選擇將存留命名空間的現有資源群組，或是建立新的資源群組。      
-7. 在 [位置] 中，選擇應裝載您命名空間的國家或地區。
+1. Log on to the [Azure portal][Azure portal].
+2. In the left navigation pane of the portal, click **+ Create a resource**, then click **Enterprise Integration**, and then click **Service Bus**.
+3. In the **Create namespace** dialog, enter a namespace name. The system immediately checks to see if the name is available.
+4. After making sure the namespace name is available, choose the pricing tier (Basic, Standard, or Premium).
+5. In the **Subscription** field, choose an Azure subscription in which to create the namespace.
+6. In the **Resource group** field, choose an existing resource group in which the namespace will live, or create a new one.      
+7. In **Location**, choose the country or region in which your namespace should be hosted.
    
-    ![建立命名空間][create-namespace]
-8. 按一下 [建立] 。 此時系統會建立並啟用命名空間。 系統為帳戶提供資源時，您可能需要等幾分鐘。
+    ![Create namespace][create-namespace]
+8. Click **Create**. The system now creates your namespace and enables it. You might have to wait several minutes as the system provisions resources for your account.
 
-### <a name="obtain-the-management-credentials"></a>取得管理認證
-1. 在命名空間清單中，按一下新建立的命名空間名稱。
-2. 在命名空間刀鋒視窗中，按一下 [共用存取原則]。
-3. 在 [共用存取原則] 刀鋒視窗中，按一下 **RootManageSharedAccessKey**。
+### Obtain the management credentials
+Creating a new namespace automatically generates an initial Shared Access Signature (SAS) rule with an associated pair of primary and secondary keys that each grant full control over all aspects of the namespace. See [Service Bus authentication and authorization](../articles/service-bus-messaging/service-bus-authentication-and-authorization.md) for information about how to create further rules with more constrained rights for regular senders and receivers. To copy the initial rule, follow these steps: 
+
+1.  Click **All resources**, then click the newly created namespace name.
+2. In the namespace window, click **Shared access policies**.
+3. In the **Shared access policies** screen, click **RootManageSharedAccessKey**.
    
     ![connection-info][connection-info]
-4. 在 [原則: RootManageSharedAccessKey] 刀鋒視窗中，按一下 [連接字串 - 主要金鑰] 旁邊的複製按鈕，將連接字串複製到剪貼簿以供稍後使用。 將此值貼到記事本或一些其他暫存位置。
+4. In the **Policy: RootManageSharedAccessKey** window, click the copy button next to **Connection string–primary key**, to copy the connection string to your clipboard for later use. Paste this value into Notepad or some other temporary location.
    
     ![connection-string][connection-string]
 
-5. 重複前一個步驟，複製 [主要金鑰] 的值並貼到暫存位置以供稍後使用。
+5. Repeat the previous step, copying and pasting the value of **Primary key** to a temporary location for later use.
 
 <!--Image references-->
 
@@ -33,7 +33,3 @@
 [connection-info]: ./media/service-bus-create-namespace-portal/connection-info.png
 [connection-string]: ./media/service-bus-create-namespace-portal/connection-string.png
 [Azure portal]: https://portal.azure.com
-
-<!--HONumber=Feb17_HO2-->
-
-

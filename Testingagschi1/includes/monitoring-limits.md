@@ -1,5 +1,6 @@
-
-| 資源 | 限制 |
-| --- | --- |
-| 自動調整設定 |每個訂用帳戶每個區域 100 個 |
-| 計量警示 |每個訂用帳戶 100 個使用中警示規則 |
+| Resource | Default Limit | Maximum Limit |
+| --- | --- | --- |
+| Autoscale Settings |100 per region per subscription | same as default |
+| Metric Alerts |100 active alert rules per subscription | call support |
+| Near-Real Time Alerts (Preview) | 20 active alert rules per subscription | same as default during preview | 
+ 

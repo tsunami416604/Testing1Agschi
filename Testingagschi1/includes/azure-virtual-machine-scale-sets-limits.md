@@ -1,5 +1,6 @@
-| 資源 | 上限 |
-| --- | --- |
-| 擴展集中的 VM 數目上限 |1000 |
-| 區域中的擴展集數目上限 |2000 |
+| Resource | Default Limit | Maximum Limit |
+| --- | --- | --- |
+| Maximum number of VMs in a scale set |1000 |1000 |
+| Maximum number of VMs based on a custom VM image in a scale set|300 |300 |
+| Maximum number of scale sets in a region |2000 |2000 |
 

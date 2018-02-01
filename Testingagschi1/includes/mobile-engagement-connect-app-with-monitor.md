@@ -1,11 +1,11 @@
-本節說明如何使用 Mobile Engagement 的即時監視功能將您的 app 連線至 Mobile Engagement 後端。 
+This section shows you how to connect your app to the Mobile Engagement backend by using the Mobile Engagement's real-time monitoring feature. 
 
-1. 在您的 **Azure Mobile Engagement** 帳戶中，確定您選取的是要在 **Mobile Engagement** 入口網站中監視和管理的應用程式。 按一下底部的 [Engage]  按鈕瀏覽至 Mobile Engagement 入口網站。 
+1. In your **Azure Mobile Engagement** account, make sure you select the app you wish to monitor and manage in the **Mobile Engagement** portal. Navigate to your Mobile Engagement portal by clicking the **Engage** button at the bottom. 
    
-     ![](./media/mobile-engagement-connect-app-with-monitor/engage-button.png)
-2. 您將在 Mobile Engagement 入口網站登陸。 如果未選取 [監視] 索引標籤，按一下 [監視] 。
-3. 監視器可以即時顯示將會啟動您 App 的任何裝置。
-4. 立即啟動您的 App。 如果您的整合正確，應該會在監視器中看到一個工作階段，這表示您的 App 現在已連線到 Mobile Engagement 後端，並對其傳送資料。  
+     ![](./media/mobile-engagement-create-app-in-portal-new/engage-button.png)
+2. You will land in the Mobile Engagement portal. If the Monitor tab is not selected, click on the **Monitor**.
+3. The monitor is ready to show you any device in real time, which will start your app.
+4. Start your app now. You should see one session in the monitor if your integration is correct which means that your app is now connected to the Mobile Engagement backend and is sending data to it.  
    
      ![](./media/mobile-engagement-connect-app-with-monitor/monitor.png)
 

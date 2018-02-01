@@ -1,5 +1,5 @@
 > [!NOTE]
-> 在 Azure AD B2C 中，原則的名稱會加上 `b2c_1_`，如 `b2c_1_sign_up`。  您可以在用戶端和伺服器的所有應用程式中自由使用原則。  如果您先前已在另一個 B2C 逐步解說中建立原則，就不需要再做一次。 如果您先前在入口網站中建立的原則符合應用程式的需求，您可以重複使用這些原則。
+> In Azure AD B2C, your policy's name will be prefixed with `b2c_1_`, like `b2c_1_sign_up`.  You are free to use your policies across all of your apps, both client and server.  If you've previously created policies in another B2C walk-through, there is no need to do so again. You may reuse the policies you've previously created in the portal if they match the requirements of the application.
 > 
 > 
 

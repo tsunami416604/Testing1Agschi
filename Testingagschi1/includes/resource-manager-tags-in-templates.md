@@ -1,13 +1,13 @@
-若要在部署期間標記資源，請將 `tags` 元素新增到您正在部署的資源。 提供標籤名稱和值。
+To tag a resource during deployment, add the `tags` element to the resource you are deploying. Provide the tag name and value.
 
-### <a name="apply-literal-value-to-tag-name"></a>將常值套用至標籤名稱
-下列範例說明含有兩個標籤 (`Dept` 和 `Environment`) 並設為常值的儲存體帳戶：
+### Apply a literal value to the tag name
+The following example shows a storage account with two tags (`Dept` and `Environment`) that are set to literal values:
 
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "resources": [
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"resources": [
     {
       "apiVersion": "2016-01-01",
       "type": "Microsoft.Storage/storageAccounts",
@@ -23,12 +23,12 @@
       "kind": "Storage",
       "properties": { }
     }
-    ]
+	]
 }
 ```
 
-### <a name="apply-object-to-tag-element"></a>將物件套用至標籤元素
-您可定義存放數個標籤的物件參數，並將該物件套用至標籤元素。 物件中的每個屬性會變成資源的個別標籤。 下列範例具有名為 `tagValues` 且套用至標籤元素的參數。
+### Apply an object to the tag element
+You can define an object parameter that stores several tags, and apply that object to the tag element. Each property in the object becomes a separate tag for the resource. The following example has a parameter named `tagValues` that is applied to the tag element.
 
 ```json
 {
@@ -60,15 +60,15 @@
 }
 ```
 
-### <a name="apply-json-string-to-tag-name"></a>將 JSON 字串套用至標籤名稱
+### Apply a JSON string to the tag name
 
-若要將多個值儲存於單一標籤，請套用代表這些值的 JSON 字串。 整個 JSON 字串會儲存為一個不得超過 256 個字元的標籤。 下列範例具有名為 `CostCenter` 的單一標籤，其中包含 JSON 字串中的數個值︰  
+To store many values in a single tag, apply a JSON string that represents the values. The entire JSON string is stored as one tag that cannot exceed 256 characters. The following example has a single tag named `CostCenter` that contains several values from a JSON string:  
 
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "resources": [
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"resources": [
     {
       "apiVersion": "2016-01-01",
       "type": "Microsoft.Storage/storageAccounts",
@@ -83,6 +83,6 @@
       "kind": "Storage",
       "properties": { }
     }
-    ]
+	]
 }
 ```

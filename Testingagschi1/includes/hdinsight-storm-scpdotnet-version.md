@@ -1,13 +1,13 @@
 > [!IMPORTANT]
-> 您的專案中使用的 SCP.Net 版本必須符合您的 HDInsight 叢集上的 Storm 版本。 使用下表來判斷應該使用哪一個版本：
+> The SCP.Net version used in your project must match the Storm version present on your HDInsight cluster. Use the following table to determine which version you should use:
 > 
-> | HDInsight 版本 | Apache Storm 版本 | SCP.NET 版本 |
-> |:---:|:---:|:---:|
-> | 3.3 |0.10.# |0.10.#.# |
-> | 3.4 |0.10.# |0.10.#.# |
-> | 3.5 |1.0.# |1.0.#.# |
+> | HDInsight version | Apache Storm version | SCP.NET version | Default Mono version |
+> |:---:|:---:|:---:|:---:|
+> | 3.3 |0.10.0.x |0.10.0.x (Windows-based clusters only) | NA |
+> | 3.4 |0.10.0.x |0.10.0.x | 3.2.8 |
+> | 3.5 |1.0.2.x |1.0.0.x | 4.2.1 |
+> | 3.6 |1.1.0.# | 1.0.0.x | 4.2.8 |
 > 
-> 如需 HDInsight 所提供元件的詳細資訊，請參閱 [HDInsight 元件版本](../articles/hdinsight/hdinsight-component-versioning.md)。
-> 
-> 
+> For more information on components provided with HDInsight, see [HDInsight component versions](../articles/hdinsight/hdinsight-component-versioning.md).
+
 

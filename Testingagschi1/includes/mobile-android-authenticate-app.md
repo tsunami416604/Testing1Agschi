@@ -1,104 +1,128 @@
 
-1. 在 Android Studio 的 [專案總管]  中，開啟 ToDoActivity.java 檔案，並新增下列 import 陳述式。
+1. Open the project in Android Studio.
 
-        import java.util.concurrent.ExecutionException;
-        import java.util.concurrent.atomic.AtomicBoolean;
+2. In **Project Explorer** in Android Studio, open the `ToDoActivity.java` file and add the following import statements:
 
-        import android.content.Context;
-        import android.content.SharedPreferences;
-        import android.content.SharedPreferences.Editor;
+    ```java
+    import java.util.concurrent.ExecutionException;
+    import java.util.concurrent.atomic.AtomicBoolean;
 
-        import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceAuthenticationProvider;
-        import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
-2. 將下列方法加入至 **ToDoActivity** 類別：
+    import android.content.Context;
+    import android.content.SharedPreferences;
+    import android.content.SharedPreferences.Editor;
 
-        // You can choose any unique number here to differentiate auth providers from each other. Note this is the same code at login() and onActivityResult().
-        public static final int GOOGLE_LOGIN_REQUEST_CODE = 1;
- 
-        private void authenticate() {
-            // Login using the Google provider.
-            mClient.login("Google", "{url_scheme_of_your_app}", GOOGLE_LOGIN_REQUEST_CODE);
-        }
-         
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            // When request completes
-            if (resultCode == RESULT_OK) {
-                // Check the request code matches the one we send in the login request
-                if (requestCode == GOOGLE_LOGIN_REQUEST_CODE) {
-                    MobileServiceActivityResult result = mClient.onActivityResult(data);
-                    if (result.isLoggedIn()) {
-                        // login succeeded
-                        createAndShowDialog(String.format("You are now logged in - %1$2s", mClient.getCurrentUser().getUserId()), "Success");
-                        createTable();
-                    } else {
-                        // login failed, check the error message
-                        String errorMessage = result.getErrorMessage();
-                        createAndShowDialog(errorMessage, "Error");
-                    }
+    import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceAuthenticationProvider;
+    import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
+    ```
+
+3. Add the following method to the **ToDoActivity** class:
+
+    ```java
+    // You can choose any unique number here to differentiate auth providers from each other. Note this is the same code at login() and onActivityResult().
+    public static final int GOOGLE_LOGIN_REQUEST_CODE = 1;
+
+    private void authenticate() {
+        // Login using the Google provider.
+        mClient.login(MobileServiceAuthenticationProvider.Google, "{url_scheme_of_your_app}", GOOGLE_LOGIN_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // When request completes
+        if (resultCode == RESULT_OK) {
+            // Check the request code matches the one we send in the login request
+            if (requestCode == GOOGLE_LOGIN_REQUEST_CODE) {
+                MobileServiceActivityResult result = mClient.onActivityResult(data);
+                if (result.isLoggedIn()) {
+                    // login succeeded
+                    createAndShowDialog(String.format("You are now logged in - %1$2s", mClient.getCurrentUser().getUserId()), "Success");
+                    createTable();
+                } else {
+                    // login failed, check the error message
+                    String errorMessage = result.getErrorMessage();
+                    createAndShowDialog(errorMessage, "Error");
                 }
             }
         }
+    }
+    ```
 
-    這會建立新的方法來處理驗證程序。 使用者透過 Google 登入來驗證。 將出現對話方塊來顯示已驗證使用者的識別碼。 必須通過驗證才能繼續。
+    This code creates a method to handle the Google authentication process. A dialog displays the ID of the authenticated user. You can only proceed on a successful authentication.
 
     > [!NOTE]
-    > 如果您使用的身分識別提供者不是 Google，請將傳給上述 **login** 方法的值變更為下列其中一個：_MicrosoftAccount_、_Facebook_、_Twitter_ 或 _windowsazureactivedirectory_。
+    > If you are using an identity provider other than Google, change the value passed to the **login** method to one of the following values: _MicrosoftAccount_, _Facebook_, _Twitter_, or _windowsazureactivedirectory_.
 
-3. 在 **OnCreate`MobileServiceClient` 方法中，在具現化**  物件的程式碼後面加入下列這一行程式碼。
+4. In the **onCreate** method, add the following line of code after the code that instantiates the `MobileServiceClient` object.
 
-        authenticate();
+    ```java
+    authenticate();
+    ```
 
-    此呼叫會啟動驗證程序。
-4. 將 **onCreate** 方法中 `authenticate();` 後面的其餘程式碼移至新的 **createTable** 方法。 它看起來如下：
+    This call starts the authentication process.
 
-        private void createTable() {
+5. Move the remaining code after `authenticate();` in the **onCreate** method to a new **createTable** method:
 
-            // Get the table instance to use.
-            mToDoTable = mClient.getTable(ToDoItem.class);
+    ```java
+    private void createTable() {
 
-            mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
+        // Get the table instance to use.
+        mToDoTable = mClient.getTable(ToDoItem.class);
 
-            // Create an adapter to bind the items with the view.
-            mAdapter = new ToDoItemAdapter(this, R.layout.row_list_to_do);
-            ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
-            listViewToDo.setAdapter(mAdapter);
+        mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
 
-            // Load the items from Azure.
-            refreshItemsFromTable();
-        }
+        // Create an adapter to bind the items with the view.
+        mAdapter = new ToDoItemAdapter(this, R.layout.row_list_to_do);
+        ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
+        listViewToDo.setAdapter(mAdapter);
 
-5. 將 _RedirectUrlActivity_ 的下列程式碼片段新增至 _AndroidManifest.xml_ 以確保重新導向可運作。
- 
-        <activity android:name="com.microsoft.windowsazure.mobileservices.authentication.RedirectUrlActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="{url_scheme_of_your_app}"
-                    android:host="easyauth.callback"/>
-            </intent-filter>
-        </activity>
+        // Load the items from Azure.
+        refreshItemsFromTable();
+    }
+    ```
 
-6.  將 redirectUriScheme 新增至 Android 應用程式的 _build.gradle_。
- 
-        android {
-            buildTypes {
-                release {
-                    // … …
-                    manifestPlaceholders = ['redirectUriScheme': '{url_scheme_of_your_app}://easyauth.callback']
-                }
-                debug {
-                    // … …
-                    manifestPlaceholders = ['redirectUriScheme': '{url_scheme_of_your_app}://easyauth.callback']
-                }
+6. To ensure redirection works as expected, add the following snippet of `RedirectUrlActivity` to `AndroidManifest.xml`:
+
+    ```xml
+    <activity android:name="com.microsoft.windowsazure.mobileservices.authentication.RedirectUrlActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="{url_scheme_of_your_app}"
+                android:host="easyauth.callback"/>
+        </intent-filter>
+    </activity>
+    ```
+
+7. Add `redirectUriScheme` to `build.gradle` of your Android application.
+
+    ```gradle
+    android {
+        buildTypes {
+            release {
+                // ...
+                manifestPlaceholders = ['redirectUriScheme': '{url_scheme_of_your_app}://easyauth.callback']
+            }
+            debug {
+                // ...
+                manifestPlaceholders = ['redirectUriScheme': '{url_scheme_of_your_app}://easyauth.callback']
             }
         }
+    }
+    ```
 
-7. 將 com.android.support:customtabs:23.0.1 新增至 build.gradle 中的相依性：
+8. Add `com.android.support:customtabs:23.0.1` to the dependencies in your `build.gradle`:
 
-      dependencies {        // ...        compile 'com.android.support:customtabs:23.0.1'    }
+    ```gradle
+    dependencies {
+        // ...
+        compile 'com.android.support:customtabs:23.0.1'
+    }
+    ```
 
-8. 在 [執行] 功能表中，按一下 [執行應用程式] 來啟動應用程式，並以您選擇的身分識別提供者登入。
+9. From the **Run** menu, click **Run app** to start the app and sign in with your chosen identity provider.
 
-成功登入後，應用程式應會正確無誤地執行，而且您應能夠查詢後端服務並更新資料。
+> [!WARNING]
+> The URL Scheme mentioned is case-sensitive. Ensure that all occurrences of `{url_scheme_of_you_app}` use the same case.
+
+When you are successfully signed in, the app should run without errors, and you should be able to query the back-end service and make updates to data.

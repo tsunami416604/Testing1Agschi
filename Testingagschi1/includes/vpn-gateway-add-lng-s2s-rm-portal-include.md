@@ -1,10 +1,16 @@
-1. 在入口網站中，從 [所有資源]，按一下 [+新增]。 在 [一切] 刀鋒視窗搜尋方塊中，輸入**區域網路閘道**，然後按一下以搜尋。 這會傳回清單。 按一下 [區域網路閘道] 以開啟刀鋒視窗，然後按一下 [建立] 開啟 [建立區域網路閘道] 刀鋒視窗。
+1. In the portal, from **All resources**, click **+Add**. 
+2. In the **Everything** page search box, type **Local network gateway**, then click to search. This will return a list. Click **Local network gateway** to open the page, then click **Create** to open the **Create local network gateway** page.
 
-      ![建立區域網路閘道](./media/vpn-gateway-add-lng-s2s-rm-portal-include/createlng.png)
-2. 在 [建立區域網路閘道] 刀鋒視窗中，指定區域網路閘道物件的 [名稱]。
-3. 為您要連線的 VPN 裝置或虛擬網路閘道指定有效的公用 **IP 位址**。<br>這是您要連線之 VPN 裝置的公用 IP 位址。 它不能在 NAT 後方且必須可讓 Azure 連線。 使用自己的值，而不是螢幕擷取畫面中所示的值。
-4.  是指此區域網路所代表之網路的位址範圍。 您可以加入多個位址空間範圍。 確定您在此指定的範圍，不會與您要連接到的其他網路範圍重疊。 Azure 會將您指定的位址範圍路由傳送至內部部署 VPN 裝置 IP 位址。 在此使用自己的值，而不是螢幕擷取畫面中所示的值。
-5. 對於 [訂用帳戶] ，請確認顯示的是正確的訂用帳戶。
-6. 對於 [資源群組] ，請選取要使用的資源群組。 您可以建立新的資源群組或選取已建立的資源群組。
-7. 針對 [位置] ，選取將要建立此物件的位置。 建議您選取 VNet 所在的相同位置，但您可以不用這麼做。
-8. 按一下 [建立]  來建立區域網路閘道。
+  ![create local network gateway](./media/vpn-gateway-add-lng-s2s-rm-portal-include/createlng.png)
+
+3. On the **Create local network gateway page**, specify the values for your local network gateway.
+
+  - **Name:** Specify a name for your local network gateway object.
+  - **IP address:** This is the public IP address of the VPN device that you want Azure to connect to. Specify a valid public IP address. The IP address cannot be behind NAT and has to be reachable by Azure. If you don't have the IP address right now, you can use the values shown in the screen shot, but you'll need to go back and replace your placeholder IP address with the public IP address of your VPN device. Otherwise, Azure will not be able to connect.
+  - **Address Space** refers to the address ranges for the network that this local network represents. You can add multiple address space ranges. Make sure that the ranges you specify here do not overlap with ranges of other networks that you want to connect to. Azure will route the address range that you specify to the on-premises VPN device IP address. *Use your own values here, not the values shown in the screenshot*.
+  - **Configure BGP settings:** Use only when configuring BGP. Otherwise, don't select this.
+  - **Subscription:** Verify that the correct subscription is showing.
+  - **Resource Group:** Select the resource group that you want to use. You can either create a new resource group, or select one that you have already created.
+  - **Location:** Select the location that this object will be created in. You may want to select the same location that your VNet resides in, but you are not required to do so.
+
+4. When you have finished specifying the values, click **Create** at the bottom of the page to create the local network gateway.

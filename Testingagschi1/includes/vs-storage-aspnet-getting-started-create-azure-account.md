@@ -1,6 +1,6 @@
-## <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶
-建立您第一個 Azure 儲存體帳戶最簡單的方法，就是使用 [Azure 入口網站](https://portal.azure.com)。 若要深入了解，請參閱 [建立儲存體帳戶](../articles/storage/storage-create-storage-account.md#create-a-storage-account)。
+## Create an Azure storage account
+The easiest way to create your first Azure storage account is by using the [Azure Portal](https://portal.azure.com). To learn more, see [Create a storage account](../articles/storage/common/storage-create-storage-account.md#create-a-storage-account).
 
-您也可以使用 [Azure PowerShell](../articles/storage/storage-powershell-guide-full.md)、[Azure CLI](../articles/storage/storage-azure-cli.md)，或 [Storage Resource Provider Client Library for .NET](https://msdn.microsoft.com/library/azure/mt131037.aspx) 來建立 Azure 儲存體帳戶。
+You can also create an Azure storage account by using [Azure PowerShell](../articles/storage/common/storage-powershell-guide-full.md), [Azure CLI](../articles/storage/common/storage-azure-cli.md), or the [Storage Resource Provider Client Library for .NET](https://msdn.microsoft.com/library/azure/mt131037.aspx).
 
 

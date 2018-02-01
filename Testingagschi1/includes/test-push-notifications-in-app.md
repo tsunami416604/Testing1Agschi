@@ -1,5 +1,5 @@
 
-* 在 Xcode 中按下 [執行]，並在 iOS 裝置上啟動應用程式 (請注意，推播在模擬器上無法運作)。 按一下 [確定] 以接受推播通知 (第一次執行應用程式時會發生此要求)。
-* 在應用程式中新增項目，然後按一下 **+**。
-* 確認您已接收到通知，然後按一下 [確定]  以關閉通知。 您現在已成功完成此教學課程。
+* In Xcode, press **Run** and start the app on an iOS device (note that push will not work on simulators). Click **OK** to accept push notifications; this request occurs the first time the app runs.
+* In the app, add a new item and click **+**.
+* Verify that a notification is received, then click **OK** to dismiss the notification. You have now successfully completed this tutorial.
 

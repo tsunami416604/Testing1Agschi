@@ -1,30 +1,30 @@
 
 >[!NOTE]
->Log Analytics 以前稱為 Operational Insights。
+>Log Analytics was formerly known as Operational Insights.
 >
 >
 
-下列限制適用於每個訂用帳戶的 Log Analytics 資源：
+The following limits apply to Log Analytics resources per subscription:
 
-| 資源 | 預設限制 | 註解
+| Resource | Default Limit | Comments
 | --- | --- | --- |
-| 每一訂用帳戶的可用工作區數目 | 10 | 此限制無法增加。 |
-| 每一訂用帳戶的付費工作區數目 | N/A | 您會受到資源群組內的資源數目和每一訂用帳戶的資源群組數目所限制 | 
+| Number of free workspaces per subscription | 10 | This limit cannot be increased. |
+| Number of paid workspaces per subscription | N/A | You are limited by the number of resources within a resource group and number of resource groups per subscription | 
 
 
-下列限制適用於每個 Log Analytics 工作區：
+The following limits apply to each Log Analytics workspace:
 
-|  | 免費 | 標準 | 高級 | 獨立 | OMS |
+|  | Free | Standard | Premium | Standalone | OMS |
 | --- | --- | --- | --- | --- | --- |
-| 每日所收集的資料量 |500 MB<sup>1</sup> |None |None | None | None
-| 資料保留期間 |7 天 |1 個月 |12 個月 | 1 個月 <sup>2</sup> | 1 個月 <sup>2</sup>|
+| Data volume collected per day |500 MB<sup>1</sup> |None |None | None | None
+| Data retention period |7 days |1 month |12 months | 1 month<sup>2</sup> | 1 month <sup>2</sup>|
 
-<sup>1</sup>當客戶達到每日 500MB 資料傳輸限制時，系統會停止資料分析，並在次日開始時繼續。 一天是以 UTC 為基礎。
+<sup>1</sup> When customers reach their 500 MB daily data transfer limit, data analysis stops and resumes at the start of the next day. A day is based on UTC.
 
-<sup>2</sup>獨立和 OMS 定價方案的資料保留期限可增加到 730 天。
+<sup>2</sup> The data retention period for the Standalone and OMS pricing plans can be increased to 730 days.
 
-| 類別 | 限制 | 註解
+| Category | Limits | Comments
 | --- | --- | --- |
-| 資料收集器 API | 單一篇文章的大小上限為 30 MB<br>欄位值的大小上限為 32 KB | 將較大的磁碟區分割成多篇文章<br>超過 32 KB 的欄位會被截斷。 |
-| 搜尋 API | 傳回非彙總資料的 5000 筆記錄<br>彙總資料的 500000 筆記錄 | 彙總資料是包含 `measure` 命令的搜尋
+| Data Collector API | Maximum size for a single post is 30 MB<br>Maximum size for field values is 32 KB | Split larger volumes into multiple posts<br>Fields longer than 32 KB are truncated. |
+| Search API | 5000 records returned for non-aggregated data<br>500000 records for aggregated data | Aggregated data is a search that includes the `measure` command
  

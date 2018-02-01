@@ -1,24 +1,24 @@
-### <a name="troubleshoot-azure-diagnostics"></a>針對 Azure 診斷進行疑難排解
+### Troubleshoot Azure Diagnostics
 
-如果您收到下列錯誤訊息，則未註冊 Microsoft.insights 資源提供者︰
+If you receive the following error message, the Microsoft.insights resource provider is not registered:
 
 `Failed to update diagnostics for 'resource'. {"code":"Forbidden","message":"Please register the subscription 'subscription id' with Microsoft.Insights."}`
 
-若要註冊資源提供者，請在 Azure 入口網站中執行下列步驟：
+To register the resource provider, perform the following steps in the Azure portal:
 
-1.    在左側的導覽窗格中，按一下 [訂用帳戶]。
-2.    選取錯誤訊息中識別的訂用帳戶
-3.    按一下 [資源提供者]
-4.    尋找 Microsoft.insights 提供者
-5.    按一下 [註冊] 連結
+1.	In the navigation pane on the left, click *Subscriptions*
+2.	Select the subscription identified in the error message
+3.	Click *Resource Providers*
+4.	Find the *Microsoft.insights* provider
+5.	Click the *Register* link
 
-![註冊 microsoft.insights 資源提供者](./media/log-analytics-troubleshoot-azure-diagnostics/log-analytics-register-microsoft-diagnostics-resource-provider.png)
+![Register microsoft.insights resource provider](./media/log-analytics-troubleshoot-azure-diagnostics/log-analytics-register-microsoft-diagnostics-resource-provider.png)
 
-註冊 Microsoft.insights 資源提供者後，請重試設定診斷。
+Once the *Microsoft.insights* resource provider is registered, retry configuring diagnostics.
 
 
-在 PowerShell 中，如果您收到下列錯誤訊息，則需要更新 PowerShell 版本︰
+In PowerShell, if you receive the following error message, you need to update your version of PowerShell:
 
 `Set-AzureRmDiagnosticSetting : A parameter cannot be found that matches parameter name 'WorkspaceId'.`
 
-使用[開始使用 Azure PowerShell Cmdlet](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 一文中的指示，將 PowerShell 版本更新至 2016 年 11 月 (v2.3.0) 或更新版本。
+Update your version of PowerShell to the November 2016 (v2.3.0), or later, release using the instructions in the [Get started with Azure PowerShell cmdlets](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) article.

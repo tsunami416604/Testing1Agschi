@@ -1,121 +1,124 @@
-有各種原因會造成無法啟動或連接至在 Azure 虛擬機器 (VM) 上執行的應用程式。 原因包括應用程式並未執行，或未在預期的連接埠上接聽，接聽連接埠遭到封鎖，或網路規則未正確將流量傳遞至應用程式。 本文說明條理式方法，以找出並更正問題。
+There are various reasons when you cannot start or connect to an application running on an Azure virtual machine (VM). Reasons include the application not running or listening on the expected ports, the listening port blocked, or networking rules not correctly passing traffic to the application. This article describes a methodical approach to find and correct the problem.
 
-如果您在使用 RDP 或 SSH 連接到 VM 時發生問題，請先參閱下列其中一篇文章︰
+If you are having issues connecting to your VM using RDP or SSH, see one of the following articles first:
 
-* [針對以 Windows 為基礎的 Azure 虛擬機器的遠端桌面連線進行疑難排解](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [針對以 Linux 為基礎的 Azure 虛擬機器的安全殼層 (SSH) 連線進行疑難排解](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+* [Troubleshoot Remote Desktop connections to a Windows-based Azure Virtual Machine](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md)
+* [Troubleshoot Secure Shell (SSH) connections to a Linux-based Azure virtual machine](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md).
 
 > [!NOTE]
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../articles/resource-manager-deployment-model.md)。 本文將說明如何使用這兩個模型，但 Microsoft 建議大多數新的部署請使用資源管理員模型。
-> 
-> 
+> Azure has two different deployment models for creating and working with resources: [Resource Manager and classic](../articles/resource-manager-deployment-model.md). This article covers using both models, but Microsoft recommends that most new deployments use the Resource Manager model.
 
-如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。 或者，您也可以提出 Azure 支援事件。 請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後選取 [取得支援]。
+If you need more help at any point in this article, you can contact the Azure experts on [the MSDN Azure and the Stack Overflow forums](https://azure.microsoft.com/support/forums/). Alternatively, you can also file an Azure support incident. Go to the [Azure support site](https://azure.microsoft.com/support/options/) and select **Get Support**.
 
-## <a name="quick-start-troubleshooting-endpoint-connectivity-problems"></a>快速開始為端點連線能力問題進行疑難排解
-如果您在連接到應用程式時發生問題，請嘗試下列一般疑難排解步驟。 請在每個步驟之後，嘗試重新連接到您的應用程式︰
+## Quick-start troubleshooting steps
+If you have problems connecting to an application, try the following general troubleshooting steps. After each step, try connecting to your application again:
 
-* 重新啟動虛擬機器
-* 重新建立端點/防火牆規則/網路安全性群組 (NSG) 規則
-  * [傳統模型 - 管理雲端服務端點](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
-  * [資源管理員模型 - 管理網路安全性群組](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
-* 從不同的位置 (例如不同的 Azure 虛擬網路) 進行連線
-* 重新部署虛擬機器
-  * [重新部署 Windows VM](../articles/virtual-machines/windows/redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-  * [重新部署 Linux VM](../articles/virtual-machines/linux/redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* 重新建立虛擬機器
+* Restart the virtual machine
+* Recreate the endpoint / firewall rules / network security group (NSG) rules
+  * [Resource Manager model - Manage Network Security Groups](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+  * [Classic model - Manage Cloud Services endpoints](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
+* Connect from different location, such as a different Azure virtual network
+* Redeploy the virtual machine
+  * [Redeploy Windows VM](../articles/virtual-machines/windows/redeploy-to-new-node.md)
+  * [Redeploy Linux VM](../articles/virtual-machines/linux/redeploy-to-new-node.md)
+* Recreate the virtual machine
 
-如需詳細資訊，請參閱 [疑難排解端點連接能力 (RDP/SSH/HTTP 等失敗問題)](https://social.msdn.microsoft.com/Forums/azure/en-US/538a8f18-7c1f-4d6e-b81c-70c00e25c93d/troubleshooting-endpoint-connectivity-rdpsshhttp-etc-failures?forum=WAVirtualMachinesforWindows)。
+For more information, see [Troubleshooting Endpoint Connectivity (RDP/SSH/HTTP, etc. failures)](https://social.msdn.microsoft.com/Forums/azure/en-US/538a8f18-7c1f-4d6e-b81c-70c00e25c93d/troubleshooting-endpoint-connectivity-rdpsshhttp-etc-failures?forum=WAVirtualMachinesforWindows).
 
-## <a name="detailed-troubleshooting-overview"></a>詳細疑難排解概觀
-有四個主要區域來疑難排解在 Azure 虛擬機器執行上之應用程式的存取。
+## Detailed troubleshooting overview
+There are four main areas to troubleshoot the access of an application that is running on an Azure virtual machine.
 
-![疑難排解無法啟動應用程式](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access1.png)
+![troubleshoot cannot start application](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access1.png)
 
-1. 在 Azure 虛擬機器上執行的應用程式。
-   * 應用程式本身是否正確地執行？
-2. Azure 虛擬機器
-   * VM 本身是否正確地執行並回應要求？
-3. Azure 網路端點。
-   * 傳統部署模型中虛擬機器的雲端服務端點。
-   * 資源管理員部署模型中虛擬機器的網路安全性群組和輸入 NAT 規則。
-   * 流量是否可以透過預期的連接埠從使用者流向 VM/應用程式？
-4. 您的網際網路邊緣裝置。
-   * 是否已經有防火牆規則會防止流量正確地流動？
+1. The application running on the Azure virtual machine.
+   * Is the application itself running correctly?
+2. The Azure virtual machine.
+   * Is the VM itself running correctly and responding to requests?
+3. Azure network endpoints.
+   * Cloud service endpoints for virtual machines in the Classic deployment model.
+   * Network Security Groups and inbound NAT rules for virtual machines in Resource Manager deployment model.
+   * Can traffic flow from users to the VM/application on the expected ports?
+4. Your Internet edge device.
+   * Are firewall rules in place preventing traffic from flowing correctly?
 
-針對正透過站對站 VPN 或 ExpressRoute 連線存取應用程式的用戶端電腦，可能造成問題的主要區域是應用程式和 Azure 虛擬機器。
-若要判斷問題的來源並更正，請遵循下列步驟。
+For client computers that are accessing the application over a site-to-site VPN or ExpressRoute connection, the main areas that can cause problems are the application and the Azure virtual machine.
 
-## <a name="step-1-access-application-from-target-vm"></a>步驟 1︰從目標 VM 存取應用程式
-嘗試使用適當的用戶端程式，從執行所在的 VM 存取應用程式。 使用本機主機名稱、本機 IP 位址或迴路位址 (127.0.0.1)。
+To determine the source of the problem and its correction, follow these steps.
 
-![直接從 VM 啟動應用程式](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access2.png)
+## Step 1: Access application from target VM
+Try to access the application with the appropriate client program from the VM on which it is running. Use the local host name, the local IP address, or the loopback address (127.0.0.1).
 
-例如，如果應用程式是網頁伺服器，則在 VM 上開啟瀏覽器，並嘗試存取在 VM 上託管的網頁。
+![start application directly from the VM](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access2.png)
 
-如果您可以存取應用程式，請移至 [步驟 3](#step2)。
+For example, if the application is a web server, open a browser on the VM and try to access a web page hosted on the VM.
 
-如果您無法存取應用程式，請檢查下列設定：
+If you can access the application, go to [Step 2](#step2).
 
-* 應用程式正在目標虛擬機器上執行。
-* 應用程式正在接聽預期的 TCP 和 UDP 連接埠。
+If you cannot access the application, verify the following settings:
 
-在 Windows 和 Linux 虛擬機器兩者上，使用 **netstat -a** 命令顯示作用中的接聽連接埠。 檢查應用程式應該接聽之預期連接埠的輸出。 重新啟動應用程式，或視需要將它設定成使用預期的連接埠，然後嘗試在本機重新存取應用程式。
+* The application is running on the target virtual machine.
+* The application is listening on the expected TCP and UDP ports.
 
-## <a id="step2"></a>步驟 2︰從相同虛擬網路中的其他 VM 存取應用程式
-使用 VM 的主機名稱或其 Azure 指派的公用、私人或提供者 IP 位址，嘗試存取不同 VM，但相同虛擬網路中的應用程式。 若為使用傳統部署模型建立的虛擬機器，請勿使用雲端服務的公用 IP 位址。
+On both Windows and Linux-based virtual machines, use the **netstat -a** command to show the active listening ports. Examine the output for the expected ports on which your application should be listening. Restart the application or configure it to use the expected ports as needed and try to access the application locally again.
 
-![從其他 VM 啟動應用程式](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access3.png)
+## <a id="step2"></a>Step 2: Access application from another VM in the same virtual network
+Try to access the application from a different VM but in the same virtual network, using the VM's host name or its Azure-assigned public, private, or provider IP address. For virtual machines created using the classic deployment model, do not use the public IP address of the cloud service.
 
-例如，如果應用程式是網頁伺服器，請嘗試在相同虛擬網路中的其他 VM 上使用瀏覽器存取網頁。
+![start application from a different VM](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access3.png)
 
-如果您可以存取應用程式，請移至 [步驟 3](#step3)。
+For example, if the application is a web server, try to access a web page from a browser on a different VM in the same virtual network.
 
-如果您無法存取應用程式，請檢查下列設定：
+If you can access the application, go to [Step 3](#step3).
 
-* 目標 VM 上的主機防火牆允許輸入要求與輸出回應的流量。
-* 在目標 VM 上執行的入侵偵測或網路監視軟體允許流量。
-* 雲端服務端點或網路安全性群組允許流量：
-  * [傳統模型 - 管理雲端服務端點](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
-  * [資源管理員模型 - 管理網路安全性群組](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
-* 在您的 VM 中，測試 VM 與 VM 間的路徑執行的個別元件 (例如負載平衡器或防火牆) 允許流量。
+If you cannot access the application, verify the following settings:
 
-在 Windows 虛擬機器上，請使用「具有進階安全性的 Windows 防火牆」判斷防火牆規則是否排除了您應用程式的輸入與輸出流量。
+* The host firewall on the target VM is allowing the inbound request and outbound response traffic.
+* Intrusion detection or network monitoring software running on the target VM is allowing the traffic.
+* Cloud Services endpoints or Network Security Groups are allowing the traffic:
+  * [Classic model - Manage Cloud Services endpoints](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
+  * [Resource Manager model - Manage Network Security Groups](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+* A separate component running in your VM in the path between the test VM and your VM, such as a load balancer or firewall, is allowing the traffic.
 
-## <a id="step3"></a>步驟 3︰ 從虛擬網路外部存取應用程式
-嘗試從位於虛擬網路外部的電腦存取在該虛擬網路內 VM 上執行的應用程式。 使用與您的原始用戶端電腦不同的網路。
+On a Windows-based virtual machine, use Windows Firewall with Advanced Security to determine whether the firewall rules exclude your application's inbound and outbound traffic.
 
-![從位於虛擬網路之外的電腦啟動應用程式](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access4.png)
+## <a id="step3"></a>Step 3: Access application from outside the virtual network
+Try to access the application from a computer outside the virtual network as the VM on which the application is running. Use a different network as your original client computer.
 
-例如，如果應用程式是 Web 伺服器，請嘗試從虛擬網路外的電腦執行瀏覽器來存取網頁。
+![start application from a computer outside the virtual network](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access4.png)
 
-如果您無法存取應用程式，請檢查下列設定：
+For example, if the application is a web server, try to access the web page from a browser running on a computer that is not in the virtual network.
 
-* 對於使用傳統部署模型建立的 VM：
+If you cannot access the application, verify the following settings:
+
+* For VMs created using the classic deployment model:
   
-  * 確認 VM 的端點組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。
-  * 確認端點上的存取控制清單 (ACL) 不會阻擋來自網際網路的連入流量。
-  * 如需詳細資訊，請參閱[如何設定虛擬機器的端點](../articles/virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
-* 對於使用資源管理員部署模型建立的 VM：
+  * Verify that the endpoint configuration for the VM is allowing the incoming traffic, especially the protocol (TCP or UDP) and the public and private port numbers.
+  * Verify that access control lists (ACLs) on the endpoint are not preventing incoming traffic from the Internet.
+  * For more information, see [How to Set Up Endpoints to a Virtual Machine](../articles/virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+* For VMs created using the Resource Manager deployment model:
   
-  * 確認 VM 的輸入 NAT 規則組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。
-  * 確認網路安全性群組允許輸入要求與輸出回應的流量。
-  * 如需詳細資訊，請參閱 [什麼是網路安全性群組 (NSG)？](../articles/virtual-network/virtual-networks-nsg.md)
+  * Verify that the inbound NAT rule configuration for the VM is allowing the incoming traffic, especially the protocol (TCP or UDP) and the public and private port numbers.
+  * Verify that Network Security Groups are allowing the inbound request and outbound response traffic.
+  * For more information, see [What is a Network Security Group (NSG)?](../articles/virtual-network/virtual-networks-nsg.md)
 
-如果虛擬機器或端點是負載平衡集的成員：
+If the virtual machine or endpoint is a member of a load-balanced set:
 
-* 請確認探查通訊協定 (TCP 或 UDP) 和連接埠號碼正確。
-* 如果探查通訊協定和連接埠與負載平衡集通訊協定和連接埠不同：
-  * 請確認應用程式正在接聽探查通訊協定 (TCP 或 UDP) 和連接埠號碼 (在目標 VM 上使用 **netstat –a** )。
-  * 確認目標 VM 上的主機防火牆允許輸入探查要求與輸出探查回應的流量。
+* Verify that the probe protocol (TCP or UDP) and port number are correct.
+* If the probe protocol and port is different than the load-balanced set protocol and port:
+  * Verify that the application is listening on the probe protocol (TCP or UDP) and port number (use **netstat –a** on the target VM).
+  * Verify that the host firewall on the target VM is allowing the inbound probe request and outbound probe response traffic.
 
-如果您可以存取應用程式，請確定您的網際網路邊緣裝置允許：
+If you can access the application, ensure that your Internet edge device is allowing:
 
-* 從您的用戶端電腦輸出到 Azure 虛擬機器的應用程式要求流量。
-* 來自 Azure 虛擬機器的輸入應用程式回應流量。
+* The outbound application request traffic from your client computer to the Azure virtual machine.
+* The inbound application response traffic from the Azure virtual machine.
 
-## <a name="additional-resources"></a>其他資源
-[針對以 Windows 為基礎的 Azure 虛擬機器的遠端桌面連線進行疑難排解](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+## Step 4 If you cannot access the application, use IP Verify to check the settings. 
 
-[疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+For more information, see [Azure network monitoring overview](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview). 
+
+## Additional resources
+[Troubleshoot Remote Desktop connections to a Windows-based Azure Virtual Machine](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md)
+
+[Troubleshoot Secure Shell (SSH) connections to a Linux-based Azure virtual machine](../articles/virtual-machines/linux/troubleshoot-ssh-connection.md)
 

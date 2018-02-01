@@ -1,10 +1,10 @@
-## <a name="add-a-consumer-group-to-your-iot-hub"></a>將取用者群組新增至 IoT 中樞
+## Add a consumer group to your IoT hub
 
-應用程式會使用取用者群組從 Azure IoT 中樞提取資料。 在此課程中，您會建立即將推出的 Azure 服務要使用的取用者群組，以便從 IoT 中樞讀取資料。
+Consumer groups are used by applications to pull data from Azure IoT Hub. In this tutorial, you create a consumer group to be used by a coming Azure service to read data from your IoT hub.
 
-若要將取用者群組新增至 IoT 中樞，請遵循下列步驟：
+To add a consumer group to your IoT hub, follow these steps:
 
-1. 在 [Azure 入口網站](https://ms.portal.azure.com/)中，開啟 IoT 中樞。
-1. 按一下左窗格的 [端點]，選取中間窗格的 [事件]，在右窗格的 [取用者群組] 之下輸入名稱，然後按一下 [儲存]。
+1. In the [Azure portal](https://ms.portal.azure.com/), open your IoT hub.
+2. In the left pane, click **Endpoints**, select **Events** on the middle pane, enter a name under **Consumer groups** on the right pane, and then click **Save**.
 
-   ![在 Azure IoT 中樞建立取用者群組](../articles/iot-hub/media/iot-hub-create-consumer-group/1_iot-hub-create-consumer-group-azure.png)
+   ![Create a consumer group in your IoT hub](../articles/iot-hub/media/iot-hub-create-consumer-group/1_iot-hub-create-consumer-group-azure.png)

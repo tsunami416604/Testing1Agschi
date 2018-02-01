@@ -1,4 +1,38 @@
 
-1. 回到行動應用程式後端，按一下 [設定]  >  [快速啟動] > 您的用戶端平台。 
-2. 在 [建立資料表 API] 下，選取 Node.js 做為**後端語言**。 接受通知，然後按一下 [建立 TodoItem 資料表] 。 這會在您的資料庫中建立新的 *TodoItem* 資料表。 請記住，將現有後端切換到 Node.js 將會覆寫所有內容！ 若是要建立 .NET 後端，請[遵循此處指示](../articles/app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#create-app)。
+1. Click the **App Services** button, select your Mobile Apps back end, select **Quickstart**, and then select your client platform (iOS, Android, Xamarin, Cordova).
 
+    ![Azure portal with Mobile Apps Quickstart highlighted][quickstart]
+
+2. If a database connection is not configured, create one by doing the following:
+
+    ![Azure portal with Mobile Apps Connect to database][connect]
+
+    a. Create a new SQL database and server.
+
+    ![Azure portal with Mobile Apps create new database and server][server]
+
+    b. Wait until the data connection is successfully created.
+
+    ![Azure portal notification of successful creation of data connection][notification]
+
+    c. Data connection must be successful.
+
+    ![Azure portal notification, "You already have a data connection"][already-connection]
+
+3. Under **2. Create a table API**, select Node.js for **Backend language**. 
+ 
+4. Accept the acknowledgment, and then select **Create TodoItem table**.  
+    This action creates a new to-do item table in your database. 
+
+    >[!IMPORTANT]
+    > Switching an existing back end to Node.js overwrites all contents. To create a .NET back end instead, see [Work with the .NET back-end server SDK for Mobile Apps][instructions].
+
+<!-- Images. -->
+[quickstart]: ./media/app-service-mobile-configure-new-backend/quickstart.png
+[connect]: ./media/app-service-mobile-configure-new-backend/connect-to-bd.png
+[notification]: ./media/app-service-mobile-configure-new-backend/notification-data-connection-create.png
+[server]: ./media/app-service-mobile-configure-new-backend/create-new-server.png
+[already-connection]: ./media/app-service-mobile-configure-new-backend/already-connection.png
+
+<!-- URLs -->
+[instructions]: ../articles/app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#create-app

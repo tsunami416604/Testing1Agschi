@@ -1,12 +1,12 @@
-若要連接到 Azure Redis 快取執行個體，快取用戶端需要主機名稱、連接埠和快取金鑰。 某些用戶端可能會以稍有不同的名稱來參考這些項目。 您可以在 Azure 入口網站中或使用 Azure CLI 等命令列工具來擷取此資訊。
+To connect to an Azure Redis Cache instance, cache clients need the host name, ports, and keys of the cache. Some clients may refer to these items by slightly different names. You can retrieve this information in the Azure portal or by using command-line tools such as Azure CLI.
 
-### <a name="retrieve-host-name-ports-and-access-keys-using-the-azure-portal"></a>使用 Azure 入口網站來擷取主機名稱、連接埠及存取金鑰
-若要使用 Azure 入口網站來擷取主機名稱、連接埠及存取金鑰，請在 [Azure 入口網站](https://portal.azure.com)中[瀏覽](../articles/redis-cache/cache-configure.md#configure-redis-cache-settings)至您的快取，然後按一下 [資源] 功能表中的 [存取金鑰] 和 [屬性]。 
+### Retrieve host name, ports, and access keys using the Azure Portal
+To retrieve host name, ports, and access keys using the Azure Portal, [browse](../articles/redis-cache/cache-configure.md#configure-redis-cache-settings) to your cache in the [Azure portal](https://portal.azure.com) and click **Access keys** and **Properties** in the **Resource menu**. 
 
-![Redis 快取設定](media/redis-cache-access-keys/redis-cache-hostname-ports-keys.png)
+![Redis cache settings](media/redis-cache-access-keys/redis-cache-hostname-ports-keys.png)
 
-### <a name="retrieve-host-name-ports-and-access-keys-using-azure-cli"></a>使用 Azure CLI 來擷取主機名稱、連接埠及存取金鑰
-若要使用 Azure CLI 2.0 來擷取主機名稱和連接埠，您可以呼叫 [az redis show](https://docs.microsoft.com/cli/azure/redis#show)，而若要擷取金鑰，您可以呼叫 [az redis list-keys](https://docs.microsoft.com/cli/azure/redis#list-keys)。 下列指令碼會呼叫下列兩個命令，並將主機名稱、連接埠和金鑰回應到主控台。
+### Retrieve host name, ports, and access keys using Azure CLI
+To retrieve the host name and ports using Azure CLI 2.0 you can call [az redis show](https://docs.microsoft.com/cli/azure/redis#az_redis_show), and to retrieve the keys you can call [az redis list-keys](https://docs.microsoft.com/cli/azure/redis#az_redis_list_keys). The following script calls these two commands and echos the hostname, ports, and keys to the console.
 
 ```azurecli
 #/bin/bash
@@ -28,4 +28,4 @@ echo "Primary Key:" ${keys[0]}
 echo "Secondary Key:" ${keys[1]}
 ```
 
-如需有關此指令碼的詳細資訊，請參閱[取得 Azure Redis 快取的主機名稱、連接埠和金鑰](../articles/redis-cache/scripts/cache-keys-ports.md)。 如需有關 Azure CLI 2.0 的詳細資訊，請參閱[安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli) 和[開始使用 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)。
+For more information about this script, see [Get the hostname, ports, and keys for Azure Redis Cache](../articles/redis-cache/scripts/cache-keys-ports.md). For more information on Azure CLI 2.0, see [Install Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli) and [Get started with Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli).

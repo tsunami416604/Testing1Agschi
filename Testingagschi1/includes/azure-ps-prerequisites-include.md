@@ -1,6 +1,6 @@
-## <a name="prerequisite-install-the-azure-powershell-module"></a>必要條件：安裝 Azure PowerShell 模組
+## Prerequisite: Install the Azure PowerShell module
 
-若要執行本文的步驟，您需要 [安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) ，並遵循其中的所有指示來登入 Azure，然後選取您的訂用帳戶。
+To perform the steps in this article, you need to [install and configure the Azure PowerShell module](/powershell/azureps-cmdlets-docs). Be sure to complete all of the instructions. After the installation is finished, sign in to Azure and select your subscription.
 
 > [!NOTE]
-> 如果您沒有 Azure 帳戶，就需要申請一個。 請 [在此處註冊免費試用](../articles/active-directory/sign-up-organization.md)。
+> You need an Azure account to complete these steps. If you don't have an Azure account, you can sign up for a [free trial](../articles/active-directory/sign-up-organization.md).

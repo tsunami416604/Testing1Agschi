@@ -1,28 +1,32 @@
-## <a name="what-is-the-table-service"></a>什麼是資料表服務
-Azure 資料表儲存體服務可儲存大量的結構化資料。 此服務是一個 NoSQL 資料存放區，接受來自 Azure 雲端內外經過驗證的呼叫。 Azure 資料表很適合儲存結構化、非關聯式資料。 資料表服務的一般用途包括：
+## What is Table storage
+Azure Table storage stores large amounts of structured data. The service is a NoSQL datastore which accepts authenticated calls from inside and outside the Azure cloud. Azure tables are ideal for storing structured, non-relational data. Common uses of Table storage include:
 
-* 儲存好幾 TB 的結構化資料，足以供應 Web 規模的應用程式所需
-* 儲存資料集，不需要複雜的聯結、外部索引鍵或預存程序，還可以反正規化以加速存取
-* 使用叢集索引來快速查詢資料
-* 使用 OData 通訊協定和 LINQ 查詢，搭配 WCF Data Service .NET Libraries 來存取資料
+* Storing TBs of structured data capable of serving web scale applications
+* Storing datasets that don't require complex joins, foreign keys, or stored procedures and can be denormalized for fast access
+* Quickly querying data using a clustered index
+* Accessing data using the OData protocol and LINQ queries with WCF Data Service .NET Libraries
 
-您可以使用資料表服務來儲存和查詢龐大的結構化、非關聯式資料集，且資料表會隨著需求增加而調整。
+You can use Table storage to store and query huge sets of structured, non-relational data, and your tables will scale as demand increases.
 
-## <a name="table-service-concepts"></a>資料表服務概念
-資料表服務包含下列元件：
+## Table storage concepts
+Table storage  contains the following components:
 
-![Table1][Table1]
+![Tables storage component diagram][Table1]
 
-* **URL 格式：**程式碼使用此位址格式來定位帳戶中的資料表：   
-  http://`<storage account>`.table.core.windows.net/`<table>`  
-  
-  您可以使用此位址搭配 OData 通訊協定來直接定址 Azure 資料表。 如需詳細資訊，請參閱 [OData.org][OData.org]
-* **儲存體帳戶：** 一律透過儲存體帳戶來存取 Azure 儲存體。 如需關於儲存體帳戶容量的詳細資訊，請參閱＜ [Azure 儲存體延展性和效能目標](../articles/storage/storage-scalability-targets.md) ＞(英文)。
-* **資料表**：資料表是一組實體。 資料表不強制規定實體的結構描述，這表示單一資料表包含的實體可以有幾組不同的屬性。 一個儲存體帳戶可包含的資料表數目，僅受限於儲存體帳戶容量限制。
-* **實體**：實體是一組屬性，類似於資料庫的資料列。 實體的大小上限為 1MB。
-* **屬性**：屬性是名稱/值組。 每個實體最多可包含 252 個屬性來儲存資料。 每個實體也有 3 個系統屬性，可指定資料分割索引鍵、資料列索引鍵和時間戳記。 具有相同資料分割索引鍵的實體，查詢起來更快，還能在不可部分完成的作業中插入/更新。 實體的資料列索引鍵是資料分割內的唯一識別碼。
+* **URL format:** Azure Table Storage accounts use this format: `http://<storage account>.table.core.windows.net/<table>`
 
-如需有關命名資料表和屬性的詳細資訊，請參閱 [了解表格服務資料模型](https://msdn.microsoft.com/library/azure/dd179338.aspx)。
+  Azure Cosmos DB Table API accounts use this format: 
+  `http://<storage account>.table.cosmosdb.azure.com/<table>`  
+
+  You can address Azure tables directly using this address with the OData protocol. For more information, see [OData.org][OData.org].
+* **Accounts:** All access to Azure Storage is done through a storage account. See [Azure Storage Scalability and Performance Targets](../articles/storage/common/storage-scalability-targets.md) for details about storage account capacity. 
+
+    All access to Azure Cosmos DB is done through a Table API account. See [Create a Table API account](../articles/cosmos-db/create-table-dotnet.md#create-a-database-account) for details creating a Table API account.
+* **Table**: A table is a collection of entities. Tables don't enforce a schema on entities, which means a single table can contain entities that have different sets of properties.  
+* **Entity**: An entity is a set of properties, similar to a database row. An entity in Azure Storage can be up to 1MB in size. An entity in Azure Cosmos DB can be up to 2MB in size.
+* **Properties**: A property is a name-value pair. Each entity can include up to 252 properties to store data. Each entity also has three system properties that specify a partition key, a row key, and a timestamp. Entities with the same partition key can be queried more quickly, and inserted/updated in atomic operations. An entity's row key is its unique identifier within a partition.
+
+For details about naming tables and properties, see [Understanding the Table Service Data Model](/rest/api/storageservices/Understanding-the-Table-Service-Data-Model).
 
 [Table1]: ./media/storage-table-concepts-include/table1.png
 [OData.org]: http://www.odata.org/

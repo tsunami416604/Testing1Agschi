@@ -1,6 +1,6 @@
 
-### <a name="update-manifest-file-to-enable-notifications"></a>更新資訊清單檔案以啟用通知
-將下列應用程式內傳訊資源複製到您 Manifest.xml 的 `<application>` 和 `</application>` 標記之間。
+### Update manifest file to enable notifications
+Copy the in-app messaging resources below into your Manifest.xml between the `<application>` and `</application>` tags.
 
         <activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity" android:theme="@android:style/Theme.Light" android:exported="false">
               <intent-filter>
@@ -44,33 +44,33 @@
             </intent-filter>
         </receiver>
 
-### <a name="specify-an-icon-for-notifications"></a>指定通知的圖示
-請將下列 XML 程式碼片段貼到您 Manifest.xml 的 `<application>` 和 `</application>` 標記之間。
+### Specify an icon for notifications
+Paste the following XML snippet in your Manifest.xml between the `<application>` and `</application>` tags.
 
         <meta-data android:name="engagement:reach:notification:icon" android:value="engagement_close"/>
 
-這會定義顯示於系統和 App 內通知中的圖示。 這是 App 內通知的選用功能，但對系統通知是必要功能。 Android 將會拒絕具有無效圖示的系統通知。
+This defines the icon that is displayed both in system and in-app notifications. It is optional for in-app notifications however mandatory for system notifications. Android will rejects system notifications with invalid icons.
 
-請確定您使用存在於其中一個**可繪製**資料夾 (例如 ``engagement_close.png``) 中的圖示。 **Mipmap** 資料夾。
+Make sure you are using an icon that exists in one of the **drawable** folders (like ``engagement_close.png``). **mipmap** folder isn't supported.
 
 > [!NOTE]
-> 您不應該使用 **啟動程式** 圖示。 它的解析度不同，而且通常是在 mipmap 資料夾中，我們不支援該資料夾。
+> You should not use the **launcher** icon. It has a different resolution and is usually in the mipmap folders, which we don't support.
 > 
 > 
 
-對於真正的應用程式，您可以根據 [Android 設計指導方針](http://developer.android.com/design/patterns/notifications.html)使用適合通知功能的圖示。
+For real apps, you can use an icon that is suitable for notifications per [Android design guidelines](http://developer.android.com/design/patterns/notifications.html).
 
 > [!TIP]
-> 若要確保您使用了正確的圖示解析度，您可以查看 [這些範例](https://www.google.com/design/icons)。
-> 向下捲動至 [通知] 區段、按一下圖示，然後按一下 `PNGS` 即可下載圖示可繪製集合。 您可看到對於每個版本的圖示要使用哪種解析度的可繪製資料夾。
+> To be sure to use correct icon resolutions, you can look at [these examples](https://www.google.com/design/icons).
+> Scroll down to the **Notification** section, click an icon, and then click `PNGS` to download the icon drawable set. You can see what drawable folders with which resolution to use for each version of the icon.
 > 
 > 
 
-### <a name="enable-your-app-to-receive-gcm-push-notifications"></a>啟用應用程式接收 GCM 推播通知
-1. 請先用得自 Firebase 專案控制台的**寄件者識別碼**取代下列內容的星號之後，再把下列內容貼到 Manifest.xml 的 `<application>` 和 `</application>` 標籤之間。 請務必在專案編號後面加上 \n。
+### Enable your app to receive GCM push notifications
+1. Paste the following into your Manifest.xml between the `<application>` and `</application>` tags after replacing the **Sender ID** obtained from your Firebase project console. The \n is intentional so make sure that you end the project number with it.
    
         <meta-data android:name="engagement:gcm:sender" android:value="************\n" />
-2. 將下列程式碼貼到 Manifest.xml 的 `<application>` 和 `</application>` 標記之間。 請別忘了取代封裝名稱 <Your package name>。
+2. Paste the code below into your Manifest.xml between the `<application>` and `</application>` tags. Replace the package name <Your package name>.
    
         <receiver android:name="com.microsoft.azure.engagement.gcm.EngagementGCMEnabler"
         android:exported="false">
@@ -86,7 +86,7 @@
                 <category android:name="<Your package name>" />
             </intent-filter>
         </receiver>
-3. 將反白顯示的最後一組權限集新增到 `<application>` 標記之前。 請使用應用程式的實際封裝名稱來取代 `<Your package name>` 。
+3. Add the last set of permissions that are highlighted before the `<application>` tag. Replace `<Your package name>` by the actual package name of your application.
    
         <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
         <uses-permission android:name="<Your package name>.permission.C2D_MESSAGE" />

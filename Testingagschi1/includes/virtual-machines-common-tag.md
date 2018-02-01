@@ -1,44 +1,44 @@
 
 
 
-## <a name="tagging-a-virtual-machine-through-templates"></a>透過範本標記虛擬機器
-首先，我們來看一下透過範本進行標記。 [此範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-tags) 將標記置於下列資源上：運算 (虛擬機器)、儲存體 (儲存體帳戶) 和網路 (公用 IP 位址、虛擬網路和網路介面)。 這個範本適用於 Windows VM，但也可改寫成適用於 Linux VM。
+## Tagging a Virtual Machine through Templates
+First, let’s look at tagging through templates. [This template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-tags) places tags on the following resources: Compute (Virtual Machine), Storage (Storage Account), and Network (Public IP Address, Virtual Network, and Network Interface). This template is for a Windows VM but can be adapted for Linux VMs.
 
-按一下[範本連結](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-tags)中的 [部署至 Azure] 按鈕。 這會瀏覽至 [Azure 入口網站](https://portal.azure.com/) ，以便您部署此範本。
+Click the **Deploy to Azure** button from the [template link](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-tags). This will navigate to the [Azure portal](https://portal.azure.com/) where you can deploy this template.
 
-![使用標記的簡單部署](./media/virtual-machines-common-tag/deploy-to-azure-tags.png)
+![Simple deployment with Tags](./media/virtual-machines-common-tag/deploy-to-azure-tags.png)
 
-此範本包含下列標記：「部門」、「應用程式」以及「建立者」。 如果您想要不同的標記名稱，您可以直接在範本中新增/編輯這些標記。
+This template includes the following tags: *Department*, *Application*, and *Created By*. You can add/edit these tags directly in the template if you would like different tag names.
 
-![範本中的 Azure 標記](./media/virtual-machines-common-tag/azure-tags-in-a-template.png)
+![Azure tags in a template](./media/virtual-machines-common-tag/azure-tags-in-a-template.png)
 
-如您所見，標記會定義為成對的「索引鍵/值」，並會以冒號 (:) 分隔。 標記必須以這種格式定義：
+As you can see, the tags are defined as key/value pairs, separated by a colon (:). The tags must be defined in this format:
 
         “tags”: {
             “Key1” : ”Value1”,
             “Key2” : “Value2”
         }
 
-在您使用您所選擇的標籤完成編輯後，儲存範本檔案。
+Save the template file after you finish editing it with the tags of your choice.
 
-接著，在 [編輯參數  ] 區段中，您可以填寫標記的值。
+Next, in the **Edit Parameters** section, you can fill out the values for your tags.
 
-![在 Azure 入口網站中編輯標記](./media/virtual-machines-common-tag/edit-tags-in-azure-portal.png)
+![Edit Tags in Azure portal](./media/virtual-machines-common-tag/edit-tags-in-azure-portal.png)
 
-按一下 [建立  ]，使用您的標記值來部署此範本。
+Click **Create** to deploy this template with your tag values.
 
-## <a name="tagging-through-the-portal"></a>透過入口網站進行標記
-使用標記建立您的資源之後，您可以在入口網站中檢視、新增和刪除標記。
+## Tagging through the Portal
+After creating your resources with tags, you can view, add, and delete tags in the portal.
 
-選取標記圖示以檢視您的標記：
+Select the tags icon to view your tags:
 
-![Azure 入口網站中的標記圖示](./media/virtual-machines-common-tag/azure-portal-tags-icon.png)
+![Tags icon in Azure portal](./media/virtual-machines-common-tag/azure-portal-tags-icon.png)
 
-透過入口網站定義自己的索引鍵/值組，以加入新標記並加以儲存。
+Add a new tag through the portal by defining your own Key/Value pair, and save it.
 
-![在 Azure 入口網站中新增標記](./media/virtual-machines-common-tag/azure-portal-add-new-tag.png)
+![Add new Tag in Azure portal](./media/virtual-machines-common-tag/azure-portal-add-new-tag.png)
 
-新標籤現在應出現在您的資源的標記清單中。
+Your new tag should now appear in the list of tags for your resource.
 
-![Azure 入口網站中儲存的新標記](./media/virtual-machines-common-tag/azure-portal-saved-new-tag.png)
+![New Tag saved in Azure portal](./media/virtual-machines-common-tag/azure-portal-saved-new-tag.png)
 

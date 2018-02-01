@@ -1,16 +1,16 @@
 
-1. 在 Visual Studio 方案總管中，以滑鼠右鍵按一下 Windows 市集應用程式專案，然後按一下 [市集] >  [將應用程式與市集建立關聯...]。
+1. In Visual Studio Solution Explorer, right-click the Windows Store app project, and click **Store** > **Associate App with the Store**.
 
-    ![建立應用程式與 Windows 市集的關聯](./media/app-service-mobile-register-wns/notification-hub-associate-win8-app.png)
-2. 在此精靈中，按一下 [下一步]，然後使用您的 Microsoft 帳戶登入。 在 [保留應用程式名稱] 中輸入應用程式名稱，然後按一下 [保留]。
-3. 成功建立應用程式註冊之後，選取新的應用程式名稱，按 [下一步]，然後按一下 [關聯]。 這會將所需的 Windows 市集註冊資訊新增至應用程式資訊清單。
-4. 使用您之前為 Windows 市集應用程式所建立的相同註冊，針對 Windows Phone 市集應用程式專案重複步驟 1 和 3。  
-5. 瀏覽至 [Windows 開發人員中心](https://dev.windows.com/en-us/overview)，並使用您的 Microsoft 帳戶登入。 按一下我的應用程式中的 [新增應用程式註冊]，然後展開 [服務]、[推播通知] > 。
-6. 在 [推播通知] 頁面上，按一下 [Windows 推播通知服務 (WNS) 和 Microsoft Azure Mobile Apps] 下的 [線上服務網站]。 請記下**套件 SID** 的值和**應用程式密碼**中的*目前*值。 
+    ![Associate app with Windows Store](./media/app-service-mobile-register-wns/notification-hub-associate-win8-app.png)
+2. In the wizard, click **Next**, and sign in with your Microsoft account. Type a name for your app in **Reserve a new app name**, and then click **Reserve**.
+3. After the app registration is successfully created, select the new app name, click **Next**, and then click **Associate**. This adds the required Windows Store registration information to the application manifest.
+4. Repeat steps 1 and 3 for the Windows Phone Store app project by using the same registration you previously created for the Windows Store app.  
+5. Browse to the [Windows Dev Center](https://dev.windows.com/en-us/overview), and sign in with your Microsoft account. Click the new app registration in **My apps**, and then expand **Services** > **Push notifications**.
+6. On the **Push notifications** page, click **Live Services site** under **Windows Push Notification Services (WNS) and Microsoft Azure Mobile Apps**. Make a note of the values of the **Package SID** and the *current*  value in **Application Secret**. 
 
-    ![開發人員中心的應用程式設定](./media/app-service-mobile-register-wns/mobile-services-win8-app-push-auth.png)
+    ![App setting in the developer center](./media/app-service-mobile-register-wns/mobile-services-win8-app-push-auth.png)
 
    > [!IMPORTANT]
-   > 應用程式密碼與封裝 SID 是重要的安全性認證。 請勿與任何人共用這些值，或與您的應用程式一起散發密碼。
+   > The application secret and package SID are important security credentials. Do not share these values with anyone or distribute them with your app.
    >
    >

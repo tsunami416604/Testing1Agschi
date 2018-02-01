@@ -1,74 +1,71 @@
 > [!div class="op_single_selector"]
-> * [Windows 上的 C](../articles/iot-suite/iot-suite-connecting-devices.md)
-> * [Linux 上的 C](../articles/iot-suite/iot-suite-connecting-devices-linux.md)
-> * [mbed 上的 C](../articles/iot-suite/iot-suite-connecting-devices-mbed.md)
-> * [Node.js](../articles/iot-suite/iot-suite-connecting-devices-node.md)
-> 
-> 
+> * [C on Windows](../articles/iot-suite/iot-suite-connecting-devices.md)
+> * [C on Linux](../articles/iot-suite/iot-suite-connecting-devices-linux.md)
+> * [Node.js (generic)](../articles/iot-suite/iot-suite-connecting-devices-node.md)
+> * [Node.js on Raspberry Pi](../articles/iot-suite/iot-suite-connecting-pi-node.md)
+> * [C on Raspberry Pi](../articles/iot-suite/iot-suite-connecting-pi-c.md)
 
-## <a name="scenario-overview"></a>案例概觀
-在此案例中，您會建立一個裝置，此裝置會將下列遙測資料傳送給遠端監視[預先設定解決方案][lnk-what-are-preconfig-solutions]：
+In this tutorial, you implement a **Chiller** device that sends the following telemetry to the remote monitoring [preconfigured solution](../articles/iot-suite/iot-suite-what-are-preconfigured-solutions.md):
 
-* 外部溫度
-* 內部溫度
-* 溼度
+* Temperature
+* Pressure
+* Humidity
 
-為了簡化起見，在裝置上的程式碼會產生範例值，但我們鼓勵您將實際的感應器連接到您的裝置並傳送實際的遙測資料來擴充此範例。
+For simplicity, the code generates sample telemetry values for the **Chiller**. You could extend the sample by connecting real sensors to your device and sending real telemetry.
 
-此裝置同時也能夠回應從解決方案儀表板叫用的方法，以及回應解決方案儀表板中設定的所需屬性值。
+The sample device also:
 
-若要完成此教學課程，您需要一個有效的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。
+* Sends metadata to the solution to describe its capabilities.
+* Responds to actions triggered from the **Devices** page in the solution.
+* Responds to configuration changes send from the **Devices** page in the solution.
 
-## <a name="before-you-start"></a>開始之前
-在您為裝置撰寫任何程式碼之前，您必須先佈建遠端監視預先設定解決方案，並在該解決方案中佈建新的自訂裝置。
+To complete this tutorial, you need an active Azure account. If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](http://azure.microsoft.com/pricing/free-trial/).
 
-### <a name="provision-your-remote-monitoring-preconfigured-solution"></a>佈建遠端監視預先設定解決方案
-您在本教學課程中建立的裝置會將資料傳送給[遠端監視][lnk-remote-monitoring]預先設定解決方案的執行個體。 如果您尚未在您的 Azure 帳戶中佈建遠端監視預先設定解決方案，請依照下列步驟執行：
+## Before you start
 
-1. 在 <https://www.azureiotsuite.com/> 頁面上，按一下 [**+**] 以建立解決方案。
-2. 按一下 [遠端監視] 面板上的 [選取]，以建立解決方案。
-3. 在 [建立遠端監視解決方案] 頁面上，輸入 您選擇的 [解決方案名稱]，選取您要部署的 [區域]，並選取想要使用的 Azure 訂用帳戶。 按一下 [建立解決方案] 。
-4. 等候佈建程序完成。
+Before you write any code for your device, you must provision your remote monitoring preconfigured solution and provision a new custom device in that solution.
 
-> [!WARNING]
-> 預先設定的解決方案使用可計費的 Azure 服務。 當您使用完預先設定的解決方案之後，請務必將它從您的訂用帳戶中移除，以避免任何不必要的費用。 您可以從訂用帳戶中完全移除預先設定的解決方案，請至 <https://www.azureiotsuite.com/> 頁面進行此操作。
-> 
-> 
+### Provision your remote monitoring preconfigured solution
 
-當遠端監視解決方案的佈建程序完成之後，請按一下 [啟動]  ，以在瀏覽器中開啟解決方案儀表板。
+The **Chiller** device you create in this tutorial sends data to an instance of the [remote monitoring](../articles/iot-suite/iot-suite-remote-monitoring-explore.md) preconfigured solution. If you haven't already provisioned the remote monitoring preconfigured solution in your Azure account, see [Deploy the remote monitoring preconfigured solution](../articles/iot-suite/iot-suite-remote-monitoring-deploy.md)
 
-![解決方案儀表板][img-dashboard]
+When the provisioning process for the remote monitoring solution finishes, click **Launch** to open the solution dashboard in your browser.
 
-### <a name="provision-your-device-in-the-remote-monitoring-solution"></a>在遠端監視方案中佈建您的裝置
+![The solution dashboard](media/iot-suite-selector-connecting/dashboard.png)
+
+### Provision your device in the remote monitoring solution
+
 > [!NOTE]
-> 如果您已經在解決方案中佈建裝置，則可以略過此步驟。 建立用戶端應用程式時，您需要知道裝置認證。
-> 
-> 
+> If you have already provisioned a device in your solution, you can skip this step. You need the device credentials when you create the client application.
 
-對於連線到預先設定解決方案的裝置，該裝置必須使用有效的認證向 IoT 中樞識別自己。 您會從解決方案儀表板收到裝置認證。 稍後在本教學課程中，您會將您的裝置認證包含在您的用戶端應用程式中。
+For a device to connect to the preconfigured solution, it must identify itself to IoT Hub using valid credentials. You can retrieve the device credentials from the solution **Devices** page. You include the device credentials in your client application later in this tutorial.
 
-若要在您的遠端監視解決方案中新增裝置，請在解決方案儀表板中完成下列步驟：
+To add a device to your remote monitoring solution, complete the following steps on the **Devices** page in the solution:
 
-1. 在儀表板左下角，按一下 [新增裝置] 。
-   
-   ![新增裝置][1]
-2. 在 [自訂裝置] 面板中，按一下 [新增]。
-   
-   ![新增自訂裝置][2]
-3. 選擇 [讓我定義自己的裝置識別碼]。 輸入裝置識別碼 (例如 **mydevice**)，按一下 [檢查 ID] 以確認沒有其他裝置使用該名稱，然後按一下 [建立] 來佈建裝置。
-   
-   ![新增裝置識別碼][3]
-4. 記下裝置認證 (裝置識別碼、IoT 中樞主機名稱及裝置金鑰)。 用戶端應用程式需要這些值，才能連接到遠端監視解決方案。 然後按一下 [完成]。
-   
-    ![檢視裝置認證][4]
-5. 從解決方案儀表板的裝置清單中選取您的裝置。 然後，在 [裝置詳細資料] 面板中，按一下 [啟用裝置]。 裝置的狀態現在會是 [正在執行]。 遠端監視解決方案現在已可從您的裝置接收遙測資料，並在該裝置上叫用方法。
+1. Choose **Provision**, and then choose **Physical** as the **Device type**:
 
-[img-dashboard]: ./media/iot-suite-selector-connecting/dashboard.png
-[1]: ./media/iot-suite-selector-connecting/suite0.png
-[2]: ./media/iot-suite-selector-connecting/suite1.png
-[3]: ./media/iot-suite-selector-connecting/suite2.png
-[4]: ./media/iot-suite-selector-connecting/suite3.png
+    ![Provision a physical device](media/iot-suite-selector-connecting/devicesprovision.png)
 
-[lnk-what-are-preconfig-solutions]: ../articles/iot-suite/iot-suite-what-are-preconfigured-solutions.md
-[lnk-remote-monitoring]: ../articles/iot-suite/iot-suite-remote-monitoring-sample-walkthrough.md
-[lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
+1. Enter **Physical-chiller** as the Device ID. Choose the **Symmetric Key** and **Auto generate keys** options:
+
+    ![Choose device options](media/iot-suite-selector-connecting/devicesoptions.png)
+
+To locate the credentials your device must use to connect to the preconfigured solution, navigate to the Azure portal in your browser. Sign in to your subscription.
+
+1. Locate the resource group that contains the Azure services your remote monitoring solution uses. The resource group has the same name as the remote monitoring solution you provisioned.
+
+1. Navigate to the IoT hub in this resource group. Then choose **IoT Devices**:
+
+    ![Device explorer](media/iot-suite-selector-connecting/deviceexplorer.png)
+
+1. Choose the **Device ID** you created on the **Devices** page in the remote monitoring solution.
+
+1. Make a note of the **Device ID** and **Primary key** values. You use these values when you add code to connect your device to the solution.
+
+You have now provisioned a physical device in the remote monitoring preconfigured solution. In the following sections, you implement the client application that uses the device credentials to connect to your solution.
+
+The client application implements the built-in **Chiller** device model. A preconfigured solution device model specifies the following about a device:
+
+* The properties the device reports to the solution. For example, a **Chiller** device reports information about its firmware and location.
+* The types of telemetry the device sends to the solution. For example, a **Chiller** device sends temperature, humidity, and pressure values.
+* The methods you can schedule from the solution to run on the device. For example, a **Chiller** device must implement **Reboot**, **FirmwareUpdate**, **EmergencyValveRelease**, and **IncreasePressuree** methods.

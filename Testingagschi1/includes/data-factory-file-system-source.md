@@ -1,6 +1,6 @@
-在複製活動中，如果來源的類型為 **FileSystemSource**，則 typeProperties 區段會有下列可用屬性：
+In Copy Activity, when source is of type **FileSystemSource**, the following properties are available in typeProperties section:
 
-| 屬性 | 說明 | 允許的值 | 必要 |
+| Property | Description | Allowed values | Required |
 | --- | --- | --- | --- |
-| 遞迴 |表示是否從子資料夾，或只有從指定的資料夾，以遞迴方式讀取資料。 |True/False (預設值為 False) |否 |
+| recursive |Indicates whether the data is read recursively from the sub folders or only from the specified folder. |True, False (default) |No |
 

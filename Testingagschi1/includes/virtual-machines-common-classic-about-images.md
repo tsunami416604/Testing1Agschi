@@ -1,12 +1,12 @@
 
 
-Azure 會使用映像透過作業系統提供新的虛擬機器。 一個映像可能有一或多個資料磁碟。 映像可來自多個來源：
+Images are used in Azure to provide a new virtual machine with an operating system. An image might also have one or more data disks. Images are available from several sources:
 
-* Azure 在 [Marketplace](https://azure.microsoft.com/gallery/virtual-machines/)中提供映像。 其中有最新版本的 Windows Server 和 Linux 作業系統散發套件。 有些映像也包含應用程式，例如 SQL Server。 MSDN 權益與 MSDN 隨收隨付的訂閱者可以存取其他映像。
-* 開放原始碼社群透過 [VM Depot](http://vmdepot.msopentech.com/List/Index)提供映像。
-* 您也可以擷取現有的 Azure 虛擬機器作為映像或上傳映像，並在 Azure 中儲存和使用自己的映像。
+* Azure offers images in the [Marketplace](https://azure.microsoft.com/gallery/virtual-machines/). There are recent versions of Windows Server and distributions of the Linux operating system. Some images also contain applications, such as SQL Server. MSDN Benefit and MSDN Pay-as-You-Go subscribers have access to additional images.
+* The open source community offers images through [VM Depot](http://vmdepot.msopentech.com/List/Index).
+* You also can store and use your own images in Azure, by either capturing an existing Azure virtual machine for use as an image or uploading an image.
 
-## <a name="about-vm-images-and-os-images"></a>關於 VM 映像和 OS 映像
-在 Azure 中可用的映像有兩種類型：*VM 映像*和 *OS 映像*。 VM 映像包含作業系統和建立映像時所有連接至虛擬機器的磁碟。 VM 映像是較新的映像類型。 導入 VM 映像前，Azure 中的映像可能只會有一般化的作業系統，而沒有其他磁碟。 僅包含一般化作業系統的 VM 映像基本上與映像的原始類型相同，即 OS 映像。
+## About VM images and OS images
+Two types of images can be used in Azure: *VM image* and *OS image*. A VM image includes an operating system and all disks attached to a virtual machine when the image is created. A VM image is the newer type of image. Before VM images were introduced, an image in Azure could have only a generalized operating system and no additional disks. A VM image that contains only a generalized operating system is basically the same as the original type of image, the OS image.
 
-您可以根據 Azure 上的虛擬機器，或您複製及上傳並正在其他地方執行的虛擬機器，來建立自己的映像。 如果您想要使用一個映像來建立多個虛擬機器，您必須先將映像一般化，以便準備作為映像使用。 若要建立 Windows Server 映像，請在上傳.vhd 檔案前，先在伺服器上執行 Sysprep 命令進行一般化。 如需關於 Sysprep 的詳細資訊，請參閱[如何使用 Sysprep：簡介](http://go.microsoft.com/fwlink/p/?LinkId=392030)和[伺服器角色的 Sysprep 支援](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。 執行 Sysprep 前，請先備份 VM。 視散發套件而異，建立 Linux 映像。 通常，您需要執行一組專用於發佈的命令，並執行 Azure Linux 代理程式。
+You can create your own images, based on a virtual machine in Azure, or a virtual machine running elsewhere that you copy and upload. If you want to use an image to create more than one virtual machine, you need to prepare it for use as an image by generalizing it. To create a Windows Server image, run the Sysprep command on the server to generalize it before you upload the .vhd file. For details about Sysprep, see [How to Use Sysprep: An Introduction](http://go.microsoft.com/fwlink/p/?LinkId=392030) and [Sysprep Support for Server Roles](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles). Back up the VM before running Sysprep. Creating a Linux image varies by distribution. Typically, you need to run a set of commands that are specific to the distribution, and run the Azure Linux Agent.

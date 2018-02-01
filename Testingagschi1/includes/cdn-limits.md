@@ -1,9 +1,11 @@
 
-| 資源 | 軟性限制 |
-| --- | --- |
-| CDN 設定檔 |8 |
-| 每一設定檔的 CDN 端點 |10 |
-| 每個端點的自訂網域 |10 |
+| Resource | Default limit | Maximum limit | 
+| --- | --- | --- |
+| CDN profiles |25 |25 |
+| CDN endpoints per profile |10 |25 |
+| Custom domains per endpoint |10 |25 |
 
-開啟支援票證來要求訂用帳戶彈性限制的更新。
+A CDN subscription can contain one or more CDN profiles and a CDN profile can contain one or more CDN endpoints. You may wish to use multiple profiles to organize your CDN endpoints by internet domain, web application, or some other criteria. 
+
+To request an update to your subscription's default limits, open a support ticket. 
 

@@ -1,7 +1,6 @@
-您可以使用下列 CLI 命令來確認連線是否成功。 設定和您自有值相符的值。 在範例中， -n 是指您已建立，而且想要測試之連線的名稱。
+You can verify that your connection succeeded by using the [az network vpn-connection show](/cli/azure/network/vpn-connection#show) command. In the example, '--name' refers to the name of the connection that you want to test. When the connection is in the process of being established, its connection status shows 'Connecting'. Once the connection is established, the status changes to 'Connected'.
 
 ```azurecli
-az network vpn-connection show -n VNet1toSite2 -g TestRG1
+az network vpn-connection show --name VNet1toSite2 --resource-group TestRG1
 ```
 
-系統還在建立連線時，其連線狀態會顯示「連線中」。 連線建立好之後，狀態會變更為 [已連線]，而且您會看見輸入和輸出位元組。
