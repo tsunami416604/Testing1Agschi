@@ -1,35 +1,32 @@
-<properties
-   pageTitle="I can't resolve my DNS record"
-   description="I am unable to resolve a new DNS record in a DNS zone hosted in Azure DNS."
+<properties 
+   pageTitle="I can't create a new DNS zone"
+   description="I am unable to create a new DNS zone in the Azure DNS service."
    service="microsoft.network"
    resource="dnszones"
    authors="jtuliani"
-   displayOrder="3"
+   displayOrder="1"
    selfHelpType="resource"
    supportTopicIds=""
    productPesIds=""
-   resourceTags=""
+   resourceTags=""​
    cloudEnvironments="public"
 />
 
-# I can't resolve my DNS record
+# I can't create a new DNS zone
 
 ## **Recommended steps**
 
-DNS name resolution is a multi-step process, which can fail for many reasons. The following steps help you investigate why DNS resolution is failing for a DNS record in a zone hosted in Azure DNS.
+To resolve common issues, try one or more of the following steps:
 
-1.	Confirm that the DNS records have been configured correctly in Azure DNS. Review the DNS records in the Azure portal, checking that the zone name, record name, and record type are correct.
-2.	Confirm that the DNS records resolve correctly on the Azure DNS name servers.
-    - If you make DNS queries from your local PC, you may see cached results that don’t reflect the current state of the name servers.  Also, corporate networks often use DNS proxy servers, which prevent DNS queries from being directed to specific name servers.  To avoid these problems, use a web-based name resolution service such as [digwebinterface](http://digwebinterface.com).
-    - Be sure to specify the correct name servers for your DNS zone, as shown in the Azure portal.
-    - Check that the DNS name is correct (you have to specify the fully qualified name, including the zone name) and the record type is correct
-3.	Confirm that the DNS domain name has been correctly [delegated to the Azure DNS name servers](https://docs.microsoft.com/azure/dns/dns-domain-delegation). There are a [many 3rd-party web sites that offer DNS delegation validation]( https://www.bing.com/search?q=dns+check+tool). This test is a *zone* delegation test, so you should only enter the DNS zone name and not the fully qualified record name.
-4.	Having completed the above, your DNS record should now resolve correctly. To verify, you can again use [digwebinterface](http://digwebinterface.com), this time using the default name server settings.
+1.	Review [Audit logs](data-blade:Microsoft_Azure_Insights.AzureDiagnosticsBladeWithParameter) to determine the failure reason.
+2.	Each DNS zone name must be unique within its resource group. That is, two DNS zones with the same name cannot share a resource group. Try using a different zone name, or a different resource group.
+3.	You may see an error "You have reached or exceeded the maximum number of zones in subscription {subscription id}." Either use a different Azure subscription, delete some zones, or contact Azure Support to raise your subscription limit.
+4.	You may see an error "The zone '{zone name}' is not available." This error means that Azure DNS was unable to allocate name servers for this DNS zone. Try using a different zone name. Alternatively, if you are the domain name owner, contact Azure support, who can allocate name servers for you.
 
 If the above steps don't resolve the issue, please post this issue to our [community support forum on MSDN](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WAVirtualMachinesVirtualNetwork) or open an Azure support request.
 
 ## **Recommended documents**
 
-[Delegate a domain to Azure DNS](https://docs.microsoft.com/azure/dns/dns-domain-delegation)
-
-
+[DNS zones and records](https://docs.microsoft.com/azure/dns/dns-zones-records)
+<br>
+[Create a DNS zone](https://docs.microsoft.com/azure/dns/dns-getstarted-create-dnszone-portal)
