@@ -1,4 +1,5 @@
 <properties
+
 	pageTitle="I can't resolve my DNS record"
 	description="I am unable to resolve a new DNS record in a DNS zone hosted in Azure DNS."
 	service="microsoft.network"
@@ -10,6 +11,7 @@
 	productPesIds=""
 	resourceTags=""​
 	cloudEnvironments="public"
+
 />
 
 # I can't resolve my DNS record
