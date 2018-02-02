@@ -1,15 +1,15 @@
 <properties 
-   pageTitle="I can't create a new DNS zone"
-   description="I am unable to create a new DNS zone in the Azure DNS service."
-   service="microsoft.network"
-   resource="dnszones"
-   authors="jtuliani"
-   displayOrder="1"
-   selfHelpType="resource"
-   supportTopicIds=""
-   productPesIds=""
-   resourceTags=""​
-   cloudEnvironments="public"
+    pageTitle="I can't create a new DNS zone"
+    description="I am unable to create a new DNS zone in the Azure DNS service."
+    service="microsoft.network"
+    resource="dnszones"
+    authors="jtuliani"
+    displayOrder="1"
+    selfHelpType="resource"
+    supportTopicIds=""
+    productPesIds=""
+    resourceTags=""
+    cloudEnvironments="public"
 />
 
 # I can't create a new DNS zone
