@@ -25,7 +25,7 @@
 - [문제] [*VM에서 연결 단추가 회색으로 표시됩니다.*](https://aka.ms/unabletordpssh)<br>
 - [문제] [*연결 단추를 사용하거나 사용하지 않고 VM에 RDP/SSH합니다.*](https://aka.ms/unabletordpssh)<br>
 - [방법] [Windows VM에 대한 RDP 연결 문제 해결](https://docs.microsoft.com/azure/virtual-machines/windows/troubleshoot-rdp-connection)<br>
-- [방법]   [Linux VM에 대한 SSH 연결 문제 해결[<br>
+- [방법] [Linux VM에 대한 SSH 연결 문제 해결 [<br>
 - [문제] [*장애 조치에 사용할 수 있는 충분한 코어가 없습니다.* 할당량을 늘리려면 다음 단계를 수행합니다. ](https://docs.microsoft.com/azure/azure-supportability/resource-manager-core-quotas-request)<br>
 - [문제] [*구독에서 VM을 만드는 데 선택한 대상 위치를 사용할 수 없습니다.* 위치를 변경하거나 다음 지침을 따라 VM을 만들 수 있습니다.](https://docs.microsoft.com/azure/azure-supportability/resource-manager-core-quotas-request)<br>
 - [문제] [오류 ID 28031](https://docs.microsoft.com/azure/site-recovery/site-recovery-failover-to-azure-troubleshoot#failover-failed-with-error-id-28031), [오류 ID 28092](https://docs.microsoft.com/azure/site-recovery/site-recovery-failover-to-azure-troubleshoot#failover-failed-with-error-id-28092), [오류 ID 70038](https://docs.microsoft.com/azure/site-recovery/site-recovery-failover-to-azure-troubleshoot#failover-failed-with-error-id-70038) 메시지를 표시하는 장애 조치 오류 코드 문제 해결<br>
