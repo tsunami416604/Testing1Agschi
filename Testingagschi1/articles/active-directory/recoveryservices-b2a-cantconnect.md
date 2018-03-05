@@ -19,7 +19,7 @@
 - [문제] [*VM에서 연결 단추가 회색으로 표시됩니다.*](https://aka.ms/unabletordpssh)<br>
 - [문제] [*연결 단추를 사용하거나 사용하지 않고 VM에 RDP/SSH합니다.*](https://aka.ms/unabletordpssh)<br>
 - [방법] [Windows VM에 대한 RDP 연결 문제 해결](https://docs.microsoft.com/azure/virtual-machines/windows/troubleshoot-rdp-connection)<br>
-- [방법] [Linux VM에 대한 SSH 연결 문제 해결[<br>
+- [방법] [Linux VM에 대한 SSH 연결 문제 해결][<br>
 
 
 ## <a name="recommended-documents"></a>**권장되는 문서**
