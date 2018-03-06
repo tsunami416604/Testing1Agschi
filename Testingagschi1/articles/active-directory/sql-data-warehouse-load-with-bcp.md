@@ -174,7 +174,7 @@ Puede comprobar que los datos se exportaron correctamente abriendo el nuevo arch
 > 
 
 ## <a name="next-steps"></a>Pasos siguientes
-Para diseñar el proceso de carga, consulte la [Introducción a la carga] (sql-data-warehouse-design-elt-data-loading].  
+Para diseñar el proceso de carga, consulte la [Introducción a la carga](sql-data-warehouse-design-elt-data-loading].  
 
 
 
