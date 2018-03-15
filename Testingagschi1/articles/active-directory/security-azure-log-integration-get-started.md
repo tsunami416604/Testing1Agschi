@@ -200,7 +200,9 @@ If after an hour data is not showing up in the **Forwarded Events** folder, then
   <li> Click on **Security**  </li>
   <li> Click on **NT Service\Azlog** and check the permissions for the account. If the account is missing from this tab or if the appropriate permissions are not currently showing you can grant the account rights in this tab.</li>
   </ol>
+
 3. Make sure the storage account added in the command **Azlog source add** is listed when you run the command **Azlog source list**.
+
 4. Go to **Event Viewer > Windows Logs > Application** to see if there are any errors reported from the Azure log integration.
 
 
