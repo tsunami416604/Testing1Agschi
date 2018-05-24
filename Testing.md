@@ -1,7 +1,7 @@
 <properties
     pageTitle="CloudServices RCA"
-    description="MachineKey 업데이트 인사이트"
-    infoBubbleText="컴퓨터 키 상태와 관련된 정보를 찾았습니다. 오른쪽에서 세부 정보를 참조하세요."
+    description="Conclusión de actualización de la clave de máquina"
+    infoBubbleText="Se ha encontrado información relacionada con el estado de la clave de máquina. Consulte los detalles de la derecha."
     service="microsoft.classiccompute"
     resource="domainnames"
     authors="mmccrory"
