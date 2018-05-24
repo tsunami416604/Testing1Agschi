@@ -14,6 +14,7 @@
     productPesIds="13185"
     cloudEnvironments="public"
 />
+
 # <a name="we-ran-diagnostics-on-your-resource-and-found-an-issue"></a>리소스에서 진단을 실행하여 문제를 발견했습니다.
 
 <!--$LastRefreshTime-->LastRefreshTime<!--/$LastRefreshTime--> 부터 **DeploymentName** 은 향상된 알고리즘을 사용하여 컴퓨터 키를 암호화하지 않습니다. <!--$LastRefreshTime-->LastRefreshTime<!--/$LastRefreshTime--> 이후에는 Cloud Service 배포를 재배포하거나 삭제하지 않는 한 이 상태가 올바릅니다.
