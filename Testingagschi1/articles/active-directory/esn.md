@@ -248,7 +248,7 @@ ms.locfileid: "34850178"
 </p></span></span>
 
 
-### <a name="parameter-tuning"></a><span data-ttu-id="6662c-268">Ajuste de parámetros</span><span class="sxs-lookup"><span data-stu-id="6662c-268">Parameter tuning</span></span>
+### <a name="parameter-tuning"></a><span data-ttu-id="6662c-268"> Ajuste de parámetros</span><span class="sxs-lookup"><span data-stu-id="6662c-268">Parameter tuning</span></span>
 
 <span data-ttu-id="6662c-269">Como sucede en la mayoría de los proyectos de aprendizaje automático, para obtener buenos resultados en un conjunto de datos nuevo, es necesario ajustar los parámetros con mucho cuidado, así como sopesar detenidamente diversas decisiones de diseño.</span><span class="sxs-lookup"><span data-stu-id="6662c-269">As is true for most machine learning projects, getting good results for a new dataset requires careful parameter tuning as well as evaluating different design decisions.</span></span> <span data-ttu-id="6662c-270">Para hacer estas tareas más sencillas, todos los parámetros importantes (además de una breve explicación) se especifican en un único lugar: el archivo `PARAMETERS.py`.</span><span class="sxs-lookup"><span data-stu-id="6662c-270">To help with these tasks, all important parameters are specified, and a short explanation provided, in a single place: the `PARAMETERS.py` file.</span></span>
 
