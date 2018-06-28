@@ -127,6 +127,7 @@ PNSes 非常强大。 但应用开发人员仍然需要完成大量工作才能�
 
 [quer1]：http://azure.microsoft.com/services/notification-hubs  
 [luc1]：http://azure.microsoft.com/documentation/services/notification-hubs  
+
 [iOS]：http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started  
 [Android]：http://azure.microsoft.com/documentation/articles/notification-hubs-android-get-started  
 [Windows 通用]：http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-get-started  
