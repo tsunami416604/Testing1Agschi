@@ -124,6 +124,7 @@ PNSes 非常强大。 但应用开发人员仍然需要完成大量工作才能�
 
 ## Next steps
 Get started with creating and using a notification hub by following the [Tutorial: Push notifications to mobile applications](notification-hubs-android-push-notification-google-fcm-get-started.md). 
+
 [0]: ./media/notification-hubs-overview/registration-diagram.png
 [1]: ./media/notification-hubs-overview/notification-hub-diagram.png
 [How customers are using Notification Hubs]: http://azure.microsoft.com/services/notification-hubs
