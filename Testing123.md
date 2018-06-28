@@ -141,5 +141,5 @@ PNSes 非常强大。 但应用开发人员仍然需要完成大量工作才能�
 [应用服务移动应用]：https://azure.microsoft.com/documentation/articles/app-service-mobile-value-prop/  
 [模板]：notification-hubs-templates-cross-platform-push-messages.md  
 [Azure 门户]：https://portal.azure.com  
-[标记]：(http://msdn.microsoft.com/library/azure/dn530749.aspx) 
+[标记]：http://msdn.microsoft.com/library/azure/dn530749.aspx
 
