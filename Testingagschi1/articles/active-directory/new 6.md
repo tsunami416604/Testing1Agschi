@@ -126,20 +126,36 @@ PNSes 非常强大。 但应用开发人员仍然需要完成大量工作才能�
 按照 教程：向移动应用程序推送通知，开始创建和使用通知中心。
 
 [0]: ./media/notification-hubs-overview/registration-diagram.png  
+
 [1]: ./media/notification-hubs-overview/notification-hub-diagram.png  
+
 [客户如何使用通知中心]： http://azure.microsoft.com/services/notification-hubs  
+
 [通知中心教程和指南]： http://azure.microsoft.com/documentation/services/notification-hubs  
+
 [iOS]： http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started  
+
 [Android]： http://azure.microsoft.com/documentation/articles/notification-hubs-android-get-started  
+
 [Windows 通用]： http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-get-started  
+
 [Windows Phone]： http://azure.microsoft.com/documentation/articles/notification-hubs-windows-phone-get-started  
+
 [Kindle]： http://azure.microsoft.com/documentation/articles/notification-hubs-kindle-get-started  
+
 [Xamarin.iOS]： http://azure.microsoft.com/documentation/articles/partner-xamarin-notification-hubs-ios-get-started  
+
 [Xamarin.Android]： http://azure.microsoft.com/documentation/articles/partner-xamarin-notification-hubs-android-get-started  
+
 [Microsoft.WindowsAzure.Messaging.NotificationHub]： http://msdn.microsoft.com/library/microsoft.windowsazure.messaging.notificationhub.aspx  
+
 [Microsoft.ServiceBus.Notifications]： http://msdn.microsoft.com/library/microsoft.servicebus.notifications.aspx  
+
 [应用服务移动应用]： https://azure.microsoft.com/documentation/articles/app-service-mobile-value-prop/  
+
 [模板]： notification-hubs-templates-cross-platform-push-messages.md  
+
 [Azure 门户]： https://portal.azure.com  
+
 [标记]： (http://msdn.microsoft.com/library/azure/dn530749.aspx)  
 
