@@ -125,8 +125,6 @@ PNSes 非常强大。 但应用开发人员仍然需要完成大量工作才能�
 ## <a name="next-steps"></a>后续步骤
 按照[教程：向移动应用程序推送通知](notification-hubs-android-push-notification-google-fcm-get-started.md)，开始创建和使用通知中心。
 
-[quer]: ./media/notification-hubs-overview/registration-diagram.png  
-[luc]: ./media/notification-hubs-overview/notification-hub-diagram.png  
 [quer1]：http://azure.microsoft.com/services/notification-hubs  
 [luc1]：http://azure.microsoft.com/documentation/services/notification-hubs  
 [iOS]：http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started  
