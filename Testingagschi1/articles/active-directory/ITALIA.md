@@ -1,42 +1,129 @@
 ---
-title: Creazione di un'applicazione accessibile con Mappe di Azure | Microsoft Docs
-description: Come compilare un'applicazione accessibile con Mappe di Azure
-services: azure-maps
-keywords: ''
-author: chgennar
-ms.author: chgennar
-ms.date: 05/18/2018
+title: 'Call endpoint by using C# - Bing Custom Search - Microsoft Cognitive Services'
+description: 'This quickstart shows how to request search results from your custom search instance by using C# to call the Bing Custom Search endpoint.'
+services: cognitive-services
+author: brapel
+manager: ehansen
+ms.service: cognitive-services
+ms.component: bing-custom-search
 ms.topic: article
-ms.service: azure-maps
-documentationcenter: ''
-manager: timlt
-ms.devlang: na
-ms.openlocfilehash: 537a8c80dc0d1fcb2f536d0e30200de19a2111a4
-ms.sourcegitcommit: ab3b2482704758ed13cccafcf24345e833ceaff3
-ms.translationtype: HT
-ms.contentlocale: it-IT
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37867053"
+ms.date: 05/07/2018
+ms.author: v-brapel
 ---
-# <a name="building-an-accessible-application"></a><span data-ttu-id="7227a-103">Compilazione di un'applicazione accessibile</span><span class="sxs-lookup"><span data-stu-id="7227a-103">Building an accessible application</span></span>
 
-<span data-ttu-id="7227a-104">Questo articolo illustra come compilare un'applicazione per le mappe che può essere usata da un'utilità per la lettura dello schermo.</span><span class="sxs-lookup"><span data-stu-id="7227a-104">This article shows you how to build a map application that can be used by a screen reader.</span></span>
+# <a name="call-bing-custom-search-endpoint-c"></a><span data-ttu-id="36f3a-103">Call Bing Custom Search endpoint (C#)</span><span class="sxs-lookup"><span data-stu-id="36f3a-103">Call Bing Custom Search endpoint (C#)</span></span>
 
-## <a name="understand-the-code"></a><span data-ttu-id="7227a-105">Informazioni sul codice</span><span class="sxs-lookup"><span data-stu-id="7227a-105">Understand the code</span></span>
+<span data-ttu-id="36f3a-104">This quickstart shows how to request search results from your custom search instance by using C# to call the Bing Custom Search endpoint.</span><span class="sxs-lookup"><span data-stu-id="36f3a-104">This quickstart shows how to request search results from your custom search instance by using C# to call the Bing Custom Search endpoint.</span></span> 
 
-<iframe height='500' scrolling='no' title='Creare un applicazione accessibile' src='//codepen.io/azuremaps/embed/ZoVyZQ/?height=504&theme-id=0&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>Vedere l'elemento Pen <a href='https://codepen.io/azuremaps/pen/ZoVyZQ/'>Creare un applicazione accessibile</a> di Mappe di Azure (<a href='https://codepen.io/azuremaps'>@azuremaps</a>) in <a href='https://codepen.io'>CodePen</a>.
-</iframe>
+## <a name="prerequisites"></a><span data-ttu-id="36f3a-105">Prerequisites</span><span class="sxs-lookup"><span data-stu-id="36f3a-105">Prerequisites</span></span>
 
-<span data-ttu-id="7227a-108">La mappa viene precompilata con alcune funzionalità di accessibilità.</span><span class="sxs-lookup"><span data-stu-id="7227a-108">The map is prebuilt with some accessibility features.</span></span> <span data-ttu-id="7227a-109">Un utente può spostarsi nella mappa usando la tastiera e, se è in esecuzione un'utilità per la lettura dello schermo, la mappa notificherà all'utente le modifiche dello stato.</span><span class="sxs-lookup"><span data-stu-id="7227a-109">A user can navigate the map using the keyboard and if a screen reader is running, the map will notify the user of changes to its state.</span></span> <span data-ttu-id="7227a-110">L'utente, ad esempio, riceverà una notifica relativa alla nuova latitudine, longitudine, zoom e località quando viene fatta una panoramica o lo zoom della mappa.</span><span class="sxs-lookup"><span data-stu-id="7227a-110">For example, the user will be notified of the map's new latitude, longitude, zoom and locality when the map is panned or zoomed.</span></span> <span data-ttu-id="7227a-111">A eventuali informazioni aggiuntive inserite nella mappa di base devono corrispondere informazioni testuali per gli utenti dell'utilità di lettura dello schermo.</span><span class="sxs-lookup"><span data-stu-id="7227a-111">Any additional information that is placed on the base map should have corresponding textual information for screen reader users.</span></span> <span data-ttu-id="7227a-112">A questo scopo, è possibile usare [Popup](https://docs.microsoft.com/javascript/api/azure-maps-javascript/popup?view=azure-iot-typescript-latest).</span><span class="sxs-lookup"><span data-stu-id="7227a-112">Using [Popup](https://docs.microsoft.com/javascript/api/azure-maps-javascript/popup?view=azure-iot-typescript-latest) is one way to achieve this.</span></span> <span data-ttu-id="7227a-113">Nell'esempio di ricerca precedente viene aggiunto alla mappa un popup con informazioni testuali per ogni segnaposto inserito nella mappa.</span><span class="sxs-lookup"><span data-stu-id="7227a-113">In the above search example, a popup with textual information is added to the map for every pin that is placed on the map.</span></span> <span data-ttu-id="7227a-114">Il metodo attach di [Popup](https://docs.microsoft.com/javascript/api/azure-maps-javascript/popup?view=azure-iot-typescript-latest) consente al popup di essere individuato da un'utilità di lettura dello schermo senza visualizzare il popup nella mappa.</span><span class="sxs-lookup"><span data-stu-id="7227a-114">Using the [Popup's](https://docs.microsoft.com/javascript/api/azure-maps-javascript/popup?view=azure-iot-typescript-latest) attach method allows the popup to be seen by a screen reader without visually displaying the popup on the map.</span></span>
+-  <span data-ttu-id="36f3a-106">A ready-to-use custom search instance.</span><span class="sxs-lookup"><span data-stu-id="36f3a-106">A ready-to-use custom search instance.</span></span> <span data-ttu-id="36f3a-107">See [Create your first Bing Custom Search instance](quick-start.md).</span><span class="sxs-lookup"><span data-stu-id="36f3a-107">See [Create your first Bing Custom Search instance](quick-start.md).</span></span>
+-  <span data-ttu-id="36f3a-108">[.Net Core](https://www.microsoft.com/net/download/core) installed.</span><span class="sxs-lookup"><span data-stu-id="36f3a-108">[.Net Core](https://www.microsoft.com/net/download/core) installed.</span></span>
+- <span data-ttu-id="36f3a-109">A [Cognitive Services API account](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account) with **Bing Search APIs**.</span><span class="sxs-lookup"><span data-stu-id="36f3a-109">A [Cognitive Services API account](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account) with **Bing Search APIs**.</span></span> <span data-ttu-id="36f3a-110">The [free trial](https://azure.microsoft.com/try/cognitive-services/?api=bing-custom-search) is sufficient for this quickstart.</span><span class="sxs-lookup"><span data-stu-id="36f3a-110">The [free trial](https://azure.microsoft.com/try/cognitive-services/?api=bing-custom-search) is sufficient for this quickstart.</span></span> <span data-ttu-id="36f3a-111">You need the access key provided when you activate your free trial, or you may use a paid subscription key from your Azure dashboard.</span><span class="sxs-lookup"><span data-stu-id="36f3a-111">You need the access key provided when you activate your free trial, or you may use a paid subscription key from your Azure dashboard.</span></span>  
 
-## <a name="next-steps"></a><span data-ttu-id="7227a-115">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="7227a-115">Next steps</span></span>
+  >[!NOTE]  
+  ><span data-ttu-id="36f3a-112">Existing Bing Custom Search customers who have a preview key provisioned on or before October 15, 2017 will be able to use their keys until November 30, 2017, or until they have exhausted the maximum number of queries allowed.</span><span class="sxs-lookup"><span data-stu-id="36f3a-112">Existing Bing Custom Search customers who have a preview key provisioned on or before October 15, 2017 will be able to use their keys until November 30, 2017, or until they have exhausted the maximum number of queries allowed.</span></span> <span data-ttu-id="36f3a-113">Afterwards, they need to migrate to the generally available version on Azure.</span><span class="sxs-lookup"><span data-stu-id="36f3a-113">Afterwards, they need to migrate to the generally available version on Azure.</span></span> 
+ 
+## <a name="run-the-code"></a><span data-ttu-id="36f3a-114">Run the code</span><span class="sxs-lookup"><span data-stu-id="36f3a-114">Run the code</span></span>
 
-<span data-ttu-id="7227a-116">Per altre informazioni sulla classe Popup e sui metodi usati in questo articolo, vedere:</span><span class="sxs-lookup"><span data-stu-id="7227a-116">Learn more about the Popup class and its methods used in this article:</span></span>
+<span data-ttu-id="36f3a-115">To run this example, follow these steps:</span><span class="sxs-lookup"><span data-stu-id="36f3a-115">To run this example, follow these steps:</span></span>
 
-* [<span data-ttu-id="7227a-117">Popup</span><span class="sxs-lookup"><span data-stu-id="7227a-117">Popup</span></span>](https://docs.microsoft.com/javascript/api/azure-maps-javascript/popup?view=azure-iot-typescript-latest)
-    * [<span data-ttu-id="7227a-118">attach</span><span class="sxs-lookup"><span data-stu-id="7227a-118">attach</span></span>](https://docs.microsoft.com/javascript/api/azure-maps-javascript/popup?view=azure-iot-typescript-latest#attach)
-    * [<span data-ttu-id="7227a-119">remove</span><span class="sxs-lookup"><span data-stu-id="7227a-119">remove</span></span>](https://docs.microsoft.com/javascript/api/azure-maps-javascript/popup?view=azure-iot-typescript-latest#remove)
-    * [<span data-ttu-id="7227a-120">open</span><span class="sxs-lookup"><span data-stu-id="7227a-120">open</span></span>](https://docs.microsoft.com/javascript/api/azure-maps-javascript/popup?view=azure-iot-typescript-latest#open)
-    * [<span data-ttu-id="7227a-121">close</span><span class="sxs-lookup"><span data-stu-id="7227a-121">close</span></span>](https://docs.microsoft.com/javascript/api/azure-maps-javascript/popup?view=azure-iot-typescript-latest#close)
+1. <span data-ttu-id="36f3a-116">Create a folder for your code.</span><span class="sxs-lookup"><span data-stu-id="36f3a-116">Create a folder for your code.</span></span>
+2. <span data-ttu-id="36f3a-117">From a command prompt or terminal, navigate to the folder you just created.</span><span class="sxs-lookup"><span data-stu-id="36f3a-117">From a command prompt or terminal, navigate to the folder you just created.</span></span>
+3. <span data-ttu-id="36f3a-118">Run the following commands:</span><span class="sxs-lookup"><span data-stu-id="36f3a-118">Run the following commands:</span></span>
+    ```
+    dotnet new console -o BingCustomSearch
+    cd BingCustomSearch
+    dotnet add package Newtonsoft.Json
+    dotnet restore
+   ```
 
-<span data-ttu-id="7227a-122">Per altri scenari di mapping, vedere la [pagina dell'esempio di codice](http://aka.ms/AzureMapsSamples).</span><span class="sxs-lookup"><span data-stu-id="7227a-122">Check out our [code sample page](http://aka.ms/AzureMapsSamples) for more mapping scenarios.</span></span>
+4. <span data-ttu-id="36f3a-119">Copy the following code to Program.cs.</span><span class="sxs-lookup"><span data-stu-id="36f3a-119">Copy the following code to Program.cs.</span></span>
+5. <span data-ttu-id="36f3a-120">Replace **YOUR-SUBSCRIPTION-KEY** and **YOUR-CUSTOM-CONFIG-ID** with your key and configuration ID.</span><span class="sxs-lookup"><span data-stu-id="36f3a-120">Replace **YOUR-SUBSCRIPTION-KEY** and **YOUR-CUSTOM-CONFIG-ID** with your key and configuration ID.</span></span>
+
+    ``` CSharp
+    using System;
+    using System.Net.Http;
+    using System.Web;
+    using Newtonsoft.Json;
+    
+    namespace bing_custom_search_example_dotnet
+    {
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                var subscriptionKey = "YOUR-SUBSCRIPTION-KEY";
+                var customConfigId = "YOUR-CUSTOM-CONFIG-ID";
+                var searchTerm = args.Length > 0 ? args[0]: "microsoft";            
+    
+                var url = "https://api.cognitive.microsoft.com/bingcustomsearch/v7.0/search?" +
+                    "q=" + searchTerm +
+                    "&customconfig=" + customConfigId;
+    
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
+                var httpResponseMessage = client.GetAsync(url).Result;
+                var responseContent = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                BingCustomSearchResponse response = JsonConvert.DeserializeObject<BingCustomSearchResponse>(responseContent);
+                
+                for(int i = 0; i < response.webPages.value.Length; i++)
+                {                
+                    var webPage = response.webPages.value[i];
+                    
+                    Console.WriteLine("name: " + webPage.name);
+                    Console.WriteLine("url: " + webPage.url);                
+                    Console.WriteLine("displayUrl: " + webPage.displayUrl);
+                    Console.WriteLine("snippet: " + webPage.snippet);
+                    Console.WriteLine("dateLastCrawled: " + webPage.dateLastCrawled);
+                    Console.WriteLine();
+                }            
+            }
+        }
+    
+        public class BingCustomSearchResponse
+        {        
+            public string _type{ get; set; }            
+            public WebPages webPages { get; set; }
+        }
+    
+        public class WebPages
+        {
+            public string webSearchUrl { get; set; }
+            public int totalEstimatedMatches { get; set; }
+            public WebPage[] value { get; set; }        
+        }
+    
+        public class WebPage
+        {
+            public string name { get; set; }
+            public string url { get; set; }
+            public string displayUrl { get; set; }
+            public string snippet { get; set; }
+            public DateTime dateLastCrawled { get; set; }
+            public string cachedPageUrl { get; set; }
+            public OpenGraphImage openGraphImage { get; set; }        
+        }
+        
+        public class OpenGraphImage
+        {
+            public string contentUrl { get; set; }
+            public int width { get; set; }
+            public int height { get; set; }
+        }
+    }
+    ```
+6. <span data-ttu-id="36f3a-121">Build the application using the following command.</span><span class="sxs-lookup"><span data-stu-id="36f3a-121">Build the application using the following command.</span></span> <span data-ttu-id="36f3a-122">Note the dll path referenced by the command output.</span><span class="sxs-lookup"><span data-stu-id="36f3a-122">Note the dll path referenced by the command output.</span></span>
+    <pre>
+    dotnet build 
+    </pre>
+
+7. <span data-ttu-id="36f3a-123">Run the application using the following command replacing **PATH TO OUTPUT** with the path referenced by the build step.</span><span class="sxs-lookup"><span data-stu-id="36f3a-123">Run the application using the following command replacing **PATH TO OUTPUT** with the path referenced by the build step.</span></span>
+    <pre>    
+    dotnet **PATH TO OUTPUT**
+    </pre>
+
+## <a name="next-steps"></a><span data-ttu-id="36f3a-124">Next steps</span><span class="sxs-lookup"><span data-stu-id="36f3a-124">Next steps</span></span>
+- [<span data-ttu-id="36f3a-125">Configure your hosted UI experience</span><span class="sxs-lookup"><span data-stu-id="36f3a-125">Configure your hosted UI experience</span></span>](./hosted-ui.md)
+- [<span data-ttu-id="36f3a-126">Use decoration markers to highlight text</span><span class="sxs-lookup"><span data-stu-id="36f3a-126">Use decoration markers to highlight text</span></span>](./hit-highlighting.md)
+- [<span data-ttu-id="36f3a-127">Page webpages</span><span class="sxs-lookup"><span data-stu-id="36f3a-127">Page webpages</span></span>](./page-webpages.md)
