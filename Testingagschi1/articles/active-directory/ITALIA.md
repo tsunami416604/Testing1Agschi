@@ -122,7 +122,6 @@ ms.author: v-brapel
     <pre>    
     dotnet **PATH TO OUTPUT**
     </pre>
-
 ## <a name="next-steps"></a><span data-ttu-id="36f3a-124">Next steps</span><span class="sxs-lookup"><span data-stu-id="36f3a-124">Next steps</span></span>
 - [<span data-ttu-id="36f3a-125">Configure your hosted UI experience</span><span class="sxs-lookup"><span data-stu-id="36f3a-125">Configure your hosted UI experience</span></span>](./hosted-ui.md)
 - [<span data-ttu-id="36f3a-126">Use decoration markers to highlight text</span><span class="sxs-lookup"><span data-stu-id="36f3a-126">Use decoration markers to highlight text</span></span>](./hit-highlighting.md)
