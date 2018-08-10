@@ -1,16 +1,21 @@
 ---
-title: include file
-description: include file
+title: archivo de inclusión
+description: archivo de inclusión
 services: cognitive-services
 author: chliang
 manager: bix
-
 ms.service: cognitive-services
 ms.technology: anomaly-finder
 ms.topic: include
 ms.date: 04/13/2018
 ms.author: chliang
 ms.custom: include file
+ms.openlocfilehash: 9cd16c9371c6982de2ff1953f9dc2c4148e416a5
+ms.sourcegitcommit: 95d9a6acf29405a533db943b1688612980374272
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "35381287"
 ---
 ``` json
 {
