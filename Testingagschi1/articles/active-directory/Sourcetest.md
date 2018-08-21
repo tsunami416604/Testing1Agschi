@@ -103,22 +103,7 @@ If &ast;.one.microsoft.com is too broad, you can limit the server's communicatio
 
 For business continuity and disaster recovery (BCDR) reasons you may have specified your Azure file shares in a globally redundant (GRS) storage account. If that is the case, then your Azure file shares will fail over to the paired region in the event of a lasting regional outage. Azure File Sync uses the same regional pairings as storage. So if you use GRS storage accounts, you need to enable additional URLs to allow your server to talk to the paired region for Azure File Sync. The table below calls this "Paired region". Additionally, there is a traffic manager profile URL that needs to be enabled as well. This will ensure network traffic can be seamlessly re-routed to the paired region in the event of a fail-over and is called "Discovery URL" in the table below.
 
-| Region | Primary endpoint URL | Paired region | Discovery URL |
-|--------|---------------------------------------|--------|---------------------------------------|
-| Australia East | https://kailani-aue.one.microsoft.com | Australia Souteast | https://kailani-aue.one.microsoft.com |
-| Australia Southeast | https://kailani-aus.one.microsoft.com | Australia East | https://tm-kailani-aus.one.microsoft.com |
-| Canada Central | https://kailani-cac.one.microsoft.com | Canada East | https://tm-kailani-cac.one.microsoft.com |
-| Canada East | https://kailani-cae.one.microsoft.com | Canada Central | https://tm-kailani.cae.one.microsoft.com |
-| Central US | https://kailani-cus.one.microsoft.com | East US 2 | https://tm-kailani-cus.one.microsoft.com |
-| East Asia | https://kailani11.one.microsoft.com | Southeast Asia | https://tm-kailani11.one.microsoft.com |
-| East US | https://kailani1.one.microsoft.com | West US | https://tm-kailani1.one.microsoft.com |
-| East US 2 | https://kailani-ess.one.microsoft.com | Central US | https://tm-kailani-ess.one.microsoft.com |
-| North Europe | https://kailani7.one.microsoft.com | West Europe | https://tm-kailani7.one.microsoft.com |
-| Southeast Asia | https://kailani10.one.microsoft.com | East Asia | https://tm-kailani10.one.microsoft.com |
-| UK South | https://kailani-uks.one.microsoft.com | UK West | https://tm-kailani-uks.one.microsoft.com |
-| UK West | https://kailani-ukw.one.microsoft.com | UK South | https://tm-kailani-ukw.one.microsoft.com |
-| West Europe | https://kailani6.one.microsoft.com | North Europe | https://tm-kailani6.one.microsoft.com |
-| West US | https://kailani.one.microsoft.com | East US | https://tm-kailani.one.microsoft.com |
+| Región | Dirección URL del punto de conexión principal | Región emparejada | URL de detección | |---|---|| --------|| ---------------------------------------| | Este de Australia | https://kailani-aue.one.microsoft.com | Sudeste de Australia | https://kailani-aue.one.microsoft.com | | Sudeste de Australia | https://kailani-aus.one.microsoft.com | Este de Australia | https://tm-kailani-aus.one.microsoft.com | | Centro de Canadá | https://kailani-cac.one.microsoft.com | Este de Canadá | https://tm-kailani-cac.one.microsoft.com | | Este de Canadá | https://kailani-cae.one.microsoft.com | Centro de Canadá | https://tm-kailani.cae.one.microsoft.com | | Centro de EE. UU. | https://kailani-cus.one.microsoft.com | Este de EE. UU. 2 | https://tm-kailani-cus.one.microsoft.com | | Asia Oriental | https://kailani11.one.microsoft.com | Sudeste Asiático | https://tm-kailani11.one.microsoft.com | | Este de EE. UU. | https://kailani1.one.microsoft.com | Oeste de EE. UU. | https://tm-kailani1.one.microsoft.com | | Este de EE. UU. 2 | https://kailani-ess.one.microsoft.com | Centro de EE. UU. | https://tm-kailani-ess.one.microsoft.com | | Europa del Norte | https://kailani7.one.microsoft.com | Europa Occidental | https://tm-kailani7.one.microsoft.com | | Sudeste Asiático | https://kailani10.one.microsoft.com | Asia Oriental | https://tm-kailani10.one.microsoft.com | | Sur de Reino Unido | https://kailani-uks.one.microsoft.com | Oeste de Reino Unido | https://tm-kailani-uks.one.microsoft.com | | Oeste de Reino Unido | https://kailani-ukw.one.microsoft.com | Sur de Reino Unido | https://tm-kailani-ukw.one.microsoft.com | | Europa Occidental | https://kailani6.one.microsoft.com | Europa del Norte | https://tm-kailani6.one.microsoft.com | | Oeste de EE. UU. | https://kailani.one.microsoft.com | Este de EE. UU. | https://tm-kailani.one.microsoft.com |
 
 - If you use locally redundant (LRS) or zone redundant (ZRS) storage accounts, you only need to enable the URL listed under "Primary endpoint URL".
 
