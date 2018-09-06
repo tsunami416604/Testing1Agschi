@@ -104,7 +104,7 @@ ms.locfileid: "42023614"
 
 ---
 
-<span data-ttu-id="5843e-211">**Вопрос. Какие журналы включены?**</span><span class="sxs-lookup"><span data-stu-id="5843e-211">**Q: Which logs are included?**</span></span>
+<span data-ttu-id="5843e-211">**Вопрос Какие журналы включены?**</span><span class="sxs-lookup"><span data-stu-id="5843e-211">**Q: Which logs are included?**</span></span>
 
 <span data-ttu-id="5843e-212">**Ответ**. Журналы входа в систему и журналы аудита доступны для направления через эту функцию, несмотря на то, что события аудита в клиенте B2C в настоящее время не поддерживаются.</span><span class="sxs-lookup"><span data-stu-id="5843e-212">**A**: The sign-in activity logs and audit logs are both available for routing through this feature, although B2C-related audit events are currently not included.</span></span> <span data-ttu-id="5843e-213">Чтобы узнать, какие типы журналов и какие журналы компонентов поддерживаются в настоящее время, ознакомьтесь со статьями [Интерпретация схемы журналов аудита Azure Active Directory в Azure Monitor (предварительная версия)](reference-azure-monitor-audit-log-schema.md) и [Интерпретация схемы журналов входа Azure Active Directory в Azure Monitor (предварительная версия)](reference-azure-monitor-sign-ins-log-schema.md).</span><span class="sxs-lookup"><span data-stu-id="5843e-213">To find out which types of logs and which feature-based logs are currently supported, see [Audit log schema](reference-azure-monitor-audit-log-schema.md) and [Sign-in log schema](reference-azure-monitor-sign-ins-log-schema.md).</span></span> 
 
