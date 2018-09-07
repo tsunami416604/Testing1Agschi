@@ -104,7 +104,7 @@ ms.locfileid: "42023937"
 
 ---
 
-<span data-ttu-id="9e13d-211">**問： 其中包含哪些記錄？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-211">**Q: Which logs are included?**</span></span>
+<span data-ttu-id="9e13d-211">**問: 其中包含哪些記錄？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-211">**Q: Which logs are included?**</span></span>
 
 <span data-ttu-id="9e13d-212">**答**： 登入活動記錄和稽核記錄都可透過這項功能路由傳送，但目前不包含 B2C 相關稽核事件。</span><span class="sxs-lookup"><span data-stu-id="9e13d-212">**A**: The sign-in activity logs and audit logs are both available for routing through this feature, although B2C-related audit events are currently not included.</span></span> <span data-ttu-id="9e13d-213">若要找出目前支援哪些類型的記錄和哪些以功能為基礎的記錄，請參閱[稽核記錄結構描述](reference-azure-monitor-audit-log-schema.md)和[登入記錄結構描述](reference-azure-monitor-sign-ins-log-schema.md)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-213">To find out which types of logs and which feature-based logs are currently supported, see [Audit log schema](reference-azure-monitor-audit-log-schema.md) and [Sign-in log schema](reference-azure-monitor-sign-ins-log-schema.md).</span></span> 
 
