@@ -98,45 +98,45 @@ ms.locfileid: "42023937"
 
 <span data-ttu-id="9e13d-207">這一節會回答 Azure 監視器中 Azure AD 記錄的常見問題集，以及討論已知的問題。</span><span class="sxs-lookup"><span data-stu-id="9e13d-207">This section answers frequently asked questions and discusses known issues with Azure AD logs in Azure Monitor.</span></span>
 
-<span data-ttu-id="9e13d-208">**問： 我該從何處著手？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-208">**Q: Where should I start?**</span></span> 
+<span data-ttu-id="9e13d-208">**問: 我該從何處著手？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-208">**Q: Where should I start?**</span></span> 
 
-<span data-ttu-id="9e13d-209">**答**： 本文討論您部署此功能時所需的項目。</span><span class="sxs-lookup"><span data-stu-id="9e13d-209">**A**: This article discusses what you need to deploy this feature.</span></span> <span data-ttu-id="9e13d-210">在您滿足先決條件後，請前往可協助設定以及將記錄路由傳送至事件中樞的教學課程。</span><span class="sxs-lookup"><span data-stu-id="9e13d-210">After you've satisfied the prerequisites, go to the tutorials that can help you configure and route your logs to an event hub.</span></span>
+<span data-ttu-id="9e13d-209">**答**: 本文討論您部署此功能時所需的項目。</span><span class="sxs-lookup"><span data-stu-id="9e13d-209">**A**: This article discusses what you need to deploy this feature.</span></span> <span data-ttu-id="9e13d-210">在您滿足先決條件後，請前往可協助設定以及將記錄路由傳送至事件中樞的教學課程。</span><span class="sxs-lookup"><span data-stu-id="9e13d-210">After you've satisfied the prerequisites, go to the tutorials that can help you configure and route your logs to an event hub.</span></span>
 
 ---
 
 <span data-ttu-id="9e13d-211">**問: 其中包含哪些記錄？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-211">**Q: Which logs are included?**</span></span>
 
-<span data-ttu-id="9e13d-212">**答**： 登入活動記錄和稽核記錄都可透過這項功能路由傳送，但目前不包含 B2C 相關稽核事件。</span><span class="sxs-lookup"><span data-stu-id="9e13d-212">**A**: The sign-in activity logs and audit logs are both available for routing through this feature, although B2C-related audit events are currently not included.</span></span> <span data-ttu-id="9e13d-213">若要找出目前支援哪些類型的記錄和哪些以功能為基礎的記錄，請參閱[稽核記錄結構描述](reference-azure-monitor-audit-log-schema.md)和[登入記錄結構描述](reference-azure-monitor-sign-ins-log-schema.md)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-213">To find out which types of logs and which feature-based logs are currently supported, see [Audit log schema](reference-azure-monitor-audit-log-schema.md) and [Sign-in log schema](reference-azure-monitor-sign-ins-log-schema.md).</span></span> 
+<span data-ttu-id="9e13d-212">**答**: 登入活動記錄和稽核記錄都可透過這項功能路由傳送，但目前不包含 B2C 相關稽核事件。</span><span class="sxs-lookup"><span data-stu-id="9e13d-212">**A**: The sign-in activity logs and audit logs are both available for routing through this feature, although B2C-related audit events are currently not included.</span></span> <span data-ttu-id="9e13d-213">若要找出目前支援哪些類型的記錄和哪些以功能為基礎的記錄，請參閱[稽核記錄結構描述](reference-azure-monitor-audit-log-schema.md)和[登入記錄結構描述](reference-azure-monitor-sign-ins-log-schema.md)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-213">To find out which types of logs and which feature-based logs are currently supported, see [Audit log schema](reference-azure-monitor-audit-log-schema.md) and [Sign-in log schema](reference-azure-monitor-sign-ins-log-schema.md).</span></span> 
 
 ---
 
-<span data-ttu-id="9e13d-214">**問： 在執行動作後，多久會在事件中樞內顯示對應的記錄？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-214">**Q: How soon after an action do the corresponding logs show up in event hubs?**</span></span>
+<span data-ttu-id="9e13d-214">**問: 在執行動作後，多久會在事件中樞內顯示對應的記錄？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-214">**Q: How soon after an action do the corresponding logs show up in event hubs?**</span></span>
 
-<span data-ttu-id="9e13d-215">**答**： 在執行動作後，記錄應該會在二到五分鐘內顯示於事件中樞。</span><span class="sxs-lookup"><span data-stu-id="9e13d-215">**A**: The logs should show up in your event hub within two to five minutes after the action is performed.</span></span> <span data-ttu-id="9e13d-216">如需事件中樞的詳細資訊，請參閱[什麼是 Azure 事件中樞？](../../event-hubs/event-hubs-about.md)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-216">For more information about Event Hubs, see [What is Azure Event Hubs?](../../event-hubs/event-hubs-about.md).</span></span>
-
----
-
-<span data-ttu-id="9e13d-217">**問： 在執行動作後，多久會在儲存體帳戶中顯示對應的記錄？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-217">**Q: How soon after an action do the corresponding logs show up in storage accounts?**</span></span>
-
-<span data-ttu-id="9e13d-218">**答**： 就 Azure 儲存體帳戶而言，延遲介於執行動作後的 5 到 15 分鐘之間。</span><span class="sxs-lookup"><span data-stu-id="9e13d-218">**A**: For Azure storage accounts, the latency is anywhere from 5 to 15 minutes after the action is performed.</span></span>
+<span data-ttu-id="9e13d-215">**答**: 在執行動作後，記錄應該會在二到五分鐘內顯示於事件中樞。</span><span class="sxs-lookup"><span data-stu-id="9e13d-215">**A**: The logs should show up in your event hub within two to five minutes after the action is performed.</span></span> <span data-ttu-id="9e13d-216">如需事件中樞的詳細資訊，請參閱[什麼是 Azure 事件中樞？](../../event-hubs/event-hubs-about.md)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-216">For more information about Event Hubs, see [What is Azure Event Hubs?](../../event-hubs/event-hubs-about.md).</span></span>
 
 ---
 
-<span data-ttu-id="9e13d-219">**問： 儲存資料需要多少成本？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-219">**Q: How much will it cost to store my data?**</span></span>
+<span data-ttu-id="9e13d-217">**問:： 在執行動作後，多久會在儲存體帳戶中顯示對應的記錄？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-217">**Q: How soon after an action do the corresponding logs show up in storage accounts?**</span></span>
 
-<span data-ttu-id="9e13d-220">**答**： 儲存體成本取決於您的記錄大小，以及您所選擇的保留期間。</span><span class="sxs-lookup"><span data-stu-id="9e13d-220">**A**: The storage costs depend on both the size of your logs and the retention period you choose.</span></span> <span data-ttu-id="9e13d-221">如需租用戶的估計成本清單 (取決於所產生的記錄數量)，請參閱[活動記錄的儲存體大小](#storage-size-for-activity-logs)一節。</span><span class="sxs-lookup"><span data-stu-id="9e13d-221">For a list of the estimated costs for tenants, which depend on the volume of logs generated, see the [Storage size for activity logs](#storage-size-for-activity-logs) section.</span></span>
-
----
-
-<span data-ttu-id="9e13d-222">**問： 將資料串流至事件中樞需要多少成本？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-222">**Q: How much will it cost to stream my data to an event hub?**</span></span>
-
-<span data-ttu-id="9e13d-223">**答**： 串流成本取決於您每分鐘收到的訊息數目。</span><span class="sxs-lookup"><span data-stu-id="9e13d-223">**A**: The streaming costs depend on the number of messages you receive per minute.</span></span> <span data-ttu-id="9e13d-224">本文討論如何計算成本並列出成本估計值 (以訊息數目為基礎)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-224">This article discusses how the costs are calculated and lists cost estimates, which are based on the number of messages.</span></span> 
+<span data-ttu-id="9e13d-218">**答**: 就 Azure 儲存體帳戶而言，延遲介於執行動作後的 5 到 15 分鐘之間。</span><span class="sxs-lookup"><span data-stu-id="9e13d-218">**A**: For Azure storage accounts, the latency is anywhere from 5 to 15 minutes after the action is performed.</span></span>
 
 ---
 
-<span data-ttu-id="9e13d-225">**問： 如何整合 Azure AD 活動記錄與我的 SIEM 系統？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-225">**Q: How do I integrate Azure AD activity logs with my SIEM system?**</span></span>
+<span data-ttu-id="9e13d-219">**問: 儲存資料需要多少成本？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-219">**Q: How much will it cost to store my data?**</span></span>
 
-<span data-ttu-id="9e13d-226">**答**： 您可以使用兩種方式執行此動作：</span><span class="sxs-lookup"><span data-stu-id="9e13d-226">**A**: You can do this in two ways:</span></span>
+<span data-ttu-id="9e13d-220">**答**: 儲存體成本取決於您的記錄大小，以及您所選擇的保留期間。</span><span class="sxs-lookup"><span data-stu-id="9e13d-220">**A**: The storage costs depend on both the size of your logs and the retention period you choose.</span></span> <span data-ttu-id="9e13d-221">如需租用戶的估計成本清單 (取決於所產生的記錄數量)，請參閱[活動記錄的儲存體大小](#storage-size-for-activity-logs)一節。</span><span class="sxs-lookup"><span data-stu-id="9e13d-221">For a list of the estimated costs for tenants, which depend on the volume of logs generated, see the [Storage size for activity logs](#storage-size-for-activity-logs) section.</span></span>
+
+---
+
+<span data-ttu-id="9e13d-222">**問: 將資料串流至事件中樞需要多少成本？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-222">**Q: How much will it cost to stream my data to an event hub?**</span></span>
+
+<span data-ttu-id="9e13d-223">**答**: 串流成本取決於您每分鐘收到的訊息數目。</span><span class="sxs-lookup"><span data-stu-id="9e13d-223">**A**: The streaming costs depend on the number of messages you receive per minute.</span></span> <span data-ttu-id="9e13d-224">本文討論如何計算成本並列出成本估計值 (以訊息數目為基礎)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-224">This article discusses how the costs are calculated and lists cost estimates, which are based on the number of messages.</span></span> 
+
+---
+
+<span data-ttu-id="9e13d-225">**問: 如何整合 Azure AD 活動記錄與我的 SIEM 系統？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-225">**Q: How do I integrate Azure AD activity logs with my SIEM system?**</span></span>
+
+<span data-ttu-id="9e13d-226">**答**: 您可以使用兩種方式執行此動作：</span><span class="sxs-lookup"><span data-stu-id="9e13d-226">**A**: You can do this in two ways:</span></span>
 
 - <span data-ttu-id="9e13d-227">使用 Azure 監視器與事件中樞將記錄串流至您的 SIEM 系統。</span><span class="sxs-lookup"><span data-stu-id="9e13d-227">Use Azure Monitor with Event Hubs to stream logs to your SIEM system.</span></span> <span data-ttu-id="9e13d-228">首先，[將記錄串流至事件中樞](quickstart-azure-monitor-stream-logs-to-event-hub.md)，然後使用已設定的事件中樞[設定您的 SIEM 工具](quickstart-azure-monitor-stream-logs-to-event-hub.md#access-data-from-your-event-hub)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-228">First, [stream the logs to an event hub](quickstart-azure-monitor-stream-logs-to-event-hub.md) and then [set up your SIEM tool](quickstart-azure-monitor-stream-logs-to-event-hub.md#access-data-from-your-event-hub) with the configured event hub.</span></span> 
 
@@ -144,27 +144,27 @@ ms.locfileid: "42023937"
 
 ---
 
-<span data-ttu-id="9e13d-230">**問： 目前支援哪些 SIEM 工具？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-230">**Q: What SIEM tools are currently supported?**</span></span> 
+<span data-ttu-id="9e13d-230">**問: 目前支援哪些 SIEM 工具？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-230">**Q: What SIEM tools are currently supported?**</span></span> 
 
-<span data-ttu-id="9e13d-231">**答**： 目前支援 Azure 監視器的有 [Splunk](tutorial-integrate-activity-logs-with-splunk.md)、QRadar 及 [Sumo Logic](https://help.sumologic.com/Send-Data/Applications-and-Other-Data-Sources/Azure_Active_Directory)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-231">**A**: Currently, Azure Monitor is supported by [Splunk](tutorial-integrate-activity-logs-with-splunk.md), QRadar, and [Sumo Logic](https://help.sumologic.com/Send-Data/Applications-and-Other-Data-Sources/Azure_Active_Directory).</span></span> <span data-ttu-id="9e13d-232">如需連接器運作方式的詳細資訊，請參閱[將 Azure 監視資料串流至事件中樞以供外部工具取用](../../monitoring-and-diagnostics/monitor-stream-monitoring-data-event-hubs.md)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-232">For more information about how the connectors work, see [Stream Azure monitoring data to an event hub for consumption by an external tool](../../monitoring-and-diagnostics/monitor-stream-monitoring-data-event-hubs.md).</span></span>
-
----
-
-<span data-ttu-id="9e13d-233">**問： 如何整合 Azure AD 活動記錄與我的 Splunk 執行個體？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-233">**Q: How do I integrate Azure AD activity logs with my Splunk instance?**</span></span>
-
-<span data-ttu-id="9e13d-234">**答**： 首先，[將 Azure AD 活動記錄路由至事件中樞](quickstart-azure-monitor-stream-logs-to-event-hub.md)，然後依照步驟[整合活動記錄與 Splunk](tutorial-integrate-activity-logs-with-splunk.md)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-234">**A**: First, [route the Azure AD activity logs to an event hub](quickstart-azure-monitor-stream-logs-to-event-hub.md), then follow the steps to [Integrate activity logs with Splunk](tutorial-integrate-activity-logs-with-splunk.md).</span></span>
+<span data-ttu-id="9e13d-231">**答**: 目前支援 Azure 監視器的有 [Splunk](tutorial-integrate-activity-logs-with-splunk.md)、QRadar 及 [Sumo Logic](https://help.sumologic.com/Send-Data/Applications-and-Other-Data-Sources/Azure_Active_Directory)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-231">**A**: Currently, Azure Monitor is supported by [Splunk](tutorial-integrate-activity-logs-with-splunk.md), QRadar, and [Sumo Logic](https://help.sumologic.com/Send-Data/Applications-and-Other-Data-Sources/Azure_Active_Directory).</span></span> <span data-ttu-id="9e13d-232">如需連接器運作方式的詳細資訊，請參閱[將 Azure 監視資料串流至事件中樞以供外部工具取用](../../monitoring-and-diagnostics/monitor-stream-monitoring-data-event-hubs.md)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-232">For more information about how the connectors work, see [Stream Azure monitoring data to an event hub for consumption by an external tool](../../monitoring-and-diagnostics/monitor-stream-monitoring-data-event-hubs.md).</span></span>
 
 ---
 
-<span data-ttu-id="9e13d-235">**問： 如何整合 Azure AD 活動記錄與 Sumo Logic？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-235">**Q: How do I integrate Azure AD activity logs with Sumo Logic?**</span></span> 
+<span data-ttu-id="9e13d-233">**問: 如何整合 Azure AD 活動記錄與我的 Splunk 執行個體？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-233">**Q: How do I integrate Azure AD activity logs with my Splunk instance?**</span></span>
 
-<span data-ttu-id="9e13d-236">**答**： 首先，[將 Azure AD 活動記錄路由至事件中樞](https://help.sumologic.com/Send-Data/Applications-and-Other-Data-Sources/Azure_Active_Directory/Collect_Logs_for_Azure_Active_Directory)，然後依照步驟[在 SumoLogic 中安裝 Azure AD 應用程式及檢視儀表板](https://help.sumologic.com/Send-Data/Applications-and-Other-Data-Sources/Azure_Active_Directory/Install_the_Azure_Active_Directory_App_and_View_the_Dashboards)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-236">**A**: First, [route the Azure AD activity logs to an event hub](https://help.sumologic.com/Send-Data/Applications-and-Other-Data-Sources/Azure_Active_Directory/Collect_Logs_for_Azure_Active_Directory), then follow the steps to [Install the Azure AD application and view the dashboards in SumoLogic](https://help.sumologic.com/Send-Data/Applications-and-Other-Data-Sources/Azure_Active_Directory/Install_the_Azure_Active_Directory_App_and_View_the_Dashboards).</span></span>
+<span data-ttu-id="9e13d-234">**答**: 首先，[將 Azure AD 活動記錄路由至事件中樞](quickstart-azure-monitor-stream-logs-to-event-hub.md)，然後依照步驟[整合活動記錄與 Splunk](tutorial-integrate-activity-logs-with-splunk.md)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-234">**A**: First, [route the Azure AD activity logs to an event hub](quickstart-azure-monitor-stream-logs-to-event-hub.md), then follow the steps to [Integrate activity logs with Splunk](tutorial-integrate-activity-logs-with-splunk.md).</span></span>
 
 ---
 
-<span data-ttu-id="9e13d-237">**問： 是否可在不使用外部 SIEM 工具的情況下從事件中樞存取資料？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-237">**Q: Can I access the data from an event hub without using an external SIEM tool?**</span></span> 
+<span data-ttu-id="9e13d-235">**問: 如何整合 Azure AD 活動記錄與 Sumo Logic？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-235">**Q: How do I integrate Azure AD activity logs with Sumo Logic?**</span></span> 
 
-<span data-ttu-id="9e13d-238">**答**： 是。</span><span class="sxs-lookup"><span data-stu-id="9e13d-238">**A**: Yes.</span></span> <span data-ttu-id="9e13d-239">若要從自訂應用程式存取記錄，您可以使用[事件中樞 API](../../event-hubs/event-hubs-dotnet-standard-getstarted-receive-eph.md)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-239">To access the logs from your custom application, you can use the [Event Hubs API](../../event-hubs/event-hubs-dotnet-standard-getstarted-receive-eph.md).</span></span> 
+<span data-ttu-id="9e13d-236">**答**: 首先，[將 Azure AD 活動記錄路由至事件中樞](https://help.sumologic.com/Send-Data/Applications-and-Other-Data-Sources/Azure_Active_Directory/Collect_Logs_for_Azure_Active_Directory)，然後依照步驟[在 SumoLogic 中安裝 Azure AD 應用程式及檢視儀表板](https://help.sumologic.com/Send-Data/Applications-and-Other-Data-Sources/Azure_Active_Directory/Install_the_Azure_Active_Directory_App_and_View_the_Dashboards)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-236">**A**: First, [route the Azure AD activity logs to an event hub](https://help.sumologic.com/Send-Data/Applications-and-Other-Data-Sources/Azure_Active_Directory/Collect_Logs_for_Azure_Active_Directory), then follow the steps to [Install the Azure AD application and view the dashboards in SumoLogic](https://help.sumologic.com/Send-Data/Applications-and-Other-Data-Sources/Azure_Active_Directory/Install_the_Azure_Active_Directory_App_and_View_the_Dashboards).</span></span>
+
+---
+
+<span data-ttu-id="9e13d-237">**問: 是否可在不使用外部 SIEM 工具的情況下從事件中樞存取資料？**</span><span class="sxs-lookup"><span data-stu-id="9e13d-237">**Q: Can I access the data from an event hub without using an external SIEM tool?**</span></span> 
+
+<span data-ttu-id="9e13d-238">**答**: 是。</span><span class="sxs-lookup"><span data-stu-id="9e13d-238">**A**: Yes.</span></span> <span data-ttu-id="9e13d-239">若要從自訂應用程式存取記錄，您可以使用[事件中樞 API](../../event-hubs/event-hubs-dotnet-standard-getstarted-receive-eph.md)。</span><span class="sxs-lookup"><span data-stu-id="9e13d-239">To access the logs from your custom application, you can use the [Event Hubs API](../../event-hubs/event-hubs-dotnet-standard-getstarted-receive-eph.md).</span></span> 
 
 ---
 
