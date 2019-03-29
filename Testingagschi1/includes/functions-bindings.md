@@ -11,6 +11,7 @@ ms.contentlocale: nl-NL
 ms.lasthandoff: 10/25/2018
 ms.locfileid: "50133202"
 ---
+
 <span data-ttu-id="0da27-101">De volgende tabel ziet u de bindingen die worden ondersteund in de twee primaire versies van de Azure Functions-runtime.</span><span class="sxs-lookup"><span data-stu-id="0da27-101">The following table shows the bindings that are supported in the two major versions of the Azure Functions runtime.</span></span>
 
 | <span data-ttu-id="0da27-102">Type</span><span class="sxs-lookup"><span data-stu-id="0da27-102">Type</span></span> | <span data-ttu-id="0da27-103">1.x</span><span class="sxs-lookup"><span data-stu-id="0da27-103">1.x</span></span> | <span data-ttu-id="0da27-104">2.x<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="0da27-104">2.x<sup>1</sup></span></span> | <span data-ttu-id="0da27-105">Trigger</span><span class="sxs-lookup"><span data-stu-id="0da27-105">Trigger</span></span> | <span data-ttu-id="0da27-106">Invoer</span><span class="sxs-lookup"><span data-stu-id="0da27-106">Input</span></span> | <span data-ttu-id="0da27-107">Uitvoer</span><span class="sxs-lookup"><span data-stu-id="0da27-107">Output</span></span> |  
